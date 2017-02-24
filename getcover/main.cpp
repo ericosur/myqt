@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     QString listfn;
 
     while(1) {
-        int cmd_opt = getopt(argc, argv, "hitnrf:");
+        int cmd_opt = getopt(argc, argv, "hitnrf:p:");
         if (cmd_opt == -1) {
             //qDebug() << "cmd_opt == -1";
             break;
@@ -154,6 +154,13 @@ int main(int argc, char *argv[])
             listfn = optarg;
             qDebug() << "use list file:" << listfn;
             break;
+        case 'p':
+            {
+                QString str = optarg;
+                qDebug() << "str:"<<str << endl
+                    << test_encode(str);
+                exit(0);
+            }
         default:
             break;
         }
