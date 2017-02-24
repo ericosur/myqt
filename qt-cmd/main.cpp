@@ -2,8 +2,12 @@
 #include <QProcess>
 #include <QDebug>
 #include <QDateTime>
+#include <QByteArray>
 #include <iostream>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include "wait.h"
 #include "retry.h"
@@ -30,6 +34,39 @@ void gen_seed()
     qsrand((uint)(current % 0xffffffff));
 }
 
+QString getLinkRealname(const QString& softlink)
+{
+    qDebug() << Q_FUNC_INFO << softlink;
+    struct stat sb;
+    QByteArray arr;
+
+    if ( lstat(softlink.toUtf8().constData(), &sb) == -1 ) {
+        perror("lstat");
+        return "";
+    }
+
+    arr.resize(sb.st_size);
+    ssize_t r = readlink(softlink.toUtf8().constData(), arr.data(), sb.st_size);
+    if (r < 0) {
+        perror("lstat");
+        return "";
+    }
+    if (r > sb.st_size) {
+        arr.resize(r);
+        qWarning() << "size of symlink increased";
+    }
+
+    qWarning() << "readlink:" << arr;
+    return arr;
+}
+
+void test_array()
+{
+//#define DEFAULT_VIDEO_SOFTLINK  "/var/run/front.videomgr"
+#define DEFAULT_VIDEO_SOFTLINK  "/home/rasmus/我的連結"
+    getLinkRealname(DEFAULT_VIDEO_SOFTLINK);
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -52,6 +89,9 @@ int main(int argc, char *argv[])
     ///qDebug() << "ret:" << ret;
 
     //test();
+    test_array();
+    return 0;
+
 
     WaitOneSecond t1("t1", 2000), t2("t2", 4000);
     WaitOneSecond w("wait", 8000);
