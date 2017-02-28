@@ -21,21 +21,21 @@ TravelThread::TravelThread(const QString& nm)
 
 void TravelThread::init_filter()
 {
-    QStringList _filter;
+    // QStringList _filter;
 
-    _filter << "*.mp3" << "*.wav" << "*.aac" << "*.m4a"
-        << "*.wma" << "*.flac" << "*.ogg" << "*.ape";
-    filterHash.insert("music", _filter);
+    // _filter << "*.mp3" << "*.wav" << "*.aac" << "*.m4a"
+    //     << "*.wma" << "*.flac" << "*.ogg" << "*.ape";
+    // filterHash.insert("music", _filter);
 
-    _filter.clear();
-    _filter << "*.mp4" << "*.wmv" << "*.mov" << "*.flv"
-         << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg";
-    filterHash.insert("video", _filter);
+    // _filter.clear();
+    // _filter << "*.mp4" << "*.wmv" << "*.mov" << "*.flv"
+    //      << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg";
+    // filterHash.insert("video", _filter);
 
-    _filter.clear();
-    _filter << "*.png" << "*.jpg" << "*.jpeg" << "*.bmp"
-         << "*.jpe" << "*.mid" << "*.amr";
-    filterHash.insert("picture", _filter);
+    // _filter.clear();
+    // _filter << "*.png" << "*.jpg" << "*.jpeg" << "*.bmp"
+    //      << "*.jpe";
+    // filterHash.insert("picture", _filter);
 }
 
 bool TravelThread::isInBlacklist(const QString& name)
@@ -55,20 +55,26 @@ void TravelThread::run()
 {
     qDebug() << __PRETTY_FUNCTION__ << mThreadName << "running...";
 
-    currentFilter.clear();
-    if (!filterHash.contains(mThreadName)) {
-        qWarning() << "no such filter for:" << mThreadName;
-        emit sigThreadNotify(mThreadName);
+    //currentFilter.clear();
+    // if (!filterHash.contains(mThreadName)) {
+    //     qWarning() << "no such filter for:" << mThreadName;
+    //     emit sigThreadNotify(mThreadName);
+    //     return;
+    // }
+    //currentFilter = filterHash.value(mThreadName);
+    if (currentFilter.size() == 0) {
+        qWarning() << "must set filter before running!";
         return;
     }
 
-    currentFilter = filterHash.value(mThreadName);
+    qDebug() << "thread name:" << mThreadName << endl
+        << "currentFilter:" << currentFilter;
     travel_dir(mStartpath);
 
     qDebug() << __PRETTY_FUNCTION__ << mThreadName << "finished...";
 
     mPathlist = mFolderHash.keys();
-    //report_status();
+    report_status();
     emit filelistChanged();
     emit sigThreadNotify(mThreadName);
 }
@@ -137,6 +143,7 @@ void TravelThread::clearFolderHash()
 void TravelThread::report_status()
 {
     qDebug() << Q_FUNC_INFO << endl
+        << "mThreadName:" << mThreadName << endl
         << "mStartpath:" << mStartpath << endl
         << "mFilelist count:" << mFilelist.size() << endl
         << "mPathlist count:" << mPathlist.size();

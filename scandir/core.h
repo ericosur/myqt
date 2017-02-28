@@ -9,9 +9,12 @@
 #include <QSettings>
 #include <QTextCodec>
 #include <QHash>
+#include <QMutex>
 #include <QDebug>
 
 #include "travelthread.h"
+
+#define DEFAULT_START_PATH  "/home/ericosur/Dropbox"
 
 class Core : public QObject
 {
@@ -42,13 +45,14 @@ protected:
     Core();
 
     void startThreads();
-
+    void dumpFolderHash(const QString& name, const FolderHashList& folderhash);
 private:
     QString config_fn;
     QString input_dir;
     QString output_dir;
 
     QHash<QString, TravelThread*> threadHash;
+    QMutex mutex;
 };
 
 

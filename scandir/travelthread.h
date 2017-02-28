@@ -46,11 +46,20 @@ public:
     void setStartPath(const QString& startpath) {
         mStartpath = startpath;
     }
+    QString getStartPath() const {
+        return mStartpath;
+    }
     QStringList getFilelist() const {
         return mFilelist;
     }
     QStringList getPathlist() {
         return mPathlist;
+    }
+    void setFilter(const QStringList sl) {
+        currentFilter = sl;
+    }
+    QStringList getFilter() const {
+        return currentFilter;
     }
 
     FolderHashList getFolderhash() {
@@ -86,7 +95,8 @@ protected:
 private:
     QString mThreadName = "null";
     QString mStartpath = "";
-    QHash<QString, QStringList> filterHash;
+
+    //QHash<QString, QStringList> filterHash;
     QStringList currentFilter;
 
     QStringList mFilelist;  // list with all folders/files

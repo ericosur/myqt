@@ -10,6 +10,8 @@
 #include "miscutil.h"
 #include "core.h"
 
+#define DEFAULT_CONFIG_PATH "/home/ericosur/src/myqt/scandir/s.ini"
+
 using namespace std;
 void msgHandler(QtMsgType type, const QMessageLogContext& ctx, const QString&
 msg)
@@ -39,38 +41,44 @@ void print_help()
 
 void handleOpt(int argc, char** argv)
 {
-    if (argc == 1) {
-        print_help();
-        exit(-1);
-    }
-
-    while(1) {
-        int cmd_opt = getopt(argc, argv, "c:hi:o:");
-        if (cmd_opt == -1) {
-            //qDebug() << "cmd_opt == -1";
-            break;
-        }
-        switch (cmd_opt) {
-        case 'h':   // help
+    do {
+        if (argc == 1) {
             print_help();
-            exit(2);
-            break;
-        case 'c':   // config
-            qDebug() << "c:" << optarg;
-            Core::getInstance()->setConfigFilename(optarg);
-            break;
-        case 'i':   // input dir
-            qDebug() << "i:" << optarg;
-            Core::getInstance()->setInputdir(optarg);
-            break;
-        case 'o':   // output dir
-            Core::getInstance()->setOutputdir(optarg);
-            break;
-        default:
-            exit(0);
+
+            qDebug() << "use default config:" << DEFAULT_CONFIG_PATH;
+            Core::getInstance()->setConfigFilename(DEFAULT_CONFIG_PATH);
             break;
         }
-    }
+
+        while(1) {
+            int cmd_opt = getopt(argc, argv, "c:hi:o:");
+            if (cmd_opt == -1) {
+                //qDebug() << "cmd_opt == -1";
+                break;
+            }
+            switch (cmd_opt) {
+            case 'h':   // help
+                print_help();
+                exit(2);
+                break;
+            case 'c':   // config
+                qDebug() << "c:" << optarg;
+                Core::getInstance()->setConfigFilename(optarg);
+                break;
+            case 'i':   // input dir
+                qDebug() << "i:" << optarg;
+                Core::getInstance()->setInputdir(optarg);
+                break;
+            case 'o':   // output dir
+                Core::getInstance()->setOutputdir(optarg);
+                break;
+            default:
+                exit(0);
+                break;
+            }
+        }
+    } while (false);
+
     qDebug() << Q_FUNC_INFO << "end...";
 }
 
