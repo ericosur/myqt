@@ -74,7 +74,9 @@ void TravelThread::run()
     qDebug() << __PRETTY_FUNCTION__ << mThreadName << "finished...";
 
     mPathlist = mFolderHash.keys();
-    report_status();
+    //report_status();
+    dumpFolderHash();
+
     emit filelistChanged();
     emit sigThreadNotify(mThreadName);
 }
@@ -100,6 +102,7 @@ void TravelThread::travel_dir(const QString& path)
         }
         QFileInfo _info(dir, file);
         QString _fullfilepath = _info.filePath();
+        qDebug() << "_fullfilepath:" << _fullfilepath;
         mFilelist << _fullfilepath;
         (*tmp) << _fullfilepath;
 
@@ -127,6 +130,14 @@ void TravelThread::dumpFolderHash()
             qDebug() << "path not found:" << key;
         }
         count += mFolderHash[key]->size();
+        if ( mFolderHash[key]->size() ) {
+            QStringList* sl = mFolderHash[key];
+            for (int ii=0; ii<sl->size(); ++ii) {
+                qDebug() << QString("%1: %2")
+                    .arg(ii).arg(sl->at(ii));
+            }
+        }
+
     }
     if (mFilelist.size() != count) {
         qWarning() << "mismatched size!" << count;

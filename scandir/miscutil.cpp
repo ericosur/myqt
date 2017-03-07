@@ -10,7 +10,11 @@
 #include "miscutil.h"
 #include "core.h"
 
-#define DEFAULT_CONFIG_PATH "/home/ericosur/src/myqt/scandir/s.ini"
+#ifdef __arm__
+#define DEFAULT_CONFIG_PATH "/data/apps/scandir.ini"
+#else
+#define DEFAULT_CONFIG_PATH "scandir.ini"
+#endif
 
 using namespace std;
 void msgHandler(QtMsgType type, const QMessageLogContext& ctx, const QString&
@@ -24,7 +28,7 @@ msg)
     const char symbols[] = { 'I', 'E', '!', 'X' };
     QString output = prefix + QString("[%1] %2").arg( symbols[type] ).arg( msg
  );
-    std::cerr << output.toStdString() << std::endl;
+    std::cout << output.toStdString() << std::endl;
     if ( type == QtFatalMsg )
         abort();
 }
@@ -32,10 +36,12 @@ msg)
 void print_help()
 {
     printf("help!\n"
+        "default config from: %s\n\n"
         "-c config file name\n"
         "-i input dir\n"
         "-o output dir\n"
-        "-h help message\n"
+        "-h help message\n",
+        DEFAULT_CONFIG_PATH
         );
 }
 

@@ -14,7 +14,8 @@
 
 #include "travelthread.h"
 
-#define DEFAULT_START_PATH  "/home/ericosur/Dropbox"
+#define DEFAULT_START_PATH  "/media/usb"
+#define DEFAULT_OUTPUT_PATH  "/tmp"
 
 class Core : public QObject
 {
@@ -25,9 +26,7 @@ public:
 
     void setConfigFilename(const QString& fn);
     void setInputdir(const QString& fn);
-    void setOutputdir(const QString& fn) {
-        output_dir = fn;
-    }
+    void setOutputdir(const QString& fn);
 
     void start();
 

@@ -59,6 +59,8 @@ void Core::setConfigFilename(const QString& fn)
 
     QString _dir = st.value("/startpath", DEFAULT_START_PATH).toString();
     setInputdir(_dir);
+    _dir = st.value("/outputpath", DEFAULT_OUTPUT_PATH).toString();
+    setOutputdir(_dir);
 
     int _threadno = st.value("/numberofthread", 1).toInt();
     for (int i=1; i<=_threadno; i++) {
@@ -82,6 +84,15 @@ void Core::setInputdir(const QString& fn)
     if (idir.exists()) {
         input_dir = fn;
         qDebug() << "will search:" << input_dir;
+    }
+}
+
+void Core::setOutputdir(const QString& fn)
+{
+    QDir odir(fn);
+    if (odir.exists()) {
+        output_dir = fn;
+        qDebug() << "will output to:" << output_dir;
     }
 }
 
@@ -119,7 +130,7 @@ void Core::sltThreadNotify(const QString& name)
 void Core::dumpFolderHash(const QString& name, const FolderHashList& folderhash)
 {
     mutex.lock();
-    QString fn = QString("%1_out.ini").arg(name);
+    QString fn = QString("%1/%2_out.ini").arg(output_dir).arg(name);
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QSettings st(fn, QSettings::IniFormat);
     st.setIniCodec(codec);
@@ -129,7 +140,13 @@ void Core::dumpFolderHash(const QString& name, const FolderHashList& folderhash)
     // thread name: [video, picture, music]
     st.setValue("/threadname", name);
     // how many folders?
-    st.setValue("/size", folderhash.size());
+    if (folderhash.contains(input_dir)) {
+        // rootdir contains media files
+        st.setValue("/size", folderhash.size()-1);
+    } else {
+        st.setValue("/size", folderhash.size());
+    }
+
     st.setValue("/rootdir", input_dir);
 
     if (folderhash.size() <= 0) {
@@ -171,12 +188,15 @@ void Core::dumpFolderHash(const QString& name, const FolderHashList& folderhash)
         st.setValue(key_name, folder_name);
         // special for root folder list ---
         if (folder_name != input_dir) {
-            st.setValue(QString("/rootdir/d%1").arg(dd), folder_name);
+            st.setValue(QString("/rootdir/folder%1").arg(dd), folder_name);
             dd ++;
+            key_name = QString("/folder%1").arg(i);
+            st.setValue(key_name, folder_name);
+        } else {
+            // will skip input_dir as a folder name,
+            // it will go to special folder "rootdir"
         }
         // special for root folder list --->
-        key_name = QString("/folder%1").arg(i);
-        st.setValue(key_name, folder_name);
         key_name = QString("%1/size").arg(group_name);
         QStringList* sl = folderhash.value(folder_name);
         st.setValue(key_name, sl->size());
@@ -186,6 +206,6 @@ void Core::dumpFolderHash(const QString& name, const FolderHashList& folderhash)
             st.setValue(key_name, sl->at(j));
         }
     }
-
+    st.sync();
     mutex.unlock();
 }

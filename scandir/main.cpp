@@ -7,6 +7,7 @@
 int main(int argc, char** argv)
 {
     qInstallMessageHandler(msgHandler);
+    //QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QCoreApplication app(argc, argv);
 
     handleOpt(argc, argv);
