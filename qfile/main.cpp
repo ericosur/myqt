@@ -5,13 +5,26 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QSettings>
+#include <QStringList>
+#include <QByteArray>
 
-QSettings ini("test.ini", QSettings::IniFormat);
+#define INIFILE "test.ini"
 
 void testini(const QString& key, const QString& val)
 {
+    QSettings ini(INIFILE, QSettings::IniFormat);
     ini.setValue(key, val);
-    ini.sync(); 
+    ini.sync();
+}
+
+void readini()
+{
+    QSettings ini(INIFILE, QSettings::IniFormat);
+    QStringList sl = ini.allKeys();
+    foreach (QString kk, sl) {
+        QString value = ini.value(kk, "").toString();
+        qDebug() << QString("[%1] - [%2]").arg(kk).arg(value);
+	}
 }
 
 void test()
@@ -45,6 +58,16 @@ void test2()
     qDebug() << "locale:" << locale->name();
 }
 
+QString showByteArray(const QByteArray& ba)
+{
+    QString resHex;
+//    QString resDec;
+    for (int i = 0; i < ba.size(); i++) {
+        resHex.append( QString::number(ba.at(i), 16).rightJustified(2, '0') );
+    }
+//    resDec.append( QString::number(ba.at(i) );
+    return resHex;
+}
 
 int main(int argc, char *argv[])
 {
@@ -53,6 +76,11 @@ int main(int argc, char *argv[])
 
     test();
     test2();
+
+    readini();
+    QString s = "張學友";
+    qDebug() << showByteArray(s.toUtf8());
+    qDebug() << showByteArray(s.toLatin1());
 
     return 0;
 }
