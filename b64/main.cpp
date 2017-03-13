@@ -1,57 +1,82 @@
 #include <QCoreApplication>
-#include <QString>
-#include <QByteArray>
-#include <QDebug>
-#include <QSettings>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 
-QString dump(const char* buf, int size)
+#include "foo.h"
+
+void testdir()
 {
-    QString res;
-    for (int i = 0; i<size; i++) {
-        printf("%02x ", (int)buf[i]);
+    Foo foo;
+
+#ifdef __arm__
+    QDir dir("/data/rasmus");
+#else
+    QDir dir("/home/rasmus/src/myqt/b64/b");
+#endif
+    QStringList filter;
+    QFile _file;
+
+    filter << "*.mp3" << "*.m4a" << "*.ape";
+    int cnt = 0;
+
+    foreach (QString file, dir.entryList(filter, QDir::Files | QDir::NoSymLinks)) {
+        QFileInfo _info(dir, file);
+        QString _fullpath = _info.filePath();
+        QString _encoded = QFile::encodeName(_fullpath);
+        QUrl _url = QUrl::fromLocalFile(_fullpath);
+        //_url.fromEncoded(_encoded.toUtf8());
+
+        qDebug() << "_fullpath:" << _fullpath;
+        qDebug() << "encodename:" << _encoded;
+        qDebug() << "url:" << _url;
+
+        _file.setFileName(_fullpath);
+        if (_file.exists(_fullpath)) {
+            foo.saveString(cnt, _fullpath);
+        } else {
+            qDebug() << "_fullpath nok:" << _fullpath;
+        }
+
+        _file.setFileName(_encoded);
+        if (_file.exists(_encoded)) {
+            foo.saveEncoded(cnt, _encoded);
+        } else {
+            qDebug() << "check encode fail:" << _encoded;
+        }
+
+        foo.saveUrl(cnt, _url);
+
+        cnt ++;
     }
-    return res;
 }
 
-void saveIni(const QString& key, const QByteArray& value)
+QUrl readUrl(int idx)
 {
-    QSettings ini("test.ini", QSettings::IniFormat);
-    ini.setValue(key, value);
-    ini.sync();
-}
-
-void readIni(const QString& key, QByteArray& value)
-{
-    QSettings ini("test.ini", QSettings::IniFormat);
-    if (!ini.contains(key)) {
-        qWarning() << "key not found:" << key;
-        return;
+    Foo bar;
+    QUrl url;
+    if ( bar.readUrl(idx, url) ) {
+        qDebug() << url;
+        return url;
     }
-    value = ini.value(key, QByteArray()).toByteArray();
+    return QUrl();
 }
 
-
-void test(const QString& str)
+void testread()
 {
-    qDebug() << Q_FUNC_INFO << "str:" << str;
+    Foo bar;
+    QUrl url;
+    QFile _f;
+    int urlcount = bar.getUrlCount();
 
-    QByteArray b1 = str.toLocal8Bit();
-    qDebug() << "local 8bit" << b1.toHex() << endl
-             << b1.toBase64();
-    saveIni("key1", b1);
-    QByteArray b2 = str.toUtf8();
-    qDebug() << "utf8" << b2.toHex() << endl
-             << b2.toBase64();
-    saveIni("key2", b2);
-
-    QByteArray bb;
-    readIni("key1", bb);
-    qDebug() << "bb" << bb.toHex();
-    readIni("key2", bb);
-    qDebug() << "bb" << bb.toHex();
-
-    QString s = bb;
-    qDebug() << "str==>" << s;
+    for (int i=0; i<urlcount; i++) {
+        if ( bar.readUrl(i, url) ) {
+            qDebug() << url;
+            _f.setFileName(url.toLocalFile());
+            qDebug() << "exist?" /* << _f.fileName() << endl */
+                 << _f.exists();
+        }
+    }
 }
 
 int main(int argc, char *argv[])
@@ -59,9 +84,8 @@ int main(int argc, char *argv[])
     Q_UNUSED(argc);
     Q_UNUSED(argv);
 
-    test("中文輸入法");
-    test("\u5f37\u5f69\u4e0a\u4e0b");
-    test("جميع أغاني");
+    testdir();
+    testread();
 
     return 0;
 }
