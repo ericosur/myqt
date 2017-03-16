@@ -6,6 +6,6 @@ CONFIG -= qt
 SOURCES += main.cpp
 
 # use local build taglib
-INCLUDEPATH += /usr/local/include
-LIBS += -L/usr/local/lib
+#INCLUDEPATH += /usr/local/include
+#LIBS += -L/usr/local/lib
 LIBS += -ltag -lz
