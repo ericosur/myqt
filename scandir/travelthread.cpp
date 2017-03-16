@@ -3,7 +3,11 @@
  */
 
 #include "travelthread.h"
+
 #include <QRegExp>
+#include <QSettings>
+#include <QTextCodec>
+#include <QDateTime>
 
 TravelThread::TravelThread(const QString& nm)
 {
@@ -13,29 +17,14 @@ TravelThread::TravelThread(const QString& nm)
     mFilelist.clear();
     mPathlist.clear();
 
-    init_filter();
     shm = new QSharedMemory(SHMKEY, this);
 
     setThreadName(nm);
+    init();
 }
 
-void TravelThread::init_filter()
+void TravelThread::init()
 {
-    // QStringList _filter;
-
-    // _filter << "*.mp3" << "*.wav" << "*.aac" << "*.m4a"
-    //     << "*.wma" << "*.flac" << "*.ogg" << "*.ape";
-    // filterHash.insert("music", _filter);
-
-    // _filter.clear();
-    // _filter << "*.mp4" << "*.wmv" << "*.mov" << "*.flv"
-    //      << "*.mkv" << "*.avi" << "*.mpg" << "*.mpeg";
-    // filterHash.insert("video", _filter);
-
-    // _filter.clear();
-    // _filter << "*.png" << "*.jpg" << "*.jpeg" << "*.bmp"
-    //      << "*.jpe";
-    // filterHash.insert("picture", _filter);
 }
 
 bool TravelThread::isInBlacklist(const QString& name)
@@ -75,7 +64,9 @@ void TravelThread::run()
 
     mPathlist = mFolderHash.keys();
     //report_status();
-    dumpFolderHash();
+    dumpFolderHashToIni();
+    //dumpIdh();
+    //dumpIdHashToIni();
 
     emit filelistChanged();
     emit sigThreadNotify(mThreadName);
@@ -111,7 +102,6 @@ void TravelThread::travel_dir(const QString& path)
         idh.mId2FileHash.insert(_id, _fullfilepath);
     }
 
-
     foreach (QString subDir, dir.entryList(QDir::Dirs
                                            | QDir::NoDotAndDotDot | QDir::NoSymLinks)) {
         travel_dir(path + QDir::separator() + subDir);
@@ -137,12 +127,170 @@ void TravelThread::dumpFolderHash()
                     .arg(ii).arg(sl->at(ii));
             }
         }
-
     }
     if (mFilelist.size() != count) {
         qWarning() << "mismatched size!" << count;
     }
 }
+
+// void TravelThread::dumpIdHashToIni()
+// {
+//     QString fn = QString("%1/%2_id.ini").arg(mOutputDir).arg(mThreadName);
+//     qDebug() << Q_FUNC_INFO << "to:" << fn;
+//     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+//     QSettings st(fn, QSettings::IniFormat);
+//     st.setIniCodec(codec);
+//     st.clear();
+
+//     qint64 time = QDateTime::currentMSecsSinceEpoch();
+//     st.setValue("/start_time", QString::number(time));
+//     qDebug() << time;
+
+//     foreach (int id, idh.mId2FileHash.keys()) {
+//         st.setValue(QString("/fileid/%1").arg(id), idh.mId2FileHash.value(id));
+//     }
+//     foreach (int id, idh.mId2FolderHash.keys()) {
+//         st.setValue(QString("/folderid/%1").arg(id), idh.mId2FolderHash.value(id));
+//     }
+
+//     time = QDateTime::currentMSecsSinceEpoch();
+//     st.setValue("/end_time", QString::number(time));
+//     qDebug() << time;
+// }
+
+void TravelThread::dumpFolderHashToIni()
+{
+    QString fn = QString("%1/%2_out.ini").arg(mOutputDir).arg(mThreadName);
+    qDebug() << Q_FUNC_INFO << "to:" << fn;
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    QSettings st(fn, QSettings::IniFormat);
+    st.setIniCodec(codec);
+    st.clear();
+
+    qint64 time = QDateTime::currentMSecsSinceEpoch();
+    st.setValue("/start_time", QString::number(time));
+    //st.setValue("/start_time", QTime::currentTime().toString("HH:mm:ss.zzz"));
+    // thread name: [video, picture, music]
+    st.setValue("/thread/mThreadName", mThreadName);
+    st.setValue("/thread/mStartpath", mStartpath);
+    st.setValue("/thread/mOutputDir", mOutputDir);
+    st.setValue("/thread/BASE_DIRID", BASE_DIRID);
+    st.setValue("/thread/BASE_FILEID", BASE_FILEID);
+
+    // how many folders?
+    if (mFolderHash.contains(mStartpath)) {
+        // rootdir contains media files
+        st.setValue("/size", mFolderHash.size()-1);
+    } else {
+        st.setValue("/size", mFolderHash.size());
+    }
+
+    st.setValue("/rootdir", mStartpath);
+
+    if (mFolderHash.size() <= 0) {
+        qWarning() << "folder hash list is empty:" << mThreadName;
+        //mutex.unlock();
+        return;
+    }
+
+    // process rootfolder first
+    QString group_name;
+    QString folder_name;
+    QString key_name;
+
+    int root_size = 0;
+
+    if (mFolderHash.contains(mStartpath)) {
+        QStringList *rf = mFolderHash.value(mStartpath);
+        st.setValue("/rootdir/fileno", rf->size());
+        st.setValue("/rootdir/dirno", mFolderHash.size()-1);
+        root_size = rf->size() + mFolderHash.size() - 1;
+        for (int ii = 0; ii<rf->size(); ii++) {
+            QString fn = rf->at(ii);
+            st.setValue(QString("/rootdir/f%1").arg(ii), fn);
+            if (idh.mFile2IdHash.contains(fn)) {
+                st.setValue(QString("/rootdir/fileid%1").arg(ii), idh.mFile2IdHash.value(fn));
+            }
+        }
+    } else {
+        st.setValue("/rootdir/dirno", mFolderHash.size());
+        root_size = mFolderHash.size();
+        qWarning() << "no files at rootdir...";
+    }
+
+    st.setValue("/rootdir/totalsize", root_size);
+
+
+    QStringList folderkeylist = mFolderHash.keys();
+    // because I will filter out "rootdir",
+    // so the index dd will not the same as ii
+    int dd = 0;
+    for (int i = 0; i < folderkeylist.size(); i++) {
+        group_name = QString("/folder%1").arg(dd);
+        folder_name = folderkeylist.at(i);
+        key_name = QString("%1/foldername").arg(group_name);
+        st.setValue(key_name, folder_name);
+        // special for root folder list ---
+        if (folder_name != mStartpath) {
+            st.setValue(QString("/rootdir/folder%1").arg(dd), folder_name);
+            key_name = QString("/folder%1").arg(dd);
+            st.setValue(key_name, folder_name);
+            if (idh.mFolder2IdHash.contains(folder_name)) {
+                st.setValue(QString("/folderid%1").arg(dd), idh.mFolder2IdHash.value(folder_name));
+                st.setValue(QString("/folder%1/%2").arg(dd).arg("/folderid"), idh.mFolder2IdHash.value(folder_name));
+                st.setValue(QString("/rootdir/folderid%1").arg(dd), idh.mFolder2IdHash.value(folder_name));
+            }
+            dd ++;
+        } else {
+            // will skip input_dir as a folder name,
+            // it will go to special folder "rootdir"
+            if (idh.mFolder2IdHash.contains(folder_name)) {
+                st.setValue("/rootdir/folderid", idh.mFolder2IdHash.value(folder_name));
+            }
+        }
+        // special for root folder list --->
+        key_name = QString("%1/size").arg(group_name);
+        QStringList* sl = mFolderHash.value(folder_name);
+        st.setValue(key_name, sl->size());
+
+        for (int j = 0; j < sl->size(); j++) {
+            QString fn = sl->at(j);
+            key_name = QString("%1/%2").arg(group_name).arg(j);
+            st.setValue(key_name, fn);
+            if (idh.mFile2IdHash.contains(fn)) {
+                key_name = QString("%1/id%2").arg(group_name).arg(j);
+                st.setValue(key_name, idh.mFile2IdHash.value(fn));
+            } else {
+                qWarning() << "not found in file2idhash!" << fn;
+            }
+        }
+    }
+
+
+    // dump all file id
+    foreach (int id, idh.mId2FileHash.keys()) {
+        st.setValue(QString("/fileid/%1").arg(id), idh.mId2FileHash.value(id));
+        st.setValue(QString("/fileid/size"), idh.mId2FileHash.size());
+    }
+    // dump all folder id
+    foreach (int id, idh.mId2FolderHash.keys()) {
+        st.setValue(QString("/folderid/%1").arg(id), idh.mId2FolderHash.value(id));
+        st.setValue(QString("/folderid/size"), idh.mId2FolderHash.size());
+    }
+
+    time = QDateTime::currentMSecsSinceEpoch();
+    st.setValue("/end_time", QString::number(time));
+    st.sync();
+}
+
+// void TravelThread::dumpIdh()
+// {
+//     QString fn = QString("%1/%2_idh.txt")
+//         .arg(mOutputDir)
+//         .arg(mThreadName);
+//     qDebug() << Q_FUNC_INFO << "fn:" << fn;
+//     idh.dumpToFile(fn);
+// }
 
 void TravelThread::clearFolderHash()
 {
@@ -234,10 +382,9 @@ IdHash TravelThread::loadFromShm()
 
 quint32 TravelThread::get_folderid()
 {
-    quint32 type = 0x200000;
-    quint32 r = type | curr_folderid;
+    quint32 r = BASE_DIRID | curr_folderid;
     curr_folderid ++;
-    if (curr_folderid >= 1 || curr_folderid <= 0x1fffff ) {
+    if (curr_folderid >= 1 || curr_folderid <= MAX_NUMBER_EACH_ID ) {
         return r;
     } else {
         qWarning() << "out of bound!";
@@ -247,10 +394,9 @@ quint32 TravelThread::get_folderid()
 
 quint32 TravelThread::get_fileid()
 {
-    quint32 type = 0x400000;
-    quint32 r = type | curr_fileid;
+    quint32 r = BASE_FILEID | curr_fileid;
     curr_fileid ++;
-    if (curr_fileid >= 1 || curr_fileid <= 0x1fffff) {
+    if (curr_fileid >= 1 || curr_fileid <= MAX_NUMBER_EACH_ID) {
         return r;
     } else {
         qWarning() << "out of bound!";

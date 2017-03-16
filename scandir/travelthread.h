@@ -14,9 +14,11 @@
 #include "miscutil.h"
 #include "idhash.h"
 
+
+#define MAX_NUMBER_EACH_ID      (0x1FFFFF)
+
 typedef QHash<QString, QStringList*> FolderHashList;
 #define SHMKEY    "travel.dir.sharedmem.key"
-
 
 class TravelThread : public QThread
 {
@@ -49,6 +51,9 @@ public:
     QString getStartPath() const {
         return mStartpath;
     }
+    void setOutputdir(const QString& outputdir) {
+        mOutputDir = outputdir;
+    }
     QStringList getFilelist() const {
         return mFilelist;
     }
@@ -70,19 +75,28 @@ public:
         return idh;
     }
 
+    void setBaseDirId(quint32 u) {
+        BASE_DIRID = u;
+    }
+    void setBaseFileId(quint32 u) {
+        BASE_FILEID = u;
+    }
+
     void requestSave();
     void requestLoad();
 
     void dumpFolderHash();
+    //void dumpIdHashToIni();
     void clearFolderHash();
     void report_status();
+    //void dumpIdh();
 
 signals:
     void filelistChanged();
     void sigThreadNotify(const QString& s);
 
 protected:
-    void init_filter();
+    void init();
     bool isInBlacklist(const QString& name);
     void travel_dir(const QString& path);
 
@@ -92,9 +106,15 @@ protected:
     quint32 get_folderid();
     quint32 get_fileid();
 
+    void dumpFolderHashToIni();
+
 private:
     QString mThreadName = "null";
     QString mStartpath = "";
+    QString mOutputDir = "";
+
+    quint32 BASE_DIRID;
+    quint32 BASE_FILEID;
 
     //QHash<QString, QStringList> filterHash;
     QStringList currentFilter;
@@ -102,8 +122,8 @@ private:
     QStringList mFilelist;  // list with all folders/files
     QStringList mPathlist;  // list with all folders
 
-    quint32 curr_folderid = 1;    // start from 1
-    quint32 curr_fileid = 1;
+    quint32 curr_folderid = 0;
+    quint32 curr_fileid = 0;
 
     IdHash idh;
 

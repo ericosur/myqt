@@ -1,6 +1,17 @@
 
 #include "core.h"
 
+/*
+enum MEDIAID {
+    BASE_MUSIC_FOLDERID = 0x200000,
+    BASE_MUSIC_FILEID = 0x400000,
+    BASE_VIDEO_FOLDERID = 0x600000,
+    BASE_VIDEO_FILEID = 0x800000,
+    BASE_PICTURE_FOLDERID = 0xA00000,
+    BASE_PICTURE_FOLDERID = 0xC00000,
+    MAX_NUMBER_EACH_ID = 0x1FFFFF
+};
+*/
 
 Core* Core::_instance = NULL;
 Core* Core::getInstance()
@@ -14,6 +25,8 @@ Core* Core::getInstance()
 Core::Core()
 {
     connect(this, SIGNAL(sigStart()), this, SLOT(sltStart()));
+    connect(this, SIGNAL(sigScanFinish()), this, SLOT(sltScanFinish()));
+    connect(this, SIGNAL(sigScanAbort()), this, SLOT(sltScanAbort()));
 }
 
 void Core::startThreads()
@@ -31,8 +44,7 @@ void Core::startThreads()
 
 void Core::start()
 {
-    qDebug() << Q_FUNC_INFO;
-
+    qDebug() << Q_FUNC_INFO << "scan starts...";
     startThreads();
 }
 
@@ -41,11 +53,11 @@ void Core::sltStart()
     qDebug() << Q_FUNC_INFO;
 }
 
-void Core::setConfigFilename(const QString& fn)
+bool Core::setConfigFilename(const QString& fn)
 {
     if ( !isFileExisted(fn) ) {
         qWarning() << "no such file...";
-        return;
+        return false;
     }
 
     config_fn = fn;
@@ -54,13 +66,16 @@ void Core::setConfigFilename(const QString& fn)
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QSettings st(fn, QSettings::IniFormat);
     st.setIniCodec(codec);
-    //st.setValue("/appname", qApp->applicationName());
-
 
     QString _dir = st.value("/startpath", DEFAULT_START_PATH).toString();
-    setInputdir(_dir);
+    if ( !setInputdir(_dir) )
+        return false;
+
     _dir = st.value("/outputpath", DEFAULT_OUTPUT_PATH).toString();
-    setOutputdir(_dir);
+    if ( !setOutputdir(_dir) )
+        return false;
+
+    bDebug = st.value("/debug", false).toBool();
 
     int _threadno = st.value("/numberofthread", 1).toInt();
     for (int i=1; i<=_threadno; i++) {
@@ -68,32 +83,50 @@ void Core::setConfigFilename(const QString& fn)
         QString _thname = st.value(k, "null").toString();
         k = QString("/filter%1").arg(i);
         QStringList _filter = st.value(k, "").toStringList();
+        basedirid = st.value(QString("basedirid%1").arg(i), 0).toUInt();
+        basefileid = st.value(QString("basefileid%1").arg(i), 0).toUInt();
+
         if (!threadHash.contains(_thname)) {
             qDebug() << "create thread named as:" << _thname;
             TravelThread *tt = new TravelThread(_thname);
             threadHash.insert(_thname, tt);
             tt->setStartPath(input_dir);
+            tt->setOutputdir(output_dir);
             tt->setFilter(_filter);
+            tt->setBaseDirId(basedirid);
+            tt->setBaseFileId(basefileid);
         }
     }
+    return true;
 }
 
-void Core::setInputdir(const QString& fn)
+bool Core::setInputdir(const QString& fn)
 {
     QDir idir(fn);
-    if (idir.exists()) {
-        input_dir = fn;
-        qDebug() << "will search:" << input_dir;
+
+    if (!idir.exists()) {
+        qCritical() << "path not found, cannot proceed:" << input_dir;
+        emit sigScanAbort();
+        return false;
     }
+
+    input_dir = fn;
+    qDebug() << "will search:" << input_dir;
+    return true;
 }
 
-void Core::setOutputdir(const QString& fn)
+bool Core::setOutputdir(const QString& fn)
 {
     QDir odir(fn);
-    if (odir.exists()) {
-        output_dir = fn;
-        qDebug() << "will output to:" << output_dir;
+    if (!odir.exists()) {
+        qCritical() << "path not found, cannot proceed:" << output_dir;
+        emit sigScanAbort();
+        return false;
     }
+
+    output_dir = fn;
+    qDebug() << "will output to:" << output_dir;
+    return true;
 }
 
 void Core::sltTravelFinished()
@@ -101,111 +134,49 @@ void Core::sltTravelFinished()
     //qDebug() << "thread finished...";
 }
 
+void Core::record_md5sum(const QString& name)
+{
+    QString infn = QString("%1/%2_out.ini").arg(output_dir).arg(name);
+    QString cmd = QString("/usr/bin/md5sum %1 > %2.md5").arg(infn).arg(infn);
+    if ( system(cmd.toUtf8().data()) == -1 ) {
+        qWarning() << "running system() wrong...";
+    }
+}
+
 void Core::sltThreadNotify(const QString& name)
 {
-    qDebug() << Q_FUNC_INFO << name;
     if (!threadHash.contains(name)) {
         qWarning() << "no such thread name!";
         return ;
     }
+    qDebug() << Q_FUNC_INFO << name << "say he has done!";
 
-    TravelThread* tt = threadHash.value(name);
+    //TravelThread* tt = threadHash.value(name);
     // qDebug() << "thread<" << tt->getThreadName() << ">"
     //     << "folder size:" << tt->getFolderhash().size()
     //     << "file size:" << tt->getFilelist().size();
-
     // dump result into ini
-    dumpFolderHash(name, tt->getFolderhash());
+    //dumpFolderHash(name, tt->getFolderhash());
     //dumpFilelist(name, tt->getFilelist());
+    //delete tt;
 
-    delete tt;
+    record_md5sum(name);
+
     if ( threadHash.remove(name) != 1 ) {
         qWarning() << "hash remove error!";
     }
     if ( threadHash.size() <= 0 ) {
-        emit sigQuitapp();
+        emit sigScanFinish();
     }
 }
 
-void Core::dumpFolderHash(const QString& name, const FolderHashList& folderhash)
+void Core::sltScanFinish()
 {
-    mutex.lock();
-    QString fn = QString("%1/%2_out.ini").arg(output_dir).arg(name);
-    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-    QSettings st(fn, QSettings::IniFormat);
-    st.setIniCodec(codec);
+    // notify app to quit
+    emit sigQuitapp();
+}
 
-    st.clear();
-
-    // thread name: [video, picture, music]
-    st.setValue("/threadname", name);
-    // how many folders?
-    if (folderhash.contains(input_dir)) {
-        // rootdir contains media files
-        st.setValue("/size", folderhash.size()-1);
-    } else {
-        st.setValue("/size", folderhash.size());
-    }
-
-    st.setValue("/rootdir", input_dir);
-
-    if (folderhash.size() <= 0) {
-        qWarning() << "folder hash list is empty:" << name;
-        mutex.unlock();
-        return;
-    }
-
-    // process rootfolder first
-    QString group_name;
-    QString folder_name;
-    QString key_name;
-
-    int root_size = 0;
-
-    if (folderhash.contains(input_dir)) {
-        QStringList *rf = folderhash.value(input_dir);
-        st.setValue("/rootdir/fileno", rf->size());
-        st.setValue("/rootdir/dirno", folderhash.size()-1);
-        root_size = rf->size() + folderhash.size() - 1;
-        for (int ii = 0; ii<rf->size(); ii++) {
-            st.setValue(QString("/rootdir/f%1").arg(ii), rf->at(ii));
-        }
-    } else {
-        st.setValue("/rootdir/dirno", folderhash.size());
-        root_size = folderhash.size();
-        qWarning() << "no files at rootdir...";
-    }
-
-    st.setValue("/rootdir/totalsize", root_size);
-
-
-    QStringList folderkeylist = folderhash.keys();
-    int dd = 0;
-    for (int i = 0; i < folderkeylist.size(); i++) {
-        group_name = QString("/folder%1").arg(i);
-        folder_name = folderkeylist.at(i);
-        key_name = QString("%1/foldername").arg(group_name);
-        st.setValue(key_name, folder_name);
-        // special for root folder list ---
-        if (folder_name != input_dir) {
-            st.setValue(QString("/rootdir/folder%1").arg(dd), folder_name);
-            dd ++;
-            key_name = QString("/folder%1").arg(i);
-            st.setValue(key_name, folder_name);
-        } else {
-            // will skip input_dir as a folder name,
-            // it will go to special folder "rootdir"
-        }
-        // special for root folder list --->
-        key_name = QString("%1/size").arg(group_name);
-        QStringList* sl = folderhash.value(folder_name);
-        st.setValue(key_name, sl->size());
-
-        for (int j = 0; j < sl->size(); j++) {
-            key_name = QString("%1/%2").arg(group_name).arg(j);
-            st.setValue(key_name, sl->at(j));
-        }
-    }
-    st.sync();
-    mutex.unlock();
+void Core::sltScanAbort()
+{
+    emit sigQuitapp();
 }

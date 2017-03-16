@@ -24,31 +24,39 @@ class Core : public QObject
 public:
     static Core* getInstance();
 
-    void setConfigFilename(const QString& fn);
-    void setInputdir(const QString& fn);
-    void setOutputdir(const QString& fn);
+    bool setConfigFilename(const QString& fn);
+    bool setInputdir(const QString& fn);
+    bool setOutputdir(const QString& fn);
 
     void start();
 
 signals:
     void sigQuitapp();
     void sigStart();
+    void sigScanFinish();
+    void sigScanAbort();
 
 public slots:
     void sltStart();
     void sltTravelFinished();
     void sltThreadNotify(const QString& name);
+    void sltScanFinish();
+    void sltScanAbort();
 
 protected:
     static Core* _instance;
     Core();
 
     void startThreads();
-    void dumpFolderHash(const QString& name, const FolderHashList& folderhash);
+    //void dumpFolderHash(const QString& name, const FolderHashList& folderhash);
+    void record_md5sum(const QString& name);
+
 private:
     QString config_fn;
     QString input_dir;
     QString output_dir;
+    quint32 basedirid;
+    quint32 basefileid;
 
     QHash<QString, TravelThread*> threadHash;
     QMutex mutex;

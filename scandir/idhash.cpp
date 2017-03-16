@@ -40,4 +40,3 @@ void IdHash::dumpToFile(const QString& fn)
     }
     qDebug() << Q_FUNC_INFO << "end of dump...";
 }
-
