@@ -5,18 +5,26 @@
 
 #include "foo.h"
 
-void testdir()
+void testdir(const QString& _home)
 {
-    Foo foo;
+    qDebug() << Q_FUNC_INFO << _home;
 
 #ifdef __arm__
-    QDir dir("/data/rasmus");
+    QString dirpath = "/data";
 #else
-    QDir dir("/home/rasmus/src/myqt/b64/b");
+    QString dirpath = QString("%1/Dropbox/Music").arg(_home);
+    //dirpath = QDir::fromNativeSeparators(dirpath);
 #endif
-    QStringList filter;
-    QFile _file;
 
+    QDir dir( dirpath );
+    if ( !dir.exists() ) {
+        qWarning() << "path not found:" << dir.dirName();
+        return;
+    }
+    Foo foo;
+    QStringList filter;
+
+    foo.clear();
     filter << "*.mp3" << "*.m4a" << "*.ape";
     int cnt = 0;
 
@@ -25,21 +33,18 @@ void testdir()
         QString _fullpath = _info.filePath();
         QString _encoded = QFile::encodeName(_fullpath);
         QUrl _url = QUrl::fromLocalFile(_fullpath);
-        //_url.fromEncoded(_encoded.toUtf8());
 
         qDebug() << "_fullpath:" << _fullpath;
         qDebug() << "encodename:" << _encoded;
         qDebug() << "url:" << _url;
 
-        _file.setFileName(_fullpath);
-        if (_file.exists(_fullpath)) {
+        if (QFile::exists(_fullpath)) {
             foo.saveString(cnt, _fullpath);
         } else {
             qDebug() << "_fullpath nok:" << _fullpath;
         }
 
-        _file.setFileName(_encoded);
-        if (_file.exists(_encoded)) {
+        if (QFile::exists(_encoded)) {
             foo.saveEncoded(cnt, _encoded);
         } else {
             qDebug() << "check encode fail:" << _encoded;
@@ -49,10 +54,15 @@ void testdir()
 
         cnt ++;
     }
+
+    if (cnt == 0) {
+        qWarning() << "no files found...";
+    }
 }
 
 QUrl readUrl(int idx)
 {
+    qDebug() << Q_FUNC_INFO;
     Foo bar;
     QUrl url;
     if ( bar.readUrl(idx, url) ) {
@@ -64,19 +74,25 @@ QUrl readUrl(int idx)
 
 void testread()
 {
+    qDebug() << Q_FUNC_INFO;
     Foo bar;
     QUrl url;
-    QFile _f;
     int urlcount = bar.getUrlCount();
 
     for (int i=0; i<urlcount; i++) {
         if ( bar.readUrl(i, url) ) {
             qDebug() << url;
-            _f.setFileName(url.toLocalFile());
+            bool ret = QFile::exists(url.toLocalFile());
             qDebug() << "exist?" /* << _f.fileName() << endl */
-                 << _f.exists();
+                 << ret;
         }
     }
+}
+
+QString getHomepath()
+{
+    QString home = QDir::homePath();
+    return home;
 }
 
 int main(int argc, char *argv[])
@@ -84,8 +100,9 @@ int main(int argc, char *argv[])
     Q_UNUSED(argc);
     Q_UNUSED(argv);
 
-    testdir();
-    testread();
+
+    testdir( getHomepath() );
+    //testread();
 
     return 0;
 }

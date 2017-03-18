@@ -9,6 +9,11 @@ Foo::Foo()
     ini->setValue("key", "test");
 }
 
+void Foo::clear()
+{
+    ini->clear();
+}
+
 void Foo::saveByteArray(const QString& key, const QByteArray& value)
 {
     QString _key = QString("ba-%1").arg(key);

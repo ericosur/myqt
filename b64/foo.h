@@ -20,6 +20,8 @@ public:
         }
     }
 
+    void clear();
+
     void saveByteArray(const QString& key, const QByteArray& value);
     void saveString(int idx, const QString& str);
     void readByteArray(const QString& key, QByteArray& value);
