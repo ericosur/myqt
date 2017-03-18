@@ -5,22 +5,37 @@
 
 #include "foo.h"
 
-void testdir(const QString& _home)
+bool try_path(const QString& _home, QDir& _dir)
 {
-    qDebug() << Q_FUNC_INFO << _home;
-
-#ifdef __arm__
+#ifdef USE_TARGET
     QString dirpath = "/data";
 #else
     QString dirpath = QString("%1/Dropbox/Music").arg(_home);
     //dirpath = QDir::fromNativeSeparators(dirpath);
 #endif
-
     QDir dir( dirpath );
-    if ( !dir.exists() ) {
-        qWarning() << "path not found:" << dir.dirName();
+    if ( dir.exists() ) {
+        _dir = dir;
+        return true;
+    }
+    // 2nd try
+    dirpath = QString("%1/Music").arg(_home);
+    dir.setPath(dirpath);
+    if ( dir.exists() ) {
+        _dir = dir;
+        return true;
+    }
+    return false;
+}
+
+void testdir(const QString& _home)
+{
+    QDir dir;
+    if ( !try_path(_home, dir) ) {
+        qWarning() << "no proper dir...";
         return;
     }
+
     Foo foo;
     QStringList filter;
 
