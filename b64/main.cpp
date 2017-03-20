@@ -4,6 +4,7 @@
 #include <QFileInfo>
 
 #include "foo.h"
+#include "testz.h"
 
 bool try_path(const QString& _home, QDir& _dir)
 {
@@ -118,6 +119,7 @@ int main(int argc, char *argv[])
 
     testdir( getHomepath() );
     //testread();
+    test_timezone();
 
     return 0;
 }
