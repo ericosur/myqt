@@ -105,6 +105,12 @@ void testread()
     }
 }
 
+void test_arg_format()
+{
+    double pi=3.1415926535897932;
+    qDebug() << QString("<%1>").arg(pi, 0, 'f', 4);
+}
+
 QString getHomepath()
 {
     QString home = QDir::homePath();
