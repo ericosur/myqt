@@ -123,9 +123,10 @@ int main(int argc, char *argv[])
     Q_UNUSED(argv);
 
 
-    testdir( getHomepath() );
+    //testdir( getHomepath() );
     //testread();
     test_timezone();
+    test_locale();
 
     return 0;
 }
