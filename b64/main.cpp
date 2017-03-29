@@ -2,9 +2,11 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QUrl>
 
 #include "foo.h"
 #include "testz.h"
+#include "readi.h"
 
 bool try_path(const QString& _home, QDir& _dir)
 {
@@ -114,7 +116,14 @@ void test_arg_format()
 QString getHomepath()
 {
     QString home = QDir::homePath();
+    QDir qq(home);
+    qDebug() << "dirName" << qq.dirName();
     return home;
+}
+
+QString toPercentEncoding(const QString& str)
+{
+    return QUrl::toPercentEncoding(str);
 }
 
 int main(int argc, char *argv[])
@@ -122,11 +131,17 @@ int main(int argc, char *argv[])
     Q_UNUSED(argc);
     Q_UNUSED(argv);
 
+    for (int i=1; i<argc; ++i) {
+        qDebug() << toPercentEncoding(argv[i]);
+    }
 
+    qDebug() << getHomepath();
     //testdir( getHomepath() );
     //testread();
-    test_timezone();
-    test_locale();
+    //test_timezone();
+    //test_locale();
+
+    test_read_ini();
 
     return 0;
 }
