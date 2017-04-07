@@ -5,7 +5,7 @@
 QString getmsg(const QString& locale_name, int id)
 {
     if (!QFile::exists(STRMSGINI)) {
-        qWarning() << "string token not found...";
+        qWarning() << "string token file not found...";
         return STRING_NULL;
     }
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");

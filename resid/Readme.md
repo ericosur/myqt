@@ -12,3 +12,10 @@ $ python getcsv.py
 
 
 * compile and execute
+```
+$ mkdir -p b; cd b
+$ qmake ..
+$ make -j
+$ ln -s ../strdef.ini
+$ ./resid
+```
