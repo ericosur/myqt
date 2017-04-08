@@ -21,6 +21,8 @@ void test_zh_id(int id)
 
 void test()
 {
+    findFileLocation("abc");
+
     int id = MSG_PLEASE_CONNECT;
     test_ar_id(id);
     test_zh_id(id);

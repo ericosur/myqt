@@ -2,9 +2,29 @@
 
 #define STRING_NULL    ""
 
+QString findFileLocation(const QString& fn)
+{
+    QStringList findlist;
+    findlist << QDir::currentPath()
+             << QDir::homePath()
+             << QDir::tempPath();
+
+    foreach (QString ph, findlist) {
+        QString fullpath = QString("%1%2%3").arg(ph)
+                                .arg(QDir::separator())
+                                .arg(fn);
+        if (QFile::exists(fullpath)) {
+            return fullpath;
+        }
+    }
+
+    return "";
+}
+
 QString getmsg(const QString& locale_name, int id)
 {
-    if (!QFile::exists(STRMSGINI)) {
+    QString fn = findFileLocation(STRMSGINI);
+    if (fn == "") {
         qWarning() << "string token file not found...";
         return STRING_NULL;
     }
