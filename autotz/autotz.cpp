@@ -17,6 +17,7 @@ using namespace std;
 #define TARGETPATH  "/etc/"
 #define HOSTPATH    "./"
 #define CITYLIST    "citieslist.txt"
+#define OUTPUT_TZ   "/data/etc/TZ"
 
 /// @brief The usual PI/180 constant
 static const double DEG_TO_RAD = 0.017453292519943295769236907684886;
@@ -70,6 +71,18 @@ void usage()
         "./autotz 23.5  122.5\n"
         "./autotz -e  23.5 122.5\n"
     );
+}
+
+void output_tz_to_file(const char* tz_str)
+{
+#ifdef __arm__
+    FILE* fptr = fopen(OUTPUT_TZ, "w");
+    if (fptr == NULL) {
+        return;
+    }
+    fprintf(fptr, "%s\n", tz_str);
+    fclose(fptr);
+#endif
 }
 
 int search_city_table(double inputlat, double inputlong)
@@ -155,6 +168,7 @@ int search_city_table(double inputlat, double inputlong)
         }
     }
     printf("autotz: predict time zone: %s\n",finaltz.c_str());
+    output_tz_to_file(finaltz.c_str());
 
     return 0;
 }
