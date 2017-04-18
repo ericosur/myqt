@@ -11,7 +11,7 @@
 
 void test_timezone()
 {
-    qDebug() << Q_FUNC_INFO << QTimeZone::systemTimeZoneId() << endl
+    qDebug() << Q_FUNC_INFO << "from qt:" << QTimeZone::systemTimeZoneId() << endl
         << "getTimeZoneNameFromLink()" << getTimeZoneNameFromLink();
 
 
