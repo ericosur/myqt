@@ -9,6 +9,8 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -Werror
+
 SOURCES += main.cpp
 
 SOURCES += foo.cpp \
