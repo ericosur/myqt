@@ -159,7 +159,7 @@ int search_city_table(double inputlat, double inputlong)
         }
     }
 
-    command = "ln -sf /usr/share/timezone/zoneinfo/"+finaltz+" /etc/localtime";
+    command = "ln -sf /usr/share/timezone/zoneinfo/"+finaltz+" /data/etc/localtime";
     //printf("command:%s \n" ,command.c_str());
     if (autotz) {
         printf("copy time zone to /etc/localtime\n");

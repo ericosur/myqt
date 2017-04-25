@@ -8,6 +8,10 @@
 #include "testz.h"
 #include "readi.h"
 
+#include "devinfo.h"
+
+void gtz();
+
 bool try_path(const QString& _home, QDir& _dir)
 {
 #ifdef USE_TARGET
@@ -126,22 +130,32 @@ QString toPercentEncoding(const QString& str)
     return QUrl::toPercentEncoding(str);
 }
 
+void test_info()
+{
+    DeviceScreen ds;
+    qDebug() << ds.getInfostring();
+}
+
 int main(int argc, char *argv[])
 {
-    Q_UNUSED(argc);
-    Q_UNUSED(argv);
+    //Q_UNUSED(argc);
+    //Q_UNUSED(argv);
 
     for (int i=1; i<argc; ++i) {
         qDebug() << toPercentEncoding(argv[i]);
     }
 
-    qDebug() << getHomepath();
+    //qDebug() << getHomepath();
     //testdir( getHomepath() );
     //testread();
-    //test_timezone();
-    //test_locale();
+    test_timezone();
+    test_locale();
 
-    test_read_ini();
+    //test_read_ini();
+
+    gtz();
+
+    test_info();
 
     return 0;
 }

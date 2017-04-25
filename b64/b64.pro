@@ -7,6 +7,8 @@ TARGET = b64
 CONFIG += console
 CONFIG -= app_bundle
 
+QMAKE_CXXFLAGS += -Werror
+
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -Werror
@@ -16,13 +18,19 @@ SOURCES += main.cpp
 
 SOURCES += foo.cpp \
     testz.cpp \
-    gettz.cpp
+    gettz.cpp \
+    gtz.cpp
+
 HEADERS += foo.h \
     testz.h \
     gettz.h
 
 SOURCES += readi.cpp
 HEADERS += readi.h
+
+SOURCES += devinfo.cpp
+HEADERS += devinfo.h
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
