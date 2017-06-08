@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+
+print STDOUT "hello world\n";
+print STDERR "to err is human\n";

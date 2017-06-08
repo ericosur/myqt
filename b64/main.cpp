@@ -3,6 +3,8 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QUrl>
+#include <QProcess>
+#include <QDebug>
 
 #include "foo.h"
 #include "testz.h"
@@ -11,6 +13,21 @@
 #include "devinfo.h"
 
 void gtz();
+
+void test_runscript()
+{
+    QProcess process;
+    process.start("mytestscript");
+    process.waitForFinished(-1); // will wait forever until finished
+
+    QString stdout = process.readAllStandardOutput();
+    QString stderr = process.readAllStandardError();
+
+    qDebug() << "stdout: " << stdout;
+    qDebug() << "stderr: " << stderr;
+
+    process.close();
+}
 
 bool try_path(const QString& _home, QDir& _dir)
 {
@@ -127,13 +144,29 @@ QString getHomepath()
 
 QString toPercentEncoding(const QString& str)
 {
-    return QUrl::toPercentEncoding(str);
+    return QUrl::toPercentEncoding(str, ",");
+}
+
+QString doSanity(const QString& str)
+{
+    QString res = str;
+    res.replace("'", "''");
+    return res;
 }
 
 void test_info()
 {
     DeviceScreen ds;
     qDebug() << ds.getInfostring();
+}
+
+void test__pe()
+{
+    QString s = "03-Yes, My Dream";
+    QString p = toPercentEncoding(s);
+    qDebug() << p;
+    QString result = QString("title=%1/message=%2").arg(p).arg("#####");
+    qDebug() << result;
 }
 
 int main(int argc, char *argv[])
@@ -148,14 +181,20 @@ int main(int argc, char *argv[])
     //qDebug() << getHomepath();
     //testdir( getHomepath() );
     //testread();
-    test_timezone();
-    test_locale();
+    //test_timezone();
+    //test_locale();
 
     //test_read_ini();
+    //QString s = "I don't know!";
+    //qDebug() << "test:" << doSanity(s);
 
-    gtz();
+    //gtz();
 
-    test_info();
+    //test_info();
+
+    test__pe();
+
+    test_runscript();
 
     return 0;
 }
