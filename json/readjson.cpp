@@ -41,10 +41,18 @@ bool ReadJson::loadFile(const QString &filename)
     return true;
 }
 
+QString F2C(double f)
+{
+    double c = (f - 32.0) * 5.0 / 9.0;
+    return QString::number(c);
+}
+
 void ReadJson::read(const QJsonObject &json)
 {
     QJsonObject item = (((json["query"].toObject())["results"].toObject())["channel"].toObject())["item"].toObject();
-    qDebug() << item;
-    qDebug() << (item["condition"].toObject())["temp"].toString();
-    qDebug() << (item["condition"].toObject())["text"].toString();
+    //qDebug() << item;
+    QString f_string = (item["condition"].toObject())["temp"].toString();
+    QString result = QString("%1°C").arg(F2C(f_string.toDouble()));
+    qDebug() << "temperature:" << result;
+    qDebug() << "weather:" << (item["condition"].toObject())["text"].toString();
 }

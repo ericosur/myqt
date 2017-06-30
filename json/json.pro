@@ -10,10 +10,12 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    readjson.cpp
+    readjson.cpp \
+    trypath.cpp \
+    util.cpp
 
 HEADERS += \
-    readjson.h
+    readjson.h \
+    trypath.h \
+    util.h
 
-DISTFILES += \
-    a.json
