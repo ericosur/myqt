@@ -7,7 +7,8 @@
 QT -= gui
 QT += core
 CONFIG += c++11
-CONFIG += staticlib
+#CONFIG += staticlib
+CONFIG += shared
 
 TARGET = qtlib
 TEMPLATE = lib

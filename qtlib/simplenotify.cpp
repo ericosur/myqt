@@ -38,7 +38,8 @@ void SimpleNotify::run()
     }
 
     // will block at read() here
-    (void) read( fd, buffer, BUF_LEN );
+    ssize_t readbyte = read( fd, buffer, BUF_LEN );
+    Q_UNUSED(readbyte);
 
     // will go here if file is modified/created/deleted
     qDebug() << "SimpleNotify: emit sigNotify";
