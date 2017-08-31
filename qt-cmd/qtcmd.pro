@@ -19,7 +19,6 @@ HEADERS += pass.h
 
 INCLUDEPATH += $$PWD/../qtlib
 DEPENDPATH  += $$PWD/../qtlib
+
+LIBS += -L/usr/local/lib
 LIBS += -lqtlib
-LIBS += -L$$PWD/../qtlib
-
-
