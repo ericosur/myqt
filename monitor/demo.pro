@@ -3,4 +3,3 @@ SUBDIRS += \
     foo \
     monitor
 
-

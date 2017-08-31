@@ -1,7 +1,7 @@
 QT += core
 QT -= gui
 QMAKE_MAC_SDK = macosx10.12
-TARGET = monitor
+TARGET = monitorbin
 CONFIG += c++11 console
 CONFIG -= app_bundle
 TEMPLATE = app
@@ -16,7 +16,7 @@ SOURCES += msgqrx.cpp
 INCLUDEPATH += $$PWD/../../qtlib
 DEPENDPATH  += $$PWD/../../qtlib
 LIBS += -lqtlib
-LIBS += -L$$PWD/../../qtlib
+LIBS += -L/usr/local/lib
 
 ## thread to wait flock ##
 HEADERS += flock_wait.h \

@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = foo
+TARGET = foobin
 QT += core
 QT -= gui
 CONFIG += c++11 console
@@ -12,7 +12,7 @@ SOURCES += main.cpp
 INCLUDEPATH += $$PWD/../../qtlib
 DEPENDPATH  += $$PWD/../../qtlib
 LIBS += -lqtlib
-LIBS += -L$$PWD/../../qtlib
+LIBS += -L/usr/local/lib
 
 ### msgq ####
 HEADERS += msgqsend.h
