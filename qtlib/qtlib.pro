@@ -7,11 +7,11 @@
 QT -= gui
 QT += core
 CONFIG += c++11
-#CONFIG += staticlib
 CONFIG += shared
 
 TARGET = qtlib
 TEMPLATE = lib
+VERSION = 1.0.1
 
 SOURCES += retry.cpp
 HEADERS += retry.h
@@ -25,6 +25,6 @@ HEADERS += simplenotify.h
 SOURCES += simplenotify.cpp
 
 unix {
-    target.path = /usr/lib
+    target.path = /usr/local/lib
     INSTALLS += target
 }
