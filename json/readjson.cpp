@@ -121,7 +121,12 @@ void ReadJson::testArray()
 
         for (int ii=0; ii<NEXT_FEW_DAYS; ++ii) {
             //qDebug() << _arr[ii] ;
-            dumpForecastArrayElem(_arr[ii].toObject());
+            if (_arr[ii].isObject()) {
+                dumpForecastArrayElem(_arr[ii].toObject());
+            } else {
+                qWarning() << "not an object!";
+            }
+
         }
     }
 
@@ -129,8 +134,11 @@ void ReadJson::testArray()
 
 void ReadJson::test()
 {
-    testString();
+    if (mJson.isEmpty()) {
+        return;
+    }
 
+    testString();
     //qDebug() << getLeafObject("query.results.channel.item.condition");
     //
     testArray();
@@ -228,7 +236,7 @@ QString ReadJson::getLeafString(const QString& path)
 
          if (_next.isEmpty()) {
             //qDebug() << name << ":" << _obj[name].toString();
-            if (_obj[name].type() == QJsonValue::String) {
+            if (_obj[name].isString()) {
                 result = _obj[name].toString();
             } else {
                 qWarning() << "specified path is not a string!";
@@ -257,7 +265,12 @@ QJsonObject ReadJson::fetchOneLevel(const QJsonObject &json, const QString& inpu
         return QJsonObject();
     }
 
-    return json[lhs].toObject();
+    if (json[lhs].isObject()) {
+        return json[lhs].toObject();
+    } else {
+        return QJsonObject();
+    }
+
 }
 
 // input: query.results.channel.description
