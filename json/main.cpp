@@ -25,13 +25,14 @@ bool mySearchAndOpenFile(const QString& fn, QString& result)
 
 void queryWeather(const QString& city)
 {
-    QString key = "item.condition";
-    if (gSelectAll)
-        key = "*";
+    QString key = "*";
+    // QString key = "item.condition";
+    // if (gSelectAll)
+    //     key = "*";
 
     QString curlcmd = QString("/usr/bin/curl https://query.yahooapis.com/v1/public/yql "
                       "-d q=\x22select %1 from weather.forecast "
-                      "where woeid in (select woeid from geo.places(1) where text='%2')"
+                      "where woeid in (select woeid from geo.places(1) where text='%2') and u='c'"
                       "\x22 -d format=json").arg(key).arg(city);
     if (gDebug)
         qDebug() << "queryWeather(): curlcmd: " << curlcmd;
@@ -48,25 +49,22 @@ void queryWeather(const QString& city)
 
 int main(int argc, char *argv[])
 {
+    Q_UNUSED(argc);
+    Q_UNUSED(argv);
+
     handleOpt(argc, argv);
 
     plist << "./" << "../" << "/tmp/" << getHomepath();
 
-    qDebug() << "query weather of" << CITYNAME << "=====>";
-    queryWeather(CITYNAME);
+    if (gFilename.isEmpty()) {
+        qDebug() << "query weather of" << CITYNAME << " from internet =====>";
+        queryWeather(CITYNAME);
+        gFilename = DEFAULT_OUTPUT_FN;
+    }
 
-    ReadJson rj(DEFAULT_OUTPUT_FN);
+    ReadJson rj(gFilename);
     rj.loadFile();
-
-    // QString result;
-    // if (argc > 1) {
-    //     for (int i=1; i < argc; ++i) {
-    //         qDebug() << argv[i];
-    //         mySearchAndOpenFile(argv[i], result);
-    //     }
-    // } else {
-    //     mySearchAndOpenFile(JSONFILE, result);
-    // }
+    rj.test();
 
     return 0;
 

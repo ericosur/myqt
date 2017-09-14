@@ -2,6 +2,7 @@
 
 bool gSelectAll = false;
 bool gDebug = false;
+QString gFilename;
 
 void writeStringToFile(const QString& str, const QString& fn)
 {
@@ -19,9 +20,10 @@ void writeStringToFile(const QString& str, const QString& fn)
 void print_help()
 {
     printf("help message =====>\n\n"
-        "-a    query all elements\n"
-        "-d    turn on all debug message\n"
-        "-h    help message\n\n");
+        "-a              query all elements\n"
+        "-d              turn on all debug message\n"
+        "-f [filename]   load from file\n"
+        "-h              help message\n\n");
 }
 
 void print_brief_help()
@@ -39,7 +41,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "adh");
+            int cmd_opt = getopt(argc, argv, "adf:h");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -57,6 +59,12 @@ bool handleOpt(int argc, char** argv)
                 //qDebug() << "c:" << optarg;
                 configured = true;
                 gDebug = true;
+                break;
+            case 'f':   // load from file
+                if (optarg) {
+                    gFilename = optarg;
+                    qDebug() << "assign json file:" << gFilename;
+                }
                 break;
             default:
                 exit(0);
