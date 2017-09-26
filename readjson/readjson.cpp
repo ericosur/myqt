@@ -41,8 +41,13 @@ bool ReadJson::loadFile(const QString &filename)
     QByteArray saveData = f.readAll();
     mJsonString = QString(saveData);
     QJsonDocument loadDoc( QJsonDocument::fromJson(saveData) );
+    if (loadDoc.isNull()) {
+        qDebug() << "loaded json is null";
+    }
+    if (loadDoc.isEmpty()) {
+        qDebug() << "loaded json is empty";
+    }
     mJson = loadDoc.object();
-    read(mJson);
 
     return true;
 }
@@ -51,11 +56,6 @@ QString F2C(double f)
 {
     double c = (f - 32.0) * 5.0 / 9.0;
     return QString::number(c);
-}
-
-void ReadJson::read(const QJsonObject &json)
-{
-    Q_UNUSED(json);
 }
 
 #if 0
@@ -317,4 +317,56 @@ void ReadJson::dumpJsonObj(const QJsonObject& obj)
     for (i = obj.constBegin(); i != obj.constEnd(); ++i) {
         qDebug() << *i;
     }
+}
+
+void ReadJson::dump(const QJsonObject &json)
+{
+    qDebug() << Q_FUNC_INFO;
+    if (json.isEmpty()) {
+        qDebug() << "obj is empty";
+        return;
+    }
+
+    dumpVariantMap(json.toVariantMap());
+}
+
+void ReadJson::dumpVariantList(const QVariantList& lst)
+{
+    QList<QVariant>::const_iterator i;
+    for (i = lst.constBegin(); i != lst.constEnd(); ++i) {
+        if (i->type() == QVariant::Map) {
+            qDebug() << "  ::map ==>";
+            dumpVariantMap(i->toMap());
+        } else {
+            qDebug() << *i << endl;
+        }
+    }
+}
+
+void ReadJson::dumpVariantMap(const QVariantMap& map)
+{
+    for (int i = 0; i < map.size(); ++ i) {
+        QVariant _k = map.keys().at(i);
+        if (_k.type() == QVariant::String) {
+            QVariant _v = map[_k.toString()];
+            if (_v.type() == QVariant::Map) {
+                qDebug() << _k.toString() << ":map ==>";
+                dumpVariantMap(_v.toMap());
+            } else if (_v.type() == QVariant::List) {
+                qDebug() << _k.toString() << ":list ==>";
+                dumpVariantList(_v.toList());
+            } else {
+                if (_v.type() == QVariant::String) {
+                    qDebug() << _k.toString() << "==>" << _v.toString();
+                } else {
+                    qDebug() << _k.toString() << "==>" << endl << _v;
+                }
+            }
+        }
+    }
+}
+
+void ReadJson::test()
+{
+    dump(mJson);
 }

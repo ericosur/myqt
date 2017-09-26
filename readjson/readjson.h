@@ -14,7 +14,7 @@ public:
     ReadJson(const QString& f);
     bool loadFile();
     bool loadFile(const QString& filename);
-    void read(const QJsonObject &json);
+    void test();
 
 public:
     QString getLeafString(const QString& path);
@@ -30,6 +30,11 @@ public:
 
     QMap<QString, QString> getMapFromList(const QStringList sl);
     void dumpJsonObj(const QJsonObject& obj);
+
+
+    static void dump(const QJsonObject &json);
+    static void dumpVariantList(const QVariantList& lst);
+    static void dumpVariantMap(const QVariantMap& map);
 
 protected:
     QJsonObject fetchOneLevel(const QJsonObject &json, const QString& input, QString& rhs);
