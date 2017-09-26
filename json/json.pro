@@ -10,12 +10,12 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    readjson.cpp \
     trypath.cpp \
     util.cpp
 
 HEADERS += \
-    readjson.h \
     trypath.h \
     util.h
 
+INCLUDEPATH += $${PWD}/../readjson
+LIBS += -L/usr/local/lib -lreadjson
