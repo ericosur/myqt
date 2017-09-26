@@ -1,18 +1,22 @@
 # Qt read json file example
 
-[sample.json](./sample.json) is an answer from yahoo weather query, may use [w.sh](./w.sh) to query current weather status.
+Use [w.sh](./w.sh) to query yahoo weather for current weather status, output as:
+  * [all.json](./all.json) - compact json object
+  * [sample.json](./sample.json) - indented json object for reading
 
 class ReadJson [header](./readjson.h), [source](./readjson.cpp)
 demo how to read json from file and follow object
 path to get value from json object.
 
+
 ## command line options for json
 
-* You may use -h to see help messages.
+* option -h to see help messages
 * option -a will use "select \*" to query, default is
   "item.condition"
 * option -d will turn on all debug message to check
 * will output query result to "/tmp/a.json"
+* option -f to specify json file to read
 
 
 ## Yahoo Weather
