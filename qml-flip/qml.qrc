@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>next.jpg</file>
         <file>prev.jpg</file>
+        <file>fact.js</file>
     </qresource>
 </RCC>

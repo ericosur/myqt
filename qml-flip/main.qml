@@ -3,34 +3,74 @@ import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 
-import QtMultimedia 5.0
+import "fact.js" as Fact
 
-ApplicationWindow
-{
+ApplicationWindow {
     id: root
     title: qsTr("Hello World")
-    width: 800
-    height: 800
+    width: core.coreWidth
+    height: core.coreHeight
     visible: true
+    x: 50; y: 50
 
-    //property string audioSrc;
+    property int header_height: 80
+    property int footer_height: 100
+    property int padding_height: 10
+    property int img_height: 500
+    property int img_width: 500
+
+    Rectangle {
+        id: blackbox
+        anchors.fill: parent
+        //color: "black"
+        MouseArea {
+            id: ma_blackbox
+            anchors.fill: parent
+        }
+        Component.onCompleted: {
+            color = Qt.binding(function() {
+                return ma_blackbox.pressed ? "dimgrey" : "darkslategray";
+            });
+        }
+    }
+
+    Rectangle {
+        id: bluebox
+        x: 0; y: 0
+        width: parent.width
+        height: header_height - padding_height
+        //border.width: 1
+        //border.color: "steelblue"
+        color: mousearea.pressed ? "slategrey" : "steelblue";
+
+        MouseArea {
+            id: mousearea
+            anchors.fill: parent
+            onClicked: {
+                console.log("call Fact...");
+                console.log(Fact.fact(5));
+            }
+        }
+    }
 
     Flipable {
         id: flipable
-        x: 100; y: 100
-        width: 500; height: 500
+        x: (parent.width - img_width) / 2
+        y: (parent.height - img_height - footer_height) / 2 + bluebox.height + padding_height
+        width: img_width
+        height: img_height
 
         property bool flipped: false
 
         front: Image {
             source: "prev.jpg";
             anchors.centerIn: parent;
-            width: 500; height: 500
+            width: parent.width; height: parent.height
         }
         back: Image {
             source: "next.jpg";
             anchors.centerIn: parent;
-            width: 500; height: 500
+            width: parent.width; height: parent.height
         }
         transform: Rotation {
             id: rotation
@@ -45,7 +85,7 @@ ApplicationWindow
             when: flipable.flipped
         }
         transitions: Transition {
-            NumberAnimation { target: rotation; property: "angle"; duration: 3000 }
+            NumberAnimation { target: rotation; property: "angle"; duration: 2000 }
         }
         MouseArea {
             anchors.fill: parent
