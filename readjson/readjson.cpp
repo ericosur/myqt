@@ -9,10 +9,13 @@
 
 #include "readjson.h"
 
+ReadJson::ReadJson()
+{
+}
+
 ReadJson::ReadJson(const QString &f) :
     mFile(f)
 {
-
 }
 
 bool ReadJson::loadFile()
@@ -36,6 +39,7 @@ bool ReadJson::loadFile(const QString &filename)
 
     qDebug() << "read json file from:" << filename;
     QByteArray saveData = f.readAll();
+    mJsonString = QString(saveData);
     QJsonDocument loadDoc( QJsonDocument::fromJson(saveData) );
     mJson = loadDoc.object();
     read(mJson);
@@ -52,44 +56,51 @@ QString F2C(double f)
 void ReadJson::read(const QJsonObject &json)
 {
     Q_UNUSED(json);
-#if 0
-    QJsonObject item = (((json["query"].toObject())["results"].toObject())["channel"].toObject())["item"].toObject();
-    //qDebug() << item;
-    QString f_string = (item["condition"].toObject())["temp"].toString();
-    QString result = QString("%1°C").arg(F2C(f_string.toDouble()));
-    qDebug() << "temperature:" << result;
-    qDebug() << "weather:" << (item["condition"].toObject())["text"].toString();
-#endif
-
 }
 
+#if 0
 void ReadJson::testString()
 {
     qDebug() << "test get string from following path....";
     QStringList sl;
-    sl << "query.results.channel.description"
-        << "query.results.channel.astronomy.sunrise"
-        << "query.results.channel.astronomy.sunset"
-        << "query.results.channel.atmosphere.humidity"
-        << "query.results.channel.atmosphere.pressure"
-        << "query.results.channel.item.condition.code"
-        << "query.results.channel.item.condition.date"
-        << "query.results.channel.item.condition.temp"
-        << "query.results.channel.item.condition.text"
-        << "query.results.channel.language"
-        << "query.results.channel.location.city"
-        << "query.results.channel.location.country"
-        << "query.results.channel.location.region"
-        << "query.results.channel.units.distance"
-        << "query.results.channel.units.pressure"
-        << "query.results.channel.units.speed"
-        << "query.results.channel.units.temperature"
-        ;
+    sl << "default.right.name"
+        << "default.right.url"
+        << "default.left.name"
+        << "default.left.url";
+
 
     QList<QString>::const_iterator i;
     for (i = sl.constBegin(); i != sl.constEnd(); ++i)
         qDebug() << *i << ":" << getLeafString(*i);
 }
+
+void ReadJson::testArray()
+{
+    qDebug() << "read array from json...";
+    QJsonValue v = getLeafValue("items");
+    if (v.isArray()) {
+        QJsonArray _arr = v.toArray();
+
+        for (int ii=0; ii<_arr.size(); ++ii) {
+            //qDebug() << _arr[ii] ;
+            if (_arr[ii].isObject()) {
+                dumpOneArrayElem(_arr[ii].toObject());
+            } else {
+                qWarning() << "not an object!";
+            }
+
+        }
+    } else {
+
+    }
+}
+
+void ReadJson::dumpOneArrayElem(const QJsonObject& o)
+{
+    qDebug() << "dumpOneArrayElem:" << getString(o, "name")
+        << getString(o, "url");
+}
+#endif
 
 QString ReadJson::getString(const QJsonObject& o, const QString& key)
 {
@@ -100,75 +111,68 @@ QString ReadJson::getString(const QJsonObject& o, const QString& key)
     }
 }
 
-void ReadJson::dumpForecastArrayElem(const QJsonObject& o)
+QJsonArray ReadJson::getLeafArray(const QString& path)
 {
-    qDebug() << getString(o, "code")
-        << getString(o, "date")
-        << getString(o, "day")
-        << getString(o, "high")
-        << getString(o, "low")
-        << getString(o, "text");
-}
-
-void ReadJson::testArray()
-{
-#define NEXT_FEW_DAYS       (4)
-
-    qDebug() << "forecast for next few days...";
-    QJsonValue v = getLeafValue("query.results.channel.item.forecast");
+    QJsonValue v = getLeafValue(path);
     if (v.isArray()) {
-        QJsonArray _arr = v.toArray();
-
-        for (int ii=0; ii<NEXT_FEW_DAYS; ++ii) {
-            //qDebug() << _arr[ii] ;
-            if (_arr[ii].isObject()) {
-                dumpForecastArrayElem(_arr[ii].toObject());
-            } else {
-                qWarning() << "not an object!";
-            }
-
-        }
+        return v.toArray();
+    } else {
+        qWarning() << "specified path is not an array!";
     }
-
+    return QJsonArray();
 }
 
-void ReadJson::test()
+QJsonObject ReadJson::getLeafArrayAt(const QString& path, int idx)
 {
-    if (mJson.isEmpty()) {
-        return;
+    qDebug() << "read array from json, assign at:" << idx << "from:" << path;
+
+    QJsonArray _arr = getLeafArray(path);
+    if (_arr.isEmpty()) {
+        qDebug() << __func__ << "array is empty, exit...";
+        return QJsonObject();
     }
 
-    testString();
-    //qDebug() << getLeafObject("query.results.channel.item.condition");
-    //
-    testArray();
+    if (idx >= 0 && idx < _arr.size()) {
+        if (_arr[idx].isObject()) {
+            return _arr[idx].toObject();
+        } else {
+            qWarning() << "not an object!";
+            return QJsonObject();
+        }
+    } else {
+        qWarning() << "out of bound!";
+    }
+
+    return QJsonObject();
 }
 
 void ReadJson::checkValueType(const QJsonValue& v)
 {
+    QString typestr;
     switch (v.type()) {
     case QJsonValue::Null:
-        qDebug() << "is null";
+        typestr = "null";
         break;
     case QJsonValue::Bool:
-        qDebug() << "is bool";
+        typestr = "bool";
         break;
     case QJsonValue::Double:
-        qDebug() << "is double";
+        typestr = "double";
         break;
     case QJsonValue::String:
-        qDebug() << "is string";
+        typestr = "string";
         break;
     case QJsonValue::Array:
-        qDebug() << "is array";
+        typestr = "array";
         break;
     case QJsonValue::Object:
-        qDebug() << "is object";
+        typestr = "object";
         break;
     case QJsonValue::Undefined:
-        qDebug() << "is undefined";
+        typestr = "undefined";
         break;
     }
+    qDebug() << v << "is" << typestr;
 }
 
 QJsonValue ReadJson::getLeafValue(const QString& path)
@@ -239,7 +243,8 @@ QString ReadJson::getLeafString(const QString& path)
             if (_obj[name].isString()) {
                 result = _obj[name].toString();
             } else {
-                qWarning() << "specified path is not a string!";
+                checkValueType(_obj[name]);
+                qWarning() << __func__ << "specified path is not a string:" << path;
             }
             break;
          } else {
@@ -292,4 +297,24 @@ QString ReadJson::getRhs(const QString& input)
         result = input.right(input.length() - idx - 1);
     }
     return result;
+}
+
+QMap<QString, QString> ReadJson::getMapFromList(const QStringList sl)
+{
+    QMap<QString, QString> map;
+
+    QList<QString>::const_iterator i;
+    for (i = sl.constBegin(); i != sl.constEnd(); ++i) {
+        //qDebug() << *i << ":" << getLeafString(*i);
+        map.insert(*i, getLeafString(*i));
+    }
+    return map;
+}
+
+void ReadJson::dumpJsonObj(const QJsonObject& obj)
+{
+    QJsonObject::const_iterator i;
+    for (i = obj.constBegin(); i != obj.constEnd(); ++i) {
+        qDebug() << *i;
+    }
 }
