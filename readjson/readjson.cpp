@@ -33,11 +33,11 @@ bool ReadJson::loadFile(const QString &filename)
     QFile f(filename);
 
     if (!f.open(QIODevice::ReadOnly)) {
-        qWarning("Couldn't open save file.");
+        qWarning() << Q_FUNC_INFO << "fail to open:" << filename;
         return false;
     }
 
-    qDebug() << "read json file from:" << filename;
+    //qDebug() << "read json file from:" << filename;
     QByteArray saveData = f.readAll();
     mJsonString = QString(saveData);
     QJsonDocument loadDoc( QJsonDocument::fromJson(saveData) );
@@ -311,12 +311,19 @@ QMap<QString, QString> ReadJson::getMapFromList(const QStringList sl)
     return map;
 }
 
-void ReadJson::dumpJsonObj(const QJsonObject& obj)
+void ReadJson::dumpJsonObjToDebug(const QJsonObject& obj)
+{
+    qDebug() << dumpJsonObjToString(obj);
+}
+
+QString ReadJson::dumpJsonObjToString(const QJsonObject& obj)
 {
     QJsonObject::const_iterator i;
+    QString _outstring;
     for (i = obj.constBegin(); i != obj.constEnd(); ++i) {
-        qDebug() << *i;
+        _outstring.append(i->toString());
     }
+    return _outstring;
 }
 
 void ReadJson::dump(const QJsonObject &json)

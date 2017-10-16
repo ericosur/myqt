@@ -17,6 +17,11 @@ public:
     void test();
 
 public:
+    QString getVersion() const {
+        return QString("libreadjson: built at %1 %2")
+                      .arg(__DATE__).arg(__TIME__);
+    }
+
     QString getLeafString(const QString& path);
     QJsonObject getLeafObject(const QString& path);
     QJsonValue getLeafValue(const QString& path);
@@ -29,8 +34,14 @@ public:
     }
 
     QMap<QString, QString> getMapFromList(const QStringList sl);
-    void dumpJsonObj(const QJsonObject& obj);
-
+    void dumpJsonObjToDebug(const QJsonObject& obj);
+    QString dumpJsonObjToString(const QJsonObject& obj);
+    QString dumpToString() {
+        return dumpJsonObjToString(mJson);
+    }
+    void dump() {
+        dump(mJson);
+    }
 
     static void dump(const QJsonObject &json);
     static void dumpVariantList(const QVariantList& lst);
