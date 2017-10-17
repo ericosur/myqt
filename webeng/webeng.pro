@@ -5,10 +5,8 @@ QT += webengine
 
 SOURCES += main.cpp
 
-SOURCES += core.cpp \
-    commonutil.cpp
-HEADERS += core.h \
-    commonutil.h
+SOURCES += core.cpp
+HEADERS += core.h
 
 INCLUDEPATH += $${PWD}/../readjson
 LIBS += -L/usr/local/lib -lreadjson
