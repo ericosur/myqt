@@ -13,11 +13,15 @@
 class Foo
 {
 public:
-    Foo();
+    Foo(const QString& inifn = DEFAULT_INI_PATH);
     ~Foo() {
         if (ini!=NULL) {
             ini->sync();
         }
+    }
+
+    QString getInifn() const {
+        return mInifn;
     }
 
     void clear();
@@ -32,6 +36,7 @@ public:
     int getUrlCount();
 
 private:
+    QString mInifn;
     QSettings *ini = NULL;
 };
 

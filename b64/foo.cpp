@@ -1,11 +1,13 @@
+#include "util.h"
 #include "foo.h"
 
-Foo::Foo()
+Foo::Foo(const QString& inifn)
 {
-    ini = new QSettings(DEFAULT_INI_PATH, QSettings::IniFormat);
+    mInifn = inifn;
+    ini = new QSettings(mInifn, QSettings::IniFormat);
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     ini->setIniCodec(codec);
-    qDebug() << "fn:" << ini->fileName();
+    CHECK_IF_DEBUG(qDebug() << "inifn:" << ini->fileName());
     ini->setValue("key", "test");
 }
 

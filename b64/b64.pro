@@ -19,17 +19,27 @@ SOURCES += main.cpp
 SOURCES += foo.cpp \
     testz.cpp \
     gettz.cpp \
-    gtz.cpp
+    gtz.cpp \
+    testmm.cpp \
+    commontest.cpp \
+    util.cpp
 
 HEADERS += foo.h \
     testz.h \
-    gettz.h
+    gettz.h \
+    testmm.h \
+    commontest.h \
+    util.h
 
 SOURCES += readi.cpp
 HEADERS += readi.h
 
 SOURCES += devinfo.cpp
 HEADERS += devinfo.h
+
+# qtlib
+INCLUDEPATH += $${PWD}/../qtlib
+LIBS += -L/usr/local/lib -lqtlib
 
 
 # The following define makes your compiler emit warnings if you use

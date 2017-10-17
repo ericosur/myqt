@@ -1,56 +1,26 @@
+/// \file main.cpp
+///
+
 #include <QCoreApplication>
-#include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QUrl>
-#include <QProcess>
+#include <QMap>
 #include <QDebug>
+
+#include "commontest.h"
+#include "util.h"
 
 #include "foo.h"
 #include "testz.h"
 #include "readi.h"
 
 #include "devinfo.h"
+#include "testmm.h"
+
+// qtlib
+#include "trypath.h"
 
 void gtz();
-
-void test_runscript()
-{
-    QProcess process;
-    process.start("mytestscript");
-    process.waitForFinished(-1); // will wait forever until finished
-
-    QString stdout = process.readAllStandardOutput();
-    QString stderr = process.readAllStandardError();
-
-    qDebug() << "stdout: " << stdout;
-    qDebug() << "stderr: " << stderr;
-
-    process.close();
-}
-
-bool try_path(const QString& _home, QDir& _dir)
-{
-#ifdef USE_TARGET
-    QString dirpath = "/data";
-#else
-    QString dirpath = QString("%1/Dropbox/Music").arg(_home);
-    //dirpath = QDir::fromNativeSeparators(dirpath);
-#endif
-    QDir dir( dirpath );
-    if ( dir.exists() ) {
-        _dir = dir;
-        return true;
-    }
-    // 2nd try
-    dirpath = QString("%1/Music").arg(_home);
-    dir.setPath(dirpath);
-    if ( dir.exists() ) {
-        _dir = dir;
-        return true;
-    }
-    return false;
-}
 
 void testdir(const QString& _home)
 {
@@ -64,7 +34,8 @@ void testdir(const QString& _home)
     QStringList filter;
 
     foo.clear();
-    filter << "*.mp3" << "*.m4a" << "*.ape";
+    qDebug() << "will output search result to:" << foo.getInifn();
+    filter << "*.mp3" << "*.m4a" << "*.ape" << "*.wav";
     int cnt = 0;
 
     foreach (QString file, dir.entryList(filter, QDir::Files | QDir::NoSymLinks)) {
@@ -128,73 +99,82 @@ void testread()
     }
 }
 
-void test_arg_format()
-{
-    double pi=3.1415926535897932;
-    qDebug() << QString("<%1>").arg(pi, 0, 'f', 4);
-}
-
-QString getHomepath()
-{
-    QString home = QDir::homePath();
-    QDir qq(home);
-    qDebug() << "dirName" << qq.dirName();
-    return home;
-}
-
-QString toPercentEncoding(const QString& str)
-{
-    return QUrl::toPercentEncoding(str, ",");
-}
-
-QString doSanity(const QString& str)
-{
-    QString res = str;
-    res.replace("'", "''");
-    return res;
-}
-
 void test_info()
 {
     DeviceScreen ds;
     qDebug() << ds.getInfostring();
 }
 
-void test__pe()
+
+void run_default_tests()
 {
-    QString s = "03-Yes, My Dream";
-    QString p = toPercentEncoding(s);
-    qDebug() << p;
-    QString result = QString("title=%1/message=%2").arg(p).arg("#####");
-    qDebug() << result;
+    // default tests
+    print_title("test: QMultiMap");
+    testmm();
+    //print_sep();
+
+    print_title("test: no_conflict_name");
+    no_conflict_name();
+
+    print_title("test: get home path");
+    qDebug() << "home path:" << getHomepath();
+
+    print_title("test: arg...");
+    test_arg_format();
+
+    print_title("test: doSanity");
+    QString s = "I don't know!";
+    qDebug() << "test:" << doSanity(s);
+
+    print_title("test: deviceinfo...");
+    test_info();
+
+    print_title("test: test__pe");
+    test__pe();
 }
 
 int main(int argc, char *argv[])
 {
-    //Q_UNUSED(argc);
-    //Q_UNUSED(argv);
+    Q_UNUSED(argc);
+    Q_UNUSED(argv);
 
-    for (int i=1; i<argc; ++i) {
-        qDebug() << toPercentEncoding(argv[i]);
+    if ( handleOpt(argc, argv) ) {
+        qDebug() << "debug mode:" << gVars.bDebug;
     }
 
-    //qDebug() << getHomepath();
-    //testdir( getHomepath() );
-    //testread();
-    //test_timezone();
-    //test_locale();
-
-    //test_read_ini();
-    //QString s = "I don't know!";
-    //qDebug() << "test:" << doSanity(s);
-
-    //gtz();
-
-    //test_info();
-
-    test__pe();
-
-    test_runscript();
+    switch (gVars.kTest) {
+    case TEST_DEFAULT:
+        run_default_tests();
+        break;
+    case TEST_DIRSEARCH:
+        print_title("test: testdir...");
+        testdir( getHomepath() );
+        print_sep();
+        testread();
+        print_sep();
+        test_read_ini();
+        print_sep();
+        return 0;
+    case TEST_PERCENTENCODING:
+        print_title("test percent encoding...");
+        qDebug() << toPercentEncoding(gVars.sTest);
+        return 0;
+    case TEST_LOCALTIME:
+        print_title("test: test locale...");
+        test_locale();
+        print_title("test: test timezone");
+        test_timezone();
+        print_title("test: gtz");
+        gtz();
+        return 0;
+    case TEST_RUNSCRIPT:
+        print_title("test: test_runscript");
+        test_runscript();
+        return 0;
+    default:
+        qWarning() << "should not be here!";
+        break;
+    }
 
     return 0;
 }
