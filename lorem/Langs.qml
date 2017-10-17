@@ -11,14 +11,15 @@ Item {
     property int box_height: 60
     property int box_gap: 12
     property int box_fontsize: 18
+    property var myfontname: "DejaVu Sans"
 
-    FontLoader {
-        id: noto
+    //FontLoader {
+        //id: noto
         //C:\Windows\Fonts\NotoSans-Regular.ttf
         //source: "qrc:///NotoSans-Regular.ttf"
         //source: "https://fonts.googleapis.com/css?family=Noto+Sans"
-        source: "qrc:///VC1.otf"
-    }
+        //source: "qrc:///VC1.otf"
+    //}
     // FontLoader {
     //     id: kufi
     //     //source: "qrc:///NotoKufiArabic-Regular.ttf"
@@ -45,7 +46,7 @@ Item {
             font.pixelSize: box_fontsize
             text: mytext.message
             wrapMode: Text.WordWrap
-            font.family: noto.name
+            font.family: myfontname
         }
     }
 

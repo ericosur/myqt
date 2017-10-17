@@ -2,9 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Langs.qml</file>
-        <file>NotoSans-Regular.ttf</file>
-        <file>NotoKufiArabic-Regular.ttf</file>
-        <file>VC1.otf</file>
         <file>txt/en_US.txt</file>
         <file>txt/pt_PT.txt</file>
         <file>txt/es_ES.txt</file>
