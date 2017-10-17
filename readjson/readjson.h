@@ -4,9 +4,13 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QJsonArray>
+#include <QFile>
+#include <QIODevice>
+#include <QDebug>
 
 class ReadJson {
 public:
@@ -20,6 +24,14 @@ public:
     QString getVersion() const {
         return QString("libreadjson: built at %1 %2")
                       .arg(__DATE__).arg(__TIME__);
+    }
+
+    QJsonDocument getJdoc() {
+        return mJdoc;
+    }
+
+    QJsonObject getJobject() {
+        return mJson;
     }
 
     QString getLeafString(const QString& path);
@@ -36,12 +48,7 @@ public:
     QMap<QString, QString> getMapFromList(const QStringList sl);
     void dumpJsonObjToDebug(const QJsonObject& obj);
     QString dumpJsonObjToString(const QJsonObject& obj);
-    QString dumpToString() {
-        return dumpJsonObjToString(mJson);
-    }
-    void dump() {
-        dump(mJson);
-    }
+    void dump();
 
     static void dump(const QJsonObject &json);
     static void dumpVariantList(const QVariantList& lst);
@@ -62,8 +69,13 @@ protected:
 private:
     // json file name/path
     QString mFile;
+
     // whole json file as string
     QString mJsonString;
+
+    // json document
+    QJsonDocument mJdoc;
+
     // loaded json as QJsonObject
     QJsonObject mJson;
 };

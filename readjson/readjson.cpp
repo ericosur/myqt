@@ -2,11 +2,6 @@
 
 // simple class to use QJsonDocument and QJsonObject
 
-#include <QFile>
-#include <QIODevice>
-#include <QJsonDocument>
-#include <QDebug>
-
 #include "readjson.h"
 
 ReadJson::ReadJson()
@@ -40,14 +35,17 @@ bool ReadJson::loadFile(const QString &filename)
     //qDebug() << "read json file from:" << filename;
     QByteArray saveData = f.readAll();
     mJsonString = QString(saveData);
-    QJsonDocument loadDoc( QJsonDocument::fromJson(saveData) );
-    if (loadDoc.isNull()) {
+    //qDebug() << "mJsonString:" << mJsonString;
+    QJsonParseError err;
+    mJdoc = QJsonDocument::fromJson(saveData, &err);
+    qDebug() << "err:" << err.errorString();
+    if (mJdoc.isNull()) {
         qDebug() << "loaded json is null";
     }
-    if (loadDoc.isEmpty()) {
+    if (mJdoc.isEmpty()) {
         qDebug() << "loaded json is empty";
     }
-    mJson = loadDoc.object();
+    mJson = mJdoc.object();
 
     return true;
 }
@@ -324,6 +322,12 @@ QString ReadJson::dumpJsonObjToString(const QJsonObject& obj)
         _outstring.append(i->toString());
     }
     return _outstring;
+}
+
+void ReadJson::dump()
+{
+    //qDebug() << Q_FUNC_INFO;
+    dump(mJson);
 }
 
 void ReadJson::dump(const QJsonObject &json)
