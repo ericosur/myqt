@@ -1,0 +1,74 @@
+{
+    "default": {
+        "left": {
+            "name": "facebook",
+            "url": "https://www.facebook.com/"
+        },
+        "right": {
+            "name": "google",
+            "url": "https://www.google.com/"
+        }
+    },
+
+    "local": {
+        "left": {
+            "name": "siriwave",
+            "url": "file:///home/rasmus/src/github/siriwavejs/mytestsiriwave.html"
+        },
+        "right": {
+            "name": "music dna",
+            "url": "file:///home/rasmus/src/github/music-dna/index.html"
+        }
+    },
+
+    "items" : [
+        {
+            "name": "dropbox",
+            "url": "https://dropbox.com"
+        },
+        {
+            "name": "evernote",
+            "url": "https://evernote.com"
+        },
+        {
+            "name": "world weather online",
+            "url": "https://developer.worldweatheronline.com/api/"
+        },
+        {
+            "name": "github",
+            "url": "https://github.com/"
+        },
+        {
+            "name": "nodejs",
+            "url": "https://nodejs.org/"
+        },
+        {
+            "name": "weather",
+            "url": "https://weather.com/"
+        },
+        {
+            "name": "phantomJs",
+            "url": "http://phantomjs.org/"
+        },
+        {
+            "name": "jQuery",
+            "url": "https://jquery.com/"
+        },
+        {
+            "name": "casperjs",
+            "url": "http://casperjs.org/"
+        },
+        {
+            "name": "bloomsky",
+            "url": "https://www.bloomsky.com/"
+        },
+        {
+            "name": "open weather API",
+            "url": "https://openweathermap.org/api"
+        },
+        {
+            "name": "react.js",
+            "url": "https://facebook.github.io/react/"
+        }
+    ]
+}
