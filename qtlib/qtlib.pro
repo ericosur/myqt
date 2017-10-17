@@ -19,8 +19,10 @@ HEADERS += simplenotify.h
 SOURCES += simplenotify.cpp
 
 ### common util ###
-HEADERS += commonutil.h
-SOURCES += commonutil.cpp
+HEADERS += commonutil.h \
+    trypath.h
+SOURCES += commonutil.cpp \
+    trypath.cpp
 
 unix {
     target.path = /usr/local/lib

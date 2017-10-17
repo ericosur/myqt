@@ -1,11 +1,10 @@
-#include "util.h"
 #include "trypath.h"
 
 QString getHomepath()
 {
     QString home = QDir::homePath();
     QDir qq(home);
-    CHECK_IF_DEBUG(qDebug() << "homePath:" << qq.dirName());
+    //CHECK_IF_DEBUG(qDebug() << "homePath:" << qq.dirName());
     return home;
 }
 
@@ -15,7 +14,8 @@ QString getHomepath()
 /// _file is filename to be searched
 /// result is first existed fullpath for _file
 ///
-bool searchFileFromList(const QStringList& _list, const QString& _file, QString& result)
+bool searchFileFromList(const QStringList& _list, const QString& _file,
+                        QString& result)
 {
 
     foreach (QString pp, _list) {
@@ -24,7 +24,7 @@ bool searchFileFromList(const QStringList& _list, const QString& _file, QString&
         QString dirpath;
         if (dir.exists()) {
             dirpath = QString("%1/%2").arg(dir.canonicalPath()).arg(_file);
-            CHECK_IF_DEBUG(qDebug() << dirpath);
+            //CHECK_IF_DEBUG(qDebug() << dirpath);
             if (QFile::exists(dirpath)) {
                 result = dirpath;
                 return true;
