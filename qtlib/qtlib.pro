@@ -24,6 +24,10 @@ HEADERS += commonutil.h \
 SOURCES += commonutil.cpp \
     trypath.cpp
 
+### md5sum and sha1hmac
+HEADERS += pass.h
+SOURCES += pass.cpp
+
 unix {
     target.path = /usr/local/lib
     INSTALLS += target
