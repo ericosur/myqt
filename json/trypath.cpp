@@ -5,8 +5,7 @@ QString getHomepath()
 {
     QString home = QDir::homePath();
     QDir qq(home);
-    if (gDebug)
-        qDebug() << "homePath:" << qq.dirName();
+    CHECK_IF_DEBUG(qDebug() << "homePath:" << qq.dirName());
     return home;
 }
 
@@ -25,8 +24,7 @@ bool searchFileFromList(const QStringList& _list, const QString& _file, QString&
         QString dirpath;
         if (dir.exists()) {
             dirpath = QString("%1/%2").arg(dir.canonicalPath()).arg(_file);
-            if (gDebug)
-                qDebug() << dirpath;
+            CHECK_IF_DEBUG(qDebug() << dirpath);
             if (QFile::exists(dirpath)) {
                 result = dirpath;
                 return true;

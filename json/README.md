@@ -13,10 +13,45 @@ path to get value from json object.
 
 * option -h to see help messages
 * option -a will use "select \*" to query, default is
-  "item.condition"
-* option -d will turn on all debug message to check
-* will output query result to "/tmp/a.json"
-* option -f to specify json file to read
+  "item.condition", an option while using -q
+* option -c specify config file
+* option -d will turn on all debug message to check, and dump results to files if -g is specified
+* option -f to specify json file to read, add -d will see debug output
+* option -g will dump these config options to specified file
+* option -q perform internet query for weather, query result will go to "/tmp/a.json"
+
+example:
+
+The following command, will indent an one-line into readable json file
+
+```
+$ ./json -f abc.json -o indent.json
+```
+
+it is same as
+```
+$ python -mjson.tool abc.json > indent.json
+```
+
+
+## tips
+
+You may __-g__ to dump config to a file, and edit it for next use by __-c__ option.
+
+to dump config to c.json
+```
+$ ./json -g c.json
+```
+
+edit it as default values
+```
+$ vi c.json
+```
+
+use it without lots of command line arguments
+```
+$ ./json -c c.json
+```
 
 
 ## Yahoo Weather

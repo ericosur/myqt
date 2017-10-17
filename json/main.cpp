@@ -6,14 +6,16 @@
 #include "trypath.h"
 #include "readjson.h"
 #include "util.h"
+#include "utilvars.h"
 
 QStringList plist;
 
 bool mySearchAndOpenFile(const QString& fn, QString& result)
 {
     if (searchFileFromList(plist, fn, result)) {
-        if (gDebug)
-            qDebug() << "will open file from:" << result;
+        CHECK_IF_DEBUG(
+            qDebug() << "will open file from:" << result
+        );
         ReadJson rj(result);
         rj.loadFile();
         return true;
@@ -25,26 +27,24 @@ bool mySearchAndOpenFile(const QString& fn, QString& result)
 
 void queryWeather(const QString& city)
 {
-    QString key = "*";
-    // QString key = "item.condition";
-    // if (gSelectAll)
-    //     key = "*";
+    QString key = "item.condition";
+    if (UtilVars::getInstance()->bSelectAll) {
+        key = "*";
+    }
 
     QString curlcmd = QString("/usr/bin/curl https://query.yahooapis.com/v1/public/yql "
                       "-d q=\x22select %1 from weather.forecast "
                       "where woeid in (select woeid from geo.places(1) where text='%2') and u='c'"
                       "\x22 -d format=json").arg(key).arg(city);
-    if (gDebug)
-        qDebug() << "queryWeather(): curlcmd: " << curlcmd;
+    CHECK_IF_DEBUG(qDebug() << "queryWeather(): curlcmd: " << curlcmd);
 
     QProcess ps;
     ps.start(curlcmd);
     ps.waitForFinished(-1);
 
-    QString stdout = ps.readAllStandardOutput();
-    if (gDebug)
-        qDebug() << stdout;
-    writeStringToFile(stdout, DEFAULT_OUTPUT_FN);
+    QString _stdout = ps.readAllStandardOutput();
+    CHECK_IF_DEBUG( qDebug() << _stdout );
+    writeStringToFile(_stdout, DEFAULT_OUTPUT_FN);
 }
 
 void dumpForecastArrayElem(const QJsonObject& o)
@@ -108,21 +108,48 @@ void testString(ReadJson& rj)
 
     qDebug() << endl << "test dumpJsonObj ===> ";
     QJsonObject obj = rj.getLeafObject("query.results.channel.wind");
-    rj.dumpJsonObj(obj);
-
+    if (UtilVars::getInstance()->sOutfile.isEmpty()) {
+        rj.dumpJsonObjToDebug(obj);
+    } else {
+        qDebug() << "call dumpJsonObjToString";
+        QString _str = rj.dumpJsonObjToString(obj);
+        writeStringToFile(_str, UtilVars::getInstance()->sOutfile);
+    }
 }
 
 void processJson(const QString& fn)
 {
     ReadJson rj(fn);
+    qDebug() << __func__ << "using:" << rj.getVersion();
     if ( !rj.loadFile() ) {
-        qWarning() << "load json file failed, exit...";
+        qWarning() << "load json file failed:" << fn;
         return;
+    } else {
+        qDebug() << "read from:" << fn;
     }
 
-    rj.test();
-    //testString(rj);
-    //testArray( rj.getLeafArray("query.results.channel.item.forecast") );
+    if (UtilVars::getInstance()->bDebug) {
+        rj.dump();
+    } else {
+        if (!UtilVars::getInstance()->sOutfile.isEmpty()) {
+            qDebug() << "use writeStringToFile:" << UtilVars::getInstance()->sOutfile;
+            writeByteArrayToFile(rj.getJdoc().toJson(), UtilVars::getInstance()->sOutfile);
+        } else {
+            qDebug() << "output file not specified ===>";
+        }
+    }
+}
+
+void queryViaInternet()
+{
+    plist << "./" << "../" << "/tmp/" << getHomepath();
+    if (UtilVars::getInstance()->sFilename.isEmpty()) {
+        qDebug() << "query weather of" << CITYNAME << " from internet =====>";
+        queryWeather(CITYNAME);
+        UtilVars::getInstance()->sFilename = DEFAULT_OUTPUT_FN;
+    }
+
+    processJson(UtilVars::getInstance()->sFilename);
 }
 
 int main(int argc, char *argv[])
@@ -130,18 +157,30 @@ int main(int argc, char *argv[])
     Q_UNUSED(argc);
     Q_UNUSED(argv);
 
-    handleOpt(argc, argv);
+    UtilVars* vars = UtilVars::getInstance();
 
-    plist << "./" << "../" << "/tmp/" << getHomepath();
+    if ( handleOpt(argc, argv) ) {
+        if (!vars->sConfig.isEmpty()) {
+            vars->readConfig();
+        }
+        if (vars->bDebug) {
+            vars->dumpVars();
+            vars->dumpConfig();
+        } else if (!vars->sOutconfig.isEmpty()) {
+            qDebug() << "will dump config to:" << vars->sOutconfig;
+            vars->dumpConfig();
+        }
 
-    if (gFilename.isEmpty()) {
-        qDebug() << "query weather of" << CITYNAME << " from internet =====>";
-        queryWeather(CITYNAME);
-        gFilename = DEFAULT_OUTPUT_FN;
+        // "query via internet" is mutual exclusive to "input json file"
+        if (vars->bQueryViaInternet) {
+            queryViaInternet();
+        } else if (!vars->sFilename.isEmpty()) {
+            processJson(vars->sFilename);
+        }
+
+    } else {
+        print_help();
     }
 
-    processJson(gFilename);
-
     return 0;
-
 }

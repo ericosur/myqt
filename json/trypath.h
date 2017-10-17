@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QDebug>
 
+#include "util.h"
 
 QString getHomepath();
 bool searchFileFromList(const QStringList& _list, const QString& _file, QString& result);
