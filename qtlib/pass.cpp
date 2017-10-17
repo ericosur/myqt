@@ -46,3 +46,11 @@ QString sha1sum(const char* buffer, int size)
     QString sHash = hh.result().toHex().data();
     return sHash;
 }
+
+QString sha3_256sum(const char* buffer, int size)
+{
+    QCryptographicHash hash( QCryptographicHash::Sha3_256 );
+    hash.addData(buffer, size);
+    QString str_hash = hash.result().toHex().data();
+    return str_hash;
+}

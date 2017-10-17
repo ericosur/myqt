@@ -1,5 +1,6 @@
 #include "commonutil.h"
 
+bool g_messageVerbose = true;
 
 // using stdc FILE* to write
 bool writeStringToFile(const QString& str, const QString& fn)
@@ -27,4 +28,49 @@ bool writeByteArrayToFile(const QByteArray& arr, const QString& fn)
         return false;
     }
     return true;
+}
+
+void use_cout(const QString& msg)
+{
+    std::cout << msg.toUtf8().data() << std::endl;
+}
+
+/**
+    \brief myMessageOutput() is customized message handler to redirect qDebug()
+**/
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    Q_UNUSED(context);
+    QString txt;
+    QString prefix = QString("[%1][%2][%3] ")
+                        .arg(QTime::currentTime().toString("HH:mm:ss.zzz"))
+                        .arg(qApp->applicationName())
+                        .arg(qApp->applicationPid());
+
+    switch (type) {
+        case QtDebugMsg:
+            txt = prefix + QString("D: %1").arg(msg);
+            if (g_messageVerbose)
+                use_cout(txt);
+            break;
+        case QtWarningMsg:
+            txt = prefix + QString("W: %1").arg(msg);
+            use_cout(txt);
+            break;
+        case QtCriticalMsg:
+            txt = prefix + QString("C: %1").arg(msg);
+            use_cout(txt);
+            break;
+        case QtInfoMsg:
+            txt = prefix + QString("I: %1").arg(msg);
+            if (g_messageVerbose)
+                use_cout(txt);
+            break;
+        case QtFatalMsg:
+            txt = prefix + QString("F: %1").arg(msg);
+            use_cout(txt);
+            abort();
+        default:
+            break;
+    }
 }

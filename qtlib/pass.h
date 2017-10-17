@@ -21,4 +21,6 @@ QString hmacSha1(QByteArray key, QByteArray baseString);
 
 QString sha1sum(const char* buffer, int size);
 
+QString sha3_256sum(const char* buffer, int size);
+
 #endif  // __PASS_H__
