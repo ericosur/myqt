@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <stdio.h>
 
+#include "commonutil.h"
 #include "trypath.h"
 #include "readjson.h"
 #include "util.h"

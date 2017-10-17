@@ -12,12 +12,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     trypath.cpp \
     util.cpp \
-    utilvars.cpp
+    utilvars.cpp \
+    commonutil.cpp
 
 HEADERS += \
     trypath.h \
     util.h \
-    utilvars.h
+    utilvars.h \
+    commonutil.h
 
 INCLUDEPATH += $${PWD}/../readjson
 LIBS += -L/usr/local/lib -lreadjson

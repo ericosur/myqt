@@ -18,8 +18,6 @@
         x; \
     }
 
-bool writeStringToFile(const QString& str, const QString& fn);
-bool writeByteArrayToFile(const QByteArray& arr, const QString& fn);
 bool handleOpt(int argc, char** argv);
 void print_help();
 
