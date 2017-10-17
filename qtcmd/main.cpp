@@ -5,15 +5,16 @@
 #include <QByteArray>
 #include <iostream>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
+
+#include "testutil.h"
 
 #include "wait.h"
 #include "retry.h"
 #include "pass.h"
 
 using namespace std;
+
+QString getLinkRealname(const QString& softlink);
 
 void test()
 {
@@ -34,31 +35,6 @@ void gen_seed()
     qsrand((uint)(current % 0xffffffff));
 }
 
-QString getLinkRealname(const QString& softlink)
-{
-    qDebug() << Q_FUNC_INFO << softlink;
-    struct stat sb;
-    QByteArray arr;
-
-    if ( lstat(softlink.toUtf8().constData(), &sb) == -1 ) {
-        perror("lstat");
-        return "";
-    }
-
-    arr.resize(sb.st_size);
-    ssize_t r = readlink(softlink.toUtf8().constData(), arr.data(), sb.st_size);
-    if (r < 0) {
-        perror("lstat");
-        return "";
-    }
-    if (r > sb.st_size) {
-        arr.resize(r);
-        qWarning() << "size of symlink increased";
-    }
-
-    qWarning() << "readlink:" << arr;
-    return arr;
-}
 
 void test_array()
 {
@@ -67,31 +43,75 @@ void test_array()
     getLinkRealname(DEFAULT_VIDEO_SOFTLINK);
 }
 
+QString get_one_string(int idx)
+{
+    QStringList sl;
+    sl << "1234" << "apple" << "ball" << "cat" << "dog";
+
+    return sl.at(idx % sl.size());
+}
+
+QString get_md5sum(const QString& str)
+{
+    char *input = str.toUtf8().data();
+    QString md = md5sum(input, strlen(input));
+    qDebug() << QString("%1 => %2").arg(str).arg(md);
+    return md;
+}
+
+void test_md5list(int count)
+{
+    for (int i = 0; i < count; i++) {
+        QString md = get_md5sum(get_one_string(i));
+        //qDebug() << QString("%1 => %2").arg(str).arg(md);
+        if ( md == CIPHER_HASH ) {
+            qWarning() << "parameter matched !!";
+        }
+    }
+}
+
+void test_sha1hmac()
+{
+    QByteArray key = gVars.sKeystring.toUtf8();
+    QByteArray str = gVars.sTeststring.toUtf8();
+    qDebug() << QString("key:%1,str:%2 ==> %3").arg(gVars.sKeystring)
+                    .arg(gVars.sTeststring)
+                    .arg(hmacSha1(key, str));
+}
+
+QString get_sha1sum(const QString& str)
+{
+    char *input = str.toUtf8().data();
+    QString md = sha1sum(input, strlen(input));
+    qDebug() << QString("%1 => %2").arg(str).arg(md);
+    return md;
+}
 
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    for (int i = 0; i < argc; i++) {
-        //printf("%d: %s\n%s\n", i, argv[i], );
-        qDebug() << i << ":" << argv[i] << endl
-            << "HMAC-SHA1:" << hmacSha1(argv[i], "1234");
-        QString md = md5sum(argv[i], strlen(argv[i]));
-        //qDebug() << md;
-        if ( md == CIPHER_HASH ) {
-            qWarning() << "parameter matched!!";
+    handleOpt(argc, argv);
+    switch (gVars.kTest) {
+        case TC_MD5LISTTEST:
+            test_md5list(gVars.iCount);
             return 0;
-        }
+        case TC_ARRAYTEST:
+            test_array();
+            return 0;
+        case TC_MD5SUMTEST:
+            get_md5sum(gVars.sTeststring);
+            return 0;
+        case TC_SHA1SUMTEST:
+            get_sha1sum(gVars.sTeststring);
+            return 0;
+        case TC_HMACTEST:
+            test_sha1hmac();
+            return 0;
+        default:
+            test_md5list(1);
+            return 0;
     }
-
-    cout << "hello world" << endl;
-    ///int ret = system("pwd");
-    ///qDebug() << "ret:" << ret;
-
-    //test();
-    test_array();
-    return 0;
-
 
     WaitOneSecond t1("t1", 2000), t2("t2", 4000);
     WaitOneSecond w("wait", 8000);
