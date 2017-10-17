@@ -10,12 +10,10 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    trypath.cpp \
     util.cpp \
     utilvars.cpp
 
 HEADERS += \
-    trypath.h \
     util.h \
     utilvars.h
 
