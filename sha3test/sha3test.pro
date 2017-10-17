@@ -10,10 +10,14 @@ QMAKE_MAC_SDK = macosx10.12
 DEFINES += MACOSX_DEPLOYMENT_TARGET=10.12
 
 SOURCES += main.cpp \
-    pass.cpp \
     readthread.cpp \
     core.cpp
 
-HEADERS += pass.h \
+HEADERS += \
     readthread.h \
     core.h
+
+INCLUDEPATH += $$PWD/../qtlib
+DEPENDPATH  += $$PWD/../qtlib
+LIBS += -L/usr/local/lib
+LIBS += -lqtlib

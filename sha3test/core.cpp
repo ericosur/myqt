@@ -31,6 +31,7 @@ void Core::start()
         qWarning() << "thread is NULL, exit...";
         return;
     }
+    qDebug() << "TIMEOUT_TO_STOP_THREAD:" << TIMEOUT_TO_STOP_THREAD;
     QTimer::singleShot(TIMEOUT_TO_STOP_THREAD, this, SLOT(sltTimeout()));
     thread->start();
 

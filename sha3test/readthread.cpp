@@ -18,7 +18,7 @@ void ReadThread::run()
         if (!flag)
             break;
     }
-    qDebug() << QDateTime::currentMSecsSinceEpoch() - current;
+    qDebug() << "time elapse:" << QDateTime::currentMSecsSinceEpoch() - current;
 
     //QThread::msleep(WAIT_MSEC_LENGTH);
 
@@ -32,12 +32,6 @@ QString ReadThread::test(int i)
     QString sha3 = sha3_256sum(str.toUtf8().data(), str.toUtf8().size());
 
     return md5 + sha3;
-    // if (i%100000==0) {
-    //     qDebug() //<< "md5:" << md5.size() << endl
-    //         << md5 << endl
-    //         //<< "sha3:" << sha3.size() << endl
-    //         << sha3;
-    // }
 }
 
 void ReadThread::setFlag(bool b)
