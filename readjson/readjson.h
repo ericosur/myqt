@@ -60,6 +60,7 @@ protected:
     QString getRhs(const QString& input);
     void checkValueType(const QJsonValue& v);
 
+    bool readFileToByteArray(QByteArray& arr, const QString& fn);
 #if 0
     void testString();
     void testArray();

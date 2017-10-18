@@ -23,17 +23,24 @@ bool ReadJson::loadFile()
     }
 }
 
-bool ReadJson::loadFile(const QString &filename)
+bool ReadJson::readFileToByteArray(QByteArray& arr, const QString& fn)
 {
-    QFile f(filename);
-
-    if (!f.open(QIODevice::ReadOnly)) {
-        qWarning() << Q_FUNC_INFO << "fail to open:" << filename;
+    QFile inFile(fn);
+    if (!inFile.open(QIODevice::ReadOnly)) {
+        qWarning() << "fail to read file:" << fn;
         return false;
     }
+    arr = inFile.readAll();
+    return true;
+}
 
+bool ReadJson::loadFile(const QString &filename)
+{
     //qDebug() << "read json file from:" << filename;
-    QByteArray saveData = f.readAll();
+    QByteArray saveData;
+    if (!readFileToByteArray(saveData, filename)) {
+        return false;
+    }
     mJsonString = QString(saveData);
     //qDebug() << "mJsonString:" << mJsonString;
     QJsonParseError err;
