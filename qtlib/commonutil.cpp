@@ -30,6 +30,17 @@ bool writeByteArrayToFile(const QByteArray& arr, const QString& fn)
     return true;
 }
 
+bool readFileToByteArray(QByteArray& arr, const QString& fn)
+{
+    QFile inFile(fn);
+    if (!inFile.open(QIODevice::ReadOnly)) {
+        qWarning() << "fail to read file:" << fn;
+        return false;
+    }
+    arr = inFile.readAll();
+    return true;
+}
+
 void use_cout(const QString& msg)
 {
     std::cout << msg.toUtf8().data() << std::endl;

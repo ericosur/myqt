@@ -14,6 +14,7 @@
 
 bool writeStringToFile(const QString& str, const QString& fn);
 bool writeByteArrayToFile(const QByteArray& arr, const QString& fn);
+bool readFileToByteArray(QByteArray& arr, const QString& fn);
 
 extern bool g_messageVerbose;
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg);
