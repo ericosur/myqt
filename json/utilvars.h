@@ -26,6 +26,10 @@ protected:
 
 private:
     void fill_object(QJsonObject& obj);
+    bool read_config_by_jsonhpp();
+    bool read_config_by_readjson();
+
+    void fill_object_jsonhpp();
 
 public:
     bool bSelectAll = false;
@@ -35,6 +39,7 @@ public:
     QString sConfig;
     QString sOutfile;
     QString sOutconfig;
+    bool bTestjsonhpp = false;
 };
 
 

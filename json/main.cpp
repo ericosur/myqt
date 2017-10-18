@@ -11,6 +11,8 @@
 
 QStringList plist;
 
+int test_parse_string();
+
 bool mySearchAndOpenFile(const QString& fn, QString& result)
 {
     if (searchFileFromList(plist, fn, result)) {
@@ -177,6 +179,9 @@ int main(int argc, char *argv[])
             queryViaInternet();
         } else if (!vars->sFilename.isEmpty()) {
             processJson(vars->sFilename);
+        } else if (vars->bTestjsonhpp) {
+            test_parse_string();
+            return 0;
         }
 
     } else {

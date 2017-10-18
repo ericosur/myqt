@@ -15,8 +15,11 @@ SOURCES += main.cpp \
 
 HEADERS += \
     util.h \
-    utilvars.h
+    utilvars.h \
+    json.hpp
 
+SOURCES += \
+    testparsestring.cpp
 
 INCLUDEPATH += $${PWD}/../readjson
 LIBS += -L/usr/local/lib -lreadjson

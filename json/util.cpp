@@ -9,6 +9,7 @@ void print_help()
         "-d              turn on all debug message\n"
         "-f [filename]   load from file\n"
         "-g [filename]   dump config to file\n"
+        "-j              test json.hpp\n"
         "-o [filename]   output to file\n"
         "-q              query via internet\n"
         "-h              help message\n\n");
@@ -30,7 +31,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "ac:df:g:ho:q");
+            int cmd_opt = getopt(argc, argv, "ac:df:g:hjo:q");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -69,6 +70,10 @@ bool handleOpt(int argc, char** argv)
                     _vars->sOutconfig = optarg;
                     configured = true;
                 }
+                break;
+            case 'j':
+                _vars->bTestjsonhpp = true;
+                configured = true;
                 break;
             case 'o':   // output to file
                 if (optarg) {
