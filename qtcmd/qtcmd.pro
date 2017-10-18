@@ -11,9 +11,11 @@ SOURCES += main.cpp
 HEADERS += wait.h
 
 SOURCES += \
-    testutil.cpp
+    testutil.cpp \
+    jsonutil.cpp
 HEADERS += \
-    testutil.h
+    testutil.h \
+    jsonutil.h
 
 SOURCES += getlink.cpp
 

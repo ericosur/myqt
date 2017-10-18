@@ -29,7 +29,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "1:5:c:dhk:m:");
+            int cmd_opt = getopt(argc, argv, "1:5:c:df:hk:m:");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -54,6 +54,13 @@ bool handleOpt(int argc, char** argv)
                     gVars.iCount = cnt.toInt();
                     gVars.kTest = TC_MD5LISTTEST;
                     configured = true;
+                }
+                break;
+            case 'f':   // read conf file
+                if (optarg) {
+                    gVars.kTest = TC_READCONFIG;
+                    configured = true;
+                    gVars.sConfig = optarg;
                 }
                 break;
             case 'k':
@@ -90,3 +97,61 @@ bool handleOpt(int argc, char** argv)
     return configured;
 }
 
+
+QString get_one_string(int idx)
+{
+    QStringList sl;
+    sl << "1234" << "apple" << "ball" << "cat" << "dog";
+
+    return sl.at(idx % sl.size());
+}
+
+QString getHash(const QString& hashname, const QString& str)
+{
+    typedef QString (*Hasher)(const char*, int);
+
+    Hasher pf = NULL;
+    if (hashname == "md5sum") {
+        pf = md5sum;
+    } else if (hashname == "sha1sum") {
+        pf = sha1sum;
+    } else if (hashname == "sha3_256sum") {
+        pf = sha3_256sum;
+    }
+
+    if (pf != NULL) {
+        char *input = str.toUtf8().data();
+        QString md = (*pf)(input, strlen(input));
+        qDebug() << QString("%1(%2) => %3").arg(hashname).arg(str).arg(md);
+        return md;
+    } else {
+        qDebug() << "invalid hashname:" << hashname;
+    }
+
+    return QString();
+}
+
+
+QString get_md5sum(const QString& str)
+{
+    return getHash("md5sum", str);
+}
+
+QString get_sha1sum(const QString& str)
+{
+    return getHash("sha1sum", str);
+}
+
+QString get_sha3_256sum(const QString& str)
+{
+    return getHash("sha3_256sum", str);
+}
+
+void test_sha1hmac()
+{
+    QByteArray key = gVars.sKeystring.toUtf8();
+    QByteArray str = gVars.sTeststring.toUtf8();
+    qDebug() << QString("key:%1,str:%2 ==> %3").arg(gVars.sKeystring)
+                    .arg(gVars.sTeststring)
+                    .arg(hmacSha1(key, str));
+}

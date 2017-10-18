@@ -4,13 +4,16 @@
 #include <QDateTime>
 #include <QByteArray>
 #include <iostream>
+#include <fstream>
 #include <string.h>
 
 #include "testutil.h"
 
 #include "wait.h"
 #include "retry.h"
-#include "pass.h"
+
+#include "commonutil.h"
+#include "jsonutil.h"
 
 using namespace std;
 
@@ -43,22 +46,6 @@ void test_array()
     getLinkRealname(DEFAULT_VIDEO_SOFTLINK);
 }
 
-QString get_one_string(int idx)
-{
-    QStringList sl;
-    sl << "1234" << "apple" << "ball" << "cat" << "dog";
-
-    return sl.at(idx % sl.size());
-}
-
-QString get_md5sum(const QString& str)
-{
-    char *input = str.toUtf8().data();
-    QString md = md5sum(input, strlen(input));
-    qDebug() << QString("%1 => %2").arg(str).arg(md);
-    return md;
-}
-
 void test_md5list(int count)
 {
     for (int i = 0; i < count; i++) {
@@ -70,21 +57,31 @@ void test_md5list(int count)
     }
 }
 
-void test_sha1hmac()
+void test_fromconfig()
 {
-    QByteArray key = gVars.sKeystring.toUtf8();
-    QByteArray str = gVars.sTeststring.toUtf8();
-    qDebug() << QString("key:%1,str:%2 ==> %3").arg(gVars.sKeystring)
-                    .arg(gVars.sTeststring)
-                    .arg(hmacSha1(key, str));
-}
+    try {
+        std::ifstream infile(gVars.sConfig.toUtf8().data());
+        nlohmann::json j;
+        infile >> j;
 
-QString get_sha1sum(const QString& str)
-{
-    char *input = str.toUtf8().data();
-    QString md = sha1sum(input, strlen(input));
-    qDebug() << QString("%1 => %2").arg(str).arg(md);
-    return md;
+        qDebug() << "parsed!";
+
+        // iterate the array
+        for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
+            //std::cout << it.key() << ":" << it.value() << std::endl;
+            for (auto& e: j[it.key()]) {
+                std::string key = it.key();
+                getHash(key.c_str(), e.get<std::string>().c_str());
+            }
+        }
+
+    } catch (nlohmann::json::parse_error& e) {
+        // output exception information
+        std::cout << "message: " << e.what() << '\n'
+                  << "exception id: " << e.id << '\n'
+                  << "byte position of error: " << e.byte << std::endl;
+    }
+
 }
 
 int main(int argc, char *argv[])
@@ -107,6 +104,9 @@ int main(int argc, char *argv[])
             return 0;
         case TC_HMACTEST:
             test_sha1hmac();
+            return 0;
+        case TC_READCONFIG:
+            test_fromconfig();
             return 0;
         default:
             test_md5list(1);

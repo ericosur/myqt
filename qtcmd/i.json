@@ -1,0 +1,21 @@
+{
+    "md5sum": [
+        "apple",
+        "ball",
+        "cat"
+    ],
+    "sha1sum": [
+        "apple",
+        "ball",
+        "cat"
+    ],
+    "sha3_256sum": [
+        "apple",
+        "ball",
+        "cat"
+    ],
+    "nosuch": [
+        "1234",
+        "5678"
+    ]
+}
