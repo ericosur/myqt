@@ -119,6 +119,9 @@ void run_default_tests()
     print_title("test: get home path");
     qDebug() << "home path:" << getHomepath();
 
+    print_title("test: read ini");
+    test_read_ini();
+
     print_title("test: arg...");
     test_arg_format();
 
@@ -151,8 +154,6 @@ int main(int argc, char *argv[])
         testdir( getHomepath() );
         print_sep();
         testread();
-        print_sep();
-        test_read_ini();
         print_sep();
         return 0;
     case TEST_PERCENTENCODING:
