@@ -29,7 +29,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "de:fhrt");
+            int cmd_opt = getopt(argc, argv, "cde:fhrt");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -38,6 +38,10 @@ bool handleOpt(int argc, char** argv)
             case 'h':   // help
                 print_help();
                 exit(2);
+                break;
+            case 'c':
+                gVars.kTest = TEST_READCONF;
+                configured = true;
                 break;
             case 'd':   // debug
                 gVars.bDebug = !gVars.bDebug;

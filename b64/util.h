@@ -22,6 +22,7 @@ typedef enum TestCategory {
     TEST_PERCENTENCODING,
     TEST_LOCALTIME,
     TEST_RUNSCRIPT,
+    TEST_READCONF
 } TestCategory;
 
 class ConfigVar

@@ -119,9 +119,6 @@ void run_default_tests()
     print_title("test: get home path");
     qDebug() << "home path:" << getHomepath();
 
-    print_title("test: read ini");
-    test_read_ini();
-
     print_title("test: arg...");
     test_arg_format();
 
@@ -171,6 +168,10 @@ int main(int argc, char *argv[])
     case TEST_RUNSCRIPT:
         print_title("test: test_runscript");
         test_runscript();
+        return 0;
+    case TEST_READCONF:
+        print_title("test: read config");
+        test_read_config();
         return 0;
     default:
         qWarning() << "should not be here!";
