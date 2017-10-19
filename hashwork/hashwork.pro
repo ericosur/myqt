@@ -1,5 +1,3 @@
-# this project works only on target
-
 QT += core
 QT -= gui
 
@@ -21,3 +19,8 @@ SOURCES += pollthread.cpp \
     worker.cpp
 
 LIBS += ${CXXFLAGS}
+
+INCLUDEPATH += $$PWD/../qtlib
+DEPENDPATH  += $$PWD/../qtlib
+LIBS += -L/usr/local/lib
+LIBS += -lqtlib

@@ -27,6 +27,9 @@
 #include <taglib/flacfile.h>
 // taglib headers }
 
+#include <iostream>
+using namespace std;
+
 #define DEFAULT_BUFFER_SIZE     (512)
 char buffer[DEFAULT_BUFFER_SIZE];
 
@@ -39,11 +42,20 @@ GetCover::GetCover()
 {
 }
 
+QString GetCover::getTablibVersion()
+{
+    QString ver = QString("taglib version: %1.%2.%3")
+                         .arg(TAGLIB_MAJOR_VERSION)
+                         .arg(TAGLIB_MINOR_VERSION)
+                         .arg(TAGLIB_PATCH_VERSION);
+    return ver;
+}
+
 void GetCover::save_hash(const QString& hash)
 {
-    qDebug() << Q_FUNC_INFO << "=>" << hash;
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO << "=>" << hash );
     QByteArray arr = hash.toLocal8Bit();
-    qDebug() << arr.size() << arr.constData();
+    CHECK_IF_DEBUG( qDebug() << arr.size() << arr.constData() );
     myShm::saveToShm(arr.size(), (const char*)arr.constData());
 }
 QString GetCover::load_hash()
@@ -56,11 +68,13 @@ QString GetCover::load_hash()
     ret.append(arr);
     return ret;
 }
+
 QString GetCover::get_thumb_name(const QString& hstr)
 {
     QString res = QString("/tmp/") + hstr + QString(".png");
     return res;
 }
+
 QString GetCover::md5sum(const char* buffer, int size)
 {
     QCryptographicHash hash( QCryptographicHash::Md5 );
@@ -87,26 +101,33 @@ bool GetCover::getcover(const QString& fn, QString& tbfn)
     }
 
     bool ret = false;
+    int len = 0;
     if (fn.contains(QRegExp("\\.mp3$"))) {
         //qDebug() << "call extract_cover_from_mp3()...";
         if ( !extract_info_from_mp3(fn) ) {
             qWarning() << "can't get info from" << fn;
         }
-        extract_length_from_mp3(fn);  // test
+        if ((len = extract_length_from_mp3(fn))) {
+            cout << "mp3 len: " << len << endl;
+        }
         ret = extract_cover_from_mp3(fn, tbfn);
     } else if (fn.contains(QRegExp("\\.m4a$"))) {
         //qDebug() << "call extract_cover_from_mp4()...";
         if ( !extract_info_from_mp4(fn) ) {
             qWarning() << "can't get info from" << fn;
         }
-        extract_length_from_mp4(fn);
+        if ( (len = extract_length_from_mp4(fn)) ) {
+            cout << "mp4 len: " << len << endl;
+        }
         ret = extract_cover_from_mp4(fn, tbfn);
     } else if (fn.contains(QRegExp("\\.flac$"))) {
-        qDebug() << "flac...";
+        CHECK_IF_DEBUG( qDebug() << "flac..." );
         if ( !extract_info_from_flac(fn) ) {
             qWarning() << "can't get info from" << fn;
         }
-        extract_length_from_flac(fn);
+        if ( (len = extract_length_from_flac(fn)) ) {
+            cout << "flac len: " << len << endl;
+        }
         ret = extract_cover_from_flac(fn, tbfn);
     }
     // TODO: add function to extract flac album
@@ -148,7 +169,11 @@ bool GetCover::extract_cover_from_mp3(const QString& fn, QString& tbfn)
     TagLib::ID3v2::FrameList::ConstIterator it = frames.begin();
     //cout << (*it)->frameID() << "==>" << (*it)->toString();
     QString tbtype = (*it)->toString().toCString(); // shows: APIC
-    qDebug() << (*it)->frameID().data() << "type:" << tbtype;   // shows: images/jpeg
+    if (!tbtype.isEmpty()) {
+        // show MIME type like: images/jpeg
+        CHECK_IF_DEBUG(qDebug() << (*it)->frameID().data() << "type:" << tbtype);
+    }
+
     //cast Frame * to AttachedPictureFrame*
     TagLib::ID3v2::AttachedPictureFrame *pf = static_cast<TagLib::ID3v2::AttachedPictureFrame *> (*it);
     if (pf == NULL) {
@@ -207,7 +232,7 @@ bool GetCover::extract_cover_from_flac(const QString& fn, QString& tbfn)
     TagLib::FLAC::File file(fn.toStdString().c_str());
     const TagLib::List<TagLib::FLAC::Picture*>& picList = file.pictureList();
     if ( picList.size() == 0 ) {
-        qDebug() << Q_FUNC_INFO << "picList is empty...";
+        CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO << "picList is empty..." );
         return false;
     }
     TagLib::FLAC::Picture* pic = picList[0];
@@ -216,7 +241,7 @@ bool GetCover::extract_cover_from_flac(const QString& fn, QString& tbfn)
     if (mimetype.contains("jpeg")) {
         isJpeg = true;
     }
-    qDebug() << "mime type:" << mimetype;
+    CHECK_IF_DEBUG( qDebug() << "mime type:" << mimetype );
 
     QImage _img;
     _img.loadFromData((const uchar*)pic->data().data(), pic->data().size());
@@ -244,12 +269,14 @@ bool GetCover::save_thumbnail(const QImage& img, QString& tbfn, bool isJpeg)
                 QSize(DEFAULT_SHRINK_WIDTH, DEFAULT_SHRINK_HEIGHT),
                 Qt::KeepAspectRatio);
             resized_img.save(tbfn, "PNG");
+            CHECK_IF_DEBUG( qDebug() << "resized_img:" << resized_img.byteCount() );
         } else {
             if (m_followtype && isJpeg) {
                     img.save(tbfn, "JPG");
             } else {
                 img.save(tbfn, "PNG");
             }
+            CHECK_IF_DEBUG( qDebug() << "sizeof(img):" << img.byteCount() );
         }
     } else {
         qDebug() << "will not save tb...";
@@ -279,10 +306,13 @@ void GetCover::setResizeTb(bool b)
 }
 void GetCover::show_toggles()
 {
-    qDebug() << "m_writetb" << (m_writetb?"on":"off")
-        << "m_followtype" << (m_followtype?"on":"off")
-        << "m_resizetb" << (m_resizetb?"on":"off");
+    CHECK_IF_DEBUG(
+        qDebug() << "m_writetb" << (m_writetb?"on":"off")
+            << "m_followtype" << (m_followtype?"on":"off")
+            << "m_resizetb" << (m_resizetb?"on":"off")
+    );
 }
+
 void GetCover::showInfo(const QString& fn)
 {
     Q_UNUSED(fn);
@@ -290,10 +320,9 @@ void GetCover::showInfo(const QString& fn)
 
 void GetCover::show_aat(const QString& artist, const QString& album, const QString& title)
 {
-    qDebug() << "metadata ==========>>>" << endl
-        << "artist:" << artist << endl
-        << "album:" << album << endl
-        << "title:" << title;
+    cout << "artist: " << artist.toStdString() << endl
+        << "album: " << album.toStdString() << endl
+        << "title: " << title.toStdString() << endl;
 }
 
 bool GetCover::extract_info_from_mp3(const QString& fn)
@@ -351,35 +380,36 @@ bool GetCover::extract_info_from_flac(const QString& fn)
     return false;
 }
 
-bool GetCover::extract_length_from_mp3(const QString& fn)
+int GetCover::extract_length_from_mp3(const QString& fn)
 {
     TagLib::MPEG::File file(fn.toStdString().c_str());
     TagLib::MPEG::Properties p(&file);
 
-    qDebug() << "mp3 len(fn):" << p.length();
-    return true;
+    return p.length();
 }
 
-bool GetCover::extract_length_from_mp4(const QString& fn)
+int GetCover::extract_length_from_mp4(const QString& fn)
 {
-    qDebug() << Q_FUNC_INFO;
+    //CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO );
     TagLib::MP4::File file(fn.toStdString().c_str());
 
     if (file.audioProperties() == NULL) {
-        qDebug() << "cannot get retrive audio properties...";
+        qWarning() << "extract_length_from_mp4: cannot get retrive audio properties...";
         return false;
     }
-    qDebug() << "m4a len(fn):" << file.audioProperties()->length();
-    return true;
+    return file.audioProperties()->length();
 }
 
-bool GetCover::extract_length_from_flac(const QString& fn)
+int GetCover::extract_length_from_flac(const QString& fn)
 {
-    qDebug() << Q_FUNC_INFO;
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO );
 
     TagLib::FLAC::File file(fn.toStdString().c_str());
-    TagLib::FLAC::Properties p(&file);
+    TagLib::FLAC::Properties* p = file.audioProperties();
 
-    qDebug() << "flac len(fn):" << p.length();
-    return true;
+    if (p) {
+        return p->length();
+    } else {
+        return 0;
+    }
 }

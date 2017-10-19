@@ -8,6 +8,8 @@
 #include <QString>
 #include <QSettings>
 
+#include "handleopt.h"
+
 class GetCover
 {
 public:
@@ -29,6 +31,7 @@ public:
     static void setResizeTb(bool b);
     static void show_toggles();
     static void showInfo(const QString& fn);
+    static QString getTablibVersion();
 
 protected:
     GetCover(); // not welcome to have instance
@@ -40,9 +43,9 @@ protected:
     static bool extract_info_from_mp3(const QString& fn);
     static bool extract_info_from_mp4(const QString& fn);
     static bool extract_info_from_flac(const QString& fn);
-    static bool extract_length_from_mp3(const QString& fn);
-    static bool extract_length_from_mp4(const QString& fn);
-    static bool extract_length_from_flac(const QString& fn);
+    static int extract_length_from_mp3(const QString& fn);
+    static int extract_length_from_mp4(const QString& fn);
+    static int extract_length_from_flac(const QString& fn);
 
     static void save_hash(const QString& hash);
     static QString load_hash();

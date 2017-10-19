@@ -1,6 +1,7 @@
 list.txt
 *.mp3
 *.m4a
+*.flac
 Makefile
 *.png
 *.jpg

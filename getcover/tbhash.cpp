@@ -8,6 +8,8 @@
 
 #include <assert.h>
 
+#include "handleopt.h"
+
 #define FOOFILE  "/tmp/tbhash.dat"
 
 TbHash* TbHash::_instance = NULL;
@@ -17,7 +19,7 @@ TbHash* TbHash::_instance = NULL;
  */
 QDataStream& operator<<(QDataStream& ds, const TbHash& obj)
 {
-    qDebug() << Q_FUNC_INFO << obj.m_tbhash.size();
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO << obj.m_tbhash.size() );
     ds << obj.m_tbhash;
     return ds;
 }
@@ -27,7 +29,7 @@ QDataStream& operator<<(QDataStream& ds, const TbHash& obj)
 QDataStream& operator>>(QDataStream& ds, TbHash& obj)
 {
     ds >> obj.m_tbhash;
-    qDebug() << Q_FUNC_INFO << obj.m_tbhash.size();
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO << obj.m_tbhash.size() );
     return ds;
 }
 
@@ -143,7 +145,7 @@ void TbHash::checkThumbQuota()
         fileobj.setFileName(tbfn);
         m_tbsize += fileobj.size();
     }
-    qDebug() << Q_FUNC_INFO << "current tbfn total size:" << m_tbsize;
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO << "current tbfn total size:" << m_tbsize );
 }
 
 void TbHash::setDoWrite(bool b)
@@ -154,10 +156,10 @@ void TbHash::setDoWrite(bool b)
 // save object BarCtrl into file
 void TbHash::save()
 {
-    qDebug() << Q_FUNC_INFO;
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO );
     QFile file(FOOFILE);
     if (!file.open(QIODevice::WriteOnly)) {
-        qDebug() << "write file failed" << FOOFILE;
+        qWarning() << "write file failed" << FOOFILE;
         return;
     }
     QDataStream out(&file);
@@ -168,7 +170,7 @@ void TbHash::save()
 // load object BarCtrl from file
 void TbHash::load()
 {
-    qDebug() << Q_FUNC_INFO;
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO );
     QFile file(FOOFILE);
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "read file failed" << FOOFILE;
@@ -181,10 +183,10 @@ void TbHash::load()
 
 void TbHash::show()
 {
-    qDebug() << Q_FUNC_INFO << "size:" << m_tbhash.size();
+    CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO << "size:" << m_tbhash.size() );
     QHashIterator<QString, QString> i(m_tbhash);
     while (i.hasNext()) {
         i.next();
-        qDebug() << i.key() << ":" << i.value();
+        CHECK_IF_DEBUG( qDebug() << i.key() << ":" << i.value() );
     }
 }
