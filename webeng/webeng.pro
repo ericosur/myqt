@@ -2,6 +2,7 @@ TEMPLATE = app
 
 QT += qml quick
 QT += webengine
+CONFIG -= app_bundle
 
 SOURCES += main.cpp
 
