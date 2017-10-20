@@ -16,3 +16,7 @@ SOURCES += main.cpp \
 HEADERS += \
     foothread.h \
     barcontrol.h
+
+# qtlib
+INCLUDEPATH += $${PWD}/../qtlib
+LIBS += -L/usr/local/lib -lqtlib

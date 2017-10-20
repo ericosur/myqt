@@ -1,10 +1,12 @@
 #include <QCoreApplication>
 
+#include "commonutil.h"
 #include "foothread.h"
 #include "barcontrol.h"
 
 int main(int argc, char *argv[])
 {
+    qInstallMessageHandler(myMessageOutput);
     QCoreApplication a(argc, argv);
     FooThread foo;
     BarControl bar;
