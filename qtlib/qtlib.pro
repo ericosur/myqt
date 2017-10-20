@@ -14,10 +14,6 @@ HEADERS += retry.h
 HEADERS += flock.h
 SOURCES += flock.cpp
 
-### simple notify ###
-HEADERS += simplenotify.h
-SOURCES += simplenotify.cpp
-
 ### common util ###
 HEADERS += commonutil.h \
     trypath.h
@@ -28,7 +24,13 @@ SOURCES += commonutil.cpp \
 HEADERS += pass.h
 SOURCES += pass.cpp
 
-unix {
-    target.path = /usr/local/lib
-    INSTALLS += target
+linux {
+    # only available for linux
+    ### simple notify ###
+    HEADERS += simplenotify.h
+    SOURCES += simplenotify.cpp
+
 }
+
+target.path = /usr/local/lib
+INSTALLS += target
