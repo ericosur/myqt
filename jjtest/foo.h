@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -36,6 +37,6 @@ private:
     int age;
 };
 
-void test_foo();
+void test();
 
 #endif  // __FOO_H__
