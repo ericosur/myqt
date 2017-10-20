@@ -83,17 +83,13 @@ public:
     QString local_left_url() const {
         return mLocalLeftUrl;
     }
-    void setLocal_left_url(const QString& s) {
-        mLocalLeftUrl = s;
-        emit local_left_urlChanged();
-    }
+    void setLocal_left_url(const QString& s);
     QString local_right_url() const {
         return mLocalRightUrl;
     }
-    void setLocal_right_url(const QString& s) {
-        mLocalRightUrl = s;
-        emit local_right_urlChanged();
-    }
+    void setLocal_right_url(const QString& s);
+
+    bool check_local_file(const QString& path);
 
 public:
     bool readConfig();

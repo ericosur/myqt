@@ -85,3 +85,53 @@ QString Core::getRandomUrl()
     return result;
 
 }
+
+void Core::setLocal_left_url(const QString& s)
+{
+    bool bApply = false;
+
+    if (s.contains("file://")) {
+        bApply = check_local_file(s);
+    } else {
+        bApply = true;
+    }
+
+    if (bApply) {
+        mLocalLeftUrl = s;
+        emit local_left_urlChanged();
+    }
+}
+
+void Core::setLocal_right_url(const QString& s)
+{
+    bool bApply = false;
+
+    if (s.contains("file://")) {
+        bApply = check_local_file(s);
+    } else {
+        bApply = true;
+    }
+
+    if (bApply) {
+        mLocalRightUrl = s;
+        emit local_right_urlChanged();
+    }
+}
+
+bool Core::check_local_file(const QString& path)
+{
+    QUrl url(path);
+
+    if (url.isLocalFile()) {
+        QString localf = url.toLocalFile();
+        if (!QFile::exists(localf)) {
+            qWarning() << "specified local url not found:" << path;
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        qWarning() << "not a local url";
+        return false;
+    }
+}
