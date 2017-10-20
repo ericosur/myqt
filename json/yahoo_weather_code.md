@@ -1,7 +1,25 @@
-yahoo weather codes
-===================
+# yahoo weather API
 
-from: https://developer.yahoo.com/weather/documentation.html#codes
+## reference
+[yahoo developer](https://developer.yahoo.com/weather/documentation.html)
+
+## Commercial Use
+If you want to use weather API for commercial purpose, please [request an invite](http://ypdb.force.com/YDN/WeatherAPIcommercialrequest) here.
+
+[link](https://weather.yahoo.com/country/state/city-2306179/)
+
+## Key concepts
+
+* woeid: where on earth identifiers
+https://developer.yahoo.com/geo/geoplanet/guide/concepts.html
+* Per IP limits: /v1/public/*: 2,000 calls per hour; /v1/yql/*: 20,000 calls per hour
+* GeoPlanet web service
+https://developer.yahoo.com/geo/geoplanet/guide/api_docs.html#api_overview
+
+
+## yahoo weather codes represents
+
+[yahoo developer](https://developer.yahoo.com/weather/documentation.html#codes)
 
 | Code |   Description |
 |----- | ------------- |
