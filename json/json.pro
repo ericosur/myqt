@@ -15,8 +15,7 @@ SOURCES += main.cpp \
 
 HEADERS += \
     util.h \
-    utilvars.h \
-    json.hpp
+    utilvars.h
 
 SOURCES += \
     testparsestring.cpp
@@ -26,3 +25,4 @@ LIBS += -L/usr/local/lib -lreadjson
 
 INCLUDEPATH += $${PWD}/../qtlib
 LIBS += -L/usr/local/lib -lqtlib
+
