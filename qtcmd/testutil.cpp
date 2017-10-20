@@ -29,7 +29,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "1:5:c:df:hk:m:");
+            int cmd_opt = getopt(argc, argv, "1:5:ac:df:hk:m:");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -38,10 +38,6 @@ bool handleOpt(int argc, char** argv)
             case 'h':   // help
                 print_help();
                 exit(2);
-                break;
-            case 'd':   // debug
-                gVars.bDebug = !gVars.bDebug;
-                configured = true;
                 break;
             case 'a':
                 gVars.kTest = TC_ARRAYTEST;
@@ -55,6 +51,10 @@ bool handleOpt(int argc, char** argv)
                     gVars.kTest = TC_MD5LISTTEST;
                     configured = true;
                 }
+                break;
+            case 'd':   // debug
+                gVars.bDebug = !gVars.bDebug;
+                configured = true;
                 break;
             case 'f':   // read conf file
                 if (optarg) {
