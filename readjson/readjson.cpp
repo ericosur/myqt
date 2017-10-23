@@ -45,7 +45,11 @@ bool ReadJson::loadFile(const QString &filename)
     //qDebug() << "mJsonString:" << mJsonString;
     QJsonParseError err;
     mJdoc = QJsonDocument::fromJson(saveData, &err);
-    qDebug() << "err:" << err.errorString();
+    if (err.error != QJsonParseError::NoError) {
+        qDebug() << "json parse err:" << err.errorString();
+        return false;
+    }
+
     if (mJdoc.isNull()) {
         qDebug() << "loaded json is null";
     }
@@ -326,7 +330,7 @@ QString ReadJson::dumpJsonObjToString(const QJsonObject& obj)
     QJsonObject::const_iterator i;
     QString _outstring;
     for (i = obj.constBegin(); i != obj.constEnd(); ++i) {
-        _outstring.append(i->toString());
+        _outstring.append((*i).toString());
     }
     return _outstring;
 }
