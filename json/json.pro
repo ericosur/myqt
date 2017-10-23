@@ -20,6 +20,9 @@ HEADERS += \
 SOURCES += \
     testparsestring.cpp
 
+SOURCES += \
+    getmsg.cpp
+
 INCLUDEPATH += $${PWD}/../readjson
 LIBS += -L/usr/local/lib -lreadjson
 

@@ -182,6 +182,8 @@ int main(int argc, char *argv[])
         } else if (vars->bTestjsonhpp) {
             test_parse_string();
             return 0;
+        } else if (vars->bQueryResid) {
+            qDebug() << "getmsg:" << getmsg("ar_AE", vars->sStrid);
         }
 
     } else {

@@ -33,6 +33,8 @@ private:
 
 public:
     bool bSelectAll = false;
+    bool bQueryResid = false;
+    QString sStrid;
     bool bDebug = false;
     bool bQueryViaInternet = false;
     QString sFilename;

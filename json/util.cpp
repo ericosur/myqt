@@ -31,7 +31,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "ac:df:g:hjo:q");
+            int cmd_opt = getopt(argc, argv, "ab:c:df:g:hjo:q");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -44,6 +44,17 @@ bool handleOpt(int argc, char** argv)
             case 'a':   // all elements
                 configured = true;
                 _vars->bSelectAll = true;
+                break;
+            case 'b':
+                configured = true;
+                _vars->bQueryResid = true;
+
+                if (optarg) {
+                    _vars->sStrid = optarg;
+                } else {
+                    _vars->sStrid = "MSG_WARNING";
+                }
+                CHECK_IF_DEBUG( qDebug() << "strid:" << optarg );
                 break;
             case 'c':   // config file
                 if (optarg) {

@@ -21,4 +21,7 @@
 bool handleOpt(int argc, char** argv);
 void print_help();
 
+// at getmsg.cpp
+QString getmsg(const QString& locale_name, const QString& strid);
+
 #endif  // __JSON__UTIL_H__

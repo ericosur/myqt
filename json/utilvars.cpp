@@ -24,6 +24,7 @@ void UtilVars::dumpVars()
 {
     qDebug() << __func__ << "=====>" << endl
         << "-a: SelectAll:" << bSelectAll << endl
+        << "-b [strid]: query resid:" << sStrid << endl
         << "-c: Configfile:" << sConfig << endl
         << "-d: Debug:" << bDebug << endl
         << "-f: Filename:" << sFilename << endl
@@ -45,6 +46,8 @@ void UtilVars::fill_object(QJsonObject& obj)
     app["sConfig"] = sConfig;
     app["sOutconfig"] = sOutconfig;
     app["bTestjsonhpp"] = bTestjsonhpp;
+    app["bQueryResid"] = bQueryResid;
+    app["sStrid"] = sStrid;
 
     QJsonObject foo;
     foo["name"] = "Batman";
