@@ -1,82 +1,48 @@
 #include "mythreads.h"
 
-#include <QObject>
-#include <QThread>
-#include <QString>
-#include <QDebug>
-#include <QCryptographicHash>
 
 MyEmptyThread::MyEmptyThread()
-    : m_result("")
-    , m_count(0)
 {
 }
 
-QString MyEmptyThread::doHardWork(const QString& s, int method)
+QByteArray MyEmptyThread::doHash(int repeat_times, QCryptographicHash::Algorithm algo)
 {
     QByteArray data;
-    //const int MAX_HASH_REPEAT = 100;
-    const int MAX_HASH_REPEAT_METHOD_1 = 55;
-    const int MAX_HASH_REPEAT_METHOD_2 = 80;
-    const int MAX_HASH_REPEAT_METHOD_3 = 60;
+
+    for (int i=0; i<repeat_times; ++i) {
+        data.append(qrand());
+        for (int j=0; j<repeat_times; ++j) {
+            data.append(qrand());
+            data = QCryptographicHash::hash(data, algo);
+            for (int k=0; k<repeat_times; ++k) {
+                data = QCryptographicHash::hash(data, algo);
+                data.append( QCryptographicHash::hash(QByteArray(QString::number(qrand(),16).toUtf8()),
+                                                      algo) );
+                data.append(qrand());
+            }
+        }
+        data = QCryptographicHash::hash(data, algo);
+    }
+    return data;
+}
+
+QString MyEmptyThread::doHardWork(const QString& s, THREAD_METHOD method)
+{
+    QByteArray data;
 
     //qDebug() << "doHardWork()" << s << "," << method;
     data.append(s);
     switch (method) {
-    case 0:
-    {
-        for (int i=0; i<MAX_HASH_REPEAT_METHOD_1; ++i) {
-            data.append(qrand());
-            for (int j=0; j<MAX_HASH_REPEAT_METHOD_1; ++j) {
-                data.append(qrand());
-                data = QCryptographicHash::hash(data, QCryptographicHash::Sha256);
-                for (int k=0; k<MAX_HASH_REPEAT_METHOD_1; ++k) {
-                    data = QCryptographicHash::hash(data, QCryptographicHash::Sha256);
-                    data.append( QCryptographicHash::hash(QByteArray(QString::number(qrand(),16).toUtf8()),
-                                                          QCryptographicHash::Sha256) );
-                    data.append(qrand());
-                }
-            }
-            data = QCryptographicHash::hash(data, QCryptographicHash::Sha256);
-        }
-        //qDebug() << "sha256:" << data.toHex().data();
+    case TH_METHOD1:
+        data = doHash(MAX_HASH_REPEAT_METHOD_1, QCryptographicHash::Sha3_256);
         break;
-    }
-    case 1:
-    {
-        for (int i=0; i<MAX_HASH_REPEAT_METHOD_2; ++i) {
-            data.append(qrand());
-            for (int j=0; j<MAX_HASH_REPEAT_METHOD_2; ++j) {
-                data.append(qrand());
-                data = QCryptographicHash::hash(data, QCryptographicHash::Sha384);
-                for (int k=0; k<MAX_HASH_REPEAT_METHOD_2; ++k) {
-                    data.append(qrand());
-                    data = QCryptographicHash::hash(data, QCryptographicHash::Sha384);
-                }
-            }
-            data = QCryptographicHash::hash(data, QCryptographicHash::Sha384);
-        }
-        //qDebug() << "sha384:" << data.toHex().data();
+    case TH_METHOD2:
+        data = doHash(MAX_HASH_REPEAT_METHOD_2, QCryptographicHash::Sha512);
         break;
-    }
-    case 2:
-    {
-        for (int i=0; i<MAX_HASH_REPEAT_METHOD_3; ++i) {
-            data.append(qrand());
-            for (int j=0; j<MAX_HASH_REPEAT_METHOD_3; ++j) {
-                data.append(qrand());
-                data = QCryptographicHash::hash(data, QCryptographicHash::Sha3_512);
-                for (int k=0; k<MAX_HASH_REPEAT_METHOD_3; ++k) {
-                    data.append(qrand());
-                    data.append( QCryptographicHash::hash(data, QCryptographicHash::Sha3_512) );
-                    data = QCryptographicHash::hash(data, QCryptographicHash::Sha3_512);
-                }
-            }
-            data = QCryptographicHash::hash(data, QCryptographicHash::Sha3_512);
-        }
-        //qDebug() << "sha3_512:" << data.toHex().data();
+    case TH_METHOD3:
+        data = doHash(MAX_HASH_REPEAT_METHOD_3, QCryptographicHash::Sha3_512);
         break;
-    }
+    case TH_NULL:
     default:
         qDebug() << "no such method...";
         break;
@@ -92,18 +58,23 @@ QString MyEmptyThread::doHardWork(const QString& s, int method)
 ///
 ///
 /////////////////////////////////////////////////////////////////////
-ThreadFoo::ThreadFoo(int method, const QString& str) :
+ThreadFoo::ThreadFoo(const QString& name, THREAD_METHOD method, const QString& str) :
     MyEmptyThread(),
-    m_method(method),
-    m_str(str)
+    mMethod(method),
+    mStr(str),
+    mName(name)
 {
+    connect(this, SIGNAL(finished()), this, SLOT(onFinished()));
 }
 
 void ThreadFoo::run()
 {
-    const int MAX_TEST_REPEAT = 100;
-
     for (int i = 0; i < MAX_TEST_REPEAT; ++i) {
-        ThreadFoo::doHardWork(m_str, m_method);
+        ThreadFoo::doHardWork(mStr, mMethod);
     }
+}
+
+void ThreadFoo::onFinished()
+{
+    emit threadFinished(this->getName());
 }

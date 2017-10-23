@@ -4,31 +4,52 @@
 #include <QObject>
 #include <QThread>
 #include <QElapsedTimer>
+#include <QString>
+#include <QByteArray>
+#include <QCryptographicHash>
+#include <QDebug>
+
+#define MAX_HASH_REPEAT_METHOD_1    40
+#define MAX_HASH_REPEAT_METHOD_2    40
+#define MAX_HASH_REPEAT_METHOD_3    40
+#define MAX_TEST_REPEAT             20
+
 
 class MyEmptyThread : public QThread
 {
     Q_OBJECT
+
+public:
+    enum THREAD_METHOD {
+        TH_NULL,
+        TH_METHOD1,
+        TH_METHOD2,
+        TH_METHOD3
+    };
+
 public:
     MyEmptyThread();
     ~MyEmptyThread() {}
 
     QString getResult() const {
-        return m_result;
+        return mResult;
     }
 
     int getCount() const {
-        return m_count;
+        return mCount;
     }
 
     quint64 getEpoch() const {
         return e.elapsed();
     }
 
-    static QString doHardWork(const QString& s, int method=0);
+protected:
+    static QString doHardWork(const QString& s, THREAD_METHOD method=TH_METHOD1);
+    static QByteArray doHash(int repeat_times, QCryptographicHash::Algorithm algo);
 
 protected:
-    QString m_result;
-    int m_count;
+    QString mResult;
+    int mCount = 0;
     QElapsedTimer e;
 };
 
@@ -36,13 +57,25 @@ protected:
 class ThreadFoo : public MyEmptyThread
 {
     Q_OBJECT
+
 public:
-    ThreadFoo(int method, const QString& initstr);
+    ThreadFoo(const QString& name, THREAD_METHOD method, const QString& initstr);
     ~ThreadFoo() {}
     void run();
+    QString getName() const {
+        return mName;
+    }
+
+signals:
+    void threadFinished(const QString& s);
+
+public slots:
+    void onFinished();
+
 private:
-    int m_method;
-    QString m_str;
+    THREAD_METHOD mMethod = TH_METHOD1;
+    QString mStr;
+    QString mName;
 };
 
 
