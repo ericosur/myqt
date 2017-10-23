@@ -1,6 +1,8 @@
 #include "commonutil.h"
 
+#if QT_VERSION >= 0x050500
 bool g_messageVerbose = true;
+#endif
 
 // using stdc FILE* to write
 bool writeStringToFile(const QString& str, const QString& fn)
@@ -46,7 +48,7 @@ void use_cout(const QString& msg)
     std::cout << msg.toUtf8().data() << std::endl;
 }
 
-/**
+#if QT_VERSION >= 0x050500/**
     \brief myMessageOutput() is customized message handler to redirect qDebug()
 **/
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -85,3 +87,4 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
             break;
     }
 }
+#endif
