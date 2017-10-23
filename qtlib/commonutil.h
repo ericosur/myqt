@@ -1,6 +1,7 @@
 #ifndef __COMMON_UTIL_H__
 #define __COMMON_UTIL_H__
 
+#include <QtGlobal>
 #include <QString>
 #include <QByteArray>
 #include <QFile>
