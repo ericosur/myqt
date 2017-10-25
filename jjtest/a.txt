@@ -1,0 +1,19 @@
+{
+    "query": {
+        "count": 1,
+        "created": "2017-10-20T06:46:52Z",
+        "lang": "en-US",
+        "results": {
+            "channel": {
+                "item": {
+                    "condition": {
+                        "code": "26",
+                        "date": "Fri, 20 Oct 2017 02:00 PM CST",
+                        "temp": "23",
+                        "text": "Cloudy"
+                    }
+                }
+            }
+        }
+    }
+}

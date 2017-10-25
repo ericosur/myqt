@@ -74,28 +74,43 @@ void test_weather()
 
 }
 
-string test_resid()
+void test_obj()
 {
+    string json_file = "/home/rasmus/Pictures/fuck/obj.json";
+    cout << "read " << json_file << endl;
     try {
-        ifstream inf("/home/rasmus/src/myqt/jjtest/strdef.json");
+        ifstream inf(json_file);
+        json j;
+        inf >> j;
+
+        for (json::iterator it = j.begin(); it != j.end(); ++it) {
+            for (auto& e: j[it.key()]) {
+                string key = it.key();
+                cout << key << ": " << e << endl;
+            }
+        }
+    } catch (json::parse_error& e) {
+        cout << "parse error:" << e.what() << endl;
+    }
+}
+
+string get_from_id(const string& msgid)
+{
+    string json_file = "/home/rasmus/src/myqt/jjtest/strdef.json";
+    cout << "read " << json_file << endl;
+    try {
+        ifstream inf(json_file);
         json jj;
         inf >> jj;
 
-        //string key = "MSG_WARNING";
-        string key = "FUCK";
-        string id = jj["General"].at(key);
-        string foo = jj["ar_AE"].at(id);
+        string id = jj.at("General").at(msgid);
+        string foo = jj.at("ar_AE").at(id);
+
         return foo;
-    } /* catch (nlohmann::json::exception& e) {
-        // output exception information
-        std::cout << "message: " << e.what() << '\n'
-                  << "exception id: " << e.id << '\n'
-                  ;
-    } */
-    catch (std::out_of_range)
-   {
-       std::cout << "out of range" << '\n';
-   }
+    } catch (json::out_of_range& e) {
+       std::cout << "out of range:" << e.what() << '\n';
+    }
+
     return "";
 }
 
@@ -106,7 +121,9 @@ void test()
     // test_bar();
     // cout << endl;
     //test_weather();
-    cout << test_resid() << endl;
 
-    cout << "ok";
+
+    cout << "ok" << endl;
+
+    test_obj();
 }
