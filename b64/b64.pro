@@ -7,8 +7,6 @@ TARGET = b64
 CONFIG += console
 CONFIG -= app_bundle
 
-QMAKE_CXXFLAGS += -Werror
-
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -Werror
