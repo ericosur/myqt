@@ -177,6 +177,7 @@ void ReadJson::checkValueType(const QJsonValue& v)
     case QJsonValue::Object:
         typestr = "object";
         break;
+    default:
     case QJsonValue::Undefined:
         typestr = "undefined";
         break;
