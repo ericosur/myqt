@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Google Map",
+        "cmd":  "sh /usr/local/bin/googlemap.sh",
+        "icon": "file:///data/apps/apps-add-on-icons/google-map-icon.png"
+    },
+    {
+        "name": "app2",
+        "cmd": " /usr/sbin/googleplaces.sh",
+        "icon": "file:///data/test.png"
+    }
+]

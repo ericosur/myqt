@@ -42,20 +42,22 @@ void test_bar()
     // create an object from an object_t value
     json::object_t object_value = { {"one", 1}, {"two", 2} };
     json j_object_t(object_value);
-    cout << j_object_t.dump(4) << endl;
+    cout << "t_object_t: " << j_object_t.dump(4) << endl;
 
     // create an object from std::map
     std::map<std::string, int> c_map
     {
-        {"one", 1}, {"two", 2}, {"three", 3}
+        {"apple", 100}, {"whiskey", 300}, {"tiger", 250}
     };
     json j_map(c_map);
-    cout << j_map.dump(4) << endl;
+    cout << "c_map: " << j_map.dump(4) << endl;
+    // string str = j_map.dump();
+    // cout << "str: " << str << endl;
 }
 
 void test_weather()
 {
-    ifstream inf("/home/rasmus/src/myqt/jjtest/a.txt");
+    ifstream inf("../query.txt");
     json jj;
     inf >> jj;
     //cout << jj.dump(4) << endl;
@@ -76,7 +78,7 @@ void test_weather()
 
 void test_obj()
 {
-    string json_file = "/home/rasmus/Pictures/fuck/obj.json";
+    string json_file = "notexist.json";
     cout << "read " << json_file << endl;
     try {
         ifstream inf(json_file);
@@ -96,7 +98,7 @@ void test_obj()
 
 string get_from_id(const string& msgid)
 {
-    string json_file = "/home/rasmus/src/myqt/jjtest/strdef.json";
+    string json_file = "../strdef.json";
     cout << "read " << json_file << endl;
     try {
         ifstream inf(json_file);
@@ -114,16 +116,35 @@ string get_from_id(const string& msgid)
     return "";
 }
 
+void test_addon()
+{
+    string json_file = "../apps-add-ons.json";
+    cout << "read " << json_file << endl;
+    try {
+        ifstream inf(json_file);
+        json j;
+        inf >> j;
+
+        for (json::iterator it = j.begin(); it != j.end(); ++it) {
+            json item = (*it);
+            cout << item.at("name") << endl
+                << item.at("icon") << endl;
+        }
+    } catch (json::parse_error& e) {
+        cout << "parse error:" << e.what() << endl;
+    }
+}
+
 void test()
 {
     // test_foo();
     // cout << endl;
-    // test_bar();
-    // cout << endl;
+     test_bar();
+     cout << endl;
     //test_weather();
 
 
     cout << "ok" << endl;
 
-    test_obj();
+    //test_addon();
 }
