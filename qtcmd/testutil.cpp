@@ -29,7 +29,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "1:5:ac:df:hk:m:");
+            int cmd_opt = getopt(argc, argv, "1:5:ac:df:hk:m:p");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -72,6 +72,10 @@ bool handleOpt(int argc, char** argv)
                     gVars.kTest = TC_HMACTEST;
                     gVars.sTeststring = optarg;
                 }
+                break;
+            case 'p':
+                configured = true;
+                gVars.kTest = TC_PROCESS;
                 break;
             case '1':
                 if (optarg) {

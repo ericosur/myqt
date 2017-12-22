@@ -34,6 +34,7 @@ typedef enum TestCategory {
     TC_HMACTEST,
     TC_ARRAYTEST,
     TC_READCONFIG,
+    TC_PROCESS,
 } TestCategory;
 
 class ConfigVar

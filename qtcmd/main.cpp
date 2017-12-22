@@ -19,17 +19,21 @@ using namespace std;
 
 QString getLinkRealname(const QString& softlink);
 
-void test()
+void test_qprocess()
 {
+//#define TEST_COMMAND    "du -chs /home/rasmus/gcode/snippet/"
+#define TEST_COMMAND    "ls no.such.file.existed.32424"
+
     QProcess process;
-    process.start("du -chs /home/rasmus/gcode/snippet/");
+    process.start(TEST_COMMAND);
     process.waitForFinished(-1); // will wait forever until finished
 
     QString stdout = process.readAllStandardOutput();
     QString stderr = process.readAllStandardError();
 
-    qDebug() << "stdout: " << stdout;
-    qDebug() << "stderr: " << stderr;
+    qDebug() << "stdout:" << stdout;
+    qDebug() << "stderr:" << stderr;
+    qDebug() << "return code:" << process.exitCode();
 }
 
 void gen_seed()
@@ -107,6 +111,9 @@ int main(int argc, char *argv[])
             return 0;
         case TC_READCONFIG:
             test_fromconfig();
+            return 0;
+        case TC_PROCESS:
+            test_qprocess();
             return 0;
         default:
             test_md5list(1);
