@@ -6,13 +6,13 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 require ${TOPDIR}/../meta-qt5/recipes-qt/qt5/qt5.inc
 
-MYSRC = "/src/snippet/qt/getcover/"
+MYSRC = "../source/getcover/"
 S = "${WORKDIR}/getcover/"
 
 CXXFLAGS += "-DUSE_YOSETARGET"
 
-DEPENDS = "libxml2 qtdeclarative qtgraphicaleffects"
-RDEPENDS_${PN} = "qtdeclarative-qmlplugins qtgraphicaleffects-qmlplugins"
+DEPENDS = "qtbase"
+RDEPENDS_${PN} = "qtbase"
 
 addtask do_src before do_patch after do_unpack
 

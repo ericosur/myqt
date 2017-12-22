@@ -1,5 +1,4 @@
-Comparision Table
------------------
+# Comparision Table
 
 | item | description |
 | ---- | ----------- |
@@ -25,6 +24,25 @@ At rpi2 machine, file read from microSD, write to tmpfs
 | rpi2       | jpg to png | 54.545s     | 12.828x |
 | rpi2       | jpg to jpg | 4.252s      | 1.000x |
 
+
+## list for getcover
+
+For list.txt use:
+```
+find ~/Music -type f -iname '*.mp3' > list.txt
+```
+**or**
+use json format:
+```
+[
+    "a505199541a72.mp3",
+    "fly.mp3",
+    "frim.flac",
+    "booty.mp3",
+    "rainbow.m4a",
+    "sun.m4a"
+]
+```
 
 ###Test Log if Follow Thumbnail Image Format or not###
 

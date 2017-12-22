@@ -13,7 +13,9 @@
 #include <QDebug>
 
 #include <iostream>
+#include <fstream>
 #include <unistd.h>
+#include "json.hpp"
 
 using namespace std;
 
@@ -92,6 +94,29 @@ void read_from_list(const QString& listfn)
     qDebug() << msg;
 }
 
+void read_from_json(const QString& listjson)
+{
+    try {
+        std::ifstream infile(listjson.toUtf8().toStdString());
+        nlohmann::json j;
+        infile >> j;
+
+        for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
+            nlohmann::json item = (*it);
+            cout << item << endl;
+        }
+
+        qDebug() << "json file imported, and stop";
+        exit(1);
+    } catch (nlohmann::json::parse_error& e) {
+        // output exception information
+        std::cout << "message: " << e.what() << '\n'
+                  << "exception id: " << e.id << '\n'
+                  << "byte position of error: " << e.byte << std::endl;
+    }
+
+}
+
 void print_help()
 {
     fprintf(stderr, "getcover built at %s %s\nUsing %s\n\n",
@@ -104,6 +129,7 @@ void print_help()
             "\t-n  Not output thumbnail file (default: on)\n"
             "\t-r  resize width and height of thumbnail (default:off)\n"
             "\t-v  verbose (default:%s)\n"
+            "\t-j  specify list file in json format\n"
             "\t-f  specify list file\n"
             "\t-w  use worker\n"
             "\t-d  percent decode\n"
@@ -117,6 +143,7 @@ void handleopt(int argc, char** argv)
 {
     bool use_hashtable = true;
     QString listfn;
+    QString listjson;
 
     if (argc == 1) {
         print_help();
@@ -124,7 +151,7 @@ void handleopt(int argc, char** argv)
     }
 
     while (1) {
-        int cmd_opt = getopt(argc, argv, "d:e:f:hinrtvw");
+        int cmd_opt = getopt(argc, argv, "d:e:f:hij:nrtvw");
         if (cmd_opt == -1) {    // all parsed
             //qDebug() << "cmd_opt == -1";
             break;
@@ -161,6 +188,12 @@ void handleopt(int argc, char** argv)
         case 'i':
             GetCover::setFollowImageType(true);
             CHECK_IF_DEBUG( qDebug() << "will follow thumbnail image format..." );
+            break;
+        case 'j':
+            if (optarg) {
+                listjson = optarg;
+                CHECK_IF_DEBUG( qDebug() << "use json file:" << listjson );
+            }
             break;
         case 't':
             use_hashtable = false;
@@ -202,6 +235,8 @@ void handleopt(int argc, char** argv)
     }
     if (listfn != "") {
         read_from_list(listfn);
+    } else if (listjson != "") {
+        read_from_json(listjson);
     }
 
     if (use_hashtable) {
