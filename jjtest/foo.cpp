@@ -1,6 +1,13 @@
 #include "foo.h"
 #include "json.hpp"
+#include "readjson.h"
 
+#include <QFile>
+#include <QDebug>
+
+#define DATAJSON    "../../json/all.json"
+
+//using namespace std;
 using namespace nlohmann;
 
 void to_json(json& j, const Person& p)
@@ -30,7 +37,6 @@ void test_foo()
     // convert **Person** to **json**
     json j = p;
     cout << j << endl;
-
     // convert **json** to **p2**
     Person p2 = j;
 
@@ -76,9 +82,63 @@ void test_weather()
 
 }
 
+void test_qjson()
+{
+    qDebug() << Q_FUNC_INFO;
+    QString fn = DATAJSON;
+    ReadJson j(fn);
+    if (!j.loadFile()) {
+        qWarning() << "fail to load..." << fn;
+        return;
+    }
+    //QJsonObject j = j.getJobject();
+    qDebug() << j.getLeafString("query.results.channel.item.condition.text");
+    //j["query"].toObject()["results"].toObject()["channel"]...["text"].toString()
+}
+
+void test_atxt_by_hpp()
+{
+    qDebug() << Q_FUNC_INFO;
+    string json_file = DATAJSON;
+    if (!QFile::exists(json_file.c_str())) {
+        qDebug() << "file not found:" << json_file.c_str();
+        return;
+    }
+
+    try {
+        ifstream inf(json_file);
+        json j;
+        inf >> j;
+
+        cout << j.at("query").at("results").at("channel").at("item").at("condition").at("text") << endl;
+#if 0
+        for (json::iterator it = j.begin(); it != j.end(); ++it) {
+            for (auto& e: j[it.key()]) {
+                string key = it.key();
+                cout << key << ": " << e << endl;
+            }
+        }
+#endif
+    } catch (json::parse_error& e) {
+        cout << "parse error:" << e.what() << endl;
+    } catch (json::out_of_range& e) {
+        cout << "out_of_range:" << e.what() << endl;
+    }
+}
+
+void test_atxt()
+{
+    qDebug() << "using Qt json...";
+    test_qjson();
+    qDebug() << "using json.hpp...";
+    test_atxt_by_hpp();
+}
+
 void test_obj()
 {
+    qDebug() << Q_FUNC_INFO;
     string json_file = "notexist.json";
+
     cout << "read " << json_file << endl;
     try {
         ifstream inf(json_file);
@@ -143,7 +203,7 @@ void test()
      cout << endl;
     //test_weather();
 
-
+    test_atxt();
     cout << "ok" << endl;
 
     //test_addon();

@@ -21,3 +21,7 @@ HEADERS += foo.h
 # qtlib
 INCLUDEPATH += $${PWD}/../qtlib
 LIBS += -L/usr/local/lib -lqtlib
+
+# readjson
+INCLUDEPATH += $${PWD}/../readjson
+LIBS += -L/usr/local/lib -lreadjson

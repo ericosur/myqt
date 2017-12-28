@@ -3,6 +3,10 @@ import QtQuick.Window 2.2
 import com.rasmus 2.0
 
 Window {
+
+    //property string abc: null
+    property var foo
+
     visible: true
     width: 400
     height: 400
@@ -14,6 +18,22 @@ Window {
         console.log("NoshDefine.CD_START: " + NoshDefine.CD_START);
         console.log("NoshDefine.ED_THREE: " + NoshDefine.ED_THREE);
         console.log("NoshDefine.MD_BALL: " + NoshDefine.MD_BALL);
+        console.log("string: " + foo);
+        if (foo == "") {
+            console.log("empty");
+        }
+        if (foo == null) {
+            console.log("null");
+        }
+        foo = "";
+        console.log("string: " + foo);
+        if (foo == "") {
+            console.log("empty");
+        }
+        if (foo == null) {
+            console.log("null");
+        }
+
     }
 
     Rectangle {
