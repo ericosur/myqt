@@ -1,0 +1,8 @@
+{
+    "common": {
+        "data_file": "/tmp/strings.txt"
+    },
+    "perl": {
+        "item_number": 20
+    }
+}
