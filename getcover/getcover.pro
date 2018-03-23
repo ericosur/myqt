@@ -1,5 +1,4 @@
-QT += core dbus
-QT -= qui
+QT += core gui
 
 CONFIG += c++11
 CONFIG -= app_bundle
