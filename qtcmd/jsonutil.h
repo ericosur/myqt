@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <iomanip> // for std::setw
-#include "json.hpp"
+#include <nlohmann/json.hpp>
 
 bool parse_and_dump(const char* text, nlohmann::json& result);
 
