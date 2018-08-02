@@ -17,6 +17,7 @@ SOURCES += main.cpp
 SOURCES += foo.cpp
 HEADERS += foo.h
 
+SOURCES += json_parse_test.cpp
 
 # qtlib
 INCLUDEPATH += $${PWD}/../qtlib

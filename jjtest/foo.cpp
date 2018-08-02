@@ -1,7 +1,7 @@
 #include "foo.h"
-#include "json.hpp"
 #include "readjson.h"
 
+#include "nlohmann/json.hpp"
 #include <QFile>
 #include <QDebug>
 
