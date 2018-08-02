@@ -29,3 +29,4 @@ LIBS += -L/usr/local/lib -lreadjson
 INCLUDEPATH += $${PWD}/../qtlib
 LIBS += -L/usr/local/lib -lqtlib
 
+INCLUDEPATH += /usr/local/include
