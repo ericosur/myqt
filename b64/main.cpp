@@ -109,13 +109,15 @@ void test_info()
 void run_default_tests()
 {
     // default tests
+#if 0
     print_title("test: QMultiMap");
     testmm();
     //print_sep();
-
+#endif
     print_title("test: no_conflict_name");
     no_conflict_name();
 
+#if 0
     print_title("test: get home path");
     qDebug() << "home path:" << getHomepath();
 
@@ -131,6 +133,7 @@ void run_default_tests()
 
     print_title("test: test__pe");
     test__pe();
+#endif
 }
 
 int main(int argc, char *argv[])

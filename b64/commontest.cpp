@@ -39,12 +39,30 @@ void print_sep()
 
 QString check_name(const QStringList& sl, const QString& key)
 {
+    Q_UNUSED(sl);
+    Q_UNUSED(key);
+
+
     QString tmp = key;
-    int cnt = 1;
-    while (sl.contains(tmp)) {
-        tmp = QString("%1 (%2)").arg(key).arg(cnt);
+    QStringList post;
+
+    post << QChar(9) << QChar(10) << QChar(11) << QChar(12) << QChar(13) << QChar(32);
+    //qDebug() << post;
+    static int cnt = 0;
+    if (cnt < post.size()) {
+        qDebug() << cnt << "," << post.at(cnt);
+        tmp = tmp + post.at(cnt);
         cnt ++;
+    } else {
+        cnt = 0;
     }
+    // while (sl.contains(tmp)) {
+    //     tmp = QString("%1%2").arg(key).arg(post.at(cnt));
+    //     if (cnt < post.size())
+    //         cnt ++;
+    //     else
+    //         cnt = 0;
+    // }
     return tmp;
 }
 
@@ -65,6 +83,17 @@ void no_conflict_name()
     sl.append(ret);
     ret = check_name(sl, "apple");
     sl.append(ret);
+    ret = check_name(sl, "apple");
+    sl.append(ret);
+    ret = check_name(sl, "apple");
+    sl.append(ret);
+    ret = check_name(sl, "apple");
+    sl.append(ret);
+    ret = check_name(sl, "apple");
+    sl.append(ret);
+    ret = check_name(sl, "apple");
+    sl.append(ret);
+
     qDebug() << sl;
 }
 
