@@ -17,6 +17,8 @@ SOURCES += main.cpp
 SOURCES += core.cpp
 HEADERS += core.h
 
+INCLUDEPATH += /usr/local/include
+
 # qtlib
 #INCLUDEPATH += $${PWD}/../qtlib
 #LIBS += -L/usr/local/lib -lqtlib

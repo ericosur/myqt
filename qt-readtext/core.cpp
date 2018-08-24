@@ -1,9 +1,9 @@
 #include "core.h"
-#include "json.hpp"
 
 #include <QFile>
 #include <iostream>
 #include <fstream>
+#include <nlohmann/json.hpp>
 
 using namespace std;
 using namespace nlohmann;
