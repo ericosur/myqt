@@ -7,12 +7,18 @@
 #include "flock_broker.h"
 #include "simplenotify.h"
 
+void utf_test()
+{
+    qDebug() << Q_FUNC_INFO;
+    unsigned char utf16be[32] = {0x4e, 0x00, 0x58, 0x34, 0x90, 0x4a, 0x62, 0x32};
+    qDebug() << translate_utf16be_to_qstring(utf16be);
+}
+
 void doTests()
 {
     testSizeOfDataType();
 
-    // unsigned char utf16be[32] = {0x4e, 0x00, 0x58, 0x34, 0x90, 0x4a, 0x62, 0x32};
-    // qDebug() << translate_utf16be_to_qstring(utf16be);
+    utf_test();
 
     double longitude = 121.5, latitude = 25.119904;
     qDebug() << get_qibla_angle(longitude, latitude);
