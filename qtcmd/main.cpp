@@ -42,6 +42,10 @@ void gen_seed()
     qsrand((uint)(current % 0xffffffff));
 }
 
+void print_current_msec_epoch()
+{
+    qDebug() << "epoch in msec:" << QDateTime::currentMSecsSinceEpoch();
+}
 
 void test_array()
 {
@@ -91,6 +95,8 @@ void test_fromconfig()
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
+
+    print_current_msec_epoch();
 
     handleOpt(argc, argv);
     switch (gVars.kTest) {
