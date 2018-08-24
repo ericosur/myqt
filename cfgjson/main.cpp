@@ -14,8 +14,10 @@ int main(int argc, char *argv[])
 
     GetRadioConfig* cfg = GetRadioConfig::getInstance();
 
-    cfg->browse_dir();
-    cfg->test();
+    // cfg->browse_dir();
+    // cfg->test();
+
+    cfg->test_from_scratch();
 
     return 0;
 }

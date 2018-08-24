@@ -29,6 +29,9 @@
 #define DEFAULT_CONFIG_FILE    "/media/usb/storage/radiocfg.json"
 #endif
 
+#define TEST_REPEAT             5
+#define MAX_KNOWN_CFG_INDEX     27
+#define DEFAULT_INVALID_VALUE   "FF"
 
 GetRadioConfig* GetRadioConfig::_instance = NULL;
 GetRadioConfig* GetRadioConfig::getInstance()
@@ -86,7 +89,7 @@ void GetRadioConfig::write_header()
     QJsonObject _obj;
     _obj.insert("name", "start");
     _obj.insert("id", "null");
-    _obj.insert("value", "FF");
+    _obj.insert("value", DEFAULT_INVALID_VALUE);
     _obj.insert("created_date", _now.toString("yyyy/MM/dd hh:mm:ss"));
     new_arr.push_back(QJsonValue(_obj));
 }
@@ -122,6 +125,28 @@ QString GetRadioConfig::get_rand_number()
         result = tmp;
     }
     return result;
+}
+
+bool GetRadioConfig::set_cfg_elem(int index, const QString& name, const QString& id,
+                                  const QString& value)
+{
+    if (index <= 0 || index > MAX_KNOWN_CFG_INDEX) {
+        qWarning() << "ERROR: request out-of-range";
+        return false;
+    }
+    QJsonObject _obj;
+    _obj.insert("name", name);
+    _obj.insert("id", id);
+    if (check_value(value)) {
+        _obj.insert("value", value);
+    } else {
+        qDebug() << "WARNING: invalid value:" << value;
+        _obj.insert("value", DEFAULT_INVALID_VALUE);
+    }
+
+    new_arr.push_back(QJsonValue(_obj));
+    qDebug() << "now new_arr.count():" << new_arr.count();
+    return true;
 }
 
 bool GetRadioConfig::get_cfg_elem(int index, QString& name, QString& id, QString& value)
@@ -326,4 +351,16 @@ bool GetRadioConfig::check_value(const QString& value)
     QRegularExpression regexp("[0-9A-Fa-f][0-9A-Fa-f]?");
     QRegularExpressionMatch match = regexp.match(value);
     return match.hasMatch();
+}
+
+void GetRadioConfig::test_from_scratch()
+{
+    for (int i = 0; i < TEST_REPEAT; i++) {
+        QString _name = QString("name%1").arg(i);
+        QString _id = QString("id%1").arg(i);
+        QString _value = get_rand_number();
+        set_cfg_elem(i, _name, _id, _value);
+    }
+    qDebug() << "call write all...";
+    write_all();
 }

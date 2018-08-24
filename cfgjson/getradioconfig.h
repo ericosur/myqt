@@ -17,6 +17,8 @@ public:
     Q_INVOKABLE QString get_cfg_id(int index);
     Q_INVOKABLE QString get_cfg_value(int index);
     Q_INVOKABLE void set_cfg_value(int index, const QString& value);
+    Q_INVOKABLE bool set_cfg_elem(int index, const QString& name, const QString& id,
+                                  const QString& value);
 
     Q_INVOKABLE void browse_dir();
     Q_INVOKABLE void read_all();
@@ -30,6 +32,7 @@ public:
 
     void test();
     void test_dir();
+    void test_from_scratch();
 
 protected:
     GetRadioConfig();
