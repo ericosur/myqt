@@ -9,8 +9,11 @@ TEMPLATE = app
 CONFIG += use_qtlib
 CONFIG += use_localtaglib
 
-QMAKE_MAC_SDK = macosx10.12
-DEFINES += MACOSX_DEPLOYMENT_TARGET=10.11
+#QMAKE_MAC_SDK = macosx10.12
+#DEFINES += MACOSX_DEPLOYMENT_TARGET=10.11
+macx {
+    CONFIG+=sdk_no_version_check
+}
 
 HEADERS += getcover.h \
     yoseshm.h \
@@ -33,14 +36,8 @@ LIBS += -ltag
 LIBS += -lz
 
 use_localtaglib {
-    linux {
-        INCLUDEPATH += /usr/local/include
-        LIBS += -L/usr/local/lib
-    }
-    macx {
-        INCLUDEPATH += /opt/local/include
-        LIBS += -L/opt/local/lib
-    }
+    INCLUDEPATH += /usr/local/include
+    LIBS += -L/usr/local/lib
 }
 
 use_qtlib {
