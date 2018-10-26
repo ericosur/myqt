@@ -17,6 +17,9 @@ HEADERS += \
     foothread.h \
     barcontrol.h
 
+HEADERS += filelock.h
+SOURCES += filelock.cpp
+
 # qtlib
 INCLUDEPATH += $${PWD}/../qtlib
 LIBS += -L/usr/local/lib -lqtlib

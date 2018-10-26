@@ -16,6 +16,10 @@ public:
 public slots:
     void onClose();
 
+
+private:
+    int fileno = -1;
+
 };
 
 #endif // FOOTHREAD_H
