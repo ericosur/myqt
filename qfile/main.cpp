@@ -10,6 +10,23 @@
 
 #define INIFILE "test.ini"
 
+void test0()
+{
+    QSettings ini(INIFILE, QSettings::IniFormat);
+
+    ini.setValue("truth", true);
+    ini.setValue("lair", false);
+
+    qDebug() << "truth:" << ini.value("truth").toString();
+    qDebug() << "truth:" << ini.value("truth").toInt();
+    qDebug() << "truth:" << ini.value("truth").toBool();
+    qDebug() << "lair:" << ini.value("lair").toString();
+    qDebug() << "lair:" << ini.value("lair").toInt();
+    qDebug() << "lair:" << ini.value("lair").toBool();
+
+    ini.sync();
+}
+
 void testini(const QString& key, const QString& val)
 {
     QSettings ini(INIFILE, QSettings::IniFormat);
@@ -74,14 +91,17 @@ int main(int argc, char *argv[])
     Q_UNUSED(argc);
     Q_UNUSED(argv);
 
-    test();
-    test2();
+    test0();
+
+    //test();
+    //test2();
 
     readini();
+#if 0
     QString s = "張學友";
     qDebug() << showByteArray(s.toUtf8());
     qDebug() << showByteArray(s.toLatin1());
-
+#endif
     return 0;
 }
 
