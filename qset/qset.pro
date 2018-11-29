@@ -6,10 +6,11 @@ TEMPLATE = app
 CONFIG += c++11
 CONFIG += console
 CONFIG -= app_bundle
+CONFIG+=sdk_no_version_check
 
 CONFIG += use_jsonhpp
 
-QMAKE_MAC_SDK = macosx10.11
+#QMAKE_MAC_SDK = macosx10.11
 
 SOURCES += main.cpp\
     core.cpp \

@@ -16,7 +16,7 @@
 #ifdef USE_JSONHPP
 #include <iostream>
 #include <fstream>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 #define RESULT_JSONFILE    "qset_result.json"
 #endif
 
