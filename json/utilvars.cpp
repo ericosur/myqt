@@ -1,12 +1,10 @@
-#include <iostream>
-
 #include "utilvars.h"
 #include "commonutil.h"
+#include <iostream>
+#include <nlohmann/json.hpp>
 
-#include "nlohmann/json.hpp"
 using json = nlohmann::json;
 bool parse_and_dump(const char* text, json& result);
-
 
 UtilVars* UtilVars::_instance = NULL;
 UtilVars* UtilVars::getInstance()
