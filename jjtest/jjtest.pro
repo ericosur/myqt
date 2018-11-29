@@ -6,6 +6,7 @@ CONFIG += c++11
 TARGET = jjtest
 CONFIG += console
 CONFIG -= app_bundle
+CONFIG+=sdk_no_version_check
 
 TEMPLATE = app
 
@@ -26,3 +27,5 @@ LIBS += -L/usr/local/lib -lqtlib
 # readjson
 INCLUDEPATH += $${PWD}/../readjson
 LIBS += -L/usr/local/lib -lreadjson
+
+INCLUDEPATH += /usr/local/include
