@@ -2,10 +2,10 @@
 #include <iomanip> // for std::setw
 #include <nlohmann/json.hpp>
 
-using json = nlohmann::json;
 
-bool parse_and_dump(const char* text, json& result)
+bool parse_and_dump(const char* text, nlohmann::json& result)
 {
+    using json = nlohmann::json;
     // parse and serialize JSON
     result = json::parse(text);
     //std::cout << std::setw(4) << j_complete << "\n\n";
@@ -15,6 +15,10 @@ bool parse_and_dump(const char* text, json& result)
 
 int test_parse_string()
 {
+    using namespace std;
+    using json = nlohmann::json;
+    cout << __func__ << " uses a RAW string to initialize a json object\n";
+
     // a JSON text
     auto text = R"(
     {
@@ -33,11 +37,12 @@ int test_parse_string()
     }
     )";
     json myobj;
+    auto query = myobj.meta();
+    cout << "json.hpp version: " << query["version"]["string"] << endl;
 
     if ( parse_and_dump(text, myobj) ) {
-        std::cout << std::setw(4) << myobj << "\n\n";
+        cout << std::setw(4) << myobj << "\n\n";
         return true;
     }
     return false;
 }
-
