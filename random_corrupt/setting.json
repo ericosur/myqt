@@ -1,0 +1,22 @@
+{
+    "action": [
+        "read",
+        "corrupt",
+        "read"
+    ],
+    "read": {
+        "filename": "test.json"
+    },
+    "prepare" : {
+        "length": 64,
+        "fill": 0,
+        "filename": "test.out"
+    },
+    "corrupt" : {
+        "block" : {
+            "length": 1,
+            "count": 1
+        },
+        "byte": 204
+    }
+}
