@@ -8,7 +8,7 @@
 
 #include <QRegExp>
 #define STRING_NULL    ""
-#define bDebug true
+#define bDebug false
 
 QString findFileLocation(const QString& fn)
 {
@@ -177,27 +177,30 @@ public:
         return _instance;
     }
     json& getJson() {
-        return jj;
+        return _jj;
     }
     bool isOpen() {
         return isOk;
     }
     bool checkLocale(const QString& loc) {
-        return false;
+        return locale_lists.contains(loc);
     }
     bool checkStrid(const QString& strid) {
-        return false;
+        return stringid_lists.contains(strid);
     }
+
+    void test();
 
 protected:
     JsonCache();
     static JsonCache* _instance;
+    void load_locale_list();
 
 private:
-    QStringList stringid_lists;
     QStringList locale_lists;
+    QStringList stringid_lists;
 
-    json jj;
+    json _jj;
     bool isOk = false;
 };
 
@@ -218,8 +221,34 @@ JsonCache::JsonCache()
     ifstream inf(_fn);
 
     try {
-        inf >> jj;
+        inf >> _jj;
         isOk = true;
+        load_locale_list();
+    } catch (nlohmann::json::exception& e) {
+        // output exception information
+        std::cout << "[ERROR] message: " << e.what() << '\n'
+                  << "exception id: " << e.id << '\n';
+        isOk = false;
+    }
+}
+
+void JsonCache::load_locale_list()
+{
+    // iterate the array
+    for (json::iterator it = _jj.begin(); it != _jj.end(); ++it) {
+        //std::cout << it.key() << '\n';
+        QString tok = it.key().c_str();
+        if (tok != "General") {
+            locale_lists << tok;
+        }
+    }
+    try {
+        json jp = _jj.at("General");
+        for (json::iterator it = jp.begin(); it != jp.end(); ++it) {
+            //std::cout << it.key() << '\n';
+            QString tok = it.key().c_str();
+            stringid_lists << tok;
+        }
     } catch (nlohmann::json::exception& e) {
         // output exception information
         std::cout << "[ERROR] message: " << e.what() << '\n'
@@ -283,9 +312,16 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
         return STRING_NULL;
     }
 
+    if (!jc->checkStrid(strid)) {
+        qDebug() << "[ERROR] no such stringid";
+        return STRING_NULL;
+    }
+
     try {
         json jj = jc->getJson();
-        qDebug() << "local:" << locale_name << "strid:" << strid;
+        if (bDebug) {
+            qDebug() << "local:" << locale_name << "strid:" << strid;
+        }
 
         string _locale = locale_name.toUtf8().data();
         string id;

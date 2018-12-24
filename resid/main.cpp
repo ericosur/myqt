@@ -26,7 +26,8 @@ void test_id(int id, const QString& strid)
 void test()
 {
     qDebug() << getStringByStrid("es_MX", "stringid_plzconnectbt");
-#if 0
+    qDebug() << getStringByStrid("ar_AE", "stringid_plzconnectbt");
+#if 1
     qDebug() << getStringByIntid("ar_AE", STRING_MINSTRID-1);
     qDebug() << getStringByIntid("ar_AE", STRING_MINSTRID);
     qDebug() << getStringByIntid("ar_AE", STRING_MAXSTRID);
