@@ -2,30 +2,44 @@
 #include <QDebug>
 //#include <iostream>
 
-#include "testmsg.h"
+#include "residutil.h"
 #include "strdef.h"
 
 //using namespace std;
 
-void test_ar_id(int id)
+void test_id(int id, const QString& strid)
 {
-    QString str = getmsg("ar_AE", id);
-    qDebug() << str;
-}
+    QStringList locs;
 
-void test_zh_id(int id)
-{
-    QString str = getmsg("zh_CN", id);
-    qDebug() << str;
+    locs << "ar_AE" << "en_US";
+
+    QString str;
+    foreach (const QString &loc, locs) {
+        str = getStringByIntid(loc, id);
+        qDebug() << "query:" << id << "return:" << str;
+        str = getStringByStrid(loc, strid);
+        qDebug() << "query:" << strid << "return:" << str;
+    }
+
 }
 
 void test()
 {
-    findFileLocation("abc");
+    qDebug() << getStringByStrid("es_MX", "stringid_plzconnectbt");
+#if 0
+    qDebug() << getStringByIntid("ar_AE", STRING_MINSTRID-1);
+    qDebug() << getStringByIntid("ar_AE", STRING_MINSTRID);
+    qDebug() << getStringByIntid("ar_AE", STRING_MAXSTRID);
+    qDebug() << getStringByIntid("ar_AE", STRING_MAXSTRID+  1);
+    //findFileLocation("abc");
+    test_id(9999999, "stringid_nosuchidexists");
+    test_id(stringid_plzconnectbt, "stringid_plzconnectbt");
+#endif
+}
 
-    int id = MSG_PLEASE_CONNECT;
-    test_ar_id(id);
-    test_zh_id(id);
+void test_all()
+{
+
 }
 
 int main(int argc, char *argv[])

@@ -1,15 +1,23 @@
-Prototype of resid
-==================
+# Generation resid table for reference
 
-* prepare a spreadsheet for locale, and its translation ==> "test - translate.csv"
+## steps
 
-* run script to generate header and data file
+* prepare a spreadsheet for locale, and its translation
+  (please refer to translation.csv)
+
+* run script to generate header and data file, it needs translation.csv at the
+  current directory
 ```
 $ python getcsv.py
 ```
-  you will get strdef.ini and strdef.h
-  NOTE: **strdef.ini** and **strdef.h** will not be included in git repository
+  you will get:
+  * strdef.h
+  * strdef.ini
+  * strdef.json
 
+> NOTE: these generated files may not checked in code base
+
+At host, copy strdef.[ini|json] to **/tmp/**, or it will complain no string id file.
 
 * compile and execute
 ```
