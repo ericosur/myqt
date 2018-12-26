@@ -1,12 +1,12 @@
 {
     "default": {
         "left": {
-            "name": "facebook",
-            "url": "https://www.facebook.com/"
+            "name": "pixi.js: Bunnymark",
+            "url": "https://bit.ly/2PzJswD"
         },
         "right": {
-            "name": "google",
-            "url": "https://www.google.com/"
+            "name": "pixi.js: Interactivity",
+            "url": "https://bit.ly/2PAxH9k"
         }
     },
 
