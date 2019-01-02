@@ -1,0 +1,21 @@
+{
+    "General": {
+        "music_browser_folder": "/media/usb/storage/MU",
+        "picture_browser_folder": "/media/usb/storage",
+        "type": 103,
+        "video_browser_folder": "/media/usb/storage"
+    },
+    "Music": {
+        "folder": "file:///media/usb/storage",
+        "isPlay": true,
+        "isShuffle": false,
+        "musictime": 90,
+        "playIndex": 1,
+        "repeatStatus": 0,
+        "source": "file:///media/usb/storage/01.聽說聽說.mp3"
+    },
+    "Picture": {
+        "Source": "file:///media/usb/storage/mobile01-0486bb74c990a32ed3ce87df6f940ab4.jpg"
+    },
+    "name": "mediaui"
+}

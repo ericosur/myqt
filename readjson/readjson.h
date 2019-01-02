@@ -18,6 +18,8 @@ public:
     ReadJson(const QString& f);
     bool loadFile();
     bool loadFile(const QString& filename);
+    bool saveFile(const QString& filename);
+    static bool saveFile(const QString& filename, const QJsonObject& jsonobj);
     void test();
 
 public:
@@ -36,10 +38,18 @@ public:
 
     QString getLeafString(const QString& path);
     QJsonObject getLeafObject(const QString& path);
+    QJsonObject getLeafObject(const QString& path, QString& lastname);
     QJsonValue getLeafValue(const QString& path);
     QJsonArray getLeafArray(const QString& path);
     QJsonObject getLeafArrayAt(const QString& path, int idx);
     QString getString(const QJsonObject& o, const QString& key);
+
+    // below functions will effect json object within class ReadJson
+    QJsonObject setLeafValue(const QString& path, const QJsonValue& value);
+    QJsonObject setLeafArray(const QString& path, const QJsonArray& array);
+    QJsonObject setLeafArray(const QString& path, const QStringList& slist);
+    QJsonObject setLeafInt(const QString& path, int value);
+
 
     QString getFullJsonAsString() const {
         return mJsonString;
@@ -55,12 +65,15 @@ public:
     static void dumpVariantMap(const QVariantMap& map);
 
 protected:
+    QJsonObject fetchdownlevel(const QJsonObject &json, const QString& lhs, QString& rhs);
     QJsonObject fetchOneLevel(const QJsonObject &json, const QString& input, QString& rhs);
+    QJsonObject fetchOneLevel(const QJsonObject &json, const QString& input, QString& rootkey, QString& rhs);
     QString getLhs(const QString& input);
     QString getRhs(const QString& input);
     void checkValueType(const QJsonValue& v);
 
     bool readFileToByteArray(QByteArray& arr, const QString& fn);
+    QJsonObject buildjsonpath(const QString& path);
 #if 0
     void testString();
     void testArray();
