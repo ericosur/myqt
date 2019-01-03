@@ -5,6 +5,14 @@
 #include "readjson.h"
 #include <QPair>
 #include <QStack>
+#include <QReadWriteLock>
+#include <QFile>
+#include <QIODevice>
+#include <QDebug>
+
+
+// exclusive used by this scope
+QReadWriteLock lock;
 
 ReadJson::ReadJson()
 {
@@ -18,13 +26,24 @@ ReadJson::ReadJson(const QString &f) :
 bool ReadJson::loadFile()
 {
     if (mFile == "") {
-        qWarning("file name not specified");
+        qWarning() << Q_FUNC_INFO << "file name not specified";
         return false;
     } else {
         return loadFile(mFile);
     }
 }
 
+bool ReadJson::saveFile()
+{
+    if (mFile == "") {
+        qWarning() << Q_FUNC_INFO << "file name not specified";
+        return false;
+    } else {
+        return saveFile(mFile);
+    }
+}
+
+// static method implemetaion
 bool ReadJson::readFileToByteArray(QByteArray& arr, const QString& fn)
 {
     QFile inFile(fn);
@@ -38,42 +57,65 @@ bool ReadJson::readFileToByteArray(QByteArray& arr, const QString& fn)
 
 bool ReadJson::loadFile(const QString &filename)
 {
+    bool ret = ReadJson::loadFile(filename, mJson);
+    return ret;
+}
+
+// static method implemetaion
+// [IN] filename: file path to load json file
+// [OUT] jsonobj: json object will be de-serialized here, if any failure,
+//       jsonobj would be empty object
+bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj)
+{
     //qDebug() << "read json file from:" << filename;
-    QByteArray saveData;
-    if (!readFileToByteArray(saveData, filename)) {
+
+    // NOTE: init with null object
+    jsonobj = QJsonObject();
+
+    QByteArray barray;
+    if (!readFileToByteArray(barray, filename)) {
         return false;
     }
-    mJsonString = QString(saveData);
-    //qDebug() << "mJsonString:" << mJsonString;
+
+    //QString json_string = QString(saveData);
+    //qDebug() << "[DEBUG] json_string:" << json_string;
+
     QJsonParseError err;
-    mJdoc = QJsonDocument::fromJson(saveData, &err);
+    QJsonDocument jdoc = QJsonDocument::fromJson(barray, &err);
     if (err.error != QJsonParseError::NoError) {
         qDebug() << "json parse err:" << err.errorString();
         return false;
     }
 
-    if (mJdoc.isNull()) {
-        qDebug() << "loaded json is null";
+    if (jdoc.isNull()) {
+        qDebug() << "[WARING] jdoc is null, maybe parse error";
     }
-    if (mJdoc.isEmpty()) {
-        qDebug() << "loaded json is empty";
+    if (jdoc.isEmpty()) {
+        qDebug() << "loaded jdoc is empty, maybe in purpose";
     }
-    mJson = mJdoc.object();
+    jsonobj = jdoc.object();
 
     return true;
 }
 
 bool ReadJson::saveFile(const QString& filename)
 {
-    return saveFile(filename, mJson);
+    lock.lockForWrite();
+    bool ret = saveFile(filename, mJson);
+    lock.unlock();
+    return ret;
 }
 
+// static method implemetaion
+// [IN] filename: file to store json object, file will be OVERWITTEN
+// [OUT] jsonobj: the json object that caller likes to serialize
 bool ReadJson::saveFile(const QString& filename, const QJsonObject& jsonobj)
 {
     QJsonDocument docjson(jsonobj);
     QFile JFile(filename);
     JFile.open(QIODevice::WriteOnly);
     JFile.write(docjson.toJson());
+
     return true;
 }
 
@@ -232,7 +274,7 @@ QJsonObject ReadJson::buildjsonpath(const QString& path)
     while (!_p.isEmpty()) {
         QString lhs = getLhs(_p);
         QString rhs = getRhs(_p);
-        qDebug() << "lhs:" << lhs << "," << "rhs:" << rhs;
+        //qDebug() << "lhs:" << lhs << "," << "rhs:" << rhs;
         if (!lhs.isEmpty()) {
             //qDebug() << "build by LHS" << lhs;
             _stack.push(lhs);
@@ -274,8 +316,10 @@ QJsonObject ReadJson::setLeafValue(const QString& path, const QJsonValue& value)
     // peek before jumping
     QJsonValue _val = getLeafValue(path);
     if (_val.isNull()) {
-        qDebug() << Q_FUNC_INFO << "value at path not existed:" << path << "will build it";
+        //qDebug() << Q_FUNC_INFO << "value at path not existed:" << path << "will build it";
         QJsonObject _new = buildjsonpath(path);
+        qDebug() << "buildjsonpath:" << _new;
+        //mJson << _new;
     }
 
     QString name = path;

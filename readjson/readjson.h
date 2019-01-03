@@ -8,9 +8,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QJsonArray>
-#include <QFile>
-#include <QIODevice>
-#include <QDebug>
 
 class ReadJson {
 public:
@@ -18,8 +15,12 @@ public:
     ReadJson(const QString& f);
     bool loadFile();
     bool loadFile(const QString& filename);
+    bool saveFile();
     bool saveFile(const QString& filename);
+
+    static bool loadFile(const QString& filename, QJsonObject& jsonobj);
     static bool saveFile(const QString& filename, const QJsonObject& jsonobj);
+
     void test();
 
 public:
@@ -32,8 +33,11 @@ public:
         return mJdoc;
     }
 
-    QJsonObject getJobject() {
+    QJsonObject getJobject() const {
         return mJson;
+    }
+    void setJobject(const QJsonObject& json) {
+        mJson = json;
     }
 
     QString getLeafString(const QString& path);
@@ -63,6 +67,7 @@ public:
     static void dump(const QJsonObject &json);
     static void dumpVariantList(const QVariantList& lst);
     static void dumpVariantMap(const QVariantMap& map);
+    static bool readFileToByteArray(QByteArray& arr, const QString& fn);
 
 protected:
     QJsonObject fetchdownlevel(const QJsonObject &json, const QString& lhs, QString& rhs);
@@ -72,7 +77,6 @@ protected:
     QString getRhs(const QString& input);
     void checkValueType(const QJsonValue& v);
 
-    bool readFileToByteArray(QByteArray& arr, const QString& fn);
     QJsonObject buildjsonpath(const QString& path);
 #if 0
     void testString();

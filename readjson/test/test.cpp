@@ -1,15 +1,17 @@
 #include "test.h"
 
 #include <QStringList>
+#include <QDateTime>
 
-#define JSON_READ       "../mediaui.json"
-#define JSON_WRITE      "../foo.json"
+#define JSON_READ       "input.json"
+#define JSON_WRITE      "foo.json"
 
 class TestJson
 {
 public:
     TestJson();
 
+    void init();
     void go();
     void testList();
 private:
@@ -18,6 +20,11 @@ private:
 };
 
 TestJson::TestJson()
+{
+    //init();
+}
+
+void TestJson::init()
 {
     if (!readjson.loadFile(JSON_READ)) {
         qDebug() << "[ERROR] failed to load json file";
@@ -28,21 +35,27 @@ TestJson::TestJson()
 
 void TestJson::go()
 {
-    if (!isOk) {
-        qDebug() << "failed";
-        return;
+    qDebug() << Q_FUNC_INFO;
+    QJsonObject json;
+    ReadJson rj("input.json");
+
+    if (!rj.loadFile()) {
+        qWarning() << "[ERROR] load fail";
+    } else {
+        qDebug() << json;
     }
 
-    readjson.setLeafValue("General.type", 299);
-    readjson.setLeafValue("Music.musictime", 9801);
-    readjson.setLeafValue("Music.isPlay", false);
-    readjson.setLeafValue("Music.source", "file:///media/usb/storage/123.mp3");
+    int t = rj.getLeafValue("Music.musictime").toInt();
+    qDebug() << "t:" << t;
+    t = rj.getLeafValue("Music.notexist").toInt();
+    qDebug() << "t:" << t;
 
+    json = rj.getJobject();
+    qDebug() << "json:" << json;
+    qint64 current = QDateTime::currentMSecsSinceEpoch();
+    json["current"] = current;
 
-    readjson.saveFile(JSON_WRITE);
-
-    //qDebug() << __func__ << j;
-    //ReadJson::saveFile(JSON_WRITE, j);
+    ReadJson::saveFile("qq.json", json);
 }
 
 void TestJson::testList()
@@ -63,7 +76,7 @@ void test()
     qDebug() << "hello world";
 
     TestJson foo;
-    //foo.go();
-    foo.testList();
+    foo.go();
+    //foo.testList();
 
 }
