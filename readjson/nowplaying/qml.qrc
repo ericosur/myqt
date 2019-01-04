@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Lhs.qml</file>
+        <file>Rhs.qml</file>
+        <file>fsread.js</file>
+    </qresource>
+</RCC>
