@@ -40,13 +40,48 @@ public:
         mJson = json;
     }
 
-    QString getLeafString(const QString& path);
     QJsonObject getLeafObject(const QString& path);
-    QJsonObject getLeafObject(const QString& path, QString& lastname);
+    QJsonObject getLeafNode(const QString& path, QString& lastname);
     QJsonValue getLeafValue(const QString& path);
     QJsonArray getLeafArray(const QString& path);
     QJsonObject getLeafArrayAt(const QString& path, int idx);
-    QString getString(const QJsonObject& o, const QString& key);
+
+    QString getLeafString(const QString& path, const QString& defVal=QString());
+    bool getLeafBool(const QString& path, const bool defVal=false);
+    int getLeafInt(const QString& path, const int defVal=0);
+    qint64 getLeafInt64(const QString& path, const qint64 defVal=0);
+
+    // simple key/value query functions
+    QString getString(const QString& key, const QString& defVal);
+    QString getString(const QString& key) {
+        return getString(key, QString());
+    }
+    bool getBool(const QString& key, const bool defVal);
+    bool getBool(const QString& key) {
+        return getBool(key, false);
+    }
+    int getInt(const QString& key, const int defVal);
+    int getInt(const QString& key) {
+        return getInt(key, 0);
+    }
+    qint64 getInt64(const QString& key, const qint64 defVal);
+    qint64 getInt64(const QString& key) {
+        return getInt64(key, 0);
+    }
+
+
+    bool setString(const QString& key, const QString& val) {
+        return ReadJson::setString(mJson, key, val);
+    }
+    bool setBool(const QString& key, const bool val) {
+        return ReadJson::setBool(mJson, key, val);
+    }
+    bool setInt(const QString& key, const int val) {
+        return ReadJson::setInt(mJson, key, val);
+    }
+    bool setInt64(const QString& key, const qint64 val) {
+        return ReadJson::setInt64(mJson, key, val);
+    }
 
     // below functions will effect json object within class ReadJson
     QJsonObject setLeafValue(const QString& path, const QJsonValue& value);
@@ -63,6 +98,16 @@ public:
     void dumpJsonObjToDebug(const QJsonObject& obj);
     QString dumpJsonObjToString(const QJsonObject& obj);
     void dump();
+
+    static QString getString(const QJsonObject& o, const QString& key, const QString& defVal=QString());
+    static bool getBool(const QJsonObject& o, const QString& key, const bool defVal=false);
+    static int getInt(const QJsonObject& o, const QString& key, const int defVal=0);
+    static qint64 getInt64(const QJsonObject& o, const QString& key, const qint64 defVal=0);
+
+    static bool setString(QJsonObject& o, const QString& key, const QString& val);
+    static bool setBool(QJsonObject& o, const QString& key, const bool val);
+    static bool setInt(QJsonObject& o, const QString& key, const int val);
+    static bool setInt64(QJsonObject& o, const QString& key, const qint64 val);
 
     static void dump(const QJsonObject &json);
     static void dumpVariantList(const QVariantList& lst);

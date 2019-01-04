@@ -169,13 +169,138 @@ void ReadJson::dumpOneArrayElem(const QJsonObject& o)
 }
 #endif
 
-QString ReadJson::getString(const QJsonObject& o, const QString& key)
+QString ReadJson::getString(const QString& key, const QString& defVal)
 {
-    if (o[key].isString()) {
-        return o[key].toString();
-    } else {
-        return QString();
+    return ReadJson::getString(mJson, key, defVal);
+}
+
+bool ReadJson::getBool(const QString& key, const bool defVal=false)
+{
+    return ReadJson::getBool(mJson, key, defVal);
+}
+
+int ReadJson::getInt(const QString& key, const int defVal=0)
+{
+    return ReadJson::getInt(mJson, key, defVal);
+}
+
+qint64 ReadJson::getInt64(const QString& key, const qint64 defVal)
+{
+    return ReadJson::getInt64(mJson, key, defVal);
+}
+
+// static method implementation
+// [IN] o: json object
+// [IN] key: to query value
+// [IN] defVal: if any error, will return defVal
+QString ReadJson::getString(const QJsonObject& o, const QString& key, const QString& defVal)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getString(): input json object is empty";
+        return defVal;
     }
+    if (!o[key].isString()) {
+        qWarning() << "getString(): requested key is not a string nor existed:" << key;
+        return defVal;
+    }
+
+    return o[key].toString();
+}
+
+// static method implementation
+// [IN] o: json object
+// [IN] key: to query value
+// [IN] defVal: if any error, will return defVal
+bool ReadJson::getBool(const QJsonObject& o, const QString& key, const bool defVal)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getBool(): input json object is empty";
+        return defVal;
+    }
+    if (!o[key].isBool()) {
+        qWarning() << "getBool(): requested key is not a bool nor existed:" << key;
+        return defVal;
+    }
+
+    return o[key].toBool();
+}
+
+// static method implementation
+// [IN] o: json object
+// [IN] key: to query value
+// [IN] defVal: if any error, will return defVal
+int ReadJson::getInt(const QJsonObject& o, const QString& key, const int defVal)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return defVal;
+    }
+    if (!o[key].isDouble()) {
+        qWarning() << "getInt(): requested key is not an int nor existed:" << key;
+        return defVal;
+    }
+
+    return o[key].toInt();
+}
+
+// static method implementation
+// [IN] o: json object
+// [IN] key: to query value
+// [IN] defVal: if any error, will return defVal
+qint64 ReadJson::getInt64(const QJsonObject& o, const QString& key, const qint64 defVal)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return defVal;
+    }
+    if (!o[key].isDouble()) {
+        qWarning() << "getInt(): requested key is not an int nor existed:" << key;
+        return defVal;
+    }
+
+    qint64 q64 = (qint64)o[key].toDouble();
+    return q64;
+}
+
+// static method implementation
+bool ReadJson::setString(QJsonObject& o, const QString& key, const QString& val)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return false;
+    }
+    o[key] = val;
+    return true;
+}
+// static method implementation
+bool ReadJson::setBool(QJsonObject& o, const QString& key, const bool val)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return false;
+    }
+    o[key] = val;
+    return true;
+}
+// static method implementation
+bool ReadJson::setInt(QJsonObject& o, const QString& key, const int val)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return false;
+    }
+    o[key] = val;
+    return true;
+}
+// static method implementation
+bool ReadJson::setInt64(QJsonObject& o, const QString& key, const qint64 val)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return false;
+    }
+    o[key] = val;
+    return true;
 }
 
 QJsonArray ReadJson::getLeafArray(const QString& path)
@@ -438,7 +563,7 @@ QJsonObject ReadJson::getLeafObject(const QString& path)
     return result;
 }
 
-QJsonObject ReadJson::getLeafObject(const QString& path, QString& lastname)
+QJsonObject ReadJson::getLeafNode(const QString& path, QString& lastname)
 {
     QString name = path;
     QString rhs = name;
@@ -452,10 +577,7 @@ QJsonObject ReadJson::getLeafObject(const QString& path, QString& lastname)
          if (_next.isEmpty()) {
             //qDebug() << name << ":" << _obj[name].toString();
             lastname = name;
-            QJsonValue _val = _obj[name];
-            if (_val.isObject()) {
-                result = _val.toObject();
-            }
+            result = _obj;
             break;
          } else {
             _obj = _next;
@@ -465,33 +587,51 @@ QJsonObject ReadJson::getLeafObject(const QString& path, QString& lastname)
     return result;
 }
 
-QString ReadJson::getLeafString(const QString& path)
+QString ReadJson::getLeafString(const QString& path, const QString& defVal)
 {
-    QString name = path;
-    QString rhs = name;
-    QJsonObject _obj = mJson;
-    QJsonObject _next;
-    QString result;
-
-    while (true) {
-        name = rhs;
-         _next = fetchOneLevel(_obj, name, rhs);
-
-         if (_next.isEmpty()) {
-            //qDebug() << name << ":" << _obj[name].toString();
-            if (_obj[name].isString()) {
-                result = _obj[name].toString();
-            } else {
-                checkValueType(_obj[name]);
-                qWarning() << __func__ << "specified path is not a string:" << path;
-            }
-            break;
-         } else {
-            _obj = _next;
-         }
+    QString lastname;
+    QJsonObject o = getLeafNode(path, lastname);
+    // qDebug() << "obj:" << o;
+    // qDebug() << "path:" << path;
+    // qDebug() << "lastname:" << lastname;
+    if (o.isEmpty()) {
+        qWarning() << "getLeafString(): json object is empty";
+        return defVal;
     }
+    return ReadJson::getString(o, lastname, defVal);
+}
 
-    return result;
+bool ReadJson::getLeafBool(const QString& path, const bool defVal)
+{
+    QString lastname;
+    QJsonObject o = getLeafNode(path, lastname);
+    if (o.isEmpty()) {
+        qWarning() << "getLeafBool(): json object is empty";
+        return defVal;
+    }
+    return ReadJson::getBool(o, lastname, defVal);
+}
+
+int ReadJson::getLeafInt(const QString& path, const int defVal)
+{
+    QString lastname;
+    QJsonObject o = getLeafNode(path, lastname);
+    if (o.isEmpty()) {
+        qWarning() << "getLeafBool(): json object is empty";
+        return defVal;
+    }
+    return ReadJson::getInt(o, lastname, defVal);
+}
+
+qint64 ReadJson::getLeafInt64(const QString& path, const qint64 defVal)
+{
+    QString lastname;
+    QJsonObject o = getLeafNode(path, lastname);
+    if (o.isEmpty()) {
+        qWarning() << "getLeafBool(): json object is empty";
+        return defVal;
+    }
+    return ReadJson::getInt64(o, lastname, defVal);
 }
 
 // it is an internal function
