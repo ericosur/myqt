@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QByteArray>
 #include <QMap>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -19,6 +20,7 @@ public:
     bool saveFile(const QString& filename);
 
     static bool loadFile(const QString& filename, QJsonObject& jsonobj);
+    static bool loadFile(const QString& filename, QJsonObject& jsonobj, QByteArray& arr);
     static bool saveFile(const QString& filename, const QJsonObject& jsonobj);
 
     void test();

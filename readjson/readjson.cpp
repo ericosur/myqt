@@ -57,7 +57,10 @@ bool ReadJson::readFileToByteArray(QByteArray& arr, const QString& fn)
 
 bool ReadJson::loadFile(const QString &filename)
 {
-    bool ret = ReadJson::loadFile(filename, mJson);
+    QByteArray arr;
+    mFile = filename;
+    bool ret = ReadJson::loadFile(mFile, mJson, arr);
+    mJsonString = QString(arr);
     return ret;
 }
 
@@ -67,13 +70,25 @@ bool ReadJson::loadFile(const QString &filename)
 //       jsonobj would be empty object
 bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj)
 {
+    QByteArray arr; // will not keep this object
+    ReadJson::loadFile(filename, jsonobj, arr);
+    return true;
+}
+
+// static method implemetaion
+// [IN] filename: file path to load json file
+// [OUT] jsonobj: json object will be de-serialized here, if any failure,
+//       jsonobj would be empty object
+// [OUT] arr: the raw byte array from json file
+bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj, QByteArray& arr)
+{
     //qDebug() << "read json file from:" << filename;
 
     // NOTE: init with null object
     jsonobj = QJsonObject();
 
-    QByteArray barray;
-    if (!readFileToByteArray(barray, filename)) {
+    arr.clear();
+    if (!readFileToByteArray(arr, filename)) {
         return false;
     }
 
@@ -81,7 +96,7 @@ bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj)
     //qDebug() << "[DEBUG] json_string:" << json_string;
 
     QJsonParseError err;
-    QJsonDocument jdoc = QJsonDocument::fromJson(barray, &err);
+    QJsonDocument jdoc = QJsonDocument::fromJson(arr, &err);
     if (err.error != QJsonParseError::NoError) {
         qDebug() << "json parse err:" << err.errorString();
         return false;
@@ -100,9 +115,9 @@ bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj)
 
 bool ReadJson::saveFile(const QString& filename)
 {
-    lock.lockForWrite();
+
     bool ret = saveFile(filename, mJson);
-    lock.unlock();
+
     return ret;
 }
 
@@ -112,9 +127,18 @@ bool ReadJson::saveFile(const QString& filename)
 bool ReadJson::saveFile(const QString& filename, const QJsonObject& jsonobj)
 {
     QJsonDocument docjson(jsonobj);
-    QFile JFile(filename);
-    JFile.open(QIODevice::WriteOnly);
-    JFile.write(docjson.toJson());
+    QFile jsonfile(filename);
+    if (!jsonfile.open(QIODevice::WriteOnly)) {
+        qWarning() << "ReadJson::saveFile(): open file error";
+        return false;
+    }
+    lock.lockForWrite();
+    qint64 sz = jsonfile.write(docjson.toJson());
+    lock.unlock();
+    if (sz < 0) {
+        qWarning() << "ReadJson::saveFile(): write file error";
+        return false;
+    }
 
     return true;
 }
