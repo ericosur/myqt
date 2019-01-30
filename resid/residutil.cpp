@@ -8,7 +8,7 @@
 
 #include <QRegExp>
 #define STRING_NULL    ""
-#define bDebug false
+#define bDebug true
 
 QString findFileLocation(const QString& fn)
 {
@@ -154,6 +154,7 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
 
 #else   // USE_INI_METHOD
 
+#include <QCache>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -188,6 +189,48 @@ public:
     bool checkStrid(const QString& strid) {
         return stringid_lists.contains(strid);
     }
+    QString getLastLocale() const {
+        return last_locale;
+    }
+    void setLastLocale(const QString& loc) {
+        if (checkLocale(loc)) {
+            last_locale = loc;
+        }
+    }
+    int getHitCount() const {
+        return hitCount;
+    }
+
+    void clearCache() {
+        cache.clear();
+        if (bDebug)
+            qDebug() << "[json cache] cache cleared" << cache.totalCost();
+    }
+    void insertCache(const QString& key, const QString& val) {
+        //qDebug() << __PRETTY_FUNCTION__;
+        sptr = new QString(val);
+        bool ret = cache.insert(key, sptr);
+        if (ret) {
+            if (bDebug)
+                qDebug() << "[json cache] insert cache ok"
+                    << key << "," << val
+                    << cache.totalCost();
+        }
+    }
+    QString queryCache(const QString& key) {
+        //qDebug() << __PRETTY_FUNCTION__;
+        QString* q = cache.object(key);
+        if (q == NULL) {
+            if (bDebug)
+                qDebug() << "[json cache] not found from cache:" << key;
+            return QString();
+        }
+        QString ret = *q;
+        hitCount ++;
+        if (bDebug)
+            qDebug() << "[json cache] cache hit:" << key << "," << ret;
+        return ret;
+    }
 
     void test();
 
@@ -202,6 +245,11 @@ private:
 
     json _jj;
     bool isOk = false;
+
+    QString *sptr = NULL;
+    QString last_locale;
+    QCache<QString, QString> cache;
+    int hitCount = 0;
 };
 
 JsonCache* JsonCache::_instance = NULL;
@@ -230,6 +278,8 @@ JsonCache::JsonCache()
                   << "exception id: " << e.id << '\n';
         isOk = false;
     }
+
+    cache.setMaxCost(120);
 }
 
 void JsonCache::load_locale_list()
@@ -269,8 +319,17 @@ JsonCache* json_basic_check(const QString& locale_name)
         return NULL;
     }
     if (!jc->checkLocale(locale_name)) {
-        qDebug() << "[ERROR] no such locale:" << locale_name;
+        qWarning() << "[ERROR] no such locale:" << locale_name;
         return NULL;
+    } else {
+#if 0
+        if (locale_name != jc->getLastLocale()) {
+            if (bDebug)
+                qDebug() << "[INFO] locale changes...";
+            jc->clearCache();
+            jc->setLastLocale(locale_name);
+        }
+#endif
     }
     return jc;
 }
@@ -285,7 +344,8 @@ QString getStringByIntid(const QString& locale_name, int id)
         return STRING_NULL;
     }
     if (id > STRING_MAXSTRID || id < STRING_MINSTRID) {
-        qDebug() << "[ERROR] getmsg(json) id exceed boundary:" << id;
+        if (bDebug)
+            qDebug() << "[ERROR] getmsg(json) id exceed boundary:" << id;
         return STRING_NULL;
     }
 
@@ -316,7 +376,15 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
         qDebug() << "[ERROR] no such stringid";
         return STRING_NULL;
     }
-
+    if (bDebug)
+        qDebug() << "cache hitCount: " << jc->getHitCount();
+    QString cacheid = QString("%1.%2").arg(locale_name).arg(strid);
+    QString _tmp_ = jc->queryCache(cacheid);
+    if (!_tmp_.isEmpty()) {
+        return _tmp_;
+    }
+    if (bDebug)
+        qDebug() << "getStringByStrid: look up from table";
     try {
         json jj = jc->getJson();
         if (bDebug) {
@@ -342,7 +410,9 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
         }
 
         string msg = jj[_locale].at(id);
-        return QString(msg.c_str());
+        QString ans = QString(msg.c_str());
+        jc->insertCache(cacheid, ans);
+        return ans;
     } catch (nlohmann::json::exception& e) {
         // output exception information
         std::cout << "message: " << e.what() << '\n'
