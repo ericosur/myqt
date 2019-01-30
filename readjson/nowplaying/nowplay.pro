@@ -3,16 +3,18 @@ TEMPLATE = app
 QT += qml quick
 
 SOURCES += main.cpp \
-    npcore.cpp \
+    nowplaycore.cpp \
     myimageprovider.cpp \
     pollthread.cpp \
-    ../readjson.cpp
+    ../readjson.cpp \
+    ../fileutil.cpp
 
 HEADERS += \
-    npcore.h \
+    nowplaycore.h \
     myimageprovider.h \
     pollthread.h \
-    ../readjson.h
+    ../readjson.h \
+    ../fileutil.h
 
 INCLUDEPATH += $${PWD}/../
 RESOURCES += qml.qrc

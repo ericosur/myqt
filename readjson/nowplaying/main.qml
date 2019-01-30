@@ -44,10 +44,10 @@ ApplicationWindow {
         */
         onLhsChanged: {
             left_side.visible = true;
-            right_side.visible = false;
+            right_side.visible = true;
         }
         onRhsChanged: {
-            left_side.visible = false;
+            left_side.visible = true;
             right_side.visible = true;
         }
     }

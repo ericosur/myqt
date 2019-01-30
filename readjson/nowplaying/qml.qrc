@@ -4,5 +4,6 @@
         <file>Lhs.qml</file>
         <file>Rhs.qml</file>
         <file>fsread.js</file>
+        <file>chicken.png</file>
     </qresource>
 </RCC>

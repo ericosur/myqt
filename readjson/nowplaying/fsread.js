@@ -25,6 +25,13 @@ function getRandomint(min, max)  {
 function getUrlFromJsonString(objString) {
     return getUrlFromObj( getObjFromString(objString) );
 }
+
+function isEmptyString(s) {
+    return (s === "");
+}
+
+
+
 /*
 function main() {
     // multi line string using backtick

@@ -1,4 +1,4 @@
-#include "npcore.h"
+#include "nowplaycore.h"
 #include "readjson.h"
 
 #include <QString>

@@ -1,3 +1,4 @@
+/// file: nowplaycore.h
 #ifndef __NOWPLAYING_CORE_H__
 #define __NOWPLAYING_CORE_H__
 

@@ -11,30 +11,18 @@ Item {
     height: 560
 
     property var jsonobj;
+    property var default_img: "./chicken.png"
 
     function update() {
-        var foo;
-        foo = jsonobj['image'];
-        if (foo) {
-            console.log("no foo?");
+        var imgsrc = jsonobj['image'];
+        if (imgsrc === "") {
+            img0.source = default_img;
         } else {
-            console.log("got foo?");
-            if (foo === "") {
-                console.log("foo is empty string");
-            }
+            img0.source = 'file://' + imgsrc;
         }
-        img0.source = 'file://' + jsonobj['image'];
-        image.text = jsonobj['image'];
         album.text = jsonobj['albumTitle'];
         artist.text = jsonobj['albumArtist'];
         title.text = jsonobj['title'];
-        var foo = jsonobj['nosuch'];
-        console.log("foo: " + foo);
-        if (foo) {
-            console.log("foo undefined?");
-        } else {
-            console.log("foo is:" + foo);
-        }
     }
 
     Connections {
@@ -104,6 +92,7 @@ Item {
         Image{
             id: img0
             width: 400; height: 400;
+            source: default_img
         }
     }
 
