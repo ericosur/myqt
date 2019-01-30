@@ -11,11 +11,16 @@ SOURCES += main.cpp
 
 SOURCES += \
     test.cpp \
-    ../readjson.cpp
+    foobar.cpp \
+    hashtest.cpp \
+    ../readjson.cpp \
+    ../fileutil.cpp \
 
 HEADERS += \
     test.h \
-    ../readjson.h
+    foobar.h \
+    ../readjson.h \
+    ../fileutil.h
 
 
 #LIBS += -L/usr/local/lib

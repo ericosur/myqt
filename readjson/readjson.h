@@ -4,8 +4,8 @@
 #include <QString>
 #include <QStringList>
 #include <QByteArray>
-#include <QMap>
 #include <QJsonDocument>
+#include <QVariant>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QJsonArray>
@@ -31,13 +31,16 @@ public:
                       .arg(__DATE__).arg(__TIME__);
     }
 
-    QJsonDocument getJdoc() {
+    QJsonDocument getJdoc() const {
         return mJdoc;
     }
-
     QJsonObject getJobject() const {
         return mJson;
     }
+    QVariant getVariant() const {
+        return mJdoc.toVariant();
+    }
+
     void setJobject(const QJsonObject& json) {
         mJson = json;
     }
@@ -125,6 +128,7 @@ protected:
     void checkValueType(const QJsonValue& v);
 
     QJsonObject buildjsonpath(const QString& path);
+    static void ensurepath(const QString& fn);
 #if 0
     void testString();
     void testArray();

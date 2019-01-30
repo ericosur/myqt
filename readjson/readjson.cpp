@@ -3,6 +3,7 @@
 // simple class to use QJsonDocument and QJsonObject
 
 #include "readjson.h"
+#include "fileutil.h"
 #include <QPair>
 #include <QStack>
 #include <QReadWriteLock>
@@ -61,6 +62,7 @@ bool ReadJson::loadFile(const QString &filename)
     mFile = filename;
     bool ret = ReadJson::loadFile(mFile, mJson, arr);
     mJsonString = QString(arr);
+    mJdoc = QJsonDocument::fromJson(arr);
     return ret;
 }
 
@@ -71,8 +73,17 @@ bool ReadJson::loadFile(const QString &filename)
 bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj)
 {
     QByteArray arr; // will not keep this object
-    ReadJson::loadFile(filename, jsonobj, arr);
-    return true;
+    return ReadJson::loadFile(filename, jsonobj, arr);
+}
+
+void ReadJson::ensurepath(const QString& fn)
+{
+    if (FileUtil::isFileExist(fn)) {
+        return;
+    }
+
+    QString fdn = FileUtil::getPathname(fn);
+    FileUtil::mkdir(fdn);
 }
 
 // static method implemetaion
@@ -88,7 +99,11 @@ bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj, QByteArra
     jsonobj = QJsonObject();
 
     arr.clear();
-    if (!readFileToByteArray(arr, filename)) {
+    ensurepath(filename);
+    lock.lockForRead();
+    bool ret = readFileToByteArray(arr, filename);
+    lock.unlock();
+    if (!ret) {
         return false;
     }
 
@@ -115,11 +130,9 @@ bool ReadJson::loadFile(const QString& filename, QJsonObject& jsonobj, QByteArra
 
 bool ReadJson::saveFile(const QString& filename)
 {
-
-    bool ret = saveFile(filename, mJson);
-
-    return ret;
+    return saveFile(filename, mJson);
 }
+
 
 // static method implemetaion
 // [IN] filename: file to store json object, file will be OVERWITTEN
@@ -127,16 +140,18 @@ bool ReadJson::saveFile(const QString& filename)
 bool ReadJson::saveFile(const QString& filename, const QJsonObject& jsonobj)
 {
     QJsonDocument docjson(jsonobj);
+    ensurepath(filename);
+
     QFile jsonfile(filename);
     if (!jsonfile.open(QIODevice::WriteOnly)) {
-        qWarning() << "ReadJson::saveFile(): open file error";
+        qWarning() << "ReadJson::saveFile(): open file error" << filename;
         return false;
     }
     lock.lockForWrite();
     qint64 sz = jsonfile.write(docjson.toJson());
     lock.unlock();
     if (sz < 0) {
-        qWarning() << "ReadJson::saveFile(): write file error";
+        qWarning() << "ReadJson::saveFile(): write file error" << filename;
         return false;
     }
 
@@ -290,8 +305,7 @@ qint64 ReadJson::getInt64(const QJsonObject& o, const QString& key, const qint64
 bool ReadJson::setString(QJsonObject& o, const QString& key, const QString& val)
 {
     if (o.isEmpty()) {
-        qWarning() << "getInt(): input json object is empty";
-        return false;
+        qDebug() << "getInt(): input json object is empty";
     }
     o[key] = val;
     return true;
@@ -300,8 +314,7 @@ bool ReadJson::setString(QJsonObject& o, const QString& key, const QString& val)
 bool ReadJson::setBool(QJsonObject& o, const QString& key, const bool val)
 {
     if (o.isEmpty()) {
-        qWarning() << "getInt(): input json object is empty";
-        return false;
+        qDebug() << "getInt(): input json object is empty";
     }
     o[key] = val;
     return true;
@@ -310,8 +323,7 @@ bool ReadJson::setBool(QJsonObject& o, const QString& key, const bool val)
 bool ReadJson::setInt(QJsonObject& o, const QString& key, const int val)
 {
     if (o.isEmpty()) {
-        qWarning() << "getInt(): input json object is empty";
-        return false;
+        qDebug() << "getInt(): input json object is empty";
     }
     o[key] = val;
     return true;
@@ -320,8 +332,7 @@ bool ReadJson::setInt(QJsonObject& o, const QString& key, const int val)
 bool ReadJson::setInt64(QJsonObject& o, const QString& key, const qint64 val)
 {
     if (o.isEmpty()) {
-        qWarning() << "getInt(): input json object is empty";
-        return false;
+        qDebug() << "getInt(): input json object is empty";
     }
     o[key] = val;
     return true;
