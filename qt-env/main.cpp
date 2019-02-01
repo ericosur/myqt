@@ -62,6 +62,34 @@ QString extractOneFrameFromVideo(const QString& ifn)
     return ofn;
 }
 
+#include <iostream>
+
+void print_sizeof(const QString& msg, size_t size)
+{
+    qDebug() << "sizeof" << msg << "is" << size;
+}
+
+void print_sz(const std::string msg, size_t size)
+{
+    using namespace std;
+    cout << "[STL] msg: " << msg << ", sizeof: " << size << endl;
+}
+
+void test_sizeof()
+{
+    using namespace std;
+
+    const char* hello = "hello";
+    const char vocano[] = "vocano";
+    const string car = "car";
+    const QString quickfox = "quickfox";
+
+    print_sizeof(hello, sizeof(hello));
+    print_sizeof(vocano, sizeof(vocano));
+    print_sz(car, sizeof(car));
+    print_sizeof(quickfox, sizeof(quickfox));
+}
+
 int main(int argc, char *argv[])
 {
     Q_UNUSED(argc);
@@ -69,6 +97,8 @@ int main(int argc, char *argv[])
 
     QString fn = "clip.mp4";
     qDebug() << "output: " << extractOneFrameFromVideo(fn);
+
+    test_sizeof();
 
     return 0;
 }
