@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>hh.png</file>
-        <file>m2.png</file>
+        <file>circle.png</file>
     </qresource>
 </RCC>
