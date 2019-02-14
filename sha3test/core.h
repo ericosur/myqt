@@ -7,6 +7,7 @@
 #include <QCoreApplication>
 
 #include "readthread.h"
+#include <readjson.h>
 
 class Core : public QObject
 {
@@ -30,9 +31,10 @@ public slots:
 protected:
     Core();
 
-
 private:
     ReadThread* thread = NULL;
+    ReadJson rj;
+    QJsonObject json;
 };
 
 #endif  // __CORE_H__

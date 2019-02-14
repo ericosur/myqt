@@ -10,7 +10,7 @@ void ReadThread::run()
 {
     qDebug() << Q_FUNC_INFO << "run start...";
 
-    const int REPEAT_TIMES = 2500000;
+    const int REPEAT_TIMES = 4000000;
     qint64 current = QDateTime::currentMSecsSinceEpoch();
 
     for (int i = 0 ; i < REPEAT_TIMES ; ++i) {

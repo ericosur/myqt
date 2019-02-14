@@ -18,6 +18,10 @@ HEADERS += \
     core.h
 
 INCLUDEPATH += $$PWD/../qtlib
+INCLUDEPATH += $$PWD/../readjson
+
 DEPENDPATH  += $$PWD/../qtlib
+
 LIBS += -L/usr/local/lib
 LIBS += -lqtlib
+LIBS += -lreadjson
