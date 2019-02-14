@@ -7,8 +7,11 @@ TARGET = readjson
 TEMPLATE = lib
 VERSION = 1.0.0
 
-SOURCES += readjson.cpp
-HEADERS += readjson.h
+SOURCES += readjson.cpp \
+    fileutil.cpp
+
+HEADERS += readjson.h \
+    fileutil.h
 
 unix {
     target.path = /usr/local/lib
