@@ -1,13 +1,13 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
-import QtQuick.Controls 1.3
+import QtQuick.Controls 1.4
 
 ApplicationWindow
 {
-    width : 320; height: 240
-    x: 800; y: 0
-    title: "main window"
     id: root;
+    width : 400; height: 240
+    x: 0; y: 0
+    title: "readjson demo"
     visible: true
     color: 'steelblue'
 
@@ -16,6 +16,16 @@ ApplicationWindow
         if (s) {
             console.log("text: " + s);
             text_title.text = s;
+        }
+        s = msg["comment"];
+        if (s) {
+            console.log("comment: " + s);
+            text_comment.text = s;
+        }
+        s = msg["extra"];
+        if (s) {
+            console.log("extra: " + s);
+            text_extra.text = s;
         }
     }
 
@@ -27,52 +37,77 @@ ApplicationWindow
         }
     }
 
-    Rectangle {
-        id: button_area
-        x: 0; y: 0
-        anchors.fill: parent
-        height: 40
-        border.color: 'black'
-        border.width: 1
-
-        Button {
-            id: start;
-            text: "load and see";
-            anchors.left: parent.left;
-            anchors.leftMargin: 4;
-            anchors.top: parent.top;
-            anchors.topMargin: 4;
-            onClicked: {
-                console.log("button: load and see");
-                core.test();
+    menuBar: MenuBar {
+        Menu {
+            title: "File"
+            MenuItem {
+                text: "Open..."
+                shortcut: "Ctrl+O"
+                onTriggered: core.test();
+            }
+            MenuItem {
+                text: "Close"
+                shortcut: "Ctrl+Q"
+                onTriggered: Qt.quit();
             }
         }
+    }
 
-        Button {
-            id: quit;
-            text: "Quit";
-            anchors.left: start.right
-            anchors.leftMargin: 20;
-            anchors.top: parent.top;
-            anchors.topMargin: 4;
-            onClicked: {
-                Qt.quit();
+
+    Column {
+        id: colu_area
+        anchors.top: parent.top
+        anchors.topMargin: 10
+        // anchors.left: parent.left
+        // anchors.leftMargin: 10
+        spacing: 4
+        Rectangle {
+            color: "lightgrey"
+            height: 40
+            width: root.width
+            Text {
+                id: text_title
+                anchors.fill: parent
+                color: "#ababab"
+                text: "default title"
+                font.pixelSize: 36
+                font.bold: true
+                wrapMode: Text.NoWrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
         }
-
-        Text {
-            id: text_title
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: start.bottom
-            anchors.topMargin: 20
-            width: parent.width
-            color: "#ababab"
-            text: "default title"
-            //font.family: fontRegular.name
-            font.pixelSize: 40
-            font.bold: true
-            wrapMode: Text.NoWrap
-            horizontalAlignment: Text.AlignHCenter
+        Rectangle {
+            color: "lightgrey"
+            height: 80
+            width: root.width
+            Text {
+                id: text_comment
+                anchors.fill: parent
+                color: "darkgreen"
+                text: "default comment"
+                font.pixelSize: 24
+                font.bold: true
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+        Rectangle {
+            color: "lightgrey"
+            height: 40
+            width: root.width
+            Text {
+                id: text_extra
+                anchors.fill: parent
+                color: "indigo"
+                text: "extra comment"
+                font.pixelSize: 24
+                font.bold: true
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
         }
     }
 

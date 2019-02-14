@@ -19,7 +19,7 @@ Core* Core::getInstance()
 
 Core::Core()
 {
-    qDebug() << Q_FUNC_INFO << "starts...";
+    //qDebug() << Q_FUNC_INFO << "starts...";
 }
 
 
@@ -33,6 +33,7 @@ QVariantMap Core::loadJsonToVmap(const QString& fn)
     if (!ReadJson::loadFile(fn, jobj)) {
         return QVariantMap();
     }
+    jobj["extra"] = "insert from core";
     QVariantMap vmap = jobj.toVariantMap();
     return vmap;
 }
