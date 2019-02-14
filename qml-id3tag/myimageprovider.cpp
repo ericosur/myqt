@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-#include "Id3Tag.h"
+#include "id3tag.h"
 #include "myid3data.h"
 
 MyImageProvider::MyImageProvider(ImageType type, Flags flags) :

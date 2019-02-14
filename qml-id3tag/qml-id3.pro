@@ -3,7 +3,7 @@ TEMPLATE = app
 QT += qml quick
 
 SOURCES += main.cpp \
-    Id3Tag.cpp \
+    id3tag.cpp \
     myimageprovider.cpp \
     myid3data.cpp
 
@@ -13,7 +13,7 @@ RESOURCES += qml.qrc
 QML_IMPORT_PATH =
 
 # Default rules for deployment.
-include(deployment.pri)
+#include(deployment.pri)
 
 HEADERS += \
     Id3Tag.h \
@@ -21,7 +21,6 @@ HEADERS += \
     myid3data.h
 
 # taglib
-CONFIG += localtaglib
 CONFIG(localtaglib) {
     macx {
         INCLUDEPATH += /Users/ericosur/taglib/include/taglib
@@ -30,7 +29,11 @@ CONFIG(localtaglib) {
         INCLUDEPATH += /home/rasmus/taglib/include/taglib
         LIBS += -L/home/rasmus/taglib/lib
     }
-} else {
-    INCLUDEPATH += /usr/include/taglib
 }
+
+INCLUDEPATH += $${PWD}/../readjson
+LIBS += -lreadjson
+
+INCLUDEPATH += /usr/include/taglib
+INCLUDEPATH += /usr/local/include
 LIBS += -ltag

@@ -1,4 +1,5 @@
-#include "Id3Tag.h"
+#include "id3tag.h"
+#include "readjson.h"
 
 #include <QDebug>
 #include <QCryptographicHash>
@@ -22,6 +23,8 @@
 
 // undef this to disable cover extraction actions
 #define MY_GET_FRAME
+
+#define JSON_PATH   "../setting.json"
 
 // how to extract cover from m4a
 // http://stackoverflow.com/questions/4752020/how-do-i-use-taglib-to-read-write-coverart-in-different-audio-formats
@@ -155,6 +158,17 @@ bool ID3TAG::getdata(MyId3Data* id3)
         return true;
     }
     return false;
+}
+
+void ID3TAG::init()
+{
+    qDebug() << Q_FUNC_INFO;
+    ReadJson r;
+
+    if (r.loadFile(JSON_PATH)) {
+        setFn1(r.getString("fn1", ""));
+        setFn2(r.getString("fn2", ""));
+    }
 }
 
 bool ID3TAG::getMetaData(const QString& fn)

@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
-#include "Id3Tag.h"
+#include "id3tag.h"
 #include "myimageprovider.h"
 
 int main(int argc, char *argv[])

@@ -11,13 +11,16 @@ ApplicationWindow {
     id: root;
     visible: true
 
-    property string prev_img;
-    property string next_img;
-    property var fn_num: 0;
+    property string prev_img
+    property string next_img
+    property int fn_num: 0
+    property int new_num: 0
 
     // remember appending trailing slash '/' at the end of media_path
     //property var media_path: "/home/ericosur/Music/yoseui/";          // for ubuntu
     property var media_path: "/Users/ericosur/Downloads/go/testmp3/";   // for mac
+    property string fn1: id3tag.fn1
+    property string fn2: id3tag.fn2
 
     function myloadmp3(fn, img) {
         var res = id3tag.getMetaData(fn);
@@ -52,6 +55,10 @@ ApplicationWindow {
         id: id3tag
     }
 
+    Component.onCompleted: {
+        id3tag.init();
+    }
+
     Rectangle {
         id: button_area
         x: 0; y: 0
@@ -66,13 +73,11 @@ ApplicationWindow {
             anchors.bottom: parent.bottom;
             anchors.bottomMargin: 4;
             onClicked: {
-                var fn = media_path + "02.mp3";
-                myloadmp3(fn, front_img);
+                myloadmp3(fn1, front_img);
                 //front_img.source = "image://myprovider/" + fn;
                 //console.log(prev_img);
 
-                fn = media_path + "05.mp3";
-                myloadmp3(fn, back_img);
+                myloadmp3(fn2, back_img);
                 //back_img.source = "image://myprovider/" + fn;
                 //console.log(next_img);
 
@@ -89,15 +94,13 @@ ApplicationWindow {
             anchors.bottom: parent.bottom;
             anchors.bottomMargin: 4;
             onClicked: {
-                // try to load 0[1-6].mp3, NOTE: some file is not existed
-                var new_num = get_next_num();
-                var fn = media_path + '0' + new_num + '.mp3';
                 //console.log('button: fn: ' + fn);
                 if (new_num % 2 == 0) {
-                    myloadmp3(fn, img1);
+                    myloadmp3(fn2, img1);
                 } else {
-                    myloadmp3(fn, img0);
+                    myloadmp3(fn1, img0);
                 }
+                new_num ++;
             }
         }
 
