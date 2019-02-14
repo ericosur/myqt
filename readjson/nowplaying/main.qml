@@ -30,6 +30,10 @@ ApplicationWindow {
         // read json file as a string, and parse it into js obj
     }
 
+    function test() {
+
+    }
+
 
     Connections {
         target: core
