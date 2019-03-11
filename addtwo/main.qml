@@ -34,17 +34,65 @@ ApplicationWindow {
         return x+y;
     }
 
+
+    property int baseline_x: 100
+    property int baseline_y: 250
     Image {
         id: bgm
         anchors.fill: parent
         source: "/image/1.png"
         z: 10
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                console.log("bgm clicked");
-                main_form.visible = true;
-                bgm.visible = false;
+        Rectangle {
+            x: baseline_x; y: baseline_y
+            width: 100
+            height: 100
+            border.width: 2
+            border.color: "black"
+            color: "transparent"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    console.log("bgm clicked");
+                    main_form.visible = true;
+                    bgm.visible = false;
+                }
+            }
+        }
+        Rectangle {
+            id: rec2
+            x: baseline_x + 300; y: baseline_y
+            width: 100
+            height: 100
+            border.width: 2
+            border.color: "black"
+            color: "transparent"
+            MouseArea {
+                anchors.fill: parent
+                onPressed: {
+                    //console.log("rec2 onPressed");
+                    //if (containsMouse) {
+                        console.log("rec2 onPressed: containsMouse...");
+                        rec2.border.color = "red";
+                    //}
+                }
+                onClicked: {
+                    console.log("rec2 onClicked ====>");
+                }
+                onReleased: {
+                    //console.log("rec2 onReleased");
+                    if (containsMouse) {
+                        console.log("rec2 onReleased: containsMouse...");
+                    }
+                }
+                onPressAndHold: {
+                    //console.log("rec2 onPresseAndHold");
+                    if (containsMouse) {
+                        console.log("rec2 onPresseAndHold: containsMouse...");
+                    }
+                }
+                onExited: {
+                    rec2.border.color = "black";
+                }
             }
         }
     }
