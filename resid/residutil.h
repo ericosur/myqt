@@ -6,16 +6,18 @@
 #define __LIBHMI_RESID_UTIL_H__
 
 #include <QString>
-#include <QDir>
-#include <QFile>
-#include <QSettings>
-#include <QTextCodec>
-#include <QDebug>
+#include <QStringList>
 
 #define STRMSGINI           "strdef.ini"
 #define STRMSG_JSONFILE     "strdef.json"
 
+#define USE_FALLBACK_LOCALE
+#define FALLBACK_LOCALE     "en_US"
+
 QString findFileLocation(const QString& fn);
+
+QStringList getAvailableLocales();
+
 QString getStringByIntid(const QString& locale_name, int id);
 
 ///

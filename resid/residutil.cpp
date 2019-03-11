@@ -2,13 +2,18 @@
 /// it is former testmsg.cpp
 
 #include "residutil.h"
-#include "strdef.h"
+
+#include <QDir>
+#include <QFile>
+#include <QSettings>
+#include <QTextCodec>
+#include <QDebug>
 
 //#define USE_INI_METHOD
 
 #include <QRegExp>
 #define STRING_NULL    ""
-#define bDebug true
+#define bDebug false
 
 QString findFileLocation(const QString& fn)
 {
@@ -59,6 +64,9 @@ public:
     bool checkStrid(const QString& strid) {
         return stringid_lists.contains(strid);
     }
+    QStringList getLocales() const {
+        return locale_lists;
+    }
 
 protected:
     IniCache();
@@ -93,6 +101,11 @@ IniCache::IniCache()
 }
 
 
+QStringList getAvailableLocales()
+{
+    return IniCache::getInstance()->getLocales();
+}
+
 QString getStringByIntid(const QString& locale_name, int id)
 {
     if (bDebug)
@@ -107,11 +120,12 @@ QString getStringByIntid(const QString& locale_name, int id)
 
     if (!ich->checkLocale(locale_name)) {
         qDebug() << "[ERROR] getmsg(ini) no such locale:" << locale_name;
+#ifdef USE_FALLBACK_LOCALE
+        locale_name = FALLBACK_LOCALE;
+        qWarning() << "[WARN] use FALLBACK_LOCALE";
+#else
         return STRING_NULL;
-    }
-    if (id > STRING_MAXSTRID || id < STRING_MINSTRID) {
-        qDebug() << "[ERROR] getmsg(ini) id exceed boundary:" << id;
-        return STRING_NULL;
+#endif
     }
 
     QString key = QString("/%1/%2").arg(locale_name).arg(id);
@@ -134,7 +148,12 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
     }
     if (!ich->checkLocale(locale_name)) {
         qDebug() << "[ERROR] getmsg(ini) no such locale:" << locale_name;
+#ifdef USE_FALLBACK_LOCALE
+        locale_name = FALLBACK_LOCALE;
+        qWarning() << "[WARN] use FALLBACK_LOCALE";
+#else
         return STRING_NULL;
+#endif
     }
     if (!ich->checkStrid(strid)) {
         qDebug() << "[ERROR] getmsg(ini) no such stringid:" << strid;
@@ -186,16 +205,18 @@ public:
     bool checkLocale(const QString& loc) {
         return locale_lists.contains(loc);
     }
+
+    std::string getLocale(const QString& lc, const QString& def_lc) {
+        if (locale_lists.contains(lc)) {
+            return lc.toUtf8().data();
+        } else {
+            qWarning() << "[WARN] locale not exist, use FALLBACK_LOCALE:" << lc;
+            return def_lc.toUtf8().data();
+        }
+    }
+
     bool checkStrid(const QString& strid) {
         return stringid_lists.contains(strid);
-    }
-    QString getLastLocale() const {
-        return last_locale;
-    }
-    void setLastLocale(const QString& loc) {
-        if (checkLocale(loc)) {
-            last_locale = loc;
-        }
     }
     int getHitCount() const {
         return hitCount;
@@ -234,6 +255,10 @@ public:
 
     void test();
 
+    QStringList getLocales() const {
+        return locale_lists;
+    }
+
 protected:
     JsonCache();
     static JsonCache* _instance;
@@ -247,7 +272,6 @@ private:
     bool isOk = false;
 
     QString *sptr = NULL;
-    QString last_locale;
     QCache<QString, QString> cache;
     int hitCount = 0;
 };
@@ -307,7 +331,7 @@ void JsonCache::load_locale_list()
     }
 }
 
-JsonCache* json_basic_check(const QString& locale_name)
+JsonCache* json_basic_check()
 {
     JsonCache* jc = JsonCache::getInstance();
     if (jc == NULL) {
@@ -318,20 +342,13 @@ JsonCache* json_basic_check(const QString& locale_name)
         qWarning() << "[ERROR] json is not open...";
         return NULL;
     }
-    if (!jc->checkLocale(locale_name)) {
-        qWarning() << "[ERROR] no such locale:" << locale_name;
-        return NULL;
-    } else {
-#if 0
-        if (locale_name != jc->getLastLocale()) {
-            if (bDebug)
-                qDebug() << "[INFO] locale changes...";
-            jc->clearCache();
-            jc->setLastLocale(locale_name);
-        }
-#endif
-    }
+
     return jc;
+}
+
+QStringList getAvailableLocales()
+{
+    return JsonCache::getInstance()->getLocales();
 }
 
 QString getStringByIntid(const QString& locale_name, int id)
@@ -339,19 +356,14 @@ QString getStringByIntid(const QString& locale_name, int id)
     if (bDebug)
         qDebug() << __func__ << "getmsg(json) locale:" << locale_name << ", id:" << id;
 
-    JsonCache* jc = json_basic_check(locale_name);
+    JsonCache* jc = json_basic_check();
     if (jc == NULL) {
-        return STRING_NULL;
-    }
-    if (id > STRING_MAXSTRID || id < STRING_MINSTRID) {
-        if (bDebug)
-            qDebug() << "[ERROR] getmsg(json) id exceed boundary:" << id;
         return STRING_NULL;
     }
 
     try {
         json jj = jc->getJson();
-        string _locale = locale_name.toUtf8().data();
+        string _locale = jc->getLocale(locale_name, FALLBACK_LOCALE);
         string msg = jj[_locale].at(to_string(id));
         return QString(msg.c_str());
     } catch (nlohmann::json::exception& e) {
@@ -367,7 +379,7 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
     Q_UNUSED(locale_name);
     Q_UNUSED(strid);
 
-    JsonCache* jc = json_basic_check(locale_name);
+    JsonCache* jc = json_basic_check();
     if (jc == NULL) {
         return STRING_NULL;
     }
@@ -376,8 +388,9 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
         qDebug() << "[ERROR] no such stringid";
         return STRING_NULL;
     }
-    if (bDebug)
+    if (bDebug) {
         qDebug() << "cache hitCount: " << jc->getHitCount();
+    }
     QString cacheid = QString("%1.%2").arg(locale_name).arg(strid);
     QString _tmp_ = jc->queryCache(cacheid);
     if (!_tmp_.isEmpty()) {
@@ -391,7 +404,7 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
             qDebug() << "local:" << locale_name << "strid:" << strid;
         }
 
-        string _locale = locale_name.toUtf8().data();
+        string _locale = jc->getLocale(locale_name, FALLBACK_LOCALE);
         string id;
 
         // if caller use integer id like 10001
@@ -401,12 +414,6 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
         } else {
             string _strid = strid.toUtf8().data();
             id = jj.at("General").at(_strid);
-        }
-
-        int Intid = QString(id.c_str()).toInt();
-        if (Intid > STRING_MAXSTRID || Intid < STRING_MINSTRID) {
-            qDebug() << "[ERROR] getmsg(json) id exceed boundary:" << Intid;
-            return STRING_NULL;
         }
 
         string msg = jj[_locale].at(id);

@@ -1,11 +1,13 @@
 #include <QCoreApplication>
+#include <QTime>
 #include <QDebug>
-//#include <iostream>
+#include <iostream>
 
 #include "residutil.h"
 #include "strdef.h"
 
 //using namespace std;
+bool g_messageVerbose = false;
 
 void test_id(int id, const QString& strid)
 {
@@ -40,10 +42,14 @@ void test()
 
 void test_cache()
 {
-for (int i = 0; i < 3; i++) {
+    const int REPEAT_TIMES = 2;
+    qDebug() << Q_FUNC_INFO;
+
+for (int i = 0; i < REPEAT_TIMES; i++) {
 
 qDebug() << "=====> repeat:" << i;
 
+#if 1
 qDebug() << getStringByStrid("en_US", "stringid_homepage");
 qDebug() << getStringByStrid("en_US", "stringid_ipod");
 qDebug() << getStringByStrid("en_US", "stringid_usb");
@@ -54,18 +60,20 @@ qDebug() << getStringByStrid("en_US", "stringid_usbipod");
 qDebug() << getStringByStrid("en_US", "stringid_btaudio");
 qDebug() << getStringByStrid("en_US", "stringid_disc");
 qDebug() << getStringByStrid("en_US", "stringid_setup");
-
-qDebug() << getStringByStrid("pt_BR", "stringid_homepage");
-qDebug() << getStringByStrid("pt_BR", "stringid_ipod");
-qDebug() << getStringByStrid("pt_BR", "stringid_usb");
-qDebug() << getStringByStrid("pt_BR", "stringid_miracast");
-qDebug() << getStringByStrid("pt_BR", "stringid_hdmi");
-qDebug() << getStringByStrid("pt_BR", "stringid_aux");
-qDebug() << getStringByStrid("pt_BR", "stringid_usbipod");
-qDebug() << getStringByStrid("pt_BR", "stringid_btaudio");
-qDebug() << getStringByStrid("pt_BR", "stringid_disc");
-qDebug() << getStringByStrid("pt_BR", "stringid_setup");
-
+#endif
+#if 1
+qDebug() << getStringByStrid("ru_RU", "stringid_homepage");
+qDebug() << getStringByStrid("ru_RU", "stringid_ipod");
+qDebug() << getStringByStrid("ru_RU", "stringid_usb");
+qDebug() << getStringByStrid("ru_RU", "stringid_miracast");
+qDebug() << getStringByStrid("ru_RU", "stringid_hdmi");
+qDebug() << getStringByStrid("ru_RU", "stringid_aux");
+qDebug() << getStringByStrid("ru_RU", "stringid_usbipod");
+qDebug() << getStringByStrid("ru_RU", "stringid_btaudio");
+qDebug() << getStringByStrid("ru_RU", "stringid_disc");
+qDebug() << getStringByStrid("ru_RU", "stringid_setup");
+#endif
+#if 0
 qDebug() << getStringByStrid("ar_AE", "stringid_homepage");
 qDebug() << getStringByStrid("ar_AE", "stringid_ipod");
 qDebug() << getStringByStrid("ar_AE", "stringid_usb");
@@ -97,6 +105,8 @@ qDebug() << getStringByStrid("en_US", "stringid_culture");
 qDebug() << getStringByStrid("en_US", "stringid_science");
 qDebug() << getStringByStrid("en_US", "stringid_varied");
 qDebug() << getStringByStrid("en_US", "stringid_popmusic");
+#endif
+
 #if 0
 qDebug() << getStringByStrid("en_US", "stringid_rockmusic");
 qDebug() << getStringByStrid("en_US", "stringid_easymusic");
@@ -224,10 +234,58 @@ void test_all()
 
 }
 
+/**
+    \brief myMessageOutput() is customized message handler to redirect qDebug()
+**/
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    Q_UNUSED(context);
+    using namespace std;
+    QString txt;
+    QString prefix = QString("[%1][%2][%3] ")
+                        .arg(QTime::currentTime().toString("HH:mm:ss.zzz"))
+                        .arg(QCoreApplication::applicationName())
+                        .arg(QCoreApplication::applicationPid());
+
+    switch (type) {
+        case QtDebugMsg:
+            txt = prefix + QString("D: %1").arg(msg);
+            if (g_messageVerbose)
+                cout << txt.toUtf8().data() << endl;
+            break;
+        case QtWarningMsg:
+            txt = prefix + QString("W: %1").arg(msg);
+            cout << txt.toUtf8().data() << endl;
+            break;
+        case QtCriticalMsg:
+            txt = prefix + QString("C: %1").arg(msg);
+            cout << txt.toUtf8().data() << endl;
+            break;
+        case QtInfoMsg:
+            txt = prefix + QString("I: %1").arg(msg);
+            if (g_messageVerbose)
+                cout << txt.toUtf8().data() << endl;
+            break;
+        case QtFatalMsg:
+            txt = prefix + QString("F: %1").arg(msg);
+            cout << txt.toUtf8().data() << endl;
+            abort();
+        default:
+            break;
+    }
+}
+
 int main(int argc, char *argv[])
 {
-    Q_UNUSED(argc);
-    Q_UNUSED(argv);
+    QCoreApplication app(argc, argv);
+
+    qInstallMessageHandler(myMessageOutput);
+    qDebug() << "string resid testing...";
+
+    if (argc > 1 && strcmp(argv[1],"-v")==0) {
+        std::cout << "verbose mode on\n";
+        g_messageVerbose = true;
+    }
 
     test_cache();
 
