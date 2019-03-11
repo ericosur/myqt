@@ -10,6 +10,7 @@ ApplicationWindow {
     title: qsTr("Hello World") + trs.empty
     width: 640
     height: 480
+    y: 100
     visible: true
 
     MyTranslation {
@@ -69,29 +70,31 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onPressed: {
-                    //console.log("rec2 onPressed");
-                    //if (containsMouse) {
-                        console.log("rec2 onPressed: containsMouse...");
-                        rec2.border.color = "red";
-                    //}
+                    console.log("rec2 onPressed =====>");
+                    rec2.border.color = "red";
                 }
                 onClicked: {
-                    console.log("rec2 onClicked ====>");
+                    console.log("rec2 onClicked <<<<<");
                 }
                 onReleased: {
                     //console.log("rec2 onReleased");
                     if (containsMouse) {
-                        console.log("rec2 onReleased: containsMouse...");
+                        console.log("rec2 onReleased: containsMouse... >>>>>");
+                    } else {
+                        console.log("rec2 onReleased: no mouse");
                     }
+                    rec2.border.color = "black";
                 }
+                /*
                 onPressAndHold: {
                     //console.log("rec2 onPresseAndHold");
                     if (containsMouse) {
-                        console.log("rec2 onPresseAndHold: containsMouse...");
+                        console.log("rec2 onPresseAndHold: containsMouse.....");
                     }
                 }
+                */
                 onExited: {
-                    rec2.border.color = "black";
+                    //console.log("onExited")
                 }
             }
         }
