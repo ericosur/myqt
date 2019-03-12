@@ -5,6 +5,9 @@
 //#include <QApplication>
 #include <iostream>
 
+#define SHOWHEADER()    \
+    qDebug() << Q_FUNC_INFO << "===>"
+
 using namespace std;
 
 void test()
@@ -23,11 +26,14 @@ void test()
 
 QString get_info()
 {
+    SHOWHEADER();
+
     QByteArray user = qgetenv("USER");
     QByteArray host = qgetenv("HOSTNAME");
     QString s = QString(user) + "@" + QString(host) + " ";
-    s = s + QString(__DATE__) + " " + QString(__TIME__);
-    //qDebug() << "s: " << s;
+    QString b = QString(__DATE__) + " " + QString(__TIME__);
+    qDebug() << "s: " << s << endl
+        << "b: " << b;
 
     return s;
 }
@@ -43,6 +49,8 @@ QString getFilenameHash(const QString& fn)
 // ifn: input video filename
 QString extractOneFrameFromVideo(const QString& ifn)
 {
+    SHOWHEADER();
+
     QString ofn = getFilenameHash(ifn);
     QString cmd = QString("avconv -ss 0:0:10 -i %1 -vsync 1 -t 0.01 %2.png")
                     .arg(ifn).arg(ofn);
@@ -51,18 +59,17 @@ QString extractOneFrameFromVideo(const QString& ifn)
     process.start(cmd);
     // will it block???
     process.waitForFinished(-1); // will wait forever until finished
-
+    int exitCode = process.exitCode();
+    qDebug() << "exit code:" << exitCode;
     // just for debug
-    // QString stdout = process.readAllStandardOutput();
-    // QString stderr = process.readAllStandardError();
-    // qDebug() << "stdout: " << stdout;
-    // qDebug() << "stderr: " << stderr;
+    QString stdout = process.readAllStandardOutput();
+    QString stderr = process.readAllStandardError();
+    qDebug() << "stdout: " << stdout;
+    qDebug() << "stderr: " << stderr;
     // just for debug
 
     return ofn;
 }
-
-#include <iostream>
 
 void print_sizeof(const QString& msg, size_t size)
 {
@@ -71,12 +78,13 @@ void print_sizeof(const QString& msg, size_t size)
 
 void print_sz(const std::string msg, size_t size)
 {
-    using namespace std;
-    cout << "[STL] msg: " << msg << ", sizeof: " << size << endl;
+    std::cout << "[STL] msg: " << msg << ", sizeof: " << size << std::endl;
 }
 
 void test_sizeof()
 {
+    SHOWHEADER();
+
     using namespace std;
 
     const char* hello = "hello";
@@ -96,9 +104,11 @@ int main(int argc, char *argv[])
     Q_UNUSED(argv);
 
     QString fn = "clip.mp4";
-    qDebug() << "output: " << extractOneFrameFromVideo(fn);
+    qDebug() << "md5(fn): " << extractOneFrameFromVideo(fn);
 
     test_sizeof();
+
+    get_info();
 
     return 0;
 }
