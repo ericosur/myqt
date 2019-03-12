@@ -3,6 +3,11 @@
 
 #include <stdio.h>
 
+#ifndef SHOWHEADER
+#define SHOWHEADER() \
+    printf("func: %s ===>\n", __func__)
+#endif
+
 #define FOREACH_FRUIT(FRUIT) \
         FRUIT(apple)   \
         FRUIT(orange)  \
@@ -25,6 +30,7 @@ static const char *FRUIT_STRING[] = {
 
 int enum_test()
 {
+    SHOWHEADER();
     printf("enum apple as a string: %s\n", FRUIT_STRING[apple]);
     printf("enum apple as a string: %s\n", xstr(apple));
 

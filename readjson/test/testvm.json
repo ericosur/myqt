@@ -1,0 +1,12 @@
+{
+    "items": [
+        {
+            "name": "apple",
+            "price": 1000
+        },
+        {
+            "name": "cat",
+            "price": 8000
+        }
+    ]
+}

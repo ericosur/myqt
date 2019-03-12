@@ -33,8 +33,10 @@ int main(int argc, char *argv[])
     Q_UNUSED(argv);
 
     test();
-    //enum_test();
-    //hashtest();
+    enum_test();
+    hashtest();
+    testvm();
+
 #if 0
     Foo foo;
     Bar bar;

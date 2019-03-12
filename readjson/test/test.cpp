@@ -4,6 +4,10 @@
 #include <QDateTime>
 #include <QFile>
 
+#include <QJsonObject>
+#include <QVariantMap>
+#include <QJsonArray>
+
 #define JSON_READ       "input.json"
 #define JSON_WRITE      "foo.json"
 
@@ -20,7 +24,8 @@ const QHash<QString, const char*> AppJsonTable = {
 
 QString loadJsonAsString(const QString& fn)
 {
-    //qDebug() << __PRETTY_FUNCTION__;
+    SHOWHEADER();
+
     QString old_str = json_string;
     QJsonObject jo;
     if (ReadJson::loadFile(fn, jo)) {
@@ -218,6 +223,8 @@ QString formatFreq(const QString& freq)
 
 void test()
 {
+    SHOWHEADER();
+
     QStringList sl;
     sl << "apple" << "ball" << "cat" << "dog";
     ReadJson j;
@@ -227,7 +234,7 @@ void test()
 
 void test1()
 {
-    qDebug() << "hello world";
+    SHOWHEADER();
 
     TestJson foo;
     foo.go();
@@ -244,4 +251,31 @@ void test1()
     formatFreq("6988");
     formatFreq("10750");
     formatFreq("10755");
+}
+
+void testvm()
+{
+    SHOWHEADER();
+
+    QString fn = "../testvm.json";
+    ReadJson j;
+
+    if (!j.loadFile(fn)) {
+        qDebug() << "failed to load" << fn;
+        return;
+    }
+
+    QJsonArray arr = j.getLeafArray("items");
+    qDebug() << arr;
+    QVariantList l = arr.toVariantList();
+
+    ReadJson::dumpVariantList(l);
+
+/*
+    for (int i=0; i < arr.size(); ++i) {
+        qDebug() << i << ":" << arr.at(i);
+    }
+*/
+    //QVariantMap vmap = jobj.toVariantMap();
+    //qDebug() << vmap;
 }

@@ -5,7 +5,10 @@
 #include "../fileutil.h"
 #include <QDebug>
 
-void test();
+#define SHOWHEADER()    \
+    qDebug() << Q_FUNC_INFO << "===>"
 
+void test();
+void testvm();
 
 #endif  // __TEST_TEST_H__
