@@ -1,5 +1,6 @@
 #include <QtCore>
 #include <QDebug>
+#include <QHash>
 #include <QCryptographicHash>
 
 //#include <QApplication>
@@ -98,6 +99,17 @@ void test_sizeof()
     print_sizeof(quickfox, sizeof(quickfox));
 }
 
+void test_qhash()
+{
+    SHOWHEADER();
+    QHash<QString, QString> hh = {{"a", "apple"}, {"d", "duck"}, {"m", "monkey"}};
+
+    QHash<QString, QString>::const_iterator it;
+    for (it = hh.cbegin(); it != hh.cend(); ++it) {
+        qDebug() << *it;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     Q_UNUSED(argc);
@@ -109,6 +121,8 @@ int main(int argc, char *argv[])
     test_sizeof();
 
     get_info();
+
+    test_qhash();
 
     return 0;
 }

@@ -6,6 +6,7 @@ void print_help()
 {
     printf("help message =====>\n\n"
         "-1 [string]             sha1sum of specified string\n"
+        "-3 [string]             sha3sum of specified string\n"
         "-5 [string]             md5sum of specified string\n"
         "-k [string]             specify key string\n"
         "-d                      toggle debug\n"
@@ -29,7 +30,7 @@ bool handleOpt(int argc, char** argv)
         }
 
         while(1) {
-            int cmd_opt = getopt(argc, argv, "1:5:ac:df:hk:m:p");
+            int cmd_opt = getopt(argc, argv, "1:3:5:ac:df:hk:m:p");
             if (cmd_opt == -1) {
                 //qDebug() << "cmd_opt == -1";
                 break;
@@ -84,6 +85,13 @@ bool handleOpt(int argc, char** argv)
                     gVars.sTeststring = optarg;
                 }
                 break;
+            case '3':
+                if (optarg) {
+                    gVars.kTest = TC_SHA3SUMTEST;
+                    configured = true;
+                    gVars.sTeststring = optarg;
+                }
+                break;
             case '5':
                 if (optarg) {
                     gVars.kTest = TC_MD5SUMTEST;
@@ -114,15 +122,14 @@ QString getHash(const QString& hashname, const QString& str)
 {
     typedef QString (*Hasher)(const char*, int);
 
-    Hasher pf = NULL;
-    if (hashname == "md5sum") {
-        pf = md5sum;
-    } else if (hashname == "sha1sum") {
-        pf = sha1sum;
-    } else if (hashname == "sha3_256sum") {
-        pf = sha3_256sum;
-    }
+    QHash<QString, Hasher> hh = {
+        {"md5sum", md5sum},
+        {"sha1sum", sha1sum},
+        {"sha3_256sum", sha3_256sum},
+        {"keccak_256sum", keccak_256sum}
+    };
 
+    Hasher pf = hh.value(hashname, NULL);
     if (pf != NULL) {
         char *input = str.toUtf8().data();
         QString md = (*pf)(input, strlen(input));
@@ -135,20 +142,28 @@ QString getHash(const QString& hashname, const QString& str)
     return QString();
 }
 
-
+// echo -n "1234" | md5sum
 QString get_md5sum(const QString& str)
 {
     return getHash("md5sum", str);
 }
 
+// echo -n "1234" | sha1sum
 QString get_sha1sum(const QString& str)
 {
     return getHash("sha1sum", str);
 }
 
-QString get_sha3_256sum(const QString& str)
+QString get_sha3sum(const QString& str)
 {
-    return getHash("sha3_256sum", str);
+    getHash("sha3_256sum", str);
+    getHash("keccak_256sum", str);
+    return QString();
+}
+
+QString get_sha3sum2(const QString& str)
+{
+    return getHash("keccak_256sum", str);
 }
 
 void test_sha1hmac()

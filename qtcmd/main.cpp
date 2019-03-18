@@ -112,6 +112,9 @@ int main(int argc, char *argv[])
         case TC_SHA1SUMTEST:
             get_sha1sum(gVars.sTeststring);
             return 0;
+        case TC_SHA3SUMTEST:
+            get_sha3sum(gVars.sTeststring);
+            return 0;
         case TC_HMACTEST:
             test_sha1hmac();
             return 0;

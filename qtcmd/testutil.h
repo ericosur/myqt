@@ -31,6 +31,7 @@ typedef enum TestCategory {
     TC_MD5LISTTEST,
     TC_MD5SUMTEST,
     TC_SHA1SUMTEST,
+    TC_SHA3SUMTEST,
     TC_HMACTEST,
     TC_ARRAYTEST,
     TC_READCONFIG,

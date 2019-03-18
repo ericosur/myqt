@@ -54,3 +54,11 @@ QString sha3_256sum(const char* buffer, int size)
     QString str_hash = hash.result().toHex().data();
     return str_hash;
 }
+
+QString keccak_256sum(const char* buffer, int size)
+{
+    QCryptographicHash hash( QCryptographicHash::Keccak_256 );
+    hash.addData(buffer, size);
+    QString str_hash = hash.result().toHex().data();
+    return str_hash;
+}
