@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     enum_test();
     hashtest();
     testvm();
+    testsl();
 
 #if 0
     Foo foo;

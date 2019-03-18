@@ -10,5 +10,6 @@
 
 void test();
 void testvm();
+void testsl();
 
 #endif  // __TEST_TEST_H__

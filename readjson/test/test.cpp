@@ -279,3 +279,18 @@ void testvm()
     //QVariantMap vmap = jobj.toVariantMap();
     //qDebug() << vmap;
 }
+
+
+void testsl()
+{
+    SHOWHEADER();
+    QStringList sl = {"apple", "ball", "cat", "dog", "egg"};
+
+    // QList<QString>::const_iterator it;
+    // for (it = sl.cbegin(); it != sl.cend(); ++it) {
+    //     qDebug() << *it;
+    // }
+
+    QJsonArray arr = QJsonArray::fromStringList(sl);
+    qDebug() << arr;
+}

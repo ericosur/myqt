@@ -228,6 +228,11 @@ qint64 ReadJson::getInt64(const QString& key, const qint64 defVal)
     return ReadJson::getInt64(mJson, key, defVal);
 }
 
+double ReadJson::getDouble(const QString& key, const double defVal)
+{
+    return ReadJson::getDouble(mJson, key, defVal);
+}
+
 // static method implementation
 // [IN] o: json object
 // [IN] key: to query value
@@ -299,6 +304,20 @@ qint64 ReadJson::getInt64(const QJsonObject& o, const QString& key, const qint64
 
     qint64 q64 = (qint64)o[key].toDouble();
     return q64;
+}
+
+double ReadJson::getDouble(const QJsonObject& o, const QString& key, const double defVal)
+{
+    if (o.isEmpty()) {
+        qWarning() << "getInt(): input json object is empty";
+        return defVal;
+    }
+    if (!o[key].isDouble()) {
+        qWarning() << "getInt(): requested key is not an int nor existed:" << key;
+        return defVal;
+    }
+
+    return o[key].toDouble();
 }
 
 // static method implementation

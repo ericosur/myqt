@@ -73,7 +73,10 @@ public:
     qint64 getInt64(const QString& key) {
         return getInt64(key, 0);
     }
-
+    double getDouble(const QString& key, const double defVal);
+    double getDouble(const QString& key) {
+        return getDouble(key, 0.0);
+    }
 
     bool setString(const QString& key, const QString& val) {
         return ReadJson::setString(mJson, key, val);
@@ -108,6 +111,7 @@ public:
     static bool getBool(const QJsonObject& o, const QString& key, const bool defVal=false);
     static int getInt(const QJsonObject& o, const QString& key, const int defVal=0);
     static qint64 getInt64(const QJsonObject& o, const QString& key, const qint64 defVal=0);
+    static double getDouble(const QJsonObject& o, const QString& key, const double defVal=0);
 
     static bool setString(QJsonObject& o, const QString& key, const QString& val);
     static bool setBool(QJsonObject& o, const QString& key, const bool val);
