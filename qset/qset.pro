@@ -5,12 +5,15 @@ TARGET = qset
 TEMPLATE = app
 CONFIG += c++11
 CONFIG += console
-CONFIG -= app_bundle
-CONFIG+=sdk_no_version_check
 
 CONFIG += use_jsonhpp
 
-#QMAKE_MAC_SDK = macosx10.11
+mac {
+#CONFIG+=sdk_no_version_check
+    QMAKE_MAC_SDK = macosx10.14
+    CONFIG -= app_bundle
+}
+
 
 SOURCES += main.cpp\
     core.cpp \
@@ -24,7 +27,6 @@ INCLUDEPATH += $$PWD/../qtlib
 DEPENDPATH  += $$PWD/../qtlib
 LIBS += -L/usr/local/lib
 LIBS += -lqtlib
-
 
 use_jsonhpp {
     DEFINES += USE_JSONHPP

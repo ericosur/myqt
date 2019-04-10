@@ -6,9 +6,6 @@ CONFIG -= app_bundle
 TARGET = sha3test
 TEMPLATE = app
 
-QMAKE_MAC_SDK = macosx10.12
-DEFINES += MACOSX_DEPLOYMENT_TARGET=10.12
-
 SOURCES += main.cpp \
     readthread.cpp \
     core.cpp
@@ -25,3 +22,8 @@ DEPENDPATH  += $$PWD/../qtlib
 LIBS += -L/usr/local/lib
 LIBS += -lqtlib
 LIBS += -lreadjson
+
+mac {
+    QMAKE_MAC_SDK = macosx10.14
+    CONFIG -= app_bundle
+}
