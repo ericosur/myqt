@@ -13,6 +13,8 @@ public:
     static HandleSvg* getInstance();
 
     void test();
+    void test_left();
+    void test_right();
 
     void change_base_exit(int id, const QString& color);
     void export_base_png(const QString& ofn = "base.png");

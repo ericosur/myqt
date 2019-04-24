@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QFile>
 #include <QImage>
+#include <QStringList>
 #include <QDebug>
 
 #define DEFAULT_WIDTH       120
@@ -49,7 +50,70 @@ void HandleSvg::test()
     change_base_exit(9, "limegreen");
     export_base_png("b2.png");
 
+    test_left();
+    test_right();
+
+    const QString darkgray = "darkgray";
+#if 0
+    //change_right_phase(0, "#999999");
+    change_right_phase(1, darkgray);
+    change_right_phase(2, darkgray);
+    change_right_phase(3, "mediumslateblue");
+    //change_right_phase(4, "lightgrey");
+    change_right_phase(5, "palevioletred");
+    //change_right_phase(6, "lightgrey");
+    change_right_phase(7, "tan");
+    //change_right_phase(8, "lightgrey");
+    change_right_phase(9, "rosybrown");
+    change_right_phase(10, "wheat");
+    change_right_phase(11, "yellowgreen");
+    //change_right_phase(12, "lemonchiffon");
+    export_right_png("aa.png");
+#endif
+#if 0
+    //change_left_phase(0, darkgray);
+    change_left_phase(1, darkgray);
+    change_left_phase(2, darkgray);
+    change_left_phase(3, "mediumslateblue");
+    //change_left_phase(4, "lightgrey");
+    change_left_phase(5, "palevioletred");
+    //change_left_phase(6, "lightgrey");
+    change_left_phase(7, "tan");
+    //change_left_phase(8, "lightgrey");
+    change_left_phase(9, "rosybrown");
+    change_left_phase(10, "wheat");
+    change_left_phase(11, "yellowgreen");
+
+    export_left_png("bb.png");
+#endif
 }
+
+void HandleSvg::test_left()
+{
+    export_left_png("left0.png");
+    int on_array[] = {1, 0, 0, 0,
+        1, 0, 0, 1,
+        0, 0, 0, 0};
+    for (size_t i = 0; i < sizeof(on_array)/sizeof(int); ++ i) {
+        int v = on_array[i];
+        change_left_phase(i, (v ? "white" : "darkgray"));
+    }
+    export_left_png("left.png");
+}
+
+void HandleSvg::test_right()
+{
+    export_right_png("right0.png");
+    int on_array[] = {1, 0, 1, 0,
+        1, 0, 0, 0,
+        0, 0, 1, 0};
+    for (size_t i = 0; i < sizeof(on_array)/sizeof(int); ++ i) {
+        int v = on_array[i];
+        change_left_phase(i, (v ? "white" : "darkgray"));
+    }
+    export_left_png("right.png");
+}
+
 
 void HandleSvg::export_base_png(const QString& ofn)
 {
@@ -103,9 +167,23 @@ void HandleSvg::export_doc_to_png(const QDomDocument& doc, const QString& ofn)
 
 void HandleSvg::change_base_exit(int id, const QString& color)
 {
-    QDomElement base_e = base_doc.documentElement();
+    QDomElement e = base_doc.documentElement();
     QString strid = QString::asprintf("exit_%02d", id);
-    travel_tag(base_e, "polygon", strid, "fill", color);
+    travel_tag(e, "polygon", strid, "fill", color);
+}
+
+void HandleSvg::change_left_phase(int id, const QString& color)
+{
+    QDomElement e = left_doc.documentElement();
+    QString strid = QString::asprintf("phase%d", id);
+    travel_tag(e, "path", strid, "fill", color);
+}
+
+void HandleSvg::change_right_phase(int id, const QString& color)
+{
+    QDomElement e = right_doc.documentElement();
+    QString strid = QString::asprintf("phase%d", id);
+    travel_tag(e, "path", strid, "fill", color);
 }
 
 void HandleSvg::travel_tag(QDomElement& elem, const QString& tag, const QString& id,
