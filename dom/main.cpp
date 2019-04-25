@@ -1,23 +1,22 @@
 /// \file main.cpp
 ///
 
-#include "domutil.h"
+#include "core.h"
 
 #include <QCoreApplication>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QDebug>
 
-void test()
-{
-    HandleSvg* svg = HandleSvg::getInstance();
-    svg->test();
-}
 
 int main(int argc, char *argv[])
 {
-    Q_UNUSED(argc);
-    Q_UNUSED(argv);
+    QGuiApplication app(argc, argv);
 
-    test();
+    QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("core", Core::getInstance());
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-    return 0;
+    return app.exec();
 }

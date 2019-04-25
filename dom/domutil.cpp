@@ -33,9 +33,9 @@ HandleSvg::HandleSvg()
 
 void HandleSvg::init()
 {
-    load_svg(base_fn, base_doc);
-    load_svg(right_fn, right_doc);
-    load_svg(left_fn, left_doc);
+    load_svg(BASE_FN, base_doc);
+    load_svg(RIGHT_FN, right_doc);
+    load_svg(LEFT_FN, left_doc);
 }
 
 void HandleSvg::test()
@@ -114,23 +114,83 @@ void HandleSvg::test_right()
     export_left_png("right.png");
 }
 
+QString HandleSvg::apply_base(int cmd_arr[SIZE_OF_CMDARRAY])
+{
+    load_svg(BASE_FN, base_doc);
+    for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
+        int v = cmd_arr[i];
+        if (v == 0) {
+            change_base_exit(i, "none");
+        } else {
+            // not change the color
+        }
+    }
+    QString fn = compose_filename("base");
+    export_doc_to_png(base_doc, fn);
+    load_svg(BASE_FN, base_doc);
+    return fn;
+}
+
+QString HandleSvg::compose_filename(const QString& prefix)
+{
+    QString fn = QString("/tmp/%1_%2.png").arg(prefix).arg(mCnt);
+    mCnt += 1;
+    mCnt = mCnt % SIZE_OF_CMDARRAY;
+    return fn;
+}
+
+void HandleSvg::dump_arr(int cmd_arr[SIZE_OF_CMDARRAY])
+{
+    QString ret;
+    for (int i = 0; i < SIZE_OF_CMDARRAY; ++i) {
+        ret = ret + QString(" %1").arg(cmd_arr[i]);
+    }
+    qDebug() << "dump_arr:" << ret;
+}
+
+QString HandleSvg::apply_right(int cmd_arr[SIZE_OF_CMDARRAY])
+{
+    dump_arr(cmd_arr);
+    load_svg(RIGHT_FN, right_doc);
+    for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
+        int v = cmd_arr[i];
+        change_right_phase(i, (v ? "white" : "none"));
+    }
+    QString fn = compose_filename("right");
+    export_doc_to_png(right_doc, fn);
+    load_svg(RIGHT_FN, right_doc);
+    return fn;
+}
+
+QString HandleSvg::apply_left(int cmd_arr[SIZE_OF_CMDARRAY])
+{
+    load_svg(LEFT_FN, left_doc);
+    for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
+        int v = cmd_arr[i];
+        change_left_phase(i, (v ? "white" : "none"));
+    }
+    QString fn = compose_filename("left");
+    export_doc_to_png(left_doc, fn);
+    load_svg(LEFT_FN, left_doc);
+    return fn;
+}
 
 void HandleSvg::export_base_png(const QString& ofn)
 {
     export_doc_to_png(base_doc, ofn);
-    load_svg(base_fn, base_doc);
+    load_svg(BASE_FN, base_doc);
 }
 
 void HandleSvg::export_left_png(const QString& ofn)
 {
     export_doc_to_png(left_doc, ofn);
-    load_svg(left_fn, left_doc);
+    load_svg(LEFT_FN, left_doc);
 }
 
 void HandleSvg::export_right_png(const QString& ofn)
 {
     export_doc_to_png(right_doc, ofn);
-    load_svg(right_fn, right_doc);
+    load_svg(RIGHT_FN, right_doc);
 }
 
 void HandleSvg::load_svg(const QString& fn, QDomDocument& doc)
