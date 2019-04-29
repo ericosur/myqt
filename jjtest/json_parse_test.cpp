@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include <QDebug>
 
 using json = nlohmann::json;
 using namespace std;

@@ -1,24 +1,24 @@
+TARGET = jjtest
+TEMPLATE = app
+
 QT += core
 QT -= gui
 
+CONFIG += debug
 CONFIG += c++11
-
-TARGET = jjtest
 CONFIG += console
 CONFIG -= app_bundle
-CONFIG+=sdk_no_version_check
-
-TEMPLATE = app
+CONFIG += sdk_no_version_check
 
 QMAKE_CXXFLAGS += -Werror
 QMAKE_CXXFLAGS += -Wextra
 
 SOURCES += main.cpp
+SOURCES += json_parse_test.cpp
 
 SOURCES += foo.cpp
 HEADERS += foo.h
 
-SOURCES += json_parse_test.cpp
 
 # qtlib
 INCLUDEPATH += $${PWD}/../qtlib
