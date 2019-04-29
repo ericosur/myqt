@@ -44,6 +44,7 @@ void gen_seed()
 
 void print_current_msec_epoch()
 {
+    qDebug() << "qt version:" << QString::number(QT_VERSION, 16);
     qDebug() << "epoch in msec:" << QDateTime::currentMSecsSinceEpoch();
 }
 

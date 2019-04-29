@@ -13,6 +13,7 @@ HEADERS += wait.h
 SOURCES += \
     testutil.cpp \
     jsonutil.cpp
+
 HEADERS += \
     testutil.h \
     jsonutil.h
