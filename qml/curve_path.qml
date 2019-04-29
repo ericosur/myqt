@@ -1,8 +1,8 @@
 import QtQuick 2.0
 
 Canvas {
-    width: 400; height: 200
-    contextType: "2d"
+    width: 400
+    height: 200
 
     Path {
         id: myPath
@@ -15,8 +15,11 @@ Canvas {
     }
 
     onPaint: {
-        context.strokeStyle = Qt.rgba(.4,.6,.8);
-        context.path = myPath;
-        context.stroke();
+        var ctx = getContext("2d");
+        ctx.fillStyle = Qt.rgba(0, 0, 0, 1);
+        ctx.fillRect(0, 0, width, height);
+        ctx.strokeStyle = Qt.rgba(.4,.6,.8);
+        ctx.path = myPath;
+        ctx.stroke();
     }
 }

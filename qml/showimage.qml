@@ -10,7 +10,7 @@ Item {
         Image {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            source: "./bg.png"
+            source: "./res/bg.png"
         }
     }
 }
