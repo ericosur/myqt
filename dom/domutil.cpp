@@ -121,8 +121,6 @@ QString HandleSvg::apply_base(int cmd_arr[SIZE_OF_CMDARRAY])
         int v = cmd_arr[i];
         if (v == 0) {
             change_base_exit(i, "none");
-        } else {
-            // not change the color
         }
     }
     QString fn = compose_filename("base");
@@ -139,18 +137,19 @@ QString HandleSvg::compose_filename(const QString& prefix)
     return fn;
 }
 
-void HandleSvg::dump_arr(int cmd_arr[SIZE_OF_CMDARRAY])
+void HandleSvg::dump_arr(const QString& msg, int cmd_arr[SIZE_OF_CMDARRAY])
 {
     QString ret;
     for (int i = 0; i < SIZE_OF_CMDARRAY; ++i) {
         ret = ret + QString(" %1").arg(cmd_arr[i]);
     }
+    qDebug() << msg << " =====>";
     qDebug() << "dump_arr:" << ret;
 }
 
 QString HandleSvg::apply_right(int cmd_arr[SIZE_OF_CMDARRAY])
 {
-    dump_arr(cmd_arr);
+    dump_arr("apply_right", cmd_arr);
     load_svg(RIGHT_FN, right_doc);
     for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
         int v = cmd_arr[i];
@@ -164,6 +163,7 @@ QString HandleSvg::apply_right(int cmd_arr[SIZE_OF_CMDARRAY])
 
 QString HandleSvg::apply_left(int cmd_arr[SIZE_OF_CMDARRAY])
 {
+    dump_arr("apply_left", cmd_arr);
     load_svg(LEFT_FN, left_doc);
     for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
         int v = cmd_arr[i];

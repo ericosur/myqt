@@ -6,10 +6,6 @@
 #include <QString>
 
 #define SIZE_OF_CMDARRAY        12
-#define BASE_APPLY_PNG          "/tmp/base_apply.png"
-#define RIGHT_APPLY_PNG         "/tmp/right_apply.png"
-#define LEFT_APPLY_PNG          "/tmp/left_apply.png"
-
 
 class HandleSvg
 {
@@ -21,13 +17,13 @@ public:
     void test_right();
 
     void change_base_exit(int id, const QString& color);
-    void export_base_png(const QString& ofn = "base.png");
+    void export_base_png(const QString& ofn);
 
     void change_left_phase(int id, const QString& color);
-    void export_left_png(const QString& ofn = "left.png");
+    void export_left_png(const QString& ofn);
 
     void change_right_phase(int id, const QString& color);
-    void export_right_png(const QString& ofn = "right.png");
+    void export_right_png(const QString& ofn);
 
     QString apply_base(int cmd_arr[SIZE_OF_CMDARRAY]);
     QString apply_right(int cmd_arr[SIZE_OF_CMDARRAY]);
@@ -45,15 +41,13 @@ protected:
         const QString& attr, const QString& val);
 
     QString compose_filename(const QString& prefix);
-    void dump_arr(int cmd_arr[SIZE_OF_CMDARRAY]);
+    void dump_arr(const QString& msg, int cmd_arr[SIZE_OF_CMDARRAY]);
 
 private:
-    // const QString base_fn = "../base.svg";
-    // const QString left_fn = "../left.svg";
-    // const QString right_fn = "../right.svg";
-    const QString BASE_FN = ":/base.svg";
-    const QString LEFT_FN = ":/left.svg";
-    const QString RIGHT_FN = ":/right.svg";
+    // to read svg file in the resource
+    const QString BASE_FN = ":/res/base.svg";
+    const QString LEFT_FN = ":/res/left.svg";
+    const QString RIGHT_FN = ":/res/right.svg";
 
     QDomDocument base_doc;
     QDomDocument left_doc;

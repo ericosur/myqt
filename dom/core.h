@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QStringList>
+#include <QList>
 #include <QString>
-#include <QDateTime>
 #include <QTimer>
 #include <QDebug>
 
@@ -51,12 +51,12 @@ public:
 
 public:
     static Core* getInstance();
+    void make_svg_command(const QString& cmd, int nth);
 
 protected:
-    Core();
     static Core* _instance;
-
-    void make_svg_command(const QString& cmd, int nth);
+    Core();
+    bool isGoRightLane(const QStringList& sl);
 
 public slots:
     void sltTimeout();
@@ -78,6 +78,7 @@ private:
 
     int exitNumber = -1;
     QString exitDirection;
+    QList<int> exits;
 };
 
 #endif  // __CORE__H__
