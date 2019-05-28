@@ -121,12 +121,12 @@ void unicode_char()
         "\u2764\ufe0f",
         "\U0001f1e7\U0001f1f4",
         "\U0001f64b\u200d\u2640\ufe0f",
-        "\U0001f3c8\U0001f603"
+        "\U0001f3c8\U0001f603",
+        // "\uD83D\uDE1C"  // NOTE: such codepoint are taken invalid by compiler
     };
     for (QString ss: sl) {
         qDebug() << ss;
     }
-
 }
 
 /// input: _home
