@@ -2,6 +2,10 @@
 #include "commontest.h"
 #include "trypath.h"
 
+#include <QTextCodec>
+#include <QList>
+#include <QStringList>
+
 #define MAXLINELEN  (70)
 #define REPEAT      (60)
 
@@ -95,6 +99,34 @@ void no_conflict_name()
     sl.append(ret);
 
     qDebug() << sl;
+}
+
+// 0x2764, 0xfe0f
+// b'\xe2\x9d\xa4' b'\xef\xb8\x8f'
+// 0x1f1e7, 0x1f1f4
+// b'\xf0\x9f\x87\xa7'  b'\xf0\x9f\x87\xb4'
+// 0x1f64b, 0x200d, 0x2640, 0xfe0f
+// b'\xf0\x9f\x99\x8b' b'\xe2\x80\x8d' b'\xe2\x99\x80' b'\xef\xb8\x8f'
+// 0x1f3c8, 0x1f603
+// b'\xf0\x9f\x8f\x88'  b'\xf0\x9f\x98\x83'
+//
+// "\u2764\ufe0f",
+// "\U0001f1e7\U0001f1f4"
+// "\U0001f64b\u200d\u2640\ufe0f"
+// "\U0001f3c8\U0001f603"
+//
+void unicode_char()
+{
+    QStringList sl = {
+        "\u2764\ufe0f",
+        "\U0001f1e7\U0001f1f4",
+        "\U0001f64b\u200d\u2640\ufe0f",
+        "\U0001f3c8\U0001f603"
+    };
+    for (QString ss: sl) {
+        qDebug() << ss;
+    }
+
 }
 
 /// input: _home

@@ -117,6 +117,9 @@ void run_default_tests()
     print_title("test: no_conflict_name");
     no_conflict_name();
 
+    print_title("test: unicode_char");
+    unicode_char();
+
 #if 0
     print_title("test: get home path");
     qDebug() << "home path:" << getHomepath();

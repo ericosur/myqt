@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <QChar>
 #include <QString>
 #include <QStringList>
 #include <QDir>
@@ -17,6 +18,7 @@ void print_sep();
 
 QString check_name(const QStringList& sl, const QString& key);
 void no_conflict_name();
+void unicode_char();
 
 bool try_path(const QString& _home, QDir& _dir);
 void test_arg_format();
