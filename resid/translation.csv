@@ -1,301 +1,411 @@
-"id","defineid","en_US","ar_AE","pt_BR","es_AR"
-30001,"stringid_homepage","Home Page","الصفحة الرئيسية","Home Page","Página de inicio"
-30002,"stringid_ipod","iPod","iPod","iPod","iPod"
-30003,"stringid_usb","USB","USB","USB","USB"
-30004,"stringid_miracast","Miracast","Miracast","Miracast","Miracast"
-30005,"stringid_hdmi","HDMI","HDMI","HDMI","HDMI"
-30006,"stringid_aux","AUX","AUX","AUX","AUX"
-30007,"stringid_usbipod","USB/iPod","iPod/USB","USB/iPod","USB/iPod"
-30008,"stringid_btaudio","BT Audio","الصوتBT ","BT Áudio","BT Audio"
-30009,"stringid_disc","Disc","أساسي","Disco","Disco"
-30010,"stringid_setup","SETUP","الإعدادات","CONFIGURAÇÃO","Configuración"
-30011,"stringid_phone","PHONE","الهاتف","TELEFONE","Teléfono "
-30012,"stringid_media","MEDIA","الوسائط","MÍDIA","MEDIA"
-30013,"stringid_navi","NAVI","NAVI","NAVEGAÇÃO","NAVEGACIÓN"
-30014,"stringid_radio2","RADIO","راديو","RÁDIO","RADIO"
-30015,"stringid_destsearch","Destination Search","بحث عن وجهة","Pesquisas de Destino ","Búsqueda de destino"
-30016,"stringid_qibla","Compass/Qibla","القبلة","Compass","Compass"
-30017,"stringid_mapnotinstall","Map not installed – please contact nearest Toyota dealer","خريطة غير مثبتة، اتصل بأقرب موزع لتويوتا","Mapa não instalado - entre em contato com o revendedor Toyota mais próximo","Mapa no instalado–por favor contacte con su consecionario de Toyota más cercano"
-30018,"stringid_prayeronn","Prayer ON","صلاة على","Oração LIGADO","Encendido"
-30020,"stringid_radio","Radio","راديو","Rádio","Radio"
-30021,"stringid_none","None","بدون","Nenhum","Ninguno"
-30022,"stringid_news","News","الأخبار","Notícia","Noticias"
-30023,"stringid_affairs","Affairs","شؤون الأعمال","Assuntos","Asuntos"
-30024,"stringid_info","Info","معلومات","informação","Información"
-30025,"stringid_sport","Sport","رياضة","Esporte","Deportes"
-30026,"stringid_educate","Educate","تعليم","Educar","Educación"
-30027,"stringid_drama","Drama","دراما","Drama","Drama"
-30028,"stringid_culture","Culture","ثقافة","Cultura","Cultura"
-30029,"stringid_science","Science","علوم","Ciência","Ciencia"
-30030,"stringid_varied","Varied","متنوع","Variado","Variedad"
-30031,"stringid_popmusic","Pop Music","موسيقى بوب","Música Pop","Música Pop"
-30032,"stringid_rockmusic","Rock Music","موسيقى الروك","Musica Rock","Música Rock"
-30033,"stringid_easymusic","Easy Music","موسيقى سهلة الاستعمال","Música Fácil","Música Fácil"
-30034,"stringid_lightmusic","Light Music","موسيقى خفيفة","Música Leve","Música Suave"
-30035,"stringid_classmusic","Class Music","موسيقى كلاسيكية","Música Clássica","Música Clásica"
-30036,"stringid_othermusic","Other Music","موسيقى أخرى","Outras Músicas","Otra Música"
-30037,"stringid_weather","Weather","الطقس","Clima","Clima"
-30038,"stringid_finance","Finance","المالية","Finança","Finanzas"
-30039,"stringid_children","Children","الأطفال","Infantil","Niños"
-30040,"stringid_social","Social","اجتماعي","Social","Social"
-30041,"stringid_religion","Religion","الديانة","Religião","Religión"
-30042,"stringid_phonein","Phone In","الهاتف","Entrada de Telefone","Teléfono Conectado"
-30043,"stringid_travel","Travel","سفر","Viagem","Viajes"
-30044,"stringid_leisure","Leisure","رَفَاهِيَة","Lazer","Ocio"
-30045,"stringid_jazzmusic","Jazz Music","موسيقى جاز","Música Jazz","Jazz"
-30046,"stringid_countrymusic","Country Music","موسيقى ريفية","Música Country","Country"
-30047,"stringid_nationalmusic","National Music","موسيقى وطنية","Música Nacional","Música Nacional"
-30048,"stringid_oldiesmusic","Oldies Music","موسيقى قديمة","Música antiga","Música de Antaño"
-30049,"stringid_folkmusic","Folk music","موسقى شعبية","música folclórica","Folclore"
-30050,"stringid_document","Document","وثيقة","Documento","Documental"
-30051,"stringid_test","Test","اختبار","Teste","Prueba"
-30052,"stringid_alarm","Alarm","تنبيه","Alarme","Alarma"
-30053,"stringid_aswilloverwrite","AS will overwrite preset channels, please confirm","سوف تقوم AS باستبدال القنوات الحالية، يرجى التأكيد","AS sobrescreverá os canais predefinidos, por favor confirmar","AS sobrescribirá las memorias preestablecidas, confirme"
-30054,"stringid_pleasewait","Please wait…","الرجاء الانتظار...","Por favor, aguarde…","Por favor espere…"
-30055,"stringid_seekpty","Seek PTY","شركة Seek PTY","Procurar PTY","Buscar PTY"
-30056,"stringid_seek","Seek ","شركة Seek ","Procurar","Búsqueda"
-30057,"stringid_confirmation","Confirmation","تأكيد","Confirmação","Confirmación"
-30058,"stringid_as","AS","AS","AS","AS"
-30059,"stringid_cancel","Cancel","إلغاء","Cancelar","Cancelar"
-30060,"stringid_attention","Attention","تنبيه","Atenção","Atención"
-30061,"stringid_trafficalert","There is a traffic alert now","يوجد إخطار عن حركة المرور","Existe um alerta de tráfego no momento","Hay una alerta de tráfico ahora"
-30062,"stringid_media2","Media ","الوسائط ","Mídia","Medios de comunicación"
-30063,"stringid_disconnected","[[[DEVICE_NAME]]] disconnected","تم فصل [[[DEVICE_NAME]]]","[[[DEVICE_NAME]]] desconectado","[[[DEVICE_NAME]]] desconectado"
-30064,"stringid_isdisconnecting","[[[DEVICE_NAME]]] is disconnecting...","جارٍ فصل [[[DEVICE_NAME]]]...","[[[DEVICE_NAME]]] está desconectando...","[[[DEVICE_NAME]]] desconectando…"
-30065,"stringid_connectfailed","[[[DEVICE_NAME]]] connect failed","فشل فصل [[[DEVICE_NAME]]]","[[[DEVICE_NAME]]] conexão falhou","[[[DEVICE_NAME]]] conexión fallida"
-30066,"stringid_connected","[[[DEVICE_NAME]]] connected","تم توصيل [[[DEVICE_NAME]]]","[[[DEVICE_NAME]]] conectado","[[[DEVICE_NAME]]] conectado"
-30067,"stringid_isconnecting","[[[DEVICE_NAME]]] is connecting...","جار توصيل [[[DEVICE_NAME]]]...","[[[DEVICE_NAME]]] está se conectando...","[[[DEVICE_NAME]]] está conectando…"
-30068,"stringid_readytocast","Ready to cast...","جاهز للبث...","Pronto para lançar...","Listo para emitir..."
-30069,"stringid_wifiinitialize","Wi-Fi initialize...","تهيئة شبكة Wi-Fi...","Inicialização Wi-Fi...","Iniciando Wi-Fi…"
-30070,"stringid_devicename","Device name : ","اسم الجهاز: ","Nome do dispositivo :","Nombre de dispositivo : "
-30071,"stringid_pleaseconnecthdmi","Please connect with HDMI cable","الرجاء التوصيل بكبل HDMI","Favor conectar com o cabo HDMI","Por favor conecte con un cable HDMI"
-30072,"stringid_pleaseconnectaux","Please connect with AUX cable","الرجاء التوصيل بكبل AUX","Favor conectar com o cabo AUX","Por favor conecte con un cable AUX"
-30073,"stringid_wifidisplayinit","Wi-Fi display initializing…","جارٍ تهيئة شاشة شبكة Wi-Fi...","Tela de Wi-Fi inicializando…","Inicialización de pantalla Wi-Fi…"
-30074,"stringid_initializing","Wi-Fi initializing…","جارٍ تهيئة شبكة Wi-Fi...","Inicialização de Wi-Fi…","Inicialización de Wi-Fi…"
-30075,"stringid_code","code: ","الرمز: ","código:","código:"
-30076,"stringid_acceptwifi","Accept Wi-Fi connection from [[[DEVICE_NAME]] ?","هل تم قبول اتصال شبكة Wi-Fi من قبل [[[DEVICE_NAME]]؟","Aceitar a conexão Wi-Fi de [[[DEVICE_NAME]]?","Acepta la conexión Wi-Fi de [[[DEVICE_NAME]]?"
-30077,"stringid_accept","Accept","قبول","Aceitar","Aceptar"
-30078,"stringid_reject","Reject","رفض","Rejeitar","Cancelar"
-30079,"stringid_hdmiconnected","HDMI device is connected","تم توصيل جهاز HDMI","Dispositivo HDMI está conectado","El dispositivo HDMI está conectado"
-30080,"stringid_hdminotconnected","HDMI device is not connected","لم يتم توصيل جهاز HDMI","Dispositivo HDMI não está conectado","El dispositivo HDMI no está conectado"
-30081,"stringid_hdmiservicenotallow","HDMI service is not allowed","غير مسموح بخدمة HDMI","Serviço HDMI não é permitido","El servicio HDMI no está permitido"
-30082,"stringid_hdmistartfail","HDMI service start fail","فشل بدء تشغيل خدمة HDMI","Falha de início do serviço HDMI","El servicio de encendido de HDMI ha fallado"
-30083,"stringid_hdmiconnected2","HDMI device is connected","تم توصيل جهاز HDMI","Dispositivo HDMI está conectado","El dispositivo HDMI está conectado"
-30084,"stringid_hdmidisconnected","HDMI device is disconnected","تم فصل جهاز HDMI","Dispositivo HDMI está desconectado","El dispositivo HDMI está desconectado"
-30085,"stringid_auto","AUTO","AUTO","AUTO","AUTOMÁTICO"
-30086,"stringid_full","FULL","كامل","CHEIO","LLENO"
-30087,"stringid_invalidformat","Invalid Format","تنسيق غير صالح","Formato Inválido","Formato Inválido"
-30088,"stringid_nomedia","No Media","بدون الوسائط","Nenhuma Mídia","Sin Medio"
-30089,"stringid_nomusic","No Music","بدون موسيقى","Sem Música","Sin Música"
-30090,"stringid_novideo","No Video","بدون فيديو","Sem Vídeo","Sin Video"
-30091,"stringid_nophoto","No Photo","بدون صورة","Sem Foto","Sin Foto"
-30092,"stringid_pleaseselectafile","Please select a file","الرجاء تحديد ملف","Por favor selecione um arquivo","Por favor selecione un archivo"
-30093,"stringid_unknownartist","Unknown Artist","مؤدي غير معروف","Artista Desconhecido","Artista Desconocido"
-30094,"stringid_info2","Info","معلومات","Info","información"
-30095,"stringid_filecannotplay","File can't be played, please check file content","لا يمكن تشغيل الملف، الرجاء التحقق من محتوى الملف","O arquivo não pode ser reproduzido, favor verificar o conteúdo do arquivo","El archivo no se puede reproducir, compruebe el contenido del archivo"
-30096,"stringid_pleaseinsertusb","Please insert USB","الرجاء إدخال USB","Por favor, inserir  o USB","Por favor inserte unidad USB"
-30097,"stringid_videonotdriving","Videos is not available while driving","الفيديوهات غير متاحة أثناء القيادة","Vídeos não estão disponíveis quando dirigindo","Video no disponible mientras se conduce"
-30098,"stringid_mute","MUTE","كتم الصوت","MUDO","MUDO"
-30099,"stringid_wirelessproblem","Wireless connection has problem","اتصال لاسلكي لديه مشكلة","Problemas na conexão sem fio ","Problema con la conexión inalámbrica"
-30100,"stringid_wirelessnoresp","Wireless connection no response","اتصال لاسلكي أي رد","Sem resposta na conexão sem fio ","Conexión inalámbrica no responde"
-30101,"stringid_wirelessnotsmooth","Wireless connection is not smooth","أداء اتصال لاسلكي ليست جيدة","Conexão sem fio não é estável","La conexión inalámbrica no es estable"
-30102,"stringid_disc2","Disc","أساسي","Disco","Disco"
-30103,"stringid_pleaseinsertdisc","Please insert disc","الرجاء إدخال القرص","Por favor, insira o disco","Por favor inserte un disco"
-30104,"stringid_unsupporteddisc","Unsupported disc","قرص غير مدعوم","Disco não suportado","Disco no soportado"
-30105,"stringid_loading","Loading...","جارٍ التحميل…","Carregando...","Cargando…"
-30106,"stringid_ejecting","Ejecting...","جارٍ الرفض...","Ejetando...","Expulsar…"
-30107,"stringid_track","Track","تتبع","Trilha sonora","Pista"
-30108,"stringid_ipod2","iPod","أي بود","iPod","iPod"
-30109,"stringid_notitle","No Title","بدون عنوان","Sem Título","Sin Título"
-30110,"stringid_unknownartist2","Unknown Artist","مؤدي غير معروف","Artista Desconhecido","Artista Desconocido"
-30111,"stringid_unknownalbum","Unknown Album","ألبوم غير معروف","Álbum Desconhecido","Álbum Desconocido"
-30112,"stringid_allsongs","All Songs","جمع الأغاني","Todas as Músicas","Todas las Canciones"
-30113,"stringid_playlists","Playlists","قوائم التشغيل","Listas de Reprodução","Listas de Reproducción"
-30114,"stringid_artists","Artists","المؤدون","Artistas","Artistas"
-30115,"stringid_albums","Albums","الألبومات","Álbuns","Álbumes"
-30116,"stringid_genre","Genre","النوع","Gênero","Género"
-30117,"stringid_composers","Composers","الموسيقيون","Compositores","Compositores"
-30118,"stringid_unknown","unknown","غير معروف","desconhecido","Desconocido"
-30119,"stringid_plzconnectipod","Please connect iPod or iPhone...","الرجاء توصيل جهاز أي باد أو أي فون...","Por favor conecte o iPod ou o iPhone...","Por favor, conecte iPod o iPhone …"
-30120,"stringid_mudialoading","Media library loading [[[PERCENTAGE]]","تحميل مكتبة الوسائط [[[PERCENTAGE]]","Carregamento de biblioteca de mídia [[[PERCENTAGE]]","Cargando la biblioteca multimedia [[[PERCENTAGE]]"
-30121,"stringid_ipod3","iPod","iPod","iPod","iPod"
-30122,"stringid_podcast","Podcast","بودكاست","Podcast","Podcast"
-30123,"stringid_noalbum","No Album","لا يوجد ألبوم","Sem Álbum","Sin Álbum"
-30124,"stringid_noartist","No Artist","لا يوجد فنان","Sem Artista","Sin Artista"
-30125,"stringid_audiobooks","Audiobooks","الكتب الصوتية","Audiolivros","Libros de Audio"
-30126,"stringid_itunesu","iTunes U","iTunes U","iTunes U","iTunes U"
-30127,"stringid_phone2","Phone","الهاتف","Celular","Teléfono"
-30128,"stringid_touchconnectbt","Touch ”Connect” to connect with Bluetooth devices","اضغط على ""اتصال"" للاتصال بأجهزة البلوتوث","Toque em ""Conectar"" para conectar dispositivos Bluetooth","Toque ""Conectar"" para conectarse con dispositivos Bluetooth"
-30129,"stringid_connect","Connect","اتصال","Conectar","Conectar"
-30130,"stringid_favorite","Favorite","المفضلة","Favorito","Favorito"
-30131,"stringid_missed","Missed","غير موجود","Perdido","Perdida"
-30132,"stringid_all","All","الكل","Todos","Todas "
-30133,"stringid_search","Search","بحث","Pesquisar","Buscar"
-30134,"stringid_waiting","Waiting","قيد الانتظار","Aguardando","Esperando"
-30135,"stringid_hold","Hold","تعليق","Aguarde","Espera"
-30136,"stringid_music","Music","موسيقى","Música","Música"
-30137,"stringid_calling","Calling...","جارٍ الاتصال...","Ligando...","Llamando…"
-30138,"stringid_incomingcall","Incoming Call...","مكالمة واردة...","Recebendo Ligação...","Llamada entrante…"
-30139,"stringid_clickhereback","Click here to go back to the active call","انقر هنا للعودة إلى الاتصال النشط","Clique p/ voltar a chamada ativa ","Click p/ volver a llamada activa"
-30140,"stringid_today","Today","اليوم","Hoje","Hoy "
-30141,"stringid_yesterday","Yesterday","أمس","Ontem","Ayer"
-30142,"stringid_monday","Monday","الاثنين","Segunda-feira","Lunes"
-30143,"stringid_tuesday","Tuesday","الثلاثاء","Terça-feira","Martes"
-30144,"stringid_wednesday","Wednesday","الأربعاء","Quarta-feira","Miércoles"
-30145,"stringid_thursday","Thursday","الخميس","Quinta-feira","Jueves"
-30146,"stringid_friday","Friday","الجمعة","Sexta-feira","Viernes"
-30147,"stringid_saturday","Saturday","السبت","Sábado","Sábado"
-30148,"stringid_sunday","Sunday","الأحد","Domingo","Domingo"
-30149,"stringid_setup2","Setup","إعداد","Configuração","Configuracion "
-30150,"stringid_legal","Legal","ﻕﺎﻧﻮﻨﻳ","Legal","Legal"
-30151,"stringid_suretoreset","Are you sure to reset?","ﻪﻟ ﺕﺮﻳﺩ ﺏﺎﻠﺗﺄﻜﻳﺩ ﺈﻋﺍﺩﺓ ﺎﻠﺘﻌﻴﻴﻧ؟","Certeza que quer reiniciar?","¿Está seguro de restablecer?"
-30152,"stringid_naviaudio","Navigation audio","ﺎﻠﻣﻼﺣﺓ ﺎﻠﺻﻮﺘﻳﺓ","Áudio de navegação","Audio de Navegación"
-30153,"stringid_resetsystem","Reset system to default","إعادة تعيين النظام","Redefinir o sistema ao padrão","Restablecer datos de fábrica"
-30154,"stringid_prayeron","Prayer ON","صلاة على","Oração LIGADO","Reproducción en curso"
-30155,"stringid_cautionauto","Caution auto dismiss","الرفض التلقائي للإنذار","Atenção auto fechar","Precaución auto cancelar"
-30156,"stringid_settime","Set time","ضبط الوقت","Definir tempo","Establecer hora"
-30157,"stringid_setauto","Set automatically","ضبط تلقائي","Definir automaticamente","Establecer automáticamente"
-30158,"stringid_timezone","Time zone","المنطقة الزمنية","Fuso horário","Zona Horaria"
-30159,"stringid_24hr","24 Hour time","توقيت 24 ساعة","24 horas","24 horas"
-30160,"stringid_datetime","Date & Time","التاريخ/الوقت","Data e hora","Fecha y Hora"
-30161,"stringid_voicelanguage","Voice language","لغة المكالمة الصوتية","Idioma da voz","Idioma de voz"
-30162,"stringid_systemlanguage","System language","النظام اللغة","Idioma_x000D_
-Idioma do sistema ","Idioma
-Idioma del sistema"
-30163,"stringid_reset","Reset","إعادة تعيين","Resetar","Restablecer"
-30164,"stringid_chroma","Chroma","مفتاح كروما","Croma","Croma"
-30165,"stringid_contrast","Contrast","التباين","Contraste","Contraste"
-30166,"stringid_brightness","Brightness","السطوع","Brilho","Brillo"
-30167,"stringid_autodimmer","Auto dimmer","تلاشي تلقائي","Auto regulador","Intensidad automática"
-30168,"stringid_bas","BAS","BAS","BAS","BAS"
-30169,"stringid_mid","MID","MID","MID","MID"
-30170,"stringid_tre","TRE","TRE","TRE","TRE"
-30171,"stringid_eq","EQ","EQ","EQ","EQ"
-30172,"stringid_r","R","R","R","Will use""A"" for rear; ""D"" for right"
-30173,"stringid_f","F","F","F","F"
-30174,"stringid_l","L","L","L","I"
-30175,"stringid_clicksound","Click sound","انقر فوق الصوت","Som de clique ","Pitido"
-30176,"stringid_no","No","لا","Não","No"
-30177,"stringid_yes","Yes","نعم","Sim","Sí"
-30178,"stringid_acceptbtconn","Accept Bluetooth connection from [[[DEVICE_NAME]]","قبول اتصال البلوتوث من قبل [[[DEVICE_NAME]]","Aceitar conexão Bluetooth de [[[DEVICE_NAME]]","Aceptar Conexión Bluetooth de [[[DEVICE_NAME]]"
-30179,"stringid_douwantremove","Do you want to remove this bluetooth paired device?","هل تريد إزالة جهاز البلوتوث المقترن؟","Você quer remover este dispositivo emparelhado bluetooth?","Desea eliminar este dispositivo Bluetooth emparejado?"
-30180,"stringid_ok","OK","موافق","OK","OK"
-30181,"stringid_maxnumberpaired","Maximum number of paired devices has been reached, please remove one of the paired devices","تم الوصول إلى الحد الأقصى لعدد الأجهزة المقترنة، يرجى إزالة أحد الأجهزة المقترة","Número máximo de dispositivos emparelhados foi atingido, remova um dos dispositivos emparelhados","Se ha alcanzado la cantidad máxima de dispositivos emparejados. Elimine uno de los dispositivos."
-30182,"stringid_warning","Warning","تحذير","Atenção","Advertencia"
-30183,"stringid_contactphoto","Contact photo","صورة جهة الاتصال","Foto do Contato ","Foto de contacto"
-30184,"stringid_autoconnect","Auto connect","اتصال تلقائي","Conexão automática","Autoconectar"
-30185,"stringid_autoanswer","Auto answer","إجابة تلقائية","Resposta automática","Respuesta automática"
-30186,"stringid_name","Name","الاسم","Nome","Nombre"
-30187,"stringid_nodevices","No devices","بدون أجهزة","Sem dispositivos","Sin dispositivos"
-30188,"stringid_availabledev","Available devices","الأجهزة المتاحة","Dispositivos disponíveis","Dispositivos disponibles"
-30189,"stringid_bluetooth","Bluetooth","البلوتوث","Bluetooth","Bluetooth"
-30190,"stringid_passworderror","Password error","خطأ في كلمة المرور","Senha errada","Error de contraseña"
-30191,"stringid_enterpassword","Enter the password","أدخل كلمة المرور","Digite a senha","Introduzca la contraseña"
-30192,"stringid_3gconn","3G Connection","اتصال بشبكة 3G","Conexão 3G","Conexión 3G"
-30193,"stringid_wifi","Wi-Fi","Wi-Fi","Wi-Fi","Wi-Fi"
-30194,"stringid_pictureslide","Picture slideshow timing (sec)","مؤقت عرض شرائح الصور (بالثانية)","Tempo de apresentação da imagem (seg)","Tiempo de presentación de diapositivas (seg)"
-30195,"stringid_mediaautofull","Media auto full screen","عرض تلقائي للالوسائط بملء الشاشة","Mídia tela cheia automática","Pantalla completa automática"
-30196,"stringid_hdmiautoplay","HDMI autoplay","تشغيل HDMI تلقائي","Reprodução automática de HDMI","Reproducción automática de HDMI"
-30197,"stringid_discautoplay","Disc autoplay","تشغيل تلقائي للقرص","Reprodução automática de disco","Reproducción automática de disco"
-30198,"stringid_rdsenable","RDS enable","تمكين RDS","Ativar RDS","Habilitar RDS"
-30199,"stringid_normal","Normal","عادي","Normal","Normal "
-30200,"stringid_near","Near","قريبًا","Perto","Cerca"
-30201,"stringid_alertvolume","Alert Volume","مستوى التنبيه","Volume do Aviso","Vol. de alerta"
-30202,"stringid_display","Display","عرض","Tela","Pantalla"
-30203,"stringid_parkingbrake","Parking brake check","التحقق من فرامل إيقاف السيارات","Verificação do freio de estacionamento","Verificación del freno de estacionamiento"
-30204,"stringid_carspeedcheck","Car speed check","التحقق من سرعة السيارة","Verificação de velocidade do carro","Verificación de velocidad del automóvil"
-30205,"stringid_parkingguide","Parking guide line","خط توجيه توقف السيارة","Linha de guia de estacionamento","Líneas de guía de estacionamiento"
-30206,"stringid_systeminfo","System info","معلومات النظام","Informação do sistema","Información del sistema"
-30207,"stringid_bootloaderver","Bootloader version","إصدار أداة إعادة التحميل","Versão do bootloader","Versión del gestor de arranque"
-30208,"stringid_systemmcuver","System MCU version","إصدار MCU للنظام","Versão do sistema MCU","Versión del sistema MCU"
-30209,"stringid_displaymcuver","Display MCU version","إصدار MCU للعرض","Tela da versão do MCU","Visualizar la versión del MCU"
-30210,"stringid_boardid","Board ID","معرف اللوحة","ID da placa","ID de la placa"
-30211,"stringid_btmodulever","BT Module Version","إصدار BT للنظام","Versão do Módulo BT","Versión del módulo BT"
-30212,"stringid_m","M","M","M","M"
-30213,"stringid_h","H","H","H","H"
-30214,"stringid_d","D","D","D","D"
-30215,"stringid_y","Y","Y","Y","Y"
-30216,"stringid_pinerror","PIN error","خطأ برمزPIN","Erro PIN","Error de PIN"
-30217,"stringid_trytimes","Try times:","أوقات المحاولة:","Tente vezes:","Intentos :"
-30218,"stringid_pin","PIN","رمز PIN","PIN","PIN"
-30219,"stringid_speedpulse","Speed pulse","نبضة سريعة","Pulso de velocidade","Pulso de velocidad"
-30220,"stringid_password","Password","كلمة المرور","Senha","Contraseña"
-30221,"stringid_servicesexpiry","Connected services expiry","انتهاء صلاحية الخدمات المتصلة","Exp. dos serviços conectados","Exp. servicios conectados"
-30222,"stringid_mediasettingosd","Media settings OSD","إعدادات الالوسائط OSD","Configurações de mídia OSD","Configuración de medios OSD"
-30223,"stringid_mediasettings","Media Settings","إعدادات الالوسائط","Configurações de mídia","Configuración de medios"
-30224,"stringid_flat","Flat","بسيط","Plano","Plano"
-30225,"stringid_classic","Classic","كلاسيكي","Clássico","Clásico"
-30226,"stringid_rock","Rock","روك","Rock","Rock"
-30227,"stringid_pop","Pop","بوب","Pop","Pop"
-30228,"stringid_live","Live","مباشر","Ao Vivo","En vivo"
-30229,"stringid_jazz","Jazz","جاز","Jazz","Jazz"
-30230,"stringid_dance","Dance","رقص","Dança","Baile"
-30231,"stringid_treble","Treble","إيقاع عالي الطبقة","Agudos","Agudos"
-30232,"stringid_middle","Middle","متوسط","Meio","Medios"
-30233,"stringid_bass","Bass","جهير","Baixo","Graves"
-30234,"stringid_voicecommand","Voice Command","أمر صوتي","Comando de Voz","Comando de voz"
-30235,"stringid_timeout","Timeout","مهلة","Tempo esgotado","Tiempo agotado"
-30236,"stringid_invalidcommand","Invalid command","أمر غير صالح","Comando inválido","Comando inválido"
-30237,"stringid_plzconnectbt","Please connect your Phone via Bluetooth","يرجى توصيل هاتفك عبر البلوتوث","Não é possível conectar, verifique o status da conexão_x000D_
-Por favor, conecte seu telefone via Bluetooth ","Por favor, conecte su teléfono a través de Bluetooth"
-30238,"stringid_plzspeakbeep","Please speak after the beep","يرجى التحدث بعد سماع الصفارة","Por favor, fale depois do sinal","Por favor hable después del pitido"
-30239,"stringid_invalidnumber","Invalid number","رقم غير صالح","Número inválido","Número inválido"
-30240,"stringid_callfullname","Call [Full Name]","اتصال بـ [الاسم بالكامل]","Ligue para [Nome Completo]","Llamar a [Nombre completo]"
-30241,"stringid_vcprepare","Voice command function is under preparation, please trigger voice command after a few seconds","وظيفة الأوامر الصوتية قيد الإنشاء، لذا يرجى محاولة استخدام الأمر الصوتي بعد بضع ثوانٍ","Função de comando de voz está em preparação, por favor, acione o comando de voz depois de alguns segundos","La función de comando de voz está en preparación, accione el comando de voz después de unos segundos"
-30242,"stringid_vcupdated","Voice language is being updated, please trigger voice command after a few seconds","جار تحديث اللغة الصوتية، لذا يرجى محاولة استخدام الأمر الصوتي بعد بضع ثوانٍ","O idioma da voz está sendo atualizado. Por favor, acione o comando de voz após alguns segundos","El lenguaje de voz se está actualizando, por favor accione el comando de voz después de unos segundos"
-30243,"stringid_volumecontrol","Volume control","التحكم في مستوى الصوت","Controle de volume","Control del volumen"
-30244,"stringid_navigation","Navigation","تنقل","Navegação","Navegación"
-30245,"stringid_phone3","Phone","الهاتف","Telefone","Teléfono"
-30246,"stringid_externalmedia","External Media","الوسائط خارجية","Mídia Externa","Medios Externos"
-30247,"stringid_media3","Media","الوسائط","Mídia","Medios "
-30248,"stringid_prayer","Prayer","صلاة","Oração","Reproductor"
-30249,"stringid_statusbar","Status bar","شريط الحالة","Barra de status","Barra de estado"
-30250,"stringid_voicecomm","Voice Command","أمر صوتي","Comando de Voz","Comando de voz"
-30251,"stringid_generalsettings","General Settings","إعدادت عامة","Configurações Gerais","Config. general"
-30252,"stringid_mediasettings2","Media Settings","إعدادات الالوسائط","Config. de Mídia","Config. de medios"
-30253,"stringid_toyotaparkassist","TOYOTA Park Assist","مساعد إيقاف تويوتا","Assist. estac.TOYOTA","TOYOTA Park Assist"
-30254,"stringid_soundsettings","Sound Settings","إعدادات الصوت","Definições de Som","Ajustes de sonido"
-30255,"stringid_wirelessconnection","Wireless Connection","اتصال لاسلكي","Conexão sem Fio","Conexión inalámbrica"
-30256,"stringid_wirelesssettings","Wireless Settings","ﺎﺘﺻﺎﻟ ﻼﺴﻠﻜﻳ","Config. Wireless","Config. Inalámbrica"
-30257,"stringid_radiofm","Radio FM","راديو إف إم","Rádio FM","Radio FM"
-30258,"stringid_radioam","Radio AM","راديو إيه إم","Rádio AM","Radio AM"
-30259,"stringid_noradiosignal","No Radio Signal","لا توجد إشارة راديو","Nenhum Sinal de Rádio","Sin señal de radio"
-30260,"stringid_nodisc","No Disc","بدون قرص","Nenhum Disco","Sin disco"
-30261,"stringid_nobtdevice","No BT device","بدون جهاز بلوتوث","Nenhum dispositivo BT","Sin dispositivo BT"
-30262,"stringid_nousbdevice","No USB device","بدون جهاز USB","Sem dispositivo USB","Sin dispositivo USB"
-30263,"stringid_nohdmidevice","No HDMI device","بدون جهاز HDMI","Sem dispositivo HDMI","Sin dispositivo HDMI"
-30264,"stringid_nowificonn","No Wi-Fi connection","بدون اتصال بشبكة Wi-Fi","Sem conexão Wi-Fi","Sin conexión Wi-Fi"
-30265,"stringid_wifidisplaydisconn","Wi-Fi display device disconnected","تم فصل جهاز شاشة شبكة Wi-Fi","Dispositivo de tela Wi-Fi desconectado","Dispositivo de pantalla Wi-Fi desconectado"
-30266,"stringid_discinserted","Disc inserted","تم إدخال القرص","Disco inserido","Disco insertado"
-30267,"stringid_usbdevice","USB device","جهاز USB","Dispositivo USB","Dispositivo USB"
-30268,"stringid_ipodiphone","iPod/iPhone ","أي باد/أي فون ","iPod/iPhone","iPod/iPhone "
-30269,"stringid_wifidisplaydev","Wi-Fi display device","جهاز شاشة شبكة Wi-Fi","Disp. exibição Wi-Fi","Disp. Visualización Wi-Fi"
-30270,"stringid_general","General","عامة","Geral","General"
-30271,"stringid_unsupportedfs","Unsupported file system","ملف شكل غير مدعوم","Sistema de arquivos não suportado","Sistema de archivos no admitido"
-30272,"stringid_network","Network","إتصال شبكة","Rede","Red"
-30273,"stringid_wifi3g","Wi-Fi/3G","3G/Wi-Fi","Wi-Fi/3G","Wi-Fi/3G"
-30274,"stringid_unabletoplayavfront","Unable to play, audio/video priority to front screen","لا يمكن تشغيل الملف الصوتي/الفيديو، الأولوية للشاشة الأمامية","Não é possível reproduzir, prioridade de áudio/vídeo para a tela frontal","No se puede reproducir, prioridad de audio / video a la pantalla frontal"
-30275,"stringid_usbnoresp","USB Device No Response","جهاز USB لا اجابة","Dispositivo USB sem resposta","Dispositivo USB sin respuesta"
-30276,"stringid_unsupportedusb","Unsupported USB Device","غير مدعوم جهاز USB","Dispositivo USB não suportado","Dispositivo USB no compatible"
-30277,"stringid_usbhubnotsupported","USB hub is not supported","لم يتم دعم محور USB","Hub USB não é suportado","Hub USB no compatible"
-30278,"stringid_eula","EULA","شريط الحالة","EULA","EULA"
-30279,"stringid_enduserlicagree","End User License Agreement","اتفاقية ترخيص المستخدم النهائي","Contrato de Licença de Usuário Final","Acuerdo de licencia de usuario final"
-30280,"stringid_dontshowagain","Don't show again","يرجى عدم العرض مرة أخرى","Não mostrar de novo","No mostrar de nuevo"
-30281,"stringid_agree","Agree","أوافق","Aceitar","De acuerdo"
-30282,"stringid_previous","Previous","السابق","Anterior","Anterior"
-30283,"stringid_next","Next","التالي","Próximo","Siguiente"
-30284,"stringid_setlangplzrefrain","Setting language... Please refrain from using other functions at this moment until completion","لغة الإعداد.... يرجى الامتناع عن استخدام وظائف أخرى في الوقت الراهن حتى الانتهاء","Definir o idioma... Por favor, abstenha-se de usar outras funções neste momento até a conclusão","Configurando idioma... Por favor no utilice otras funciones hasta que finalice el proceso"
-30285,"stringid_preparing","Preparing…","جارٍ الإعداد...","Processando…","...Preparando"
-30286,"stringid_autoaccept","Auto accept","قبول تلقائي","Aceitar automaticamente","Auto aceptar"
-30287,"stringid_skip","Skip","تخطى","Pule","Saltar"
-30288,"stringid_siri","Siri","سيري","Siri","Siri"
-30289,"stringid_plzenablesiri","Please enable Siri in the phone settings","الرجاء تمكين سيري في إعدادات الهاتف","Favor habilitar SIRI nas configurações do telefone","Por favor habilite Siri en la configuración del teléfono"
-30290,"stringid_mfiauthfailed","MFI Auth Failed","فشلت مصادقة MFI","Autenticação de MFI falhou","Autenticación MFI fallido"
-30291,"stringid_identifyrejected","Identification Rejected","تم رفض التعريف","Identificação Rejeitada","Identificación rechazada"
-30292,"stringid_ejected","Ejected","مرفوض","Ejetando","Expulsado"
-30293,"stringid_spanish","Spanish","أسباني","Espanhol","Español"
-30294,"stringid_portuguese","Portuguese","برتغالي","Português","Portugués"
-30295,"stringid_checksurronding","Check surroundings for safety.","ﺖﺤﻘﻗ ﻢﻣﺍ ﻲﺤﻴﻃ ﺐﻛ ﻞﻀﻣﺎﻧ ﺎﻠﺳﻼﻣﺓ.","Verifique os arredores para a segurança.","Mire alrededor por seguridad."
-30296,"stringid_settinglangplztill","Setting language... Please refrain from using other
- functions at this moment until completion","لغة الإعداد.... يرجى الامتناع عن استخدام وظائف أخرى في الوقت الراهن حتى الانتهاء","Definindo idioma... Favor, não usar outras_x000D_
-  funções no momento até a conclusão ","Configurando idioma... Por favor no utilice otras funciones hasta que finalice el proceso"
+id,defineid,en_US,ar_AE,pt_BR,es_AR,ru_RU,uk_UA
+10001,MSG_WARNING,Warning,تحذير,Atenção,Advertencia,Внимание,Увага
+10002,MSG_DISCTITLE,Disc,أساسي,Disco,Disco,Диск,Диск
+10003,MSG_USBTITLE,USB,USB,USB,USB,USB,USB
+10004,MSG_IPODTITLE,iPod,iPod,iPod,iPod,iPod,iPod
+10005,MSG_BTTITLE,Bluetooth,البلوتوث,Bluetooth,Bluetooth,Bluetooth,Bluetooth
+10006,MSG_PHONETITLE,Phone,الهاتف,Telefone,Teléfono,Телефон,Телефон
+10007,MSG_BTAUDIOTITLE,BT Audio,الصوتBT ,BT Áudio,BT Audio,BT Audio,BT Audio
+20001,MSG_UNSUPPORTFS,Unsupport file system,ملف شكل غير مدعوم,Sistema de arquivos não suportado,Sistema de archivos no admitido,Системный файл не поддерживается,Системний файл не підтримується
+20002,MSG_DISCEJECTED,Ejected,مرفوض,Ejetando,Expulsado,Извлечено,Витягнений
+20003,MSG_CONNECT,Connected,تم توصيل,Conectado,Conectado,Подключено,Підключений
+20004,MSG_DISCONNECT,Disconnected,تم فصل,Desconectado,Desconectado,Отключено,Відключений
+20005,MSG_MFIAUTHFAIL,MFI Auth Failed,فشلت مصادقة MFI,Autenticação de MFI falhou,Autorización MFI fallido,Не удалось аутентифицировать MFI,Не вдалося автентифікувати MFI
+20006,MSG_IDREJECT,Identification Rejected,تم رفض التعريف,Identificação Rejeitada,Identificación rechazada,Идентификация отклонена,Ідентифікація відхилена
+20007,MSG_DISCINSERT,Inserted,تم إدخال القر,Inserido,Insertado,Вставлено,Уставлений
+20008,MSG_NODISC,No Disc,بدون قرص,Nenhum Disco,Sin disco,Диск отсутствует,Диск відсутній
+20009,MSG_USBNORESP,USB Device No Response,جهاز USB لا اجابة,Dispositivo USB sem resposta,Dispositivo USB sin respuesta,USB-устройство не отвечает,USB-пристрій не відповідає
+20010,MSG_USBNOSUPP,Unsupported USB Device,غير مدعوم جهاز USB,Dispositivo USB não suportado,Dispositivo USB no compatible,USB-устройство не поддерживается,USB-пристрій не підтримується
+20011,MSG_USBNOHUB,USB hub is not supported,لم يتم دعم محور USB,Hub USB não é suportado,Hub USB no compatible,USB-концентратор не поддерживается,USB-концентратор не підтримується
+20012,MSG_SIRI_NEED_ENABLE,Please enable Siri in the phone settings,الرجاء تمكين سيري في إعدادات الهاتف,Favor habilitar SIRI nas configurações do telefone,Por favor habilite Siri en la configuración del teléfono,"Пожалуйста, активируйте Siri в настройках телефона","Будь ласка, активуйте Siri в налаштуваннях телефону"
+20013,MSG_PUSH2CAR_NAVI,Navi,Navi,Navegação,Navegación,Навигатор,Навігатор
+20014,MSG_PUSH2CAR_DISMISS,Dismiss,Dismiss,Fechar,Descarte,Отменить,Відміти
+20015,MSG_PUSH2CAR_INFO,Info,معلومات,Informação,Información,Информация,Інформація
+20016,MSG_HDMI_TITLE,HDMI,HDMI,HDMI,HDMI,HDMI,HDMI
+20017,MSG_HDMI_CONNECTED,Connected,ﺖﻣ ﺕﻮﺼﻴﻟ,Conectado,Conectado,Подключено,Підключений
+20018,MSG_HDMI_DISCONNECTED,Disconnected,ﺖﻣ ﻒﺼﻟ,Desconectado,Desconectado,Отключено,Відключений
+20047,MSG_SIRI,Siri,سيري,Siri,Siri,Siri,Siri
+20048,MSG_HDMI_NOT_PERMIT,HDMI service is not allowed,غير مسموح بخدمة HDMI,Serviço HDMI não é permitido,El servicio HDMI no está permitido,Сервис HDMI недоступен,Сервіс HDMI недоступний
+20049,MSG_HDMI_STREAMING_FAIL,HDMI service start fail,فشل بدء تشغيل خدمة HDMI,Falha de início do serviço HDMI,El servicio de encendido de HDMI ha fallado,Не удалось запустить сервис HDMI,Не вдалося запустити сервіс HDMI
+20050,stringid_rear,R,R,R,A,R,R
+20051,stringid_front,F,F,F,F,F,F
+20052,stringid_left,L,L,L,I,L,L
+20053,stringid_right,R,R,R,D,R,R
+30001,stringid_homepage,Home Page,الصفحة الرئيسية,Home Page,Página de inicio,Домашняя страница,Домашня сторінка
+30002,stringid_ipod,iPod,iPod,iPod,iPod,iPod,iPod
+30003,stringid_usb,USB,USB,USB,USB,USB,USB
+30004,stringid_miracast,Miracast,Miracast,Miracast,Miracast,Miracast,Miracast
+30005,stringid_hdmi,HDMI,HDMI,HDMI,HDMI,HDMI,HDMI
+30006,stringid_aux,AUX,AUX,AUX,AUX,AUX,AUX
+30007,stringid_usbipod,USB/iPod,USB/iPod,USB/iPod,USB/iPod,USB/iPod,USB / iPod
+30008,stringid_btaudio,BT Audio,الصوتBT,BT Áudio,BT Audio,BT Audio,BT Audio
+30009,stringid_disc,Disc,أساسي,Disco,Disco,Диск,Диск
+30010,stringid_setup,SETUP,الإعدادات,CONFIGURAÇÃO,Configuración,НАСТРОЙКА,НАСТРОЙКА
+30011,stringid_phone,PHONE,الهاتف,TELEFONE,Teléfono ,ТЕЛЕФОН,ТЕЛЕФОН
+30012,stringid_media,MEDIA,الوسائط,MÍDIA,MEDIA,МЕДИА,Медіа
+30013,stringid_navi,NAVI,NAVI,NAVEGAÇÃO,NAVEGACIÓN,НАВИГАТОР,НАВІГАТОР
+30014,stringid_radio2,RADIO,راديو,RÁDIO,RADIO,РАДИО,РАДІО
+30015,stringid_destsearch,Destination Search,بحث عن وجهة,Pesquisas de Destino,Búsqueda de destino,Поиск места назначения,Пошук місця призначення
+30016,stringid_qibla,Qibla,القبلة,Qibla,Qibla,Кибла,Кибла
+30017,stringid_mapnotinstall,Map not installed – please contact nearest Toyota dealer,خريطة غير مثبتة، اتصل بأقرب موزع لتويوتا,Mapa não instalado - entre em contato com o revendedor Toyota mais próximo,Mapa no instalado–por favor contacte con su consecionario de Toyota más cercano,"Карта не установлена - пожалуйста, обратитесь к ближайшему дилеру Toyota","Карта не встановлена-будь ласка, зверніться до найближчого дилера Toyota"
+30018,stringid_prayeronn,Prayer ON,صلاة على,Oração LIGADO,Encendido,Режим запроса активирован,Режим запиту активовано
+30020,stringid_radio,Radio,راديو,Rádio,Radio,Радио,Радіо
+30021,stringid_none,None,بدون,Nenhum,Ninguno,Нет,Ні
+30022,stringid_news,News,الأخبار,Notícia,Noticias,Новости,Новина
+30023,stringid_affairs,Affairs,شؤون الأعمال,Assuntos,Asuntos,Дела,Справа
+30024,stringid_info,Info,معلومات,informação,Información,Информация,Інформація
+30025,stringid_sport,Sport,رياضة,Esporte,Deportes,Спорт,Спорт
+30026,stringid_educate,Educate,تعليم,Educar,Educación,Образование,Освіта
+30027,stringid_drama,Drama,دراما,Drama,Drama,Драма,Драма
+30028,stringid_culture,Culture,ثقافة,Cultura,Cultura,Культура,Культура
+30029,stringid_science,Science,علوم,Ciência,Ciencia,Наука,Наука
+30030,stringid_varied,Varied,متنوع,Variado,Variedad,Разное,Різне
+30031,stringid_popmusic,Pop Music,موسيقى بوب,Música Pop,Música Pop,Поп-музыка,Поп-музика
+30032,stringid_rockmusic,Rock Music,موسيقى الروك,Musica Rock,Música Rock,Рок-музыка,Рок-музика
+30033,stringid_easymusic,Easy Music,موسيقى سهلة الاستعمال,Música Fácil,Música Fácil,Простая музыка,Проста музика
+30034,stringid_lightmusic,Light Music,موسيقى خفيفة,Música Leve,Música Suave,Легкая музыка,Легка музика
+30035,stringid_classmusic,Class Music,موسيقى كلاسيكية,Música Clássica,Música Clásica,Классическая музыка,Класична музика
+30036,stringid_othermusic,Other Music,موسيقى أخرى,Outras Músicas,Otra Música,Другая музыка,Інша музика
+30037,stringid_weather,Weather,الطقس,Clima,Clima,Погода,Погода
+30038,stringid_finance,Finance,المالية,Finança,Finanzas,Финансы,Фінанси
+30039,stringid_children,Children,الأطفال,Infantil,Niños,Дети,Діти
+30040,stringid_social,Social,اجتماعي,Social,Social,Социальное,Соціальний
+30041,stringid_religion,Religion,الديانة,Religião,Religión,Религия,Релігія
+30042,stringid_phonein,Phone In,الهاتف,Entrada de Telefone,Teléfono Conectado,Сигнал вызова,Сигнал виклику
+30043,stringid_travel,Travel,سفر,Viagem,Viajes,Путешествие,Подорож
+30044,stringid_leisure,Leisure,رَفَاهِيَة,Lazer,Ocio,Отдых,Відпочинок
+30045,stringid_jazzmusic,Jazz Music,موسيقى جاز,Música Jazz,Jazz,Джаз-музыка,Джаз-музика
+30046,stringid_countrymusic,Country Music,موسيقى ريفية,Música Country,Country,Кантри-музыка,Кантрі-музика
+30047,stringid_nationalmusic,National Music,موسيقى وطنية,Música Nacional,Música Nacional,Национальная музыка,Національна музика
+30048,stringid_oldiesmusic,Oldies Music,موسيقى قديمة,Música antiga,Música de Antaño,Старая музыка,Стара музика
+30049,stringid_folkmusic,Folk music,موسقى شعبية,música folclórica,Folclore,Фолк-музыка,Фолк-музика
+30050,stringid_document,Document,وثيقة,Documento,Documental,Документ,Документ
+30051,stringid_test,Test,اختبار,Teste,Prueba,Тест,Тест
+30052,stringid_alarm,Alarm,تنبيه,Alarme,Alarma,Будильник,Будильник
+30053,stringid_aswilloverwrite,"AS will overwrite preset channels, please confirm",سوف تقوم AS باستبدال القنوات الحالية، يرجى التأكيد,"AS sobrescreverá os canais predefinidos, por favor confirmar","AS sobrescribirá las memorias preestablecidas, confirme","AS перезапишет ранее установленные каналы, пожалуйста, подтвердите","AS перезапише раніше встановлені канали, будь ласка, підтвердіть"
+30054,stringid_pleasewait,Please wait…,الرجاء الانتظار...,"Por favor, aguarde…",Por favor espere…,"Пожалуйста, подождите…","Будь ласка, зачекайте…"
+30055,stringid_seekpty,Seek PTY,شركة Seek PTY,Procurar PTY,Buscar PTY,Искать PTY,Шукати PTY
+30056,stringid_seek,Seek ,شركة Seek ,Procurar,Búsqueda,Искать,Шукати
+30057,stringid_confirmation,Confirmation,تأكيد,Confirmação,Confirmación,Подтверждение,Підтвердження
+30058,stringid_as,AS,AS,AS,AS,"AS перезапишет ранее установленные каналы, пожалуйста, подтвердите","AS перезапише раніше встановлені канали, будь ласка, підтвердіть"
+30059,stringid_cancel,Cancel,إلغاء,Cancelar,Cancelar,Отмена,Скасування
+30060,stringid_attention,Attention,تنبيه,Atenção,Atención,Внимание,Увага
+30061,stringid_trafficalert,There is a traffic alert now,يوجد إخطار عن حركة المرور,Existe um alerta de tráfego no momento,Hay una alerta de tráfico ahora,В данный момент трафик перегружен,В даний момент трафік перевантажений
+30062,stringid_media2,Media,الوسائط ,Mídia,Medios,Медиа,Медіа
+30063,stringid_disconnected,%1 disconnected,تم فصل %1 ,%1 desconectado,%1 desconectado,%1 отключен,%1 відключений
+30064,stringid_isdisconnecting,%1 is disconnecting...,جارٍ فصل %1... ,%1 está desconectando...,%1 desconectando…,%1 отключается,%1 відключається
+30065,stringid_connectfailed,%1 connect failed,فشل فصل %1 ,%1 conexão falhou,%1 conexión fallida,не удалось подключить %1,не вдалося підключити %1
+30066,stringid_connected,%1 connected, تم توصيل %1,%1 conectado,%1 conectado,%1 подключен,%1 підключений
+30067,stringid_isconnecting,%1 is connecting...,جار توصيل %1...,%1 está se conectando...,%1 está conectando…,%1 подключается,%1 підключається
+30068,stringid_readytocast,Ready to cast...,جاهز للبث...,Pronto para lançar...,Listo para emitir...,Готово к преобразованию,Готово до перетворення
+30069,stringid_wifiinitialize,Wi-Fi initialize...,تهيئة شبكة Wi-Fi...,Inicialização Wi-Fi...,Iniciando Wi-Fi…,Инициализация Wi-Fi,Ініціалізація Wi-Fi
+30070,stringid_devicename,Device name : ,اسم الجهاز: ,Nome do dispositivo :,Nombre de dispositivo : ,Имя устройства:,Ім'я пристрою:
+30071,stringid_pleaseconnecthdmi,Please connect with HDMI cable,الرجاء التوصيل بكبل HDMI,Favor conectar com o cabo HDMI,Por favor conecte con un cable HDMI,"Пожалуйста, подключите HDMI-кабель","Будь ласка, підключіть кабель HDMI"
+30072,stringid_pleaseconnectaux,Please connect with AUX cable,الرجاء التوصيل بكبل AUX,Favor conectar com o cabo AUX,Por favor conecte con un cable AUX,"Пожалуйста, подключите AUX-кабель","Будь ласка, підключіть AUX-кабель"
+30073,stringid_wifidisplayinit,Wi-Fi display initializing…,جارٍ تهيئة شاشة شبكة Wi-Fi...,Tela de Wi-Fi inicializando…,Inicialización de pantalla Wi-Fi…,Инициализация дисплея Wi-Fi,Ініціалізація дисплея Wi-Fi
+30074,stringid_initializing,Wi-Fi initializing…,جارٍ تهيئة شبكة Wi-Fi...,Inicialização de Wi-Fi…,Inicialización de Wi-Fi…,Инициализация Wi-Fi,Ініціалізація Wi-Fi
+30075,stringid_code,code: ,الرمز: ,código:,código:,код:,код:
+30076,stringid_acceptwifi,Accept Wi-Fi connection from %1 ?,هل تم قبول اتصال شبكة Wi-Fi من قبل %1؟,Aceitar a conexão Wi-Fi de %1?,Acepta la conexión Wi-Fi de %1?,Принять подключение W-Fi от %1?,Прийняти підключення W-Fi від %1?
+30077,stringid_accept,Accept,قبول,Aceitar,Aceptar,Принять,Прийняти
+30078,stringid_reject,Reject,رفض,Rejeitar,Cancelar,Отклонить,Відхилити
+30079,stringid_hdmiconnected,HDMI device is connected,تم توصيل جهاز HDMI,Dispositivo HDMI está conectado,El dispositivo HDMI está conectado,HDMI-устройство подключено,HDMI-пристрій підключено
+30080,stringid_hdminotconnected,HDMI device is not connected,لم يتم توصيل جهاز HDMI,Dispositivo HDMI não está conectado,El dispositivo HDMI no está conectado,HDMI-устройство не подключено,HDMI-пристрій не підключено
+30081,stringid_hdmiservicenotallow,HDMI service is not allowed,غير مسموح بخدمة HDMI,Serviço HDMI não é permitido,El servicio HDMI no está permitido,HDMI-сервис недоступен,HDMI-сервіс недоступний
+30082,stringid_hdmistartfail,HDMI service start fail,فشل بدء تشغيل خدمة HDMI,Falha de início do serviço HDMI,El servicio de encendido de HDMI ha fallado,Не удалось запустить сервис HDMI,Не вдалося запустити сервіс HDMI
+30083,stringid_hdmiconnected2,HDMI device is connected,تم توصيل جهاز HDMI,Dispositivo HDMI está conectado,El dispositivo HDMI está conectado,HDMI-устройство подключено,HDMI-пристрій підключено
+30084,stringid_hdmidisconnected,HDMI device is disconnected,تم فصل جهاز HDMI,Dispositivo HDMI está desconectado,El dispositivo HDMI está desconectado,HDMI-устройство отключено,HDMI-пристрій відключено
+30085,stringid_auto,AUTO,AUTO,AUTO,AUTOMÁTICO,АВТО,АВТО
+30086,stringid_full,FULL,كامل,CHEIO,LLENO,ПОЛНОЕ,ПОВЕН
+30087,stringid_invalidformat,Invalid Format,تنسيق غير صالح,Formato Inválido,Formato Inválido,Недопустимый формат,Неприпустимий формат
+30088,stringid_nomedia,No Media,بدون الوسائط,Nenhuma Mídia,Sin Medio,Нет Медиа,Немає Медіа
+30089,stringid_nomusic,No Music,بدون موسيقى,Sem Música,Sin Música,Нет Музыки,Немає Музики
+30090,stringid_novideo,No Video,بدون فيديو,Sem Vídeo,Sin Video,Нет Видео,НемаєВідео
+30091,stringid_nophoto,No Photo,بدون صورة,Sem Foto,Sin Foto,Нет Фото,Немає Фото
+30092,stringid_pleaseselectafile,Please select a file,الرجاء تحديد ملف,Por favor selecione um arquivo,Por favor selecione un archivo,"Пожалуйста, выберите файл","Будь ласка, виберіть файл"
+30093,stringid_unknownartist,Unknown Artist,مؤدي غير معروف,Artista Desconhecido,Artista Desconocido,Неизвестный артист,Невідомий артист
+30094,stringid_info2,Info,معلومات,Info,información,Информация,Інформація
+30095,stringid_filecannotplay,"File can't be played, please check file content",لا يمكن تشغيل الملف، الرجاء التحقق من محتوى الملف,"O arquivo não pode ser reproduzido, favor verificar o conteúdo do arquivo","El archivo no se puede reproducir, compruebe el contenido del archivo","Невозможно воспроизвести файл, пожалуйста, проверьте контент файла","Неможливо відтворити файл, будь ласка, перевірте контент файлу"
+30096,stringid_pleaseinsertusb,Please insert USB,الرجاء إدخال USB,"Por favor, inserir  o USB",Por favor inserte unidad USB,"Пожалуйста, вставьте USB","Будь ласка, вставте USB"
+30097,stringid_videonotdriving,Videos is not available while driving,الفيديوهات غير متاحة أثناء القيادة,Vídeos não estão disponíveis quando dirigindo,Video no disponible mientras se conduce,Видео недоступно во время вождения,Відео недоступне під час водіння
+30098,stringid_mute,MUTE,كتم الصوت,MUDO,MUDO,БЕЗ ЗВУКА,БЕЗ ЗВУКУ
+30099,stringid_wirelessproblem,Wireless connection has problem,اتصال لاسلكي لديه مشكلة,Problemas na conexão sem fio ,Problema con la conexión inalámbrica,Проблема с беспроводным подключением,Проблема з бездротовим підключенням
+30100,stringid_wirelessnoresp,Wireless connection no response,اتصال لاسلكي أي رد,Sem resposta na conexão sem fio ,Conexión inalámbrica no responde,Беспроводное подключение не отвечает,Бездротове підключення не відповідає
+30101,stringid_wirelessnotsmooth,Wireless connection is not smooth,أداء اتصال لاسلكي ليست جيدة,Conexão sem fio não é estável,La conexión inalámbrica no es estable,Беспроводное подключение негладкое,Бездротове підключення негладкое
+30102,stringid_disc2,Disc,أساسي,Disco,Disco,Диск,Диск
+30103,stringid_pleaseinsertdisc,Please insert disc,الرجاء إدخال القرص,"Por favor, insira o disco",Por favor inserte un disco,"Пожалуйста, вставьте диск","Будь ласка, вставте диск"
+30104,stringid_unsupporteddisc,Unsupported disc,قرص غير مدعوم,Disco não suportado,Disco no soportado,Диск не поддерживается,Диск не підтримується
+30105,stringid_loading,Loading...,جارٍ التحميل…,Carregando...,Cargando…,Загрузка,Завантаження
+30106,stringid_ejecting,Ejecting...,جارٍ الرفض...,Ejetando...,Expulsar…,Извлечение,Витяг
+30107,stringid_track,Track,تتبع,Trilha sonora,Pista,Отследить,Відстеживши
+30108,stringid_ipod2,iPod,أي بود,iPod,iPod,iPod,iPod
+30109,stringid_notitle,No Title,بدون عنوان,Sem Título,Sin Título,Нет заголовка,Немає заголовка
+30110,stringid_unknownartist2,Unknown Artist,مؤدي غير معروف,Artista Desconhecido,Artista Desconocido,Неизвестный артист,Невідомий артист
+30111,stringid_unknownalbum,Unknown Album,ألبوم غير معروف,Álbum Desconhecido,Álbum Desconocido,Неизвестный альбом,Невідомий альбом
+30112,stringid_allsongs,All Songs,جمع الأغاني,Todas as Músicas,Todas las Canciones,Все песни,Всі пісні
+30113,stringid_playlists,Playlists,قوائم التشغيل,Listas de Reprodução,Listas de Reproducción,Плейлисты,Плейлисти
+30114,stringid_artists,Artists,المؤدون,Artistas,Artistas,Артисты,Артист
+30115,stringid_albums,Albums,الألبومات,Álbuns,Álbumes,Альбомы,Альбом
+30116,stringid_genre,Genre,النوع,Gênero,Género,Жанр,Жанр
+30117,stringid_composers,Composers,الموسيقيون,Compositores,Compositores,Композиторы,Композитор
+30118,stringid_unknown,unknown,غير معروف,desconhecido,Desconocido,неизвестно,невідомий
+30119,stringid_plzconnectipod,Please connect iPod or iPhone...,الرجاء توصيل جهاز أي باد أو أي فون...,Por favor conecte o iPod ou o iPhone...,"Por favor, conecte iPod o iPhone …","Пожалуйста, подключитесь к iPod или iPhone","Будь ласка, підключіться до iPod або iPhone"
+30120,stringid_mudialoading,Media library loading,تحميل مكتبة الوسائط,Carregamento de biblioteca de mídia,Cargando la biblioteca multimedia,Загрузка медиа-библиотеки,Завантаження медіа-бібліотеки
+30121,stringid_ipod3,iPod,iPod,iPod,iPod,iPod,iPod
+30122,stringid_podcast,Podcast,بودكاست,Podcast,Podcast,Подкаст,Подкаст
+30123,stringid_noalbum,No Album,لا يوجد ألبوم,Sem Álbum,Sin Álbum,Нет альбомов,Немає альбомів
+30124,stringid_noartist,No Artist,لا يوجد فنان,Sem Artista,Sin Artista,Нет артистов,Немає артистів
+30125,stringid_audiobooks,Audiobooks,الكتب الصوتية,Audiolivros,Libros de Audio,Аудиокниги,Аудіокниги
+30126,stringid_itunesu,iTunes U,iTunes U,iTunes U,iTunes U,iTunes U,iTunes U
+30127,stringid_phone2,Phone,الهاتف,Celular,Teléfono,Телефон,Телефон
+30128,stringid_touchconnectbt,Touch “Connect” ;;to connect with Bluetooth devices,اضغط على ;; “اتصال“ للاتصال بأجهزة البلوتوث,Toque em “Conectar“ ;;para conectar dispositivos Bluetooth,Toque “Conectar“ ;;para conectarse con dispositivos Bluetooth,Нажать “Подключить”;; чтобы подключиться к устройствам-Bluetooth,Натиснути “Підключити”;; щоб підключитися до пристроїв Bluetooth
+30129,stringid_connect,Connect,اتصال,Conectar,Conectar,Подключить,Підключити
+30130,stringid_favorite,Favorite,المفضلة,Favorito,Favorito,Любимый,Коханий
+30131,stringid_missed,Missed,غير موجود,Perdido,Perdida,Отсутствует,Бути відсутнім
+30132,stringid_all,All,الكل,Todos,Todas ,Все песни,Всі пісні
+30133,stringid_search,Search,بحث,Pesquisar,Buscar,Поиск,Пошук
+30134,stringid_waiting,Waiting,قيد الانتظار,Aguardando,Esperando,Ожидание,Очікування
+30135,stringid_held,Held,تعليق,Aguarde,Espera,Приостановлено,Призупинений
+30136,stringid_music,Music,موسيقى,Música,Música,Музыка,Музика
+30137,stringid_calling,Calling...,جارٍ الاتصال...,Ligando...,Llamando...,Вызов,Виклик
+30138,stringid_incomingcall,Incoming Call...,مكالمة واردة...,Recebendo Ligação...,Llamada Entrante...,Входящий вызов,Вхідний дзвінок
+30139,stringid_clickhereback,Click here to go back to the active call,انقر هنا للعودة إلى الاتصال النشط,Clique p/ voltar a chamada ativa ,Click p/ volver a llamada activa,"Нажмите сюда, чтобы вернуться к активному вызову","Натисніть сюди, щоб повернутися до активного виклику"
+30140,stringid_today,Today,اليوم,Hoje,Hoy ,Сегодня,Сьогодні
+30141,stringid_yesterday,Yesterday,أمس,Ontem,Ayer,Вчера,Вчора
+30142,stringid_monday,Monday,الاثنين,Segunda-feira,Lunes,Понедельник,Понеділок
+30143,stringid_tuesday,Tuesday,الثلاثاء,Terça-feira,Martes,Вторник,Вівторок
+30144,stringid_wednesday,Wednesday,الأربعاء,Quarta-feira,Miércoles,Среда,Середа
+30145,stringid_thursday,Thursday,الخميس,Quinta-feira,Jueves,Четверг,Четвер
+30146,stringid_friday,Friday,الجمعة,Sexta-feira,Viernes,Пятница,П'ятниця
+30147,stringid_saturday,Saturday,السبت,Sábado,Sábado,Суббота,Субота
+30148,stringid_sunday,Sunday,الأحد,Domingo,Domingo,Воскресенье,Неділя
+30149,stringid_setup2,Setup,إعداد,Configuração,Configuración,Настройка,Настройка
+30150,stringid_legal,Legal,ﻕﺎﻧﻮﻨﻳ,Legal,Legal,Легальный,Легальний
+30151,stringid_suretoreset,Are you sure to reset?,ﻪﻟ ﺕﺮﻳﺩ ﺏﺎﻠﺗﺄﻜﻳﺩ ﺈﻋﺍﺩﺓ ﺎﻠﺘﻌﻴﻴﻧ؟,Certeza que quer reiniciar?,¿Está seguro de restablecer?,"Вы уверены, что хотите перезапустить?","Ви впевнені, що хочете перезапустити?"
+30152,stringid_naviaudio,Navigation audio,ﺎﻠﻣﻼﺣﺓ ﺎﻠﺻﻮﺘﻳﺓ,Áudio de navegação,Audio de Navegación,Аудио-навигация,Аудіо-навігація
+30153,stringid_resetsystem,Reset system to default,إعادة تعيين النظام,Redefinir o sistema ao padrão,Restablecer datos de fábrica,Сбросить настройки системы до настроек по умолчанию,Скинути налаштування системи до налаштувань за замовчуванням
+30154,stringid_prayeron,Prayer ON,صلاة على,Oração LIGADO,Reproducción en curso,Режим запроса активирован,Режим запиту активовано
+30155,stringid_cautionauto,Caution auto dismiss,الرفض التلقائي للإنذار,Atenção auto fechar,Precaución auto cancelar,Автоматическое отключение предупреждений,Автоматичне відключення попереджень
+30156,stringid_settime,Set time,ضبط الوقت,Definir tempo,Establecer hora,Установить время,Встановити час
+30157,stringid_setauto,Set automatically,ضبط تلقائي,Definir automaticamente,Establecer automáticamente,Установить автоматически,Встановити автоматично
+30158,stringid_timezone,Time zone,المنطقة الزمنية,Fuso horário,Zona Horaria,Временной пояс,Часовий пояс
+30159,stringid_24hr,24 Hour time,توقيت 24 ساعة,24 horas,24 horas,Время в формате “24 часа”,Час у форматі “24 години”
+30160,stringid_datetime,Date & Time,التاريخ/الوقت,Data e hora,Fecha y Hora,Дата и время,Дата і час
+30161,stringid_voicelanguage,Voice language,لغة المكالمة الصوتية,Idioma da voz,Idioma de voz,Голосовой язык,Голосова мова
+30162,stringid_systemlanguage,System language,النظام اللغة,Idioma do sistema,Idioma del sistema,Язык системы,Мова системи
+30163,stringid_reset,Reset,إعادة تعيين,Resetar,Restablecer,Перезапустить,Перезапустивши
+30164,stringid_chroma,Chroma,مفتاح كروما,Croma,Croma,Хроматичность,Хроматичность
+30165,stringid_contrast,Contrast,التباين,Contraste,Contraste,Контраст,Контраст
+30166,stringid_brightness,Brightness,السطوع,Brilho,Brillo,Яркость,Яскравість
+30167,stringid_autodimmer,Auto dimmer,تلاشي تلقائي,Auto regulador,Intensidad automática,Автоматический регулятор подсветки,Автоматичний регулятор підсвічування
+30168,stringid_bas,BAS,BAS,BAS,BAS,BAS,BAS
+30169,stringid_mid,MID,MID,MID,MID,MID,MID
+30170,stringid_tre,TRE,TRE,TRE,TRE,TRE,TRE
+30171,stringid_eq,EQ,EQ,EQ,EQ,EQ,EQ
+30175,stringid_clicksound,Click sound,انقر فوق الصوت,Som de clique ,Pitido,Звук клика,Звук кліка
+30176,stringid_no,No,لا,Não,No,Нет,Ні
+30177,stringid_yes,Yes,نعم,Sim,Sí,Да,Да
+30178,stringid_acceptbtconn,Accept Bluetooth connection from ,قبول اتصال البلوتوث من قبل ,Aceitar conexão Bluetooth de ,Aceptar Conexión Bluetooth de ,Принять форму подключения по Bluetooth,Прийняти форму підключення по Bluetooth
+30179,stringid_douwantremove,Do you want to remove this bluetooth paired device?,هل تريد إزالة جهاز البلوتوث المقترن؟,Você quer remover este dispositivo emparelhado bluetooth?,Desea eliminar este dispositivo Bluetooth emparejado?,"Вы хотите удалить устройство, сопряженное по Bluetooth?","Ви хочете видалити пристрій, пов'язаний з Bluetooth?"
+30180,stringid_ok,OK,موافق,OK,OK,ОК,ОК
+30181,stringid_maxnumberpaired,"Maximum number of paired devices has been reached, please remove one of the paired devices",تم الوصول إلى الحد الأقصى لعدد الأجهزة المقترنة، يرجى إزالة أحد الأجهزة المقترة,"Número máximo de dispositivos emparelhados foi atingido, remova um dos dispositivos emparelhados",Se ha alcanzado la cantidad máxima de dispositivos emparejados. Elimine uno de los dispositivos.,"Достигнуто максимальное количество сопряженных устройств, пожалуйста, удалите одно из сопряженных устройств","Досягнуто максимальну кількість сполучених пристроїв, будь ласка, видаліть одне з сполучених пристроїв"
+30182,stringid_warning,Warning,تحذير,Atenção,Advertencia,Внимание,Увага
+30183,stringid_contactphoto,Contact photo,صورة جهة الاتصال,Foto do Contato ,Foto de contacto,Фото контакта,Фото контакту
+30184,stringid_autoconnect,Auto connect,اتصال تلقائي,Conexão automática,Autoconectar,Автоматическое подключение,Автоматичне підключення
+30185,stringid_autoanswer,Auto answer,إجابة تلقائية,Resposta automática,Respuesta automática,Автоматический ответ,Автоматична відповідь
+30186,stringid_name,Name,الاسم,Nome,Nombre,Имя устройства:,Ім'я пристрою:
+30187,stringid_nodevices,No devices,بدون أجهزة,Sem dispositivos,Sin dispositivos,Нет устройств,Немає пристроїв
+30188,stringid_availabledev,Available devices,الأجهزة المتاحة,Dispositivos disponíveis,Dispositivos disponibles,Доступные устройства,Доступні пристрої
+30189,stringid_bluetooth,Bluetooth,البلوتوث,Bluetooth,Bluetooth,Bluetooth,Bluetooth
+30190,stringid_passworderror,Password error,خطأ في كلمة المرور,Senha errada,Error de contraseña,Ошибка ввода пароля,Помилка введення пароля
+30191,stringid_enterpassword,Enter the password,أدخل كلمة المرور,Digite a senha,Introduzca la contraseña,Ввести пароль,Ввести пароль
+30192,stringid_4gconn,4G Connection,اتصال بشبكة 4G,Conexão 4G,Conexión 4G,Соединение 4G,З'єднання 4G
+30193,stringid_wifi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi
+30194,stringid_pictureslide,Picture slideshow timing (sec),مؤقت عرض شرائح الصور (بالثانية),Tempo de apresentação da imagem (seg),Tiempo de presentación de diapositivas (seg),Время слайд-шоу изображений (сек),Час слайд-шоу зображень (сек)
+30195,stringid_mediaautofull,Media auto full screen,عرض تلقائي للالوسائط بملء الشاشة,Mídia tela cheia automática,Pantalla completa automática,Автоматический переход в режим полного экрана при просмотре медиа,Автоматичний перехід в режим повного екрану при перегляді медіа
+30196,stringid_hdmiautoplay,HDMI autoplay,تشغيل HDMI تلقائي,Reprodução automática de HDMI,Reproducción automática de HDMI,Автоматическое воспроизведение HDMI,Автоматичне відтворення HDMI
+30197,stringid_discautoplay,Disc autoplay,تشغيل تلقائي للقرص,Reprodução automática de disco,Reproducción automática de disco,Автоматическое воспроизведение диска,Автоматичне відтворення диска
+30198,stringid_rdsenable,RDS enable,تمكين RDS,Ativar RDS,Habilitar RDS,Активировать RDS,Активувати RDS
+30199,stringid_normal,Normal,عادي,Normal,Normal ,Нормальный,Нормальни
+30200,stringid_near,Near,قريبًا,Perto,Cerca,Рядом,Близько
+30201,stringid_alertvolume,Alert Volume,مستوى التنبيه,Volume do Aviso,Vol. de alerta,Звук будильника,Звук будильника
+30202,stringid_display,Display,عرض,Tela,Pantalla,Дисплей,Дисплей
+30203,stringid_parkingbrake,Parking brake check,التحقق من فرامل إيقاف السيارات,Verificação do freio de estacionamento,Verificación del freno de estacionamiento,Проверка ручного тормоза,Перевірка ручного гальма
+30204,stringid_carspeedcheck,Car speed check,التحقق من سرعة السيارة,Verificação de velocidade do carro,Verificación de velocidad del automóvil,Проверка скорости автомобиля,Перевірка швидкості автомобіля
+30205,stringid_parkingguide,Parking guide line,خط توجيه توقف السيارة,Linha de guia de estacionamento,Líneas de guía de estacionamiento,Указания по парковке,Вказівки по парковці
+30206,stringid_systeminfo,System info,معلومات النظام,Informação do sistema,Información del sistema,Системная информация,Системна інформація
+30207,stringid_bootloaderver,Bootloader version,إصدار أداة إعادة التحميل,Versão do bootloader,Versión del gestor de arranque,Версия загрузчика,Версія завантажувача
+30208,stringid_systemmcuver,System MCU version,إصدار MCU للنظام,Versão do sistema MCU,Versión del sistema MCU,Версия системы MCU,Версія системи MCU
+30209,stringid_displaymcuver,Display MCU version,إصدار MCU للعرض,Tela da versão do MCU,Visualizar la versión del MCU,Показать версию MCU,Показати версію MCU
+30210,stringid_boardid,Board ID,معرف اللوحة,ID da placa,ID de la placa,Идентификация панели,Ідентифікація панелі
+30211,stringid_btmodulever,BT Module Version,إصدار BT للنظام,Versão do Módulo BT,Versión del módulo BT,Версия модуля BT,Версія модуля BT
+30212,stringid_m,M,M,M,M,М,М
+30213,stringid_h,H,H,H,H,Ч,Ч
+30214,stringid_d,D,D,D,D,Д,Д
+30215,stringid_y,Y,Y,Y,Y,Г,Г
+30216,stringid_pinerror,PIN error,خطأ برمزPIN,Erro PIN,Error de PIN,Ошибка ввода ПИН-кода,Помилка введення ПІН-коду
+30217,stringid_trytimes,Try times:,أوقات المحاولة:,Tente vezes:,Intentos :,Количество попыток:,Кількість спроп
+30218,stringid_pin,PIN,رمز PIN,PIN,PIN,ПИН-код,ПІН-код
+30219,stringid_speedpulse,Speed pulse,نبضة سريعة,Pulso de velocidade,Pulso de velocidad,Скорость,Швидкість
+30220,stringid_password,Password,كلمة المرور,Senha,Contraseña,Пароль,Пароль
+30221,stringid_servicesexpiry,Connected services expiry,انتهاء صلاحية الخدمات المتصلة,Exp. dos serviços conectados,Exp. servicios conectados,Дата истечения срока подключения сервисов,Дата закінчення терміну підключення сервісів
+30222,stringid_mediasettingosd,Media settings OSD,إعدادات الالوسائط OSD,Configurações de mídia OSD,Configuración de medios OSD,OSD настройки медиа,OSD Налаштування медіа
+30223,stringid_mediasettings,Media Settings,إعدادات الالوسائط,Configurações de mídia,Configuración de medios,Настройки медиа,Налаштування медіа
+30224,stringid_flat,Flat,بسيط,Plano,Plano,Ровная,Рівний
+30225,stringid_classic,Classic,كلاسيكي,Clássico,Clásico,Классическая,Класичний
+30226,stringid_rock,Rock,روك,Rock,Rock,Рок,Рок
+30227,stringid_pop,Pop,بوب,Pop,Pop,Поп,Поп
+30228,stringid_live,Live,مباشر,Ao Vivo,En vivo,Живая,Жива
+30229,stringid_jazz,Jazz,جاز,Jazz,Jazz,Джаз,Джаз
+30230,stringid_dance,Dance,رقص,Dança,Baile,Дэнс,Денс
+30231,stringid_treble,Treble,إيقاع عالي الطبقة,Agudos,Agudos,Верхняя частота,Верхня частота
+30232,stringid_middle,Middle,متوسط,Meio,Medios,Средняя,Середня
+30233,stringid_bass,Bass,جهير,Baixo,Graves,Бас,Бас
+30234,stringid_voicecommand,Voice Command,أمر صوتي,Comando de Voz,Comando de voz,Голосовая команда,Голосова команда
+30235,stringid_timeout,Timeout,مهلة,Tempo esgotado,Tiempo agotado,Истечение срока ожидания,Закінчення терміну очікування
+30236,stringid_invalidcommand,Invalid command,أمر غير صالح,Comando inválido,Comando inválido,Недопустимая команда,Неприпустима команда
+30237,stringid_plzconnectbt,Please connect your Phone via Bluetooth,يرجى توصيل هاتفك عبر البلوتوث,"Por favor, conecte seu telefone via Bluetooth ","Por favor, conecte su teléfono a través de Bluetooth","Пожалуйста, подключите свой телефон через Bluetooth","Будь ласка, підключіть свій телефон через Bluetooth"
+30238,stringid_plzspeakbeep,Please speak after the beep,يرجى التحدث بعد سماع الصفارة,"Por favor, fale depois do sinal",Por favor hable después del pitido,"Пожалуйста, говорите после гудка","Будь ласка, говоріть після гудка"
+30239,stringid_invalidnumber,Invalid number,رقم غير صالح,Número inválido,Número inválido,Недопустимый номер,Неприпустимий номер
+30240,stringid_callfullname,Call [Full Name],اتصال بـ [الاسم بالكامل],Ligue para [Nome Completo],Llamar a [Nombre completo],Вызвать [Полное имя],Викликати [повне ім'я]
+30241,stringid_vcprepare,"Voice command function is under preparation, please trigger voice command after a few seconds",وظيفة الأوامر الصوتية قيد الإنشاء، لذا يرجى محاولة استخدام الأمر الصوتي بعد بضع ثوانٍ,"Função de comando de voz está em preparação, por favor, acione o comando de voz depois de alguns segundos","La función de comando de voz está en preparación, accione el comando de voz después de unos segundos","Подготовка функции голосовой команды, пожалуйста, подайте голосовую команду через несколько секунд","Підготовка функції голосової команди, будь ласка, подайте голосову команду через кілька секунд"
+30242,stringid_vcupdated,"Voice language is being updated, please trigger voice command after a few seconds",جار تحديث اللغة الصوتية، لذا يرجى محاولة استخدام الأمر الصوتي بعد بضع ثوانٍ,"O idioma da voz está sendo atualizado. Por favor, acione o comando de voz após alguns segundos","El lenguaje de voz se está actualizando, por favor accione el comando de voz después de unos segundos","Голосовой язык обновляется, пожалуйста, подайте голосовую команду через несколько секунд","Голосовий мова оновлюється, будь ласка, подайте голосову команду через кілька секунд"
+30243,stringid_volumecontrol,Volume control,التحكم في مستوى الصوت,Controle de volume,Control del volumen,Контроль звука,Контроль звуку
+30244,stringid_navigation,Navigation,تنقل,Navegação,Navegación,Навигация,Навігація
+30245,stringid_phone3,Phone,الهاتف,Telefone,Teléfono,Телефон,Телефон
+30246,stringid_externalmedia,External Media,الوسائط خارجية,Mídia Externa,Medios Externos,Внешнее медиа,Зовнішнє медіа
+30247,stringid_media3,Media,الوسائط,Mídia,Medios ,Медиа,Медіа
+30248,stringid_prayer,Prayer,صلاة,Oração,Reproductor,Запрос,Запит
+30249,stringid_statusbar,Status bar,شريط الحالة,Barra de status,Barra de estado,Панель состояния,Панель стану
+30250,stringid_voicecomm,Voice Command,أمر صوتي,Comando de Voz,Comando de voz,Голосовая команда,Голосова команда
+30251,stringid_generalsettings,General Settings,إعدادت عامة,Configurações Gerais,Config. general,Общие настройки,Загальні налаштування
+30252,stringid_mediasettings2,Media Settings,إعدادات الالوسائط,Config. de Mídia,Config. de medios,Настройки медиа,Налаштування медіа
+30253,stringid_toyotaparkassist,TOYOTA Park Assist,مساعد إيقاف تويوتا,Assist. estac.TOYOTA,TOYOTA Park Assist,Помощь по парку TOYOTA,Допомога по парку TOYOTA
+30254,stringid_soundsettings,Sound Settings,إعدادات الصوت,Definições de Som,Ajustes de sonido,Настройки звука,Налаштування звуку
+30255,stringid_wirelessconnection,Wireless Connection,اتصال لاسلكي,Conexão sem Fio,Conexión inalámbrica,Беспроводное соединение,Бездротове з'єднання
+30256,stringid_wirelesssettings,Wireless Settings,ﺎﺘﺻﺎﻟ ﻼﺴﻠﻜﻳ,Config. Wireless,Config. Inalámbrica,Беспроводные настройки,Бездротові налаштування
+30257,stringid_radiofm,Radio FM,راديو إف إم,Rádio FM,Radio FM,Радио FM,Радіо FM
+30258,stringid_radioam,Radio AM,راديو إيه إم,Rádio AM,Radio AM,Радио AM,Радіо AM
+30259,stringid_noradiosignal,No Radio Signal,لا توجد إشارة راديو,Nenhum Sinal de Rádio,Sin señal de radio,Радиосигнал отсутствует,Радіосигнал відсутній
+30260,stringid_nodisc,No Disc,بدون قرص,Nenhum Disco,Sin disco,Диск отсутствует,Диск відсутній
+30261,stringid_nobtdevice,No BT device,بدون جهاز بلوتوث,Nenhum dispositivo BT,Sin dispositivo BT,BT-устройство отсутствует,BT-пристрій відсутній
+30262,stringid_nousbdevice,No USB device,بدون جهاز USB,Sem dispositivo USB,Sin dispositivo USB,USB-устройство отсутствует,USB-пристрій відсутній
+30263,stringid_nohdmidevice,No HDMI device,بدون جهاز HDMI,Sem dispositivo HDMI,Sin dispositivo HDMI,HDMI-устройство отсутствует,HDMI-пристрій відсутній
+30264,stringid_nowificonn,No Wi-Fi connection,بدون اتصال بشبكة Wi-Fi,Sem conexão Wi-Fi,Sin conexión Wi-Fi,Подключение к Wi-Fi отсутствует,Підключення до Wi-Fi відсутня
+30265,stringid_wifidisplaydisconn,Wi-Fi display device disconnected,تم فصل جهاز شاشة شبكة Wi-Fi,Dispositivo de tela Wi-Fi desconectado,Dispositivo de pantalla Wi-Fi desconectado,Устройство показа с Wi-Fi отсутствует,Пристрій показу з Wi-Fi відсутній
+30266,stringid_discinserted,Disc inserted,تم إدخال القرص,Disco inserido,Disco insertado,Диск вставлен,Диск вставлений
+30267,stringid_usbdevice,USB device,جهاز USB,Dispositivo USB,Dispositivo USB,USB-устройство,USB-пристрій
+30268,stringid_ipodiphone,iPod/iPhone ,أي باد/أي فون ,iPod/iPhone,iPod/iPhone ,iPod/iPhone ,iPod/iPhone 
+30269,stringid_wifidisplaydev,Wi-Fi display device,جهاز شاشة شبكة Wi-Fi,Disp. exibição Wi-Fi,Disp. Visualización Wi-Fi,Устройства показа Wi-Fi,Пристрої показу Wi-Fi
+30270,stringid_general,General,عامة,Geral,General,Общее,Загальне
+30271,stringid_unsupportedfs,Unsupported file system,ملف شكل غير مدعوم,Sistema de arquivos não suportado,Sistema de archivos no admitido,Система файлов не поддерживается,Система файлів не підтримується
+30272,stringid_network,Network,إتصال شبكة,Rede,Red,Сеть,Мережа
+30273,stringid_wifi3g,Wi-Fi/3G,3G/Wi-Fi,Wi-Fi/3G,Wi-Fi/3G,Wi-Fi/3G,Wi-Fi / 3G
+30274,stringid_unabletoplayavfront,"Unable to play, audio/video priority to front screen",لا يمكن تشغيل الملف الصوتي/الفيديو، الأولوية للشاشة الأمامية,"Não é possível reproduzir, prioridade de áudio/vídeo para a tela frontal","No se puede reproducir, prioridad de audio / video a la pantalla frontal","Невозможно воспроизвести, приоритет аудио / видео на переднем экране","Неможливо відтворити, пріоритет аудіо / відео на передньому екрані"
+30275,stringid_usbnoresp,USB Device No Response,جهاز USB لا اجابة,Dispositivo USB sem resposta,Dispositivo USB sin respuesta,USB-устройство не отвечает,USB-пристрій не відповідає
+30276,stringid_unsupportedusb,Unsupported USB Device,غير مدعوم جهاز USB,Dispositivo USB não suportado,Dispositivo USB no compatible,Не поддерживаемое USB-устройство,Нi Підтримуваний USB-пристрій
+30277,stringid_usbhubnotsupported,USB hub is not supported,لم يتم دعم محور USB,Hub USB não é suportado,Hub USB no compatible,USB-концентратор не поддерживается,USB-концентратор не підтримується
+30278,stringid_eula,EULA,شريط الحالة,EULA,EULA,EULA,EULA
+30279,stringid_enduserlicagree,End User License Agreement,اتفاقية ترخيص المستخدم النهائي,Contrato de Licença de Usuário Final,Acuerdo de licencia de usuario final,Лицензионное соглашение с конечным пользователем,Ліцензійна угода з кінцевим користувачем
+30280,stringid_dontshowagain,Don't show again,يرجى عدم العرض مرة أخرى,Não mostrar de novo,No mostrar de nuevo,Не показывать снова,Не показувати знову
+30281,stringid_agree,Agree,أوافق,Aceitar,De acuerdo,Согласиться,Погодитися
+30282,stringid_previous,Previous,السابق,Anterior,Anterior,Предыдущее,Попереднє
+30283,stringid_next,Next,التالي,Próximo,Siguiente,Следующее,Наступний
+30284,stringid_setlangplzrefrain,Setting language... Please refrain from using other functions at this moment until completion,لغة الإعداد.... يرجى الامتناع عن استخدام وظائف أخرى في الوقت الراهن حتى الانتهاء,"Definir o idioma... Por favor, abstenha-se de usar outras funções neste momento até a conclusão",Configurando idioma... Por favor no utilice otras funciones hasta que finalice el proceso,"Настройка языка… Пожалуйста, в это время не используйте другие функции до завершения","Налаштування мови ... будь ласка, в цей час не використовуйте інші функції до завершення"
+30285,stringid_preparing,Preparing…,جارٍ الإعداد...,Processando…,...Preparando,Подготовка…,Готуйся
+30286,stringid_autoaccept,Auto accept,قبول تلقائي,Aceitar automaticamente,Auto aceptar,Автоматическое принятие,Автоматичне прийняття
+30287,stringid_skip,Skip,تخطى,Pule,Saltar,Пропустить,Пропустити
+30288,stringid_siri,Siri,سيري,Siri,Siri,Siri,Siri
+30289,stringid_plzenablesiri,Please enable Siri in the phone settings,الرجاء تمكين سيري في إعدادات الهاتف,Favor habilitar SIRI nas configurações do telefone,Por favor habilite Siri en la configuración del teléfono,"Пожалуйста, активируйте Siri в настройках телефона","Будь ласка, активуйте Siri в налаштуваннях телефону"
+30290,stringid_mfiauthfailed,MFI Auth Failed,فشلت مصادقة MFI,Autenticação de MFI falhou,Autenticación MFI fallido,Не удалось аутентифицировать MFI,Не вдалося автентифікувати MFI
+30291,stringid_identifyrejected,Identification Rejected,تم رفض التعريف,Identificação Rejeitada,Identificación rechazada,Идентификация отклонена,Ідентифікація відхилена
+30292,stringid_ejected,Ejected,مرفوض,Ejetando,Expulsado,Извлечено,Витягнено
+30293,stringid_spanish,Spanish,أسباني,Espanhol,Español,Испанский,Іспанський
+30294,stringid_portuguese,Portuguese,برتغالي,Português,Portugués,Португальский,Португальський
+30295,stringid_checksurronding,Check surroundings for safety.,ﺖﺤﻘﻗ ﻢﻣﺍ ﻲﺤﻴﻃ ﺐﻛ ﻞﻀﻣﺎﻧ ﺎﻠﺳﻼﻣﺓ.,Verifique os arredores para a segurança.,Mire alrededor por seguridad.,Проверить безопасность окружения,Перевірити безпеку оточення
+30296,stringid_settinglangplztill,Setting language... Please refrain from using other;; functions at this moment until completion,لغة الإعداد.... يرجى الامتناع عن استخدام وظائف ;;أخرى في الوقت الراهن حتى الانتهاء,"Definindo idioma... Favor, não usar outras;;  funções no momento até a conclusão ",Configurando idioma... Por favor no utilice otras;; funciones hasta que finalice el proceso,"Настройка языка… Пожалуйста, в это время не используйте другие;; функции до завершения","Налаштування мови ... будь ласка, в цей час не використовуйте інші;; функції до завершення"
+30297,stringid_compass,Compass,القبلة,Compass,Compass,Компас,Компас
+30298,stringid_btaudioconnectfailed,BT Audio connect failed,فشل فصل الصوتBT,BT Áudio conexão falhou,BT Audio conexión fallida,Не удалось подключиться к BT аудио,Не вдалося підключитися до BT аудіо
+35000,stringid_talk,Talk,Talk,Conversa,Hable,Разговор,Розмова
+35001,stringid_classicrock,Classic Rock,Classic Rock,Rock Clássico,Rock Clásico,Классический рок,Класичний рок
+35002,stringid_adult,Adult Hits,Adult Hits,Hits Adultos,Hits para Adultos,Хиты для взрослых,Хіти для дорослих
+35003,stringid_softrock,Soft Rock,Soft Rock,Rock Suave,Rock Suave,Легкий рок,легкій рок
+35004,stringid_top40,Top 40,Top 40,Top 40,Top 40,Топ 40,Топ 40
+35005,stringid_oldies,Oldies,Oldies,Antigas,De Antaño,Старое,Старе
+35006,stringid_soft,Soft,Soft,Suave,Suave,Мягкий,М'який
+35007,stringid_nostalgia,Nostalgia,Nostalgia,Nostalgia,Nostalgia,Ностальгия,Ностальгія
+35008,stringid_classical,Classical,Classical,Clássica,Clásico,Классический,Класичний
+35009,stringid_rhythmandblues,Rhythm and Blues,Rhythm and Blues,Rhythm and Blues,Ritmo y Blues,Ритм и Блюз,Ритм і Блюз
+35010,stringid_softrhythmblue,Soft Rhythm&Blue,Soft Rhythm&Blue,Suave Rhythm and Blues,Ritmo Suave y Blue,Мягкий ритм и блюз,М'який ритм і блюз
+35011,stringid_lang,Language,Language,Língua,Idioma,Язык,Мова
+35012,stringid_religiousmusic,Religious Music,Religious Music,Música Religiosa,Música Religiosa,Религиозная музыка,Релігійна музика
+35013,stringid_religioustalk,Religious Talk,Religious Talk,Conversa Religiosa,Charla Religiosa,Религиозный разговор,РЕЛІГІЙНА розмова
+35014,stringid_presonality,Personality,Personality,Personalidade,Personalidad,Личность,Особистість
+35015,stringid_public,Public,Public,Público,Público,Публичный,Публічний
+35016,stringid_college,College,College,Faculdade,Colegial,Колледж,Коледж
+35017,stringid_spanishtalk,Spanish Talk,Spanish Talk,Conversa Espanhola,Habla Hispana,Испанский разговор,Іспанська розмова
+35018,stringid_spanishmusic,Spanish Music,Spanish Music,Música Espanhola,Música Hispana,Испанская музыка,Іспанська музика
+35019,stringid_hiphop,Hip Hop,Hip Hop,Hip Hop,Hip Hop,Хип-хоп,Хіп-хоп
+35020,stringid_emergencytest,Emergency Test,Emergency Test,Teste de Emergência,Prueba de Emergencia,Экспресс-тест,Експрес-тест
+35021,stringid_emergency,Emergency,Emergency,Emergência,Emergencia,Экстренный случай,Екстрений випадок
+35022,stringid_country,Country,Country,Country,Country,Страна,Країна
+35024,stringid_clickheretoback,Click here to go back to the active call,اضغط هنا للعودة إلى المكالمة النشطة,Clique p/ voltar à chamada ativa,Regresar para activar la llamada,"Нажать сюда, чтобы вернуться к активному вызову","Натиснути сюди, щоб повернутися до активного виклику"
+35025,stringid_mute2,Mute,كتم الصوت,Mudo,Mudo,Без звука,Без звуку
+35026,stringid_insp,Inspection mode,وضع الفحص,Modo de inspeção,Modo de inspección,Режим проверки,Режим перевірки
+35027,stringid_reversemute,Reverse mute,عكس كتم الصوت,Reverter mudo,Mudo inverso,Перейти в режим “без звука”,Перейти в режим “без звуку”
+35028,stringid_compassmode,Compass mode,وضع البوصلة,Modo bússola,Modo brújula,Режим компасу,Режим компас
+35029,stringid_customizekey,Customize Key,تخصيص مفتاح,Personalizar chave,Personalizar clave,Создать ключ в соответствии с требованиями заказчика,Створити ключ відповідно до вимог замовника
+35030,stringid_phonestatus,Phone status,حالة الهاتف,Status do telefone,Estado del teléfono,Состояние телефона,Стан телефону
+35031,stringid_security,Security,الأمن,Segurança,Seguridad,Защита,Захист
+35032,stringid_band,Band,حزمة,Banda,Banda,Полоса,Смуга
+35033,stringid_connectionisfull,"The connection is full. If you want to connect, please disconnect other phone",الاتصال ممتلئ. إذا كنت ترغب في الاصتال، يرجى فصل أي جهاز آخر,"A conexão está cheia. Se deseja se conectar, desconecte outro telefone","La conexión está llena. Si quiere conectarte, desconecta otro teléfono.","Подключение полное. Если вы хотите подключиться, пожалуйста, отключите другой телефон","Підключення повне. Якщо ви хочете підключитися, будь ласка, вимкніть телефон"
+35034,stringid_changetheaudiosource,"If change the audio source, system will disconnect one of the A2DP profile and disconnect this phone",في حالة تغيير مصدر الصوت، سيقوم النظام بفصل أحد ملفات تعريف A2DP وفصل هذا الهاتف,"Se alterar a fonte de áudio, o sistema desconectará um dos perfis A2DP e desconectará este telefone","Si cambia la fuente de audio, el sistema desconectará uno de los perfiles A2DP y desconectará este teléfono",При изменении источника аудио система отключит одиз из профилей A2DP и отключите этот телефон,При зміні джерела аудіо система відключить одіз з профілів A2DP і вимкніть цей телефон
+35035,stringid_presstousebtaudio,"Press %1 to use BT Audio, will automatic disconnect other phone's audio profile",اضغط على٪ 1 لاستخدام خاصية BT Audio (الصوت عبر البلوتوث)، وسيقوم تلقائيًا بفصل الملف الصوتي للهاتف الآخر,"Pressione %1 para usar o áudio BT, o perfil de áudio do outro telefone será desconectado automaticamente","Presione %1 para usar el audio BT, desconectará automáticamente el perfil de audio de otro teléfono","Нажмите %1 для использования BT Audio, автоматически подключится аудио профиль другого телефона","Натисніть %1 для використання BT Audio, автоматично підключиться аудіо профіль іншого телефону"
+35036,stringid_presstodisconnectphone,Press %1 and manually disconnect other phone first if you want to use phone call function,أولاً، اضغط على ٪ 1 وافصل الهاتف الآخر يدويًا إذا كنت تريد استخدام وظيفة الاتصال الهاتفي,Pressione %1 e desconecte manualmente o outro telefone primeiro se você quiser usar a função de chamada telefônica,Presione %1 y desconecte manualmente el otro teléfono primero si desea usar la función de llamada telefónica,"Нажмите %1 и вручную отключите сначала другой телефон, если вы хотите использовать функцию звонка телефона","Натисніть %1 і вручну вимкніть спочатку інший телефон, якщо ви хочете використовувати функцію дзвінка телефону"
+35037,stringid_changethename,Change the name,تغيير الاسم,Alterar o nome,Cambia el nombre,Сменить имя,Змінити ім'я
+35038,stringid_wifihospot,Wi-Fi Hotspot,نقطة اتصال لاسلكية لشبكة Wi-Fi,Ponto de acesso Wi-Fi,Punto de acceso WiFi,Точка доступа Wi-Fi,Точка доступу Wi-Fi
+35039,stringid_apps,Apps,التطبيقات,Aplicativos,Aplicaciones,Приложения,Застосування
+35060,stringid_thiskeyisundefined,"This key is undefined, go to setup page to define this key first",هذا المفتاح غير معرف، انتقل إلى صفحة الإعداد لتعريف هذا المفتاح أولاً,"Esta chave é indefinida, vá para a página de configuração para definir esta chave primeiro","Esta clave no está definida, vaya a la página de configuración para definir esta clave primero","Этот ключ не определен, сначала пройдите на страницу настройки для определения ключа","Цей ключ не визначено, спочатку пройдіть на сторінку налаштування для визначення ключа"
+35061,stringid_inspectionmode,Inspection mode,وضع الفحص,Modo de inspeção,Modo de inspección,Режим проверки,Режим перевірки
+35062,stringid_syslangdialogtxt,Setting language... Please refrain from using other functions at this moment until completion,ﻞﻏﺓ ﺍﻺﻋﺩﺍﺩ.... ﻱﺮﺟﻯ ﺍﻼﻤﺘﻧﺎﻋ ﻊﻧ ﺎﺴﺘﺧﺩﺎﻣ ﻮﻇﺎﺌﻓ ﺄﺧﺭﻯ ﻒﻳ ﺎﻟﻮﻘﺗ ﺎﻟﺭﺎﻬﻧ ﺢﺗﻯ ﺍﻼﻨﺘﻫﺍﺀ,"Definindo idioma... Favor, não usar outras funções no momento até a conclusão",Configurando idioma... Por favor no utilice otras funciones hasta que finalice el proceso,"Установка языка… Пожалуйста, не используйте в это время другие функции до полного завершения","Установка мови... Будь ласка, не використовуйте в цей час інші функції до повного завершення"
+35063,stringid_changethepassword,Change the password,تغيير كلمة المرور,Alterar a senha,Cambiar la contraseña,Сменить пароль,Змінити пароль
+35070,stringid_from,From,من,De,Desde,От,Від
+35071,stringid_serviceunavailable,Service temporarily unavailable,الخدمة غير متاحة مؤقتًا,Serviço temporariamente indisponível,Servicio temporalmente no disponible,Сервис временно недоступен,Сервіс тимчасово недоступний
+35072,stringid_removepincode,4G Internet access is not available. Please remove pin code from the SIM card,الوصول إلى شبكة إنترنت 4G غير متوفر. يرجى إزالة رمز pin من بطاقة SIM,"Acesso à Internet 4G não está disponível. Por favor, remova o código PIN do cartão SIM","El acceso a Internet 4G no está disponible. Por favor, elimine el código PIN de la tarjeta SIM","Нет доступа к 4G интернету. Пожалуйста, смените пин-код от СИМ-карты","Немає доступу до 4G інтернету. Будь ласка, змініть пін-код від сім-карти"
+35080,stringid_getmoreinfo,Get more information,الحصول على مزيد من المعلومات,Obter mais informações,Obtener más información,Получить больше информации,Отримати більше інформації
+35081,stringid_connectmydriveapp,Please connect My Drive Connect enabled;; mobile phone via USB cable.,يرجى توصيل My Drive Connect؛ في الهاتف المحمول عبر كابل USB.,"Por favor, conecte o telefone celular habilitado para o My Drive Connect via cabo USB.",Conecte el teléfono móvil con el My Drive Connect mediante cable USB.,"Пожалуйста, подключитесь к My Drive Connect enabled;; на мобильном телефоне через USB-кабель","Будь ласка, підключіться до My Drive Connect enabled;; на мобільному телефоні через USB-кабель"
+35082,stringid_ensuremydriveappinstall,Please ensure My Drive Connect is;; installed in your mobile phone.,يرجى توصيل My Drive Connect؛ المثبت على الهاتف المحمول.,Certifique-se de que o My Drive Connect esteja instalado no seu telefone celular.,Asegúrese de que My Drive Connect esté instalado en su teléfono móvil.,"Пожалуйста, убедитесь, что My Drive;; установлено на вашем мобильном телефоне.","Будь ласка, переконайтеся, що My Drive;; встановлено на вашому мобільному телефоні."
+35083,stringid_getmydriveapp,Get My Drive Connect by QR Code.,احصل على My Drive Connect بواسطة رمز QR.,Obter o My Drive Connect pelo código QR.,Descarga el My Drive Connect por código QR.,Получите My Drive Connect через QR-код.,Отримайте My Drive Connect через QR-код.
+35084,stringid_mydriveappbtfail,BT connection failed!;; Please ensure your mobile phone BT is connected with this infotainment.,فشل الاتصال عبر تقنية البلوتوث!؛ يرجى التأكد من اتصال تقنية البلوتوث لهاتفك المحمول مع برنامج المعلومات والتسلية.,"A conexão BT falhou! Por favor, certifique-se de que o BT do seu telefone celular está ligado a este infoentretenimento.","¡Falló la conexión de BT! Por favor, asegúrese de que el BT de su teléfono móvil está conectado a este infoentretenimiento.","Соединение BT не удалось!;; Пожалуйста, убедитесь, что BT вашего мобильного телефона подключено к данной информационно-развлекательной программе.","З'єднання BT не вдалося!;; Будь ласка, переконайтеся, що BT вашого мобільного телефону підключено до даної інформаційно-розважальної програми."
+35085,stringid_connectmobilefail,Connection to your mobile phone failed.;; Disconnect USB cable from device and;; reconnect or try restarting device.,فشل الاتصال بهاتفك المحمول؛ افصل كبل USB عن الجهاز؛وأعد الاتصال أو حاول إعادة تشغيل الجهاز.,A conexão ao seu telefone celular falhou. Desligue o cabo USB do dispositivo e volte a conectar ou tente reiniciar o dispositivo.,La conexión a su teléfono móvil falló. Desconecte el cable USB del dispositivo y vuelva a conectarse o intente reiniciar el dispositivo.,Подключение к вашему мобильному телефону не удалось.;; Отключите USB-кабель от устройства и;; подключите снова или попробуйте перезапустить устройство.,Підключення до вашого мобільного телефону не вдалося.;; Відключіть USB-кабель від пристрою і;; підключіть знову або спробуйте перезапустити пристрій.
+35086,stringid_mydriveappunavailable,My Drive Connect is not available.;; Ensure your mobile phone is unlocked and application is installed.,تطبيقات My Drive Connect غير متاحة، تأكد من إلغاء قفل هاتفك المحمول وتثبيت التطبيق.,My Drive Connect não disponível. Certifique-se de que seu telefone celular esteja desbloqueado e que o aplicativo esteja instalado.,My Drive Connect no está disponible. Asegúrese de que su teléfono móvil esté desbloqueado y la aplicación esté instalada.,"My Drive Connect недоступно.;; Убедитесь, что ваш мобильный телефон разблокирован, и приложение установлено.","My Drive Connect недоступно.;; Переконайтеся, що ваш мобільний телефон розблоковано, і додаток встановлено."
+35087,stringid_retry,Retry,إعادة المحاولة,Tentar novamente,Intentar de nuevo,Попробовать снова,Спробувати знову
+35088,stringid_selectphone,Please select which phone to dial out?,الرجاء تحديد الهاتف الذي ترغب في الاتصال به؟,"Por favor, selecione qual telefone discar?","¿Por favor, seleccione el teléfono para marcar?","Пожалуйста, выберите, на какой телефон набрать?","Будь ласка, виберіть, на який телефон набрати?"
+35089,stringid_unabletonavi,Unable to navigate your destination!,لا يمكن التنقل إلى الوجهة!,Não é possível navegar para o seu destino!,¡Incapaz de navegar su destino!,Невозможно определить ваше место назначения!,Неможливо визначити ваше місце призначення!
+35090,stringid_mydriveapps,My Drive Connect,My Drive Connect,My Drive Connect,My Drive Connect,My Drive Connect,My Drive Connect
+35091,stringid_na_35091,4G is not available,شبكة 4G غير متاحة,4G não está disponível,4G no está disponible,4G недоступно,4G недоступний
+35092,stringid_na_35092,4G Internet is not accessible,لا يمكن الوصول الوصول إلى شبكة إنترنت 4G,Internet 4G não está acessível,Internet 4G no es accesible,4G интернет недоступен,4G інтернет недоступний
+35093,stringid_4gna,4G Internet is not available,شبكة الإنترنت 4G غير متاحة,Internet 4G não está disponível,Internet 4G no está disponible,4G интернет недоступен,4G інтернет недоступний
+35094,stringid_simng,Your SIM cannot be accessed,لا يمكن الوصول إلى SIM,Seu SIM não pode ser acessado,No se puede acceder a tu SIM,Нет доступа к вашей СИМ-карте,Немає доступу до вашої сім-карті
+35095,stringid_simpuk,PUK Locked,تم غلق رمز PUK,PUK bloqueado,PUK bloqueado,Заблокировано ПУК-кодом,Заблоковано ПУК-кодом
+35096,stringid_na_35096,Please ensure your SIM card is not locked,يرجى التأكد من عدم غلق بطاقة SIM,"Por favor, verifique se o seu cartão SIM não está bloqueado","Por favor, asegúrese de que su tarjeta SIM no está bloqueada","Пожалуйста, убедитесь, что ваша СИМ-карта не заблокирована","Будь ласка, переконайтеся, що ваша сім-карта не заблокована"
+35097,stringid_na_35097,Please ensure your SIM card is unlocked,يرجى التأكد من إلغاء تأمين بطاقة SIM,"Por favor, verifique se o seu cartão SIM está desbloqueado","Por favor, asegúrese de que su tarjeta SIM está desbloqueada","Пожалуйста, убедитесь, что ваша СИМ-карта разблокирована","Будь ласка, переконайтеся, що ваша сім-карта розблокована"
+35098,stringid_simnginform,Please ensure your SIM card can be accessed,يرجى التأكد من إمكانية الوصول إلى بطاقة SIM,"Por favor, verifique se o seu cartão SIM pode ser acessado","Por favor, asegúrese de que se pueda acceder a su tarjeta SIM","Пожалуйста, убедитесь, что к вашей СИМ-карта имеется доступ","Будь ласка, переконайтеся, що до вашої СІМ-карта є доступ"
+35099,stringid_simpukinform,Please call your carrier to obtain your PUK code and unlock it,يرجى الاتصال بمشغل شبكة الهاتف المحمول للحصول على رمز PUK وإلغاء تأمينه,"Por favor, ligue para sua operadora para obter e desbloquear seu código PUK","Por favor, llame a su operador para obtener su código PUK y desbloquearlo","Пожалуйста, позвоните вашему оператору для получения ПУК-кода и разблокируйте ее","Будь ласка, зателефонуйте своєму оператору, щоб отримати ПУК-код та розблокувати його"
+35100,stringid_mydriveapphfpfail,Unable to make the call.;; Please ensure your phone is connected via Bluetooth.,Unable to make the call.;; Please ensure your phone is connected via Bluetooth.,Unable to make the call.;; Please ensure your phone is connected via Bluetooth.,Unable to make the call.;; Please ensure your phone is connected via Bluetooth.,Unable to make the call.;; Please ensure your phone is connected via Bluetooth.,Unable to make the call.;; Please ensure your phone is connected via Bluetooth.
+35101,stringid_functiondisabled,Function disabled while My Drive Connect is in use,Function disabled while My Drive Connect is in use,Function disabled while My Drive Connect is in use,Function disabled while My Drive Connect is in use,Function disabled while My Drive Connect is in use,Function disabled while My Drive Connect is in use
+35102,stringid_navibasicdata0,All map files are missing,All map files are missing,All map files are missing,All map files are missing,All map files are missing,All map files are missing
+35103,stringid_navibasicdata1,All voice files are missing,All voice files are missing,All voice files are missing,All voice files are missing,All voice files are missing,All voice files are missing
+35104,stringid_navibasicdata2,All lang files are missing,All lang files are missing,All lang files are missing,All lang files are missing,All lang files are missing,All lang files are missing
+35105,stringid_navibasicdata3,No valid license found,No valid license found,No valid license found,No valid license found,No valid license found,No valid license found
+35106,stringid_navibasicdata4,sys.txt is missing,sys.txt is missing,sys.txt is missing,sys.txt is missing,sys.txt is missing,sys.txt is missing
+35107,stringid_navibasicdata5,data.zip is missing,data.zip is missing,data.zip is missing,data.zip is missing,data.zip is missing,data.zip is missing
+35108,stringid_navibasicdata6,global_cfg.zip is missing,global_cfg.zip is missing,global_cfg.zip is missing,global_cfg.zip is missing,global_cfg.zip is missing,global_cfg.zip is missing
+35109,stringid_navibasicdata7,SD id cannot be read,SD id cannot be read,SD id cannot be read,SD id cannot be read,SD id cannot be read,SD id cannot be read
+35110,stringid_navibasicdata8,Vehicle identification cannot be read,Vehicle identification cannot be read,Vehicle identification cannot be read,Vehicle identification cannot be read,Vehicle identification cannot be read,Vehicle identification cannot be read
+35111,stringid_navibasicdata9,Device ID cannot be read,Device ID cannot be read,Device ID cannot be read,Device ID cannot be read,Device ID cannot be read,Device ID cannot be read
+35112,stringid_navimapwarning0,SD Card region does not match,SD Card region does not match,SD Card region does not match,SD Card region does not match,SD Card region does not match,SD Card region does not match
+35113,stringid_notification,Notification,Notification,Notification,Notification,Notification,Notification
+35114,stringid_resetincomplete,Factory reset incomplete!!!,Factory reset incomplete!!!,Factory reset incomplete!!!,Factory reset incomplete!!!,Factory reset incomplete!!!,Factory reset incomplete!!!
+35115,stringid_resetcomplete,Factory reset done!,Factory reset done!,Factory reset done!,Factory reset done!,Factory reset done!,Factory reset done!
+35114,stringid_navibasicdata10,Platform ID cannot be read,Platform ID cannot be read,Platform ID cannot be read,Platform ID cannot be read,Platform ID cannot be read,Platform ID cannot be read
+
