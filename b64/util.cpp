@@ -20,8 +20,6 @@ void print_brief_help()
 
 bool handleOpt(int argc, char** argv)
 {
-    bool configured = false;
-
     do {
         if (argc == 1) {
             print_brief_help();
@@ -40,40 +38,36 @@ bool handleOpt(int argc, char** argv)
                 exit(2);
                 break;
             case 'c':
-                gVars.kTest = TEST_READCONF;
-                configured = true;
+                gVars.test_list << TEST_READCONF;
                 break;
             case 'd':   // debug
                 gVars.bDebug = !gVars.bDebug;
-                configured = true;
                 break;
             case 'e':   // percent encoding string
                 if (optarg) {
                     CHECK_IF_DEBUG( qDebug() << "test percent encoding:" << optarg );
                     gVars.sTest = optarg;
-                    gVars.kTest = TEST_PERCENTENCODING;
-                    configured = true;
+                    gVars.test_list << TEST_PERCENTENCODING;
                 }
                 break;
             case 'f':
-                gVars.kTest = TEST_DIRSEARCH;
-                configured = true;
+                gVars.test_list << TEST_DIRSEARCH;
                 break;
             case 'r':
-                gVars.kTest = TEST_RUNSCRIPT;
-                configured = true;
+                gVars.test_list << TEST_RUNSCRIPT;
                 break;
             case 't':
-                gVars.kTest = TEST_LOCALTIME;
-                configured = true;
+                gVars.test_list << TEST_LOCALTIME;
                 break;
             default:
-                exit(0);
                 break;
             }
         }
     } while (false);
 
-    return configured;
+    if (gVars.test_list.empty()) {
+        gVars.test_list << TEST_DEFAULT;
+    }
+    return true;
 }
 

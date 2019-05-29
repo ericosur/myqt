@@ -2,6 +2,7 @@
 #define __UTIL_H__
 
 #include <QString>
+#include <QList>
 #include <QDebug>
 #include <unistd.h>
 #include <stdio.h>
@@ -29,7 +30,7 @@ class ConfigVar
 {
 public:
     bool bDebug = false;
-    TestCategory kTest = TEST_DEFAULT;
+    QList<TestCategory> test_list;
     QString sTest;
 };
 
