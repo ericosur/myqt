@@ -1,5 +1,9 @@
 #include "gettz.h"
 
+#include <QFileInfo>
+#include <QTimeZone>
+#include <QDebug>
+
 // input: "/usr/share/timezone/zoneinfo/Asia/Tehran"
 // seperator: "zoneinfo/"
 // output: "Asia/Tehran"

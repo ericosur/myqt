@@ -1,5 +1,14 @@
 #include "devinfo.h"
 
+#include <QDebug>
+
+void test_deviceinfo()
+{
+    DeviceScreen ds;
+    qDebug() << ds.getInfostring();
+}
+
+
 DeviceScreen::DeviceScreen()
 {
     mWidth = get_env("FRONT_W", DEFAULT_F_WIDTH);

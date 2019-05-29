@@ -1,17 +1,9 @@
 #ifndef __COMMON_TEST_H__
 #define __COMMON_TEST_H__
 
-#include <stdio.h>
-#include <string.h>
-
-#include <QChar>
+#include <QDir>
 #include <QString>
 #include <QStringList>
-#include <QDir>
-#include <QUrl>
-#include <QProcess>
-
-#include <QDebug>
 
 void print_title(const char* title);
 void print_sep();
@@ -26,5 +18,6 @@ QString toPercentEncoding(const QString& str);
 QString doSanity(const QString& str);
 void test__pe();
 void test_runscript();
+void run_default_tests();
 
 #endif  // __COMMON_TEST_H__

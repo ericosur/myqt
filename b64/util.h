@@ -4,8 +4,6 @@
 #include <QString>
 #include <QList>
 #include <QDebug>
-#include <unistd.h>
-#include <stdio.h>
 
 
 #define CHECK_IF_DEBUG(x)   \
@@ -36,4 +34,4 @@ public:
 
 extern ConfigVar gVars;
 
-#endif  // __JSON__UTIL_H__
+#endif  // __UTIL_H__

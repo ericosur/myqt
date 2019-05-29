@@ -1,13 +1,11 @@
-#ifndef __SRCFILE_DEVICESCREEN_H__
-#define __SRCFILE_DEVICESCREEN_H__
+#ifndef __DEVINFO_H__
+#define __DEVINFO_H__
 
 #include <QObject>
 #include <QString>
-#include <QByteArray>
-#include <QDebug>
 
 #ifdef USE_YOSETARGET
-// 1280x800 is LC200/CIS002 default LCD dimension
+// default LCD dimension
 #define DEFAULT_F_HEIGHT    "800"
 #define DEFAULT_F_WIDTH     "1280"
 #else
@@ -33,4 +31,6 @@ private:
     QString mHeight = DEFAULT_F_HEIGHT;
 };
 
-#endif // __SRCFILE_DEVICESCREEN_H__
+void test_deviceinfo();
+
+#endif // __DEVINFO_H__

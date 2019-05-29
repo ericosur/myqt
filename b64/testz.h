@@ -3,5 +3,6 @@
 
 void test_timezone();
 void test_locale();
+void gtz();
 
 #endif // __TESTZ_H__

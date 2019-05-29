@@ -1,4 +1,17 @@
 #include "readi.h"
+#include "commontest.h"
+
+#include <QString>
+#include <QSettings>
+#include <QFile>
+#include <QDebug>
+
+#define INIPATH     "/home/rasmus/src/myqt/b64/fake.ini"
+#define JSONPATH    "/home/rasmus/src/myqt/b64/fake.json"
+
+void test_read_ini();
+void test_read_json();
+
 
 void show(const QString& dns, const QString& gw, const QString& ip)
 {
@@ -15,6 +28,7 @@ void test_read_config()
 
 void test_read_ini()
 {
+    print_title(__func__);
     QString fn = INIPATH;
     if ( !QFile::exists(fn) ) {
         qWarning() << "ini not found:" << fn;
@@ -33,6 +47,7 @@ void test_read_ini()
 
 void test_read_json()
 {
+    print_title(__func__);
     try {
         std::ifstream infile(JSONPATH);
         nlohmann::json j;

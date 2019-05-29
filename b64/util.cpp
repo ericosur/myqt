@@ -1,11 +1,15 @@
 #include "util.h"
 
+#include <unistd.h>
+#include <stdio.h>
+
 ConfigVar gVars;
 
 void print_help()
 {
     printf("help message =====>\n\n"
         "-d                      toggle debug\n"
+        "-c                      perform read config test\n"
         "-e [test string]        percent encoding\n"
         "-f                      perform testdir\n"
         "-r                      perform runscript\n"

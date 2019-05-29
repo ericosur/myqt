@@ -5,8 +5,6 @@
 #include <QByteArray>
 #include <QUrl>
 #include <QSettings>
-#include <QTextCodec>
-#include <QDebug>
 
 #define DEFAULT_INI_PATH "/tmp/test.ini"
 
@@ -39,5 +37,8 @@ private:
     QString mInifn;
     QSettings *ini = NULL;
 };
+
+void testdir(const QString& _home);
+void testread();
 
 #endif

@@ -1,10 +1,17 @@
 #include "util.h"
 #include "commontest.h"
 #include "trypath.h"
+#include "testmm.h"
 
+#include <stdio.h>
+#include <string.h>
+
+#include <QUrl>
+#include <QProcess>
 #include <QTextCodec>
 #include <QList>
 #include <QStringList>
+#include <QDebug>
 
 #define MAXLINELEN  (70)
 #define REPEAT      (60)
@@ -213,3 +220,37 @@ void test_runscript()
 
     process.close();
 }
+
+void run_default_tests()
+{
+    // default tests
+
+    // print_title("test: QMultiMap");
+    // test_multimap();
+    // print_sep();
+
+    print_title("test: no_conflict_name");
+    no_conflict_name();
+
+    print_title("test: unicode_char");
+    unicode_char();
+
+#if 0
+    print_title("test: get home path");
+    qDebug() << "home path:" << getHomepath();
+
+    print_title("test: arg...");
+    test_arg_format();
+
+    print_title("test: doSanity");
+    QString s = "I don't know!";
+    qDebug() << "test:" << doSanity(s);
+
+    print_title("test: deviceinfo...");
+    test_info();
+
+    print_title("test: test__pe");
+    test__pe();
+#endif
+}
+

@@ -1,8 +1,11 @@
 #include "testmm.h"
 
+#include <QString>
+#include <QMultiMap>
+#include <QDebug>
 
 
-void testmm()
+void test_multimap()
 {
     QMultiMap<QString, QString> mm;
 
