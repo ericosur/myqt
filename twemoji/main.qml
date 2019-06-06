@@ -6,14 +6,21 @@ import QtQuick.Window 2.2
 ApplicationWindow {
     id: mainwindow
     title: "Hell World"
-    width: 640
-    height: 480
+    width: 800
+    height: 240
     x: 100
     y: 0
     visible: true
 
-
-    Text {
-        text: emoji.sequence
+    Rectangle {
+        anchors.fill: parent
+        color: "black"
+        TextEdit {
+            color: "white"
+            font.pointSize: 30
+            textFormat: TextEdit.RichText
+            readOnly: true
+            text: emoji.sequence
+        }
     }
 }

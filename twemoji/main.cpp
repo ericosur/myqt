@@ -17,6 +17,5 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("emoji", EmojiCore::getInstance());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-    //return app.exec();
-    return 0;
+    return app.exec();
 }
