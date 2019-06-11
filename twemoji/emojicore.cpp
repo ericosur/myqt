@@ -7,6 +7,7 @@
 #include <QString>
 #include <QRegularExpression>
 #include <QByteArray>
+#include <QThread>
 #include <QDebug>
 
 EmojiCore* EmojiCore::_instance = NULL;
@@ -27,9 +28,9 @@ EmojiCore::EmojiCore(QObject *_parent) : QObject(_parent)
     load_tests();
 
     test_timer = new QTimer(this);
-    connect(test_timer, SIGNAL(timeout()), this, SLOT(sltTimeout()));
+    connect(test_timer, SIGNAL(timeout()), this, SLOT(sltTimeout()), Qt::DirectConnection);
     test_timer->setSingleShot(true);
-    test_timer->setInterval(2000);
+    test_timer->setInterval(1000);
     test_timer->start();
 
     //test0();
@@ -39,7 +40,7 @@ void EmojiCore::load_tests()
 {
     using namespace std;
     using namespace nlohmann;
-    string json_file = "../emoji_tests.json";
+    string json_file = "../test.json";
     try {
         ifstream inf(json_file);
         json j;
@@ -57,16 +58,66 @@ void EmojiCore::load_tests()
 void EmojiCore::sltTimeout()
 {
     qDebug() << __func__;
+
     if (!test_list.isEmpty()) {
-        QStringList sl = string_to_codepoint_list(test_list.takeFirst());
+        QStringList sl = string_to_codepoint_list(test_list[list_idx++]);
+        //QStringList sl = string_to_codepoint_list(test_list[i]);
         QString ans = parse_codepoint_list(sl);
         qDebug() << ans;
         setSequence(ans);
-
-        test_timer->setSingleShot(true);
-        test_timer->start();
+        list_idx = list_idx % test_list.size();
+        qDebug() << "====================";
     }
+    test_timer->setSingleShot(true);
+    test_timer->start();
 }
+
+QString EmojiCore::fetch_tail_part(const QString& str)
+{
+    int idx = str.indexOf('-');
+    QString rhs = "null";
+    if (idx >= 0) {
+        rhs = str.right(str.size()-1-idx);
+    }
+    //qDebug() << "rhs:" << rhs;
+    return rhs;
+}
+
+kEmojiType EmojiCore::pop_str_codepoint(const QString& cp, QString& ret)
+{
+    ret = "";
+    if (cp.isEmpty() || cp == "fe0f") {
+        return EmojiInvalid;
+    }
+    bool ok;
+    int v = cp.toInt(&ok, 16);
+    if (v == 0xa9 || v == 0xae || v >= 0x1f000) {
+        ret = compose_imgsrc(cp);
+        //qDebug() << "pop_str_codepoint: imgsrc:" << ret;
+        return EmojiImage;
+    } else if (v == 0x23 || v == 0x2a || (v >= 0x30 && v <= 0x39)) {
+        return EmojiNeedNextChar20e3;
+    }
+
+    ret = QString(QChar(v));
+    qDebug() << "pop char:" << ret;
+    return EmojiNone;
+}
+
+QString EmojiCore::compose_imgsrc(const QString& s)
+{
+    QString imgsrc = QString(
+        "<img height=\"28\" width=\"28\"src=\"72x72/%1.png\">").arg(s);
+    return imgsrc;
+}
+
+QString EmojiCore::pop_one_codepoint(const QString& cp)
+{
+    bool ok;
+    int v = cp.toInt(&ok, 16);
+    return QString(QChar(v));
+}
+
 
 // NOTE: if pop char is U+FE0F, should drop it
 QString EmojiCore::parse_codepoint_list(const QStringList& strlist)
@@ -74,85 +125,120 @@ QString EmojiCore::parse_codepoint_list(const QStringList& strlist)
     qDebug() << __func__ << "input sl:" << strlist;
     QStringList sl = strlist;
     QRegularExpression re;
-    QStringList matchList;
     QString foo;
     bool canTry = false;
     QString shouldSkip;
     QString ans;
     bool bDebug = true;
-    bool ok;
-    const int IMG_WIDTH = 28;
-    const int IMG_HEIGHT = 28;
 
     // takeFirst
     while (!sl.isEmpty()) {
         foo = "";
 
         QString cc = sl.takeFirst();
-        if (bDebug)  qDebug() << "curr:" << cc;
+        //if (bDebug)  qDebug() << "curr:" << cc;
         if (cc == shouldSkip) {
             qDebug() << "skip this cc," << cc;
             shouldSkip = "";
             continue;
         }
-        // exception: direct add into ans
-        int cp = cc.toInt(&ok, 16);
-        if (cp < 0xa9) {
-            ans += QChar(cp);
-            continue;
+
+        // direct add into ans
+        QString rrt;
+        {
+            kEmojiType t = pop_str_codepoint(cc, rrt);
+            if (t == EmojiNone) {
+                ans += rrt;
+                continue;
+            } else if (t == EmojiNeedNextChar20e3 && !sl.isEmpty()) {
+                QString next_char = sl.first();
+                if (next_char == "20e3") {
+                    ans += compose_imgsrc(cc + "-20e3");
+                    sl.removeFirst();
+                } else {
+                    ans += pop_one_codepoint(cc);
+                }
+                continue;
+            } else if (t == EmojiNeedNextChar1f3xx && !sl.isEmpty()) {
+                QString next_char = sl.first();
+                if (next_char.contains(QRegularExpression("^1f3f[bcdef]"))) {
+                    ans += compose_imgsrc(cc + "-" + next_char);
+                    sl.removeFirst();
+                } else {
+                    ans += pop_one_codepoint(cc);
+                }
+            }
         }
 
         QString tmp = QString("^") + cc;
         re = QRegularExpression(tmp);
 
         do {
-            if (bDebug)  qDebug() << "try re =====> " << re.pattern();
-            matchList = emojiList.filter(re);
-            if (bDebug)  qDebug() << "matchList ===>" << matchList;
+            //if (bDebug)  qDebug() << "try re =====> " << re.pattern();
+            QStringList matchList = emojiList.filter(re);
+            //if (bDebug)  qDebug() << "matchList ===>" << matchList;
             if (matchList.isEmpty()) {
-                if (!cc.isEmpty() && cc != "fe0f") {
-                    if (bDebug)  qDebug() << "pop cc:" << cc;
-                    ans += QChar(cc.toInt(&ok, 16));
-                }
+                ans += pop_str_codepoint(cc, rrt);
                 canTry = false;
                 break;
-            } else {
-                qDebug() << "matched:" << matchList;
-                if (matchList.size() == 1) {
-                    QString t = matchList[0];
-                    QString imgsrc = QString(
-                        "<img height=\"%1\" width=\"%2\"src=\"72x72/%3.png\">").arg(IMG_HEIGHT).arg(IMG_WIDTH).arg(t);
-                    qDebug() << "matched img:" << t;
+            }
+            // matchList is not empty
+            qDebug() << "matched:" << matchList;
+            QStringList tail_list;
 
-                    int idx = t.lastIndexOf("-");
-                    if (idx != -1) {
-                        shouldSkip = t.right(t.size()-idx-1);
-                        if (bDebug)  qDebug() << "shouldSkip:" << shouldSkip;
-                    }
+            if (matchList.size() == 1) {
+                QString t = matchList[0];
+                QString imgsrc = compose_imgsrc(t);
+                //qDebug() << "matched img:" << t;
 
-                    if (bDebug)  qDebug() << "imgsrc:" << imgsrc;
-                    ans += imgsrc;
-                    canTry = false;
-                    break;
-                } else {
-                    canTry = true;
-                    foo = tmp;
+                int idx = t.lastIndexOf("-");
+                if (idx != -1) {
+                    shouldSkip = t.right(t.size()-idx-1);
+                    if (bDebug)  qDebug() << "shouldSkip:" << shouldSkip;
                 }
 
-                if (!sl.isEmpty()) {
+                //if (bDebug)  qDebug() << "imgsrc:" << imgsrc;
+                ans += imgsrc;
+                canTry = false;
+                break;
+            }
+
+            // matched multiple possible emoji images
+            canTry = true;
+            foo = tmp;
+            for (QString s: matchList) {
+                tail_list << fetch_tail_part(s);
+            }
+
+            if (!sl.isEmpty()) {
+                QString pre_fetched_first = sl.first();
+                if (!tail_list.contains(pre_fetched_first)) {
+                    if (tail_list.contains("null")) {
+                        // pop current matched char, and pre_fetched_first
+                        //qDebug() << "pop cc:" << cc;
+                        //QString imgsrc = compose_imgsrc(cc);
+                        pop_str_codepoint(cc, rrt);
+                        ans += rrt;
+                        //qDebug() << "also pop:" << pre_fetched_first;
+                        pop_str_codepoint(pre_fetched_first, rrt);
+                        ans += rrt;
+                        sl.removeFirst();
+                        canTry = false;
+                    }
+                } else {
                     tmp = foo + QString("-") +  sl.takeFirst();
                     //qDebug() << "87: tmp:" << tmp;
                     re = QRegularExpression(tmp);
                     matchList.clear();
                     canTry = true;
-                } else {
-                    canTry = false;
                 }
+            } else {
+                canTry = false;
             }
         } while (canTry);
     }
 
-    qDebug() << "ans:" << ans;
+    //qDebug() << "ans:" << ans;
     return ans;
 }
 
