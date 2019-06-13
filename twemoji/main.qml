@@ -9,10 +9,12 @@ ApplicationWindow {
     width: 800
     height: 240
     x: 100
-    y: 0
+    y: 100
     visible: true
 
     property bool demo_run: true
+    property string font_name: "Symbola"
+    // "Bitstream Vera Sans"
 
     Timer {
         id: demo_timer
@@ -49,7 +51,7 @@ ApplicationWindow {
                 color: "steelblue"
                 text: emoji.instr
                 font.pointSize: 24
-                font.family: "Bitstream Vera Sans"
+                font.family: font_name
             }
             TextEdit {
                 id: text_emoji
