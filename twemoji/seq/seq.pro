@@ -18,3 +18,6 @@ HEADERS += seqcore.h
 
 RESOURCES += qml.qrc
 
+win32 {
+INCLUDEPATH += $$PWD/../../../json/single_include
+}
