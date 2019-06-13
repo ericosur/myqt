@@ -13,8 +13,8 @@ QMAKE_CXXFLAGS += -Werror
 QMAKE_CXXFLAGS += -Wextra
 
 SOURCES += main.cpp
-
 SOURCES += seqcore.cpp
-
 HEADERS += seqcore.h
+
+RESOURCES += qml.qrc
 

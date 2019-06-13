@@ -4,26 +4,21 @@
 #include <QObject>
 #include <QString>
 #include <QStringList>
-#include <QTimer>
 
-enum kEmojiType {
-    EmojiInvalid,
-    EmojiNone,  // normal unicode char/string
-    EmojiNeedNextChar20e3,
-    EmojiNeedNextChar1fxxx,
-    EmojiImage
-};
 
 class EmojiCore : public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(QString sequence READ sequence WRITE setSequence NOTIFY sequenceChanged)
-
+    Q_PROPERTY(QString instr READ instr WRITE setInstr NOTIFY instrChanged)
+    Q_PROPERTY(int count READ count WRITE setCount NOTIFY countChanged)
 
 public:
     static EmojiCore* getInstance();
+    void runTest(const QStringList& sl);
 
+public:
     QString sequence() const {
         return mSeq;
     }
@@ -31,14 +26,29 @@ public:
         mSeq = s;
         emit sequenceChanged();
     }
-
-    void load_tests();
+    QString instr() const {
+        return mInstr;
+    }
+    void setInstr(const QString& s) {
+        mInstr = s;
+        emit instrChanged();
+    }
+    int count() const {
+        return mCount;
+    }
+    void setCount(int v) {
+        mCount = v;
+        emit countChanged();
+    }
 
 signals:
+    void sigQuit();
     void sequenceChanged();
+    void instrChanged();
+    void countChanged();
 
 public slots:
-    void sltTimeout();
+    void sltCountChanged();
 
 protected:
     static EmojiCore* _instance;
@@ -47,24 +57,18 @@ protected:
     void test0();
     void test1();
 
+    void load_tests();
     QStringList string_to_codepoint_list(const QString& s);
-
-    QString fetch_tail_part(const QString& str);
-    QString compose_imgsrc(const QString& s);
-    QString parse_codepoint_list(const QStringList& strlist);
-    QString str_codepoint_to_qchar(const QString& cp);
-
-    kEmojiType pop_str_codepoint(const QString& cp, QString& ret);
-    QString pop_one_codepoint(const QString& cp);
 
 private:
     int list_idx = 0;
-    QTimer* test_timer = NULL;
+
     QStringList test_list;
-    QString mSeq = "";
-    QStringList emojiList = {
-#include "emoji-list.inc"
-    };
+    QString mSeq;
+    QString mInstr;
+
+    int repeat_count = 0;
+    int mCount = 0;
 };
 
 

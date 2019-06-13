@@ -9,15 +9,17 @@ CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
 
+RESOURCES += \
+    qml.qrc \
+    emoji.qrc
+
 QMAKE_CXXFLAGS += -Werror
 QMAKE_CXXFLAGS += -Wextra
 
 SOURCES += main.cpp
 
-SOURCES += emojicore.cpp
+SOURCES += emojicore.cpp \
+    seq/seqcore.cpp
 
-HEADERS += emojicore.h
-
-RESOURCES += \
-    qml.qrc \
-    emoji.qrc
+HEADERS += emojicore.h \
+    seq/seqcore.h
