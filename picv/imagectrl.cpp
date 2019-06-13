@@ -4,10 +4,10 @@
 
 #include "imagectrl.h"
 
-ImageCtrl* ImageCtrl::_instance = NULL;
+ImageCtrl* ImageCtrl::_instance = nullptr;
 ImageCtrl* ImageCtrl::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new ImageCtrl();
     }
 
@@ -16,7 +16,7 @@ ImageCtrl* ImageCtrl::getInstance()
 
 ImageCtrl::ImageCtrl()
 {
-    if (auto_timer == NULL) {
+    if (auto_timer == nullptr) {
         auto_timer = new QTimer(this);
         connect(auto_timer, SIGNAL(timeout()), this, SLOT(sltTimeout()));
     }

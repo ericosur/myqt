@@ -1,10 +1,10 @@
 #include <QCoreApplication>
 #include "flowctrl.h"
 
-FlowControl* FlowControl::_instance = NULL;
+FlowControl* FlowControl::_instance = nullptr;
 FlowControl* FlowControl::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new FlowControl();
     }
     return _instance;
@@ -12,7 +12,7 @@ FlowControl* FlowControl::getInstance()
 
 FlowControl::FlowControl()
 {
-    if (readthead == NULL) {
+    if (readthead == nullptr) {
         readthead = new ReadThread();
     }
     connect(readthead, SIGNAL(finished()), this, SLOT(sltReadFinished()));
@@ -80,7 +80,7 @@ void FlowControl::check_shm()
         qWarning() << "shm write failed";
     }
     FileItem *buf = (FileItem*)util_shm_read(LOCAL_SHM_KEY, sizeof(FileItem));
-    if (buf == NULL) {
+    if (buf == nullptr) {
         qWarning() << "failed to read shm...";
         return;
     }

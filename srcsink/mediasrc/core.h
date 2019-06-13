@@ -48,11 +48,11 @@ protected:
     void check_shm();
 
 private:
-    MsgRxThread* msgrx = NULL;
-    TravelThread* travel = NULL;
+    MsgRxThread* msgrx = nullptr;
+    TravelThread* travel = nullptr;
     QStringList filelist;
     QStringList folderlist;
-    FileItem* mBuffer = NULL;
+    FileItem* mBuffer = nullptr;
 };
 
 #endif  // __CORE_H__

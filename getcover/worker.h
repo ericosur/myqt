@@ -25,7 +25,7 @@ protected:
     void do_something();
 
 private:
-    QThread* mThread = NULL;
+    QThread* mThread = nullptr;
 
 };
 

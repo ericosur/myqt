@@ -129,8 +129,8 @@ QString getHash(const QString& hashname, const QString& str)
         {"keccak_256sum", keccak_256sum}
     };
 
-    Hasher pf = hh.value(hashname, NULL);
-    if (pf != NULL) {
+    Hasher pf = hh.value(hashname, nullptr);
+    if (pf != nullptr) {
         char *input = str.toUtf8().data();
         QString md = (*pf)(input, strlen(input));
         qDebug() << QString("%1(%2) => %3").arg(hashname).arg(str).arg(md);

@@ -12,7 +12,7 @@ Foo::Foo()
 void Foo::setRpn(const QStringList& sl)
 {
     ActionHandler *ah = ActionHandler::getInstance();
-    fpAct fp = NULL;
+    fpAct fp = nullptr;
 
     qDebug() << "sl:" << sl;
     stack.clear();
@@ -25,7 +25,7 @@ void Foo::setRpn(const QStringList& sl)
             stack.push(p);
         } else {
             fp = ah->getAct(tok);
-            if (fp != NULL) {
+            if (fp != nullptr) {
                 double m = stack.pop();
                 double n = stack.pop();
                 r = (*ah.*fp)(m, n);

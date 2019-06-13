@@ -10,13 +10,13 @@ FlockWaitThread::FlockWaitThread()
 }
 void FlockWaitThread::run()
 {
-    FILE* fptr = NULL;
+    FILE* fptr = nullptr;
 
     // block here if file lock is not granted
     fptr = util_file_lock_wait(PIDFILE);
     qDebug() << "file lock is released by another process...";
 
-    if (fptr != NULL) {
+    if (fptr != nullptr) {
         FlockBroker::getInstance()->setLockPtr(fptr);
     }
 }

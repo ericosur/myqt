@@ -11,10 +11,10 @@
     qDebug() << "svc_dispatch() debug mode..."
 #endif
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -25,7 +25,7 @@ Core::Core()
     qDebug() << Q_FUNC_INFO << "created...";
 
     // thread to receive msgq
-    if (poll == NULL) {
+    if (poll == nullptr) {
         poll = new PollThread();
     }
 
@@ -38,13 +38,13 @@ Core::Core()
 void Core::launchIpod()
 {
     qDebug() << Q_FUNC_INFO;
-    svc_dispatch(ZONE_FRONT, SVC_HMI_IPOD, ACT_ON, NULL);
+    svc_dispatch(ZONE_FRONT, SVC_HMI_IPOD, ACT_ON, nullptr);
 }
 
 void Core::launchMedia()
 {
     qDebug() << Q_FUNC_INFO;
-    svc_dispatch(ZONE_FRONT, SVC_HMI_USB, ACT_ON, NULL);
+    svc_dispatch(ZONE_FRONT, SVC_HMI_USB, ACT_ON, nullptr);
 }
 
 void Core::sltUsbDetected()
@@ -74,7 +74,7 @@ void Core::sltWaitFinished()
 
 void Core::start()
 {
-    if (poll == NULL) {
+    if (poll == nullptr) {
         qWarning() << "poll thread is NULL, failed to run...";
     } else {
         poll->start();

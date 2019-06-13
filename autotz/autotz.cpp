@@ -77,7 +77,7 @@ void output_tz_to_file(const char* tz_str)
 {
 #ifdef __arm__
     FILE* fptr = fopen(OUTPUT_TZ, "w");
-    if (fptr == NULL) {
+    if (fptr == nullptr) {
         return;
     }
     fprintf(fptr, "%s\n", tz_str);
@@ -210,7 +210,7 @@ int main(int argc, char* argv[])
         case 't':
             if (optarg) {
                 //printf("%s\n", optarg);
-                test_type = strtol(optarg, NULL, 10);
+                test_type = strtol(optarg, nullptr, 10);
                 fprintf(stderr, "preset location: %d\n", test_type);
             }
             testrun = true;

@@ -8,7 +8,7 @@ bool g_messageVerbose = true;
 bool writeStringToFile(const QString& str, const QString& fn)
 {
     FILE* fp = fopen(fn.toUtf8().constData(), "w");
-    if (fp == NULL) {
+    if (fp == nullptr) {
         qDebug() << "cannot write file:" << fn;
         return false;
     }

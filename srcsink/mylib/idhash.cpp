@@ -6,7 +6,7 @@ void IdHash::dumpToFile(const QString& fn)
 {
     qDebug() << Q_FUNC_INFO << "to file:" << fn;
     FILE* fptr = fopen(fn.toUtf8().constData(), "w");
-    if (fptr == NULL) {
+    if (fptr == nullptr) {
         qWarning() << "cannot output to file:" << fn;
         return;
     }

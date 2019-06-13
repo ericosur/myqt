@@ -176,7 +176,7 @@ bool GetCover::extract_cover_from_mp3(const QString& fn, QString& tbfn)
 
     //cast Frame * to AttachedPictureFrame*
     TagLib::ID3v2::AttachedPictureFrame *pf = static_cast<TagLib::ID3v2::AttachedPictureFrame *> (*it);
-    if (pf == NULL) {
+    if (pf == nullptr) {
         //qDebug() << "getMP3Frame: pf is null";
         return false;
     }
@@ -197,7 +197,7 @@ bool GetCover::extract_cover_from_mp4(const QString& fn, QString& tbfn)
     TagLib::MP4::File file(fn.toStdString().c_str());
     TagLib::MP4::Tag *tag = file.tag();
     tbfn = "";
-    if (tag == NULL) {
+    if (tag == nullptr) {
         //qDebug() << "tag is null";
         return false;
     }
@@ -348,7 +348,7 @@ bool GetCover::extract_info_from_mp4(const QString& fn)
 {
     TagLib::MP4::File file(fn.toStdString().c_str());
     TagLib::MP4::Tag *tag = file.tag();
-    if (tag == NULL) {
+    if (tag == nullptr) {
         //qDebug() << "tag is null";
         return false;
     }
@@ -363,7 +363,7 @@ bool GetCover::extract_info_from_flac(const QString& fn)
 {
     TagLib::FLAC::File file(fn.toStdString().c_str());
     TagLib::Tag *tag = file.tag();
-    if (tag != NULL) {
+    if (tag != nullptr) {
         QString _artist = tag->artist().toCString(true);
         QString _album = tag->album().toCString(true);
         QString _title = tag->title().toCString(true);
@@ -393,7 +393,7 @@ int GetCover::extract_length_from_mp4(const QString& fn)
     //CHECK_IF_DEBUG( qDebug() << Q_FUNC_INFO );
     TagLib::MP4::File file(fn.toStdString().c_str());
 
-    if (file.audioProperties() == NULL) {
+    if (file.audioProperties() == nullptr) {
         qWarning() << "extract_length_from_mp4: cannot get retrive audio properties...";
         return false;
     }

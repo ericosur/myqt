@@ -1,9 +1,9 @@
 #include "core.h"
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -13,7 +13,7 @@ Core::Core()
 {
     qDebug() << Q_FUNC_INFO << "created...";
 
-    if (worker == NULL) {
+    if (worker == nullptr) {
         worker = new Worker();
     }
 

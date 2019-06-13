@@ -23,7 +23,7 @@ FILE *util_file_lock_wait(const char *fname)
     /* block until we get an exclusive lock */
     if (flock(fileno(lockf), LOCK_EX)) {
         perror("fail to lock:");
-        return NULL;
+        return nullptr;
     }
     return lockf;
 }
@@ -36,7 +36,7 @@ FILE *util_file_lock_wait(const char *fname)
  */
 int util_file_unlock_wait(FILE  *lockf)
 {
-    if( lockf == NULL )
+    if( lockf == nullptr )
         return -1;
 
     /* block until we get an exclusive lock */

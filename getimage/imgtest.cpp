@@ -4,11 +4,11 @@
 #include <QFile>
 #include <QCryptographicHash>
 
-ImgTest* ImgTest::_instance = NULL;
+ImgTest* ImgTest::_instance = nullptr;
 
 ImgTest* ImgTest::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new ImgTest();
     }
     return _instance;

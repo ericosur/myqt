@@ -24,8 +24,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_conf(NULL),
-    m_process(NULL)
+    m_conf(nullptr),
+    m_process(nullptr)
 {
     ui->setupUi(this);
 
@@ -336,7 +336,7 @@ void MainWindow::slotFinished(int i)
     //m_stderr = "";
 //    if (m_process) {
 //        delete m_process;
-//        m_process = NULL;
+//        m_process = nullptr;
 //    }
 
     emit sigCleanUp();

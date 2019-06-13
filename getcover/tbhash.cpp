@@ -12,7 +12,7 @@
 
 #define FOOFILE  "/tmp/tbhash.dat"
 
-TbHash* TbHash::_instance = NULL;
+TbHash* TbHash::_instance = nullptr;
 
 /**
  * overloaded operator function for putting TbHash into QDataStream
@@ -36,7 +36,7 @@ QDataStream& operator>>(QDataStream& ds, TbHash& obj)
 /// singleton interface
 TbHash* TbHash::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new TbHash();
     }
     return _instance;

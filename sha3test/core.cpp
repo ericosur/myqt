@@ -5,10 +5,10 @@
 #define TIMEOUT_TO_STOP_THREAD     9999
 #define JSON_RESULT                "result.json"
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -18,7 +18,7 @@ Core::Core()
 {
     qDebug() << Q_FUNC_INFO << "created...";
 
-    if (thread == NULL) {
+    if (thread == nullptr) {
         thread = new ReadThread();
     }
     // connect(poll, SIGNAL(sigUsbDectected()), this, SLOT(sltUsbDetected()));
@@ -39,7 +39,7 @@ void Core::start()
 
     json["start"] = QDateTime::currentMSecsSinceEpoch();
 
-    if (thread == NULL) {
+    if (thread == nullptr) {
         qWarning() << "thread is NULL, exit...";
         return;
     }

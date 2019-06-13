@@ -11,7 +11,7 @@
 
 YoseMsg::YoseMsg()
 {
-    m_fp = NULL;
+    m_fp = nullptr;
 
     connect(this, SIGNAL(sigPrint(const QString&)), this, SLOT(sltPrint(const QString&)));
 
@@ -38,7 +38,7 @@ void YoseMsg::removeMsg()
         return; // error here
     }
     // remove an existed message queue
-    if (msgctl(msg_id, IPC_RMID, NULL) == -1) {
+    if (msgctl(msg_id, IPC_RMID, nullptr) == -1) {
         perror("msgctl");
         return;
     }

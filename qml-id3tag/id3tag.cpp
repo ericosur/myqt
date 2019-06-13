@@ -39,7 +39,7 @@ ID3TAG::ID3TAG(QObject *parent)
     , m_artist("")
     , m_album("")
 {
-    m_cover = QImage(NULL);
+    m_cover = QImage();
 }
 
 ID3TAG::~ID3TAG()
@@ -99,7 +99,7 @@ bool ID3TAG::getdata(MyId3Data* id3)
             return false;
         }
         TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
-        if (tag == NULL) {
+        if (tag == nullptr) {
             qDebug("taglib: null tag");
             return false;
         }
@@ -117,7 +117,7 @@ bool ID3TAG::getdata(MyId3Data* id3)
         frames = tag->frameListMap()["APIC"];
         if (frames.isEmpty()) {
             qDebug() << "getMP3Frame: frame is empty";
-            id3->set_img(QImage(NULL));
+            id3->set_img(QImage());
         } else {
             TagLib::ID3v2::FrameList::ConstIterator it = frames.begin();
             //for(; it != frames.end() ; it++)
@@ -182,7 +182,7 @@ bool ID3TAG::getMetaData(const QString& fn)
     QString str_hash = getHashFilename(fn);
     //qDebug() << "hash: " << str_hash;
 
-    MyId3Data *id3 = NULL;
+    MyId3Data *id3 = nullptr;
     if ( m_cache.contains(fn) ) {
         // cache hit
         qDebug() << "cache hit for: " << fn;

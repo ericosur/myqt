@@ -28,11 +28,11 @@
 #define DEFAULT_BUFFER_SIZE     (512)
 char buffer[DEFAULT_BUFFER_SIZE];
 
-GetCover* GetCover::_instance = NULL;
+GetCover* GetCover::_instance = nullptr;
 
 GetCover* GetCover::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new GetCover();
     }
     return _instance;
@@ -133,7 +133,7 @@ bool GetCover::extract_info_from_mp4(const QString& fn)
 {
     TagLib::MP4::File file(fn.toStdString().c_str());
     TagLib::MP4::Tag *tag = file.tag();
-    if (tag == NULL) {
+    if (tag == nullptr) {
         //qDebug() << "tag is null";
         return false;
     }
@@ -148,7 +148,7 @@ bool GetCover::extract_info_from_flac(const QString& fn)
 {
     TagLib::FLAC::File file(fn.toStdString().c_str());
     TagLib::Tag *tag = file.tag();
-    if (tag != NULL) {
+    if (tag != nullptr) {
         m_artist = tag->artist().toCString(true);
         m_album = tag->album().toCString(true);
         m_title = tag->title().toCString(true);
@@ -182,7 +182,7 @@ bool GetCover::extract_length_from_mp4(const QString& fn)
 {
     TagLib::MP4::File file(fn.toStdString().c_str());
 
-    if (file.audioProperties() == NULL) {
+    if (file.audioProperties() == nullptr) {
         qDebug() << "cannot get retrive audio properties...";
         m_length = 0;
         return false;

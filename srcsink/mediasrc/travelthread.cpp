@@ -87,7 +87,7 @@ void TravelThread::travel_dir(const QString& path)
         return;
     }
 
-    QStringList *tmp = NULL;
+    QStringList *tmp = nullptr;
     foreach (QString file, dir.entryList(mFilter, QDir::Files | QDir::NoSymLinks)) {
         if ( !mFolderHash.contains(path) ) {
             tmp = new QStringList;

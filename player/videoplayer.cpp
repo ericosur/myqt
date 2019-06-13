@@ -1,9 +1,9 @@
 #include "videoplayer.h"
 
-VideoPlayer* VideoPlayer::_instance = NULL;
+VideoPlayer* VideoPlayer::_instance = nullptr;
 VideoPlayer* VideoPlayer::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new VideoPlayer();
     }
     return _instance;

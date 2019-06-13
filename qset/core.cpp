@@ -6,10 +6,10 @@
 
 #define QSET_INI    "qset.ini"
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -46,22 +46,22 @@ Core::Core(QObject* parent) : QObject(parent)
 
 Core::~Core()
 {
-    if (m_timer != NULL) {
+    if (m_timer != nullptr) {
         delete m_timer;
     }
-    if (m_setting != NULL) {
+    if (m_setting != nullptr) {
         delete m_setting;
     }
-    if (m_epoch != NULL) {
+    if (m_epoch != nullptr) {
         delete m_epoch;
     }
-    if (foo1 != NULL) {
+    if (foo1 != nullptr) {
         delete foo1;
     }
-    if (foo2 != NULL) {
+    if (foo2 != nullptr) {
         delete foo2;
     }
-    if (foo3 != NULL) {
+    if (foo3 != nullptr) {
         delete foo3;
     }
 }
@@ -126,7 +126,7 @@ void Core::checkIfNoThread()
 
 void Core::record_value(const QString& key, quint64 val)
 {
-    if (m_setting != NULL) {
+    if (m_setting != nullptr) {
         m_setting->setValue(key, val);
     }
 #ifdef USE_JSONHPP

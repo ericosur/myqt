@@ -74,7 +74,7 @@ void read_from_list(const QString& listfn)
 #define DEFAULT_BUFFER_SIZE   (1024)
 
     FILE* ptr = fopen(listfn.toUtf8(), "r");
-    if (ptr == NULL) {
+    if (ptr == nullptr) {
         perror("fopen");
         return;
     }
@@ -82,7 +82,7 @@ void read_from_list(const QString& listfn)
     int cnt = 0;
     while (!feof(ptr)) {
         char* p = fgets(line, DEFAULT_BUFFER_SIZE-1, ptr);
-        if (p == NULL) {
+        if (p == nullptr) {
             break;
         }
         QString fn(line);

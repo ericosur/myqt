@@ -33,7 +33,7 @@ protected:
     bool init_reader();
 
 private:
-    QSettings* ini = NULL;
+    QSettings* ini = nullptr;
     bool bActive = false;
     int basefileid = -1;
     int filecount = -1;

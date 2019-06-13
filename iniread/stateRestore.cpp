@@ -11,7 +11,7 @@
 
 stateRestore::stateRestore( QObject* parent ) :
 	QObject( parent ),
-	q_settings(NULL)
+	q_settings(nullptr)
 {
 	QString ini_path = DEFAULT_INI_PATH;
 	QFile file(DEFAULT_INI_PATH);

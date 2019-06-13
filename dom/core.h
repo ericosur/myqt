@@ -73,7 +73,7 @@ private:
     QString mRightSvgPath;
     QString mOutSvgPath;
 
-    QTimer* test_timer = NULL;
+    QTimer* test_timer = nullptr;
     ReadJson rj;
 
     int exitNumber = -1;

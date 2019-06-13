@@ -1,9 +1,9 @@
 #include "musicplayer.h"
 
-MusicPlayer* MusicPlayer::_instance = NULL;
+MusicPlayer* MusicPlayer::_instance = nullptr;
 MusicPlayer* MusicPlayer::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new MusicPlayer();
     }
     return _instance;

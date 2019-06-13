@@ -57,7 +57,7 @@ public slots:
 
 private:
     QString json_string;
-    PollThread* pt = NULL;
+    PollThread* pt = nullptr;
 };
 
 #endif  // __NOWPLAYING_CORE_H__

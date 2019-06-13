@@ -5,10 +5,10 @@
 #include "actionhandler.h"
 
 
-ActionHandler* ActionHandler::_instance = NULL;
+ActionHandler* ActionHandler::_instance = nullptr;
 ActionHandler* ActionHandler::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new ActionHandler;
     }
     return _instance;
@@ -31,9 +31,8 @@ fpAct ActionHandler::getAct(const QString& op)
 {
     if (dict.contains(op)) {
         return dict.value(op);
-    } else {
-        return NULL;
     }
+    return nullptr;
 }
 
 double ActionHandler::actAdd(double m, double n)

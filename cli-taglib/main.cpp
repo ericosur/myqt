@@ -37,7 +37,7 @@ int main(int argc, char** argv)
     }
 
     TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
-    if (tag == NULL) {
+    if (tag == nullptr) {
         cout << "no tag, exit..." << endl;
         return -1;
     }
@@ -66,7 +66,7 @@ int main(int argc, char** argv)
 
             //Warning. format of picture assumed to be jpg. This may be false, for example it may be png.
             FILE *fout = fopen(PICNAME, "wb");
-            if (fout == NULL) {
+            if (fout == nullptr) {
                 return -1;
             }
             cout << "processing the file "<< FNAME << endl;

@@ -8,10 +8,10 @@
 #define JSON_PATH_LHS   "/home/rasmus/src/myqt/readjson/nowplaying/lhs.json"
 #define JSON_PATH_RHS   "/home/rasmus/src/myqt/readjson/nowplaying/rhs.json"
 
-NowPlayingCore* NowPlayingCore::_instance = NULL;
+NowPlayingCore* NowPlayingCore::_instance = nullptr;
 NowPlayingCore* NowPlayingCore::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new NowPlayingCore();
     }
     return _instance;

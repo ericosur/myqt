@@ -8,10 +8,10 @@
 #include <QString>
 #include <QStringList>
 
-ActionHandler* ActionHandler::_instance = NULL;
+ActionHandler* ActionHandler::_instance = nullptr;
 ActionHandler* ActionHandler::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new ActionHandler;
     }
     return _instance;
@@ -19,7 +19,7 @@ ActionHandler* ActionHandler::getInstance()
 
 ActionHandler::ActionHandler()
 {
-    fp = NULL;
+    fp = nullptr;
     m_msg = "";
     m_args.clear();
 

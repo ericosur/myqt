@@ -57,13 +57,13 @@ private:
 private:
     int m_threadcount = 0;
     int m_counter = 0;
-    QTimer *m_timer = NULL;
-    QSettings *m_setting = NULL;
-    QElapsedTimer *m_epoch = NULL;
+    QTimer *m_timer = nullptr;
+    QSettings *m_setting = nullptr;
+    QElapsedTimer *m_epoch = nullptr;
 
-    ThreadFoo *foo1 = NULL;
-    ThreadFoo *foo2 = NULL;
-    ThreadFoo *foo3 = NULL;
+    ThreadFoo *foo1 = nullptr;
+    ThreadFoo *foo2 = nullptr;
+    ThreadFoo *foo3 = nullptr;
 
 #ifdef USE_JSONHPP
     nlohmann::json json;

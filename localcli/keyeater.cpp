@@ -1,9 +1,9 @@
 #include "keyeater.h"
 
-KeyEater* KeyEater::_instance = NULL;
+KeyEater* KeyEater::_instance = nullptr;
 KeyEater* KeyEater::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new KeyEater;
     }
     return _instance;

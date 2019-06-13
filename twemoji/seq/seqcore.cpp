@@ -9,10 +9,10 @@
 #include <QDebug>
 
 
-SeqCore* SeqCore::_instance = NULL;
+SeqCore* SeqCore::_instance = nullptr;
 SeqCore* SeqCore::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new SeqCore();
     }
     return _instance;

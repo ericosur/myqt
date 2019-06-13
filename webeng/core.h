@@ -117,7 +117,7 @@ protected:
     QString search_config(const QString& fn);
 
 private:
-    QQmlApplicationEngine* mEngine = NULL;
+    QQmlApplicationEngine* mEngine = nullptr;
     int mCoreWidth = MIN_COREWIDTH;
     int mCoreHeight = MIN_COREHEIGHT;
 

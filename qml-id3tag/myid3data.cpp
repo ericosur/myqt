@@ -10,13 +10,13 @@ MyId3Data::MyId3Data() :
     , m_md5("")
 #endif
 {
-    m_img = QImage(NULL);
+    m_img = QImage();
 }
 
 MyId3Data::MyId3Data(const QString &fn)
 {
     m_fn = fn;
-    m_img = QImage(NULL);
+    m_img = QImage();
 #ifdef MY_USE_MD5SUM
     m_md5 = getHash(m_fn);
 #endif

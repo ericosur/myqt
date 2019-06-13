@@ -29,7 +29,7 @@ protected:
     bool read_json(const QString& fn);
     bool read_jobj(const QJsonObject& obj);
 private:
-    QSettings* mIni = NULL;
+    QSettings* mIni = nullptr;
 };
 
 #endif

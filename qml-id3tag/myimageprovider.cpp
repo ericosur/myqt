@@ -45,18 +45,18 @@ QImage MyImageProvider::requestImage(const QString &id, QSize *size, const QSize
     size->setHeight(500);
     size->setWidth(500);
 
-    MyId3Data *id3 = NULL;
+    MyId3Data *id3 = nullptr;
     if ( m_cache.contains(id) ) {
         id3 = m_cache.object(id);
-        if (id3 != NULL) {
+        if (id3 != nullptr) {
             res = id3->get_img();
         } else {
             //qDebug() << "requestImage(): no img";
-            res = QImage(NULL); // TODO: use default image
+            res = QImage(); // TODO: use default image
         }
     } else {
         //qDebug() << "requestImage(): img not load...";
-        res = QImage(NULL); // TODO: use default image
+        res = QImage(); // TODO: use default image
     }
 
     return res;

@@ -4,10 +4,10 @@
 #define TIMER_INTERVAL      1000
 #define JSON_CONFIG         "/ssd/src/myqt/dom/config.json"
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;

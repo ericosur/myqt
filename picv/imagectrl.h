@@ -54,7 +54,7 @@ protected:
     void requestPrev();
 
 private:
-    QTimer* auto_timer = NULL;
+    QTimer* auto_timer = nullptr;
     int m_curridx = -1;
     int m_maxidx = 10;
     QUrl imgUrl;

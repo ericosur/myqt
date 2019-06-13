@@ -6,10 +6,10 @@
 #define INI_PATH    "../playlist.ini"
 #define OUT_JSON    "o.json"
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -33,7 +33,7 @@ void Core::start()
 
 void Core::read_ini(const QString& fn)
 {
-    if (mIni == NULL) {
+    if (mIni == nullptr) {
         mIni = new QSettings(fn, QSettings::IniFormat);
     }
     mIni->setIniCodec("UTF-8");

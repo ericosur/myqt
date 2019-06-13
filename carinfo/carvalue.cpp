@@ -5,10 +5,10 @@
 #include "carvalue.h"
 #include "trypath.h"
 
-CarValue* CarValue::_instance = NULL;
+CarValue* CarValue::_instance = nullptr;
 CarValue* CarValue::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new CarValue();
     }
     return _instance;

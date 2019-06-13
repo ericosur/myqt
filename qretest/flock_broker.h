@@ -37,10 +37,10 @@ protected:
     FlockBroker();
 
 private:
-    FILE* lock_ptr = NULL;
-    FlockWaitThread* waitlock = NULL;
-    FunlockWaitThread* waitunlock = NULL;
-    SimpleNotify* simpleNotify = NULL;
+    FILE* lock_ptr = nullptr;
+    FlockWaitThread* waitlock = nullptr;
+    FunlockWaitThread* waitunlock = nullptr;
+    SimpleNotify* simpleNotify = nullptr;
 };
 
 

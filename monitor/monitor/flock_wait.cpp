@@ -15,7 +15,7 @@ void FlockWaitThread::run()
     // block here if file lock is not granted
     FILE* fptr = util_file_lock_wait(mPidFile.toUtf8());
     qDebug() << "file lock is released...";
-    if (fptr != NULL) {
+    if (fptr != nullptr) {
         fclose(fptr);
     }
     // thread finished if flock is released

@@ -130,7 +130,7 @@ private:
     // key is path name, value is a string list
     FolderHashList mFolderHash;
 
-    QSharedMemory *shm = NULL;
+    QSharedMemory *shm = nullptr;
 };
 
 #endif // __TRAVEL_THREAD_H__

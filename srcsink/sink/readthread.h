@@ -36,9 +36,9 @@ public:
 protected:
 
 private:
-    FileItem* fi = NULL;
+    FileItem* fi = nullptr;
     ItemType mItemType = NO_ITEM;
-    FileItem* mBuffer = NULL;
+    FileItem* mBuffer = nullptr;
 };
 
 #endif // __READ_THREAD_H__

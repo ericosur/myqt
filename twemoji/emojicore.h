@@ -52,7 +52,7 @@ public slots:
 
 protected:
     static EmojiCore* _instance;
-    EmojiCore(QObject *_parent=NULL);
+    EmojiCore(QObject *_parent=nullptr);
 
     void test0();
     void test1();

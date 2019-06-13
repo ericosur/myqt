@@ -1,9 +1,9 @@
 #include <QCoreApplication>
 #include "flock_broker.h"
 
-FlockBroker* FlockBroker::_instance = NULL;
+FlockBroker* FlockBroker::_instance = nullptr;
 FlockBroker* FlockBroker::getInstance() {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new FlockBroker;
     }
     return _instance;
@@ -27,7 +27,7 @@ FlockBroker::~FlockBroker()
 
 FlockWaitThread* FlockBroker::getWaitLock()
 {
-    if (waitlock == NULL) {
+    if (waitlock == nullptr) {
         // start a thread and wait for it finished
         waitlock = new FlockWaitThread;
     }
@@ -36,7 +36,7 @@ FlockWaitThread* FlockBroker::getWaitLock()
 
 FunlockWaitThread* FlockBroker::getWaitUnlock()
 {
-    if (waitunlock == NULL) {
+    if (waitunlock == nullptr) {
         // start a thread and wait for it finished
         waitunlock = new FunlockWaitThread;
     }

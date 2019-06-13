@@ -15,7 +15,7 @@ void ReadThread::run()
         return;
     }
 
-    if (fi == NULL) {
+    if (fi == nullptr) {
         fi = getOneEmptyFileItem();
     }
 
@@ -24,7 +24,7 @@ void ReadThread::run()
     // block here
     do {
         // buf = (FileItem*)util_shm_read(LOCAL_SHM_KEY, sizeof(FileItem));
-        // if (buf == NULL) {
+        // if (buf == nullptr) {
         //     qWarning() << "shm read failed";
         //     return;
         // } else {

@@ -7,10 +7,10 @@
 #include <QJsonValue>
 #include <QDebug>
 
-WordUtil* WordUtil::_instance = NULL;
+WordUtil* WordUtil::_instance = nullptr;
 WordUtil* WordUtil::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new WordUtil();
     }
     return _instance;

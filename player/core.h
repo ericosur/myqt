@@ -32,7 +32,7 @@ protected:
     BasicPlayer* get_player(const QString& fname);
 
 private:
-    BasicPlayer* mActivePlayer = NULL;
+    BasicPlayer* mActivePlayer = nullptr;
     QString mCurrentFile;
     QString mReason;
     RCommon mCd;

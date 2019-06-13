@@ -2,10 +2,10 @@
 #include <QCoreApplication>
 #include <QDebug>
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-	if (_instance == NULL) {
+	if (_instance == nullptr) {
 		_instance = new Core();
 	}
 	return _instance;
@@ -16,11 +16,11 @@ Core::Core()
 	qDebug() << Q_FUNC_INFO << "created...";
 
 	// thread to receive msgq
-	if (msgrx == NULL) {
+	if (msgrx == nullptr) {
 		msgrx = new MsgRxThread;
 	}
 	// thread to wait flock
-	if (lockwait == NULL) {
+	if (lockwait == nullptr) {
 		lockwait = new FlockWaitThread("/tmp/foo.pid");
 	}
 
@@ -31,7 +31,7 @@ Core::Core()
 	connect(this, SIGNAL(sigQuit()),
 		qApp, SLOT(quit()));
 
-	if (msgrx != NULL) {
+	if (msgrx != nullptr) {
 		msgrx->start();
 	}
 }
@@ -42,7 +42,7 @@ void Core::sltMessageReceived(const QString& msg)
 	if (msg == "foo") {
 		qDebug() << "IPC notification: foo starts...";
 		// start wait flock thread
-		if (lockwait != NULL) {
+		if (lockwait != nullptr) {
 			lockwait->start();
 		}
 	} else if (msg == "quit") {

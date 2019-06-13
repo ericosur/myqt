@@ -4,10 +4,10 @@
 
 #include "inireader.h"
 
-IniReader* IniReader::_instance = NULL;
+IniReader* IniReader::_instance = nullptr;
 IniReader* IniReader::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new IniReader();
     }
     return _instance;
@@ -25,13 +25,13 @@ bool IniReader::init_reader()
         return false;
     }
 
-    if (ini == NULL) {
+    if (ini == nullptr) {
         ini = new QSettings(DEFAULT_INI_PATH, QSettings::IniFormat);
         QTextCodec *codec = QTextCodec::codecForName("UTF-8");
         ini->setIniCodec(codec);
     }
 
-    if (ini == NULL) {
+    if (ini == nullptr) {
         qWarning() << "ini reader is not init'd";
         return false;
     }
@@ -53,7 +53,7 @@ bool IniReader::startRead()
 
 QString IniReader::requestById(int id)
 {
-    if (!bActive || ini == NULL) {
+    if (!bActive || ini == nullptr) {
         return "null";
     }
 

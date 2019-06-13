@@ -6,7 +6,7 @@
 /* Checking errors returned by system calls was omitted for the sake of readability. */
 void gtz()
 {
-    time_t t = time(NULL);
+    time_t t = time(nullptr);
     struct tm lt;
 
     localtime_r(&t, &lt);

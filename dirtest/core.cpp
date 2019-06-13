@@ -6,10 +6,10 @@
 #define FLIST  "/tmp/flist.txt"
 #define PLIST  "/tmp/plist.txt"
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -19,7 +19,7 @@ Core::Core()
 {
     qDebug() << Q_FUNC_INFO << "created...";
 
-    if (mTravel == NULL) {
+    if (mTravel == nullptr) {
         mTravel = new TravelThread();
     }
     // connect(poll, SIGNAL(sigUsbDectected()), this, SLOT(sltUsbDetected()));
@@ -32,7 +32,7 @@ Core::Core()
 void Core::start(const QString& startpath)
 {
     qDebug() << Q_FUNC_INFO << startpath;
-    if (mTravel == NULL) {
+    if (mTravel == nullptr) {
         qWarning() << "travel thread is NULL, exit...";
         return;
     }
@@ -59,7 +59,7 @@ void Core::dumpList(const QStringList& list, const QString& fn)
     qDebug() << "dumpList(): size:" << list.size()
         << "to file:" << fn;
     FILE* fptr = fopen(fn.toUtf8().constData(), "w");
-    if (fptr == NULL) {
+    if (fptr == nullptr) {
         qWarning() << "cannot output to file:" << fn;
         return;
     }

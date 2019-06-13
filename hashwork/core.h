@@ -26,8 +26,8 @@ protected:
     Core();
 
 private:
-    PollThread* poll = NULL;
-    Worker* worker = NULL;
+    PollThread* poll = nullptr;
+    Worker* worker = nullptr;
 };
 
 #endif  // __CORE_H__

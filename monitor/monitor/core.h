@@ -24,8 +24,8 @@ protected:
     Core();
 
 private:
-	MsgRxThread* msgrx = NULL;
-	FlockWaitThread* lockwait = NULL;
+	MsgRxThread* msgrx = nullptr;
+	FlockWaitThread* lockwait = nullptr;
 };
 
 #endif	// __CORE_H__

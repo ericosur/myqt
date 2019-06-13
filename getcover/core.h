@@ -29,7 +29,7 @@ protected:
     Core();
 
 private:
-    Worker* worker = NULL;
+    Worker* worker = nullptr;
 };
 
 #endif  // __CORE_H__

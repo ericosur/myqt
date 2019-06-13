@@ -8,10 +8,10 @@
 #include <QDebug>
 #include <QThread>
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -22,11 +22,11 @@ Core::Core()
     qDebug() << Q_FUNC_INFO << "created...";
 
     // thread to receive msgq
-    if (msgrx == NULL) {
+    if (msgrx == nullptr) {
         msgrx = new MsgRxThread();
     }
 
-    if (travel == NULL) {
+    if (travel == nullptr) {
         travel = new TravelThread();
     }
 
@@ -34,7 +34,7 @@ Core::Core()
         this, SLOT(sltMessageReceived(const QString&)));
     connect(this, SIGNAL(sigQuitApp()), qApp, SLOT(quit()));
 
-    if (msgrx != NULL) {
+    if (msgrx != nullptr) {
         msgrx->start();
     }
 
@@ -92,7 +92,7 @@ void Core::sltNext()
 {
     qDebug() << Q_FUNC_INFO;
     const int BUFFER_SIZE = 1024;
-    byte* buf = NULL;
+    byte* buf = nullptr;
 
     buf = (byte*)util_shm_read(LOCAL_SHM_KEY, BUFFER_SIZE);
     if (buf == (void*)-1) {
@@ -272,7 +272,7 @@ void Core::check_shm()
          qWarning() << "shm write failed";
      }
     FileItem *buf = (FileItem*)util_shm_read(LOCAL_SHM_KEY, sizeof(FileItem));
-    if (buf == NULL) {
+    if (buf == nullptr) {
         qWarning() << "failed to read shm...";
         return;
     }

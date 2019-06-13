@@ -15,7 +15,7 @@ class Foo
 public:
     Foo(const QString& inifn = DEFAULT_INI_PATH);
     ~Foo() {
-        if (ini!=NULL) {
+        if (ini!=nullptr) {
             ini->sync();
         }
     }
@@ -37,7 +37,7 @@ public:
 
 private:
     QString mInifn;
-    QSettings *ini = NULL;
+    QSettings *ini = nullptr;
 };
 
 #endif

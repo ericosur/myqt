@@ -30,8 +30,8 @@ protected:
     explicit Core();
 
 private:
-    QTimer* mTimer = NULL;
-    quint8* mymem = NULL;
+    QTimer* mTimer = nullptr;
+    quint8* mymem = nullptr;
     bool bFinish = false;
 };
 

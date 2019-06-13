@@ -6,10 +6,10 @@
 using json = nlohmann::json;
 bool parse_and_dump(const char* text, json& result);
 
-UtilVars* UtilVars::_instance = NULL;
+UtilVars* UtilVars::_instance = nullptr;
 UtilVars* UtilVars::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new UtilVars();
     }
     return _instance;

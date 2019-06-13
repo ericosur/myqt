@@ -48,7 +48,7 @@ protected:
 
 
 private:
-    TravelThread* mTravel = NULL;
+    TravelThread* mTravel = nullptr;
 };
 
 #endif  // __CORE_H__

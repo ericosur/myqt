@@ -19,15 +19,15 @@ void completion(const char *buf, linenoiseCompletions *lc)
 
 char *hints(const char *buf, int *color, int *bold)
 {
-    char *p = NULL;
+    char *p = nullptr;
     p = MyNoise::getInstance()->add_hint(buf);
-    if (p!=NULL) {
+    if (p!=nullptr) {
         *color = 36;
         *bold = 0;
         return p;
     }
 
-    return NULL;
+    return nullptr;
 
 }
 #ifdef __cplusplus
@@ -36,10 +36,10 @@ char *hints(const char *buf, int *color, int *bold)
 
 #define HISTORY_FILE    "/tmp/noisehistory.txt"
 
-MyNoise* MyNoise::_instance = NULL;
+MyNoise* MyNoise::_instance = nullptr;
 MyNoise* MyNoise::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new MyNoise;
     }
     return _instance;
@@ -73,7 +73,7 @@ void MyNoise::startcommandloop()
      *
      * The typed string is returned as a malloc() allocated string by
      * linenoise, so the user needs to free() it. */
-    while((line = linenoise("hello> ")) != NULL) {
+    while((line = linenoise("hello> ")) != nullptr) {
         /* Do something with the string. */
         if (line[0] != '\0' && line[0] != '/') {
             //printf("cmd: %s\n", line);
@@ -163,5 +163,5 @@ char* MyNoise::add_hint(const QString& str)
         snprintf(myhint, 80, "%s", "<uiname>");
         return myhint;
     }
-    return NULL;
+    return nullptr;
 }

@@ -11,10 +11,10 @@
     qDebug() << "svc_dispatch() debug mode..."
 #endif
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -25,10 +25,10 @@ Core::Core()
     qDebug() << Q_FUNC_INFO << "created...";
 
     // thread to receive msgq
-    if (poll == NULL) {
+    if (poll == nullptr) {
         poll = new PollThread();
     }
-    if (worker == NULL) {
+    if (worker == nullptr) {
         worker = new Worker();
     }
 
@@ -45,7 +45,7 @@ void Core::sltWaitFinished()
 
 void Core::start()
 {
-    if (poll == NULL) {
+    if (poll == nullptr) {
         qWarning() << "poll thread is NULL, failed to run...";
     } else {
         emit sigWork();

@@ -32,7 +32,7 @@ protected:
     Core();
 
 private:
-    ReadThread* thread = NULL;
+    ReadThread* thread = nullptr;
     ReadJson rj;
     QJsonObject json;
 };

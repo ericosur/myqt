@@ -4,10 +4,10 @@
 
 #include <nlohmann/json.hpp>
 
-Core* Core::_instance = NULL;
+Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new Core();
     }
     return _instance;
@@ -78,7 +78,7 @@ void Core::read_config()
 std::string Core::write_prepare_fn()
 {
     FILE* fp = fopen(prepare_fn.c_str(), "wb");
-    if (fp == NULL) {
+    if (fp == nullptr) {
         qWarning() << "cannot write file, abort...";
         exit(EXIT_REASON_ERROR);
     }
@@ -95,7 +95,7 @@ void Core::do_corrupt(const std::string& fn)
 {
     FILE* fp = fopen(fn.c_str(), "r+b");
     CHECK_IF_DEBUG( qDebug() << "do corrupt on file:" << fn.c_str() );
-    if (fp == NULL) {
+    if (fp == nullptr) {
         qWarning() << "cannot read file for writing, abort...";
         exit(EXIT_REASON_ERROR);
     }

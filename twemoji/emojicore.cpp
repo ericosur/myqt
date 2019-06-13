@@ -8,11 +8,11 @@
 #include <QThread>
 #include <QDebug>
 
-EmojiCore* EmojiCore::_instance = NULL;
+EmojiCore* EmojiCore::_instance = nullptr;
 
 EmojiCore* EmojiCore::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new EmojiCore();
     }
     return _instance;

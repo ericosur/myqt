@@ -28,7 +28,7 @@ protected:
     Core();
 
 private:
-    PollThread* poll = NULL;
+    PollThread* poll = nullptr;
 };
 
 #endif  // __CORE_H__

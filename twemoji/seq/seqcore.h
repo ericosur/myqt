@@ -31,7 +31,7 @@ public slots:
 
 protected:
     static SeqCore* _instance;
-    SeqCore(QObject *_parent=NULL);
+    SeqCore(QObject *_parent=nullptr);
 
     void load_from_res();
     void load_seq();

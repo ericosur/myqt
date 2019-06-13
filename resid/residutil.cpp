@@ -50,7 +50,7 @@ class IniCache : public QObject
 {
 public:
     static IniCache* getInstance() {
-        if (_instance == NULL) {
+        if (_instance == nullptr) {
             _instance = new IniCache();
         }
         return _instance;
@@ -73,12 +73,12 @@ protected:
     static IniCache* _instance;
 
 private:
-    QSettings* ini_settings = NULL;
+    QSettings* ini_settings = nullptr;
     QStringList stringid_lists;
     QStringList locale_lists;
 };
 
-IniCache* IniCache::_instance = NULL;
+IniCache* IniCache::_instance = nullptr;
 IniCache::IniCache()
 {
     QString fn = findFileLocation(STRMSGINI);
@@ -113,7 +113,7 @@ QString getStringByIntid(const QString& locale_name, int id)
 
     IniCache* ich = IniCache::getInstance();
     QSettings* ini = ich->getSettings();
-    if (ini == NULL) {
+    if (ini == nullptr) {
         qWarning() << "[FATAL] string id INI not found...";
         return STRING_NULL;
     }
@@ -142,7 +142,7 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
 
     IniCache* ich = IniCache::getInstance();
     QSettings* ini = IniCache::getInstance()->getSettings();
-    if (ini == NULL) {
+    if (ini == nullptr) {
         qWarning() << "[FATAL] string id INI not found...";
         return STRING_NULL;
     }
@@ -191,7 +191,7 @@ class JsonCache : public QObject
 {
 public:
     static JsonCache* getInstance() {
-        if (_instance == NULL) {
+        if (_instance == nullptr) {
             _instance = new JsonCache();
         }
         return _instance;
@@ -241,7 +241,7 @@ public:
     QString queryCache(const QString& key) {
         //qDebug() << __PRETTY_FUNCTION__;
         QString* q = cache.object(key);
-        if (q == NULL) {
+        if (q == nullptr) {
             if (bDebug)
                 qDebug() << "[json cache] not found from cache:" << key;
             return QString();
@@ -271,12 +271,12 @@ private:
     json _jj;
     bool isOk = false;
 
-    QString *sptr = NULL;
+    QString *sptr = nullptr;
     QCache<QString, QString> cache;
     int hitCount = 0;
 };
 
-JsonCache* JsonCache::_instance = NULL;
+JsonCache* JsonCache::_instance = nullptr;
 JsonCache::JsonCache()
 {
     QString fn = findFileLocation(STRMSG_JSONFILE);
@@ -334,13 +334,13 @@ void JsonCache::load_locale_list()
 JsonCache* json_basic_check()
 {
     JsonCache* jc = JsonCache::getInstance();
-    if (jc == NULL) {
+    if (jc == nullptr) {
         qWarning() << "[FATAL] JsonCache is NULL!";
-        return NULL;
+        return nullptr;
     }
     if (!jc->isOpen()) {
         qWarning() << "[ERROR] json is not open...";
-        return NULL;
+        return nullptr;
     }
 
     return jc;
@@ -357,7 +357,7 @@ QString getStringByIntid(const QString& locale_name, int id)
         qDebug() << __func__ << "getmsg(json) locale:" << locale_name << ", id:" << id;
 
     JsonCache* jc = json_basic_check();
-    if (jc == NULL) {
+    if (jc == nullptr) {
         return STRING_NULL;
     }
 
@@ -380,7 +380,7 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
     Q_UNUSED(strid);
 
     JsonCache* jc = json_basic_check();
-    if (jc == NULL) {
+    if (jc == nullptr) {
         return STRING_NULL;
     }
 

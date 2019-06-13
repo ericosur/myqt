@@ -17,10 +17,10 @@
 
 void travel_tag(QDomElement& elem, const QString& tag);
 
-HandleSvg* HandleSvg::_instance = NULL;
+HandleSvg* HandleSvg::_instance = nullptr;
 HandleSvg* HandleSvg::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new HandleSvg();
     }
     return _instance;

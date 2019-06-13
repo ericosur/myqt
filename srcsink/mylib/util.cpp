@@ -17,7 +17,7 @@ int util_shm_write( int key, int shm_size, void *data)
         return -1;
     }
 
-    shmadd = shmat(shmid, NULL, 0);
+    shmadd = shmat(shmid, nullptr, 0);
     if(shmadd == (void*)-1) {
         perror("shmat");
         return -1;
@@ -38,13 +38,13 @@ void * util_shm_read( int key, int shm_size)
     shmid = shmget((key_t)key, shm_size, SHM_R|SHM_W|IPC_CREAT);
     if(shmid < 0)   {
         perror("shmget");
-        return NULL;
+        return nullptr;
     }
 
-    shmadd = shmat(shmid, NULL, 0);
+    shmadd = shmat(shmid, nullptr, 0);
     if(shmadd == (void*)-1) {
         perror("shmat");
-        return NULL;
+        return nullptr;
     }
 
     return shmadd;

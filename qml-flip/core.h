@@ -46,7 +46,7 @@ protected:
     static Core* _instance;
 
 private:
-    QQmlApplicationEngine* mEngine = NULL;
+    QQmlApplicationEngine* mEngine = nullptr;
     int mCoreWidth = MIN_COREWIDTH;
     int mCoreHeight = MIN_COREHEIGHT;
 };

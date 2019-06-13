@@ -33,10 +33,10 @@
 #define MAX_KNOWN_CFG_INDEX     27
 #define DEFAULT_INVALID_VALUE   "FF"
 
-GetRadioConfig* GetRadioConfig::_instance = NULL;
+GetRadioConfig* GetRadioConfig::_instance = nullptr;
 GetRadioConfig* GetRadioConfig::getInstance()
 {
-    if (_instance == NULL) {
+    if (_instance == nullptr) {
         _instance = new GetRadioConfig();
     }
     return _instance;

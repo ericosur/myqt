@@ -35,10 +35,10 @@ protected:
     void check_shm();
 
 private:
-    ReadThread* readthead = NULL;
+    ReadThread* readthead = nullptr;
     bool mFileFinished = false;
     bool mFolderFinished = false;
-    FileItem* mBuffer = NULL;
+    FileItem* mBuffer = nullptr;
 };
 
 #endif // __FLOW_CTRL_H__
