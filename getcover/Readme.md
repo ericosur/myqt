@@ -1,4 +1,21 @@
-# Comparision Table
+# Readme
+
+**getcover** is prototype for extract id3tag from audio files.
+
+[TOC]
+
+## related modules
+
+**getcover** needs the following library:
+- taglib
+  - https://taglib.org/
+
+This python module w/ cli tools could help double check:
+- mutagen
+  - https://github.com/quodlibet/mutagen
+  - https://mutagen.readthedocs.io/en/latest/
+
+## Comparision Table
 
 | item | description |
 | ---- | ----------- |
