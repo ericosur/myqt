@@ -13,10 +13,13 @@ ApplicationWindow {
     visible: true
 
     property bool demo_run: true
+    property int font_size: 30
     //property string font_name: "PingFang TC"
     //property string font_name: "Apple Color Emoji"
+    //property string font_name: "Symbola"
+    //property string font_name: "Bitstream Vera Sans"
     property string font_name: "Noto Emoji"
-    // "Bitstream Vera Sans"
+    //property string font_name: "DejaVu Sans"
 
     Timer {
         id: demo_timer
@@ -33,7 +36,7 @@ ApplicationWindow {
         Column {
             padding: 12
             Row {
-                padding:10
+                padding: 20
                 Button {
                     text: "Pause"
                     onClicked: {
@@ -52,13 +55,13 @@ ApplicationWindow {
             Text {
                 color: "steelblue"
                 text: emoji.instr
-                font.pointSize: 24
+                font.pointSize: font_size
                 font.family: font_name
             }
             TextEdit {
                 id: text_emoji
                 color: "white"
-                font.pointSize: 30
+                font.pointSize: font_size
                 textFormat: TextEdit.RichText
                 readOnly: true
                 text: emoji.sequence
