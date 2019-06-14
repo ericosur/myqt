@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QThread>
 
-#define MAX_SEND_SIZE           64
+#define MAX_SEND_SIZE           512
 #define MESGQKEY_MESSAGE_TYPE   9
 #define MESGQKEY_MONITOR        0x0880CAFE
 
