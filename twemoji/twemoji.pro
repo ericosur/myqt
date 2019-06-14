@@ -24,6 +24,8 @@ SOURCES += emojicore.cpp \
 HEADERS += emojicore.h \
     seq/seqcore.h
 
+INCLUDEPATH += /usr/local/include
+
 win32 {
 INCLUDEPATH += $$PWD/../../json/single_include
 }
