@@ -13,8 +13,9 @@ ApplicationWindow {
     visible: true
 
     property bool demo_run: true
-    property string font_name: "PingFang TC"
-    //"Apple Color Emoji"
+    //property string font_name: "PingFang TC"
+    //property string font_name: "Apple Color Emoji"
+    property string font_name: "Noto Emoji"
     // "Bitstream Vera Sans"
 
     Timer {
