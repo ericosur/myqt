@@ -1,0 +1,39 @@
+{
+  "basic": [
+    {
+      "name": "ip addr",
+      "cmd": "/sbin/ip addr"
+    },
+    {
+      "name": "route table",
+      "cmd": "/sbin/route -n"
+    },
+    {
+      "name": "netmanager connections",
+      "cmd": "/usr/bin/nmcli c"
+    },
+    {
+      "name": "dropbox status",
+      "cmd": "/usr/bin/dropbox status"
+    },
+    {
+      "name": "ifconfig eth0",
+      "cmd": "/sbin/ifconfig eth0"
+    },
+    {
+      "name": "free in MB",
+      "cmd": "/usr/bin/free -m"
+    }
+
+  ],
+  "wifi": [
+    {
+      "name"  : "test-wifi-frwk-switch-001",
+      "cmd"  : "/usr/local/test/wifi/test-wifi-frwk-switch-001.sh"
+    },
+    {
+      "name"  : "test-wifi-frwk-switch-002",
+      "cmd"  : "/usr/local/test/wifi/test-wifi-frwk-switch-002.sh"
+    }
+  ]
+}

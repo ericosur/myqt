@@ -1,0 +1,7 @@
+{
+    "caption": "autotestui config file 2019-07-04",
+    "autotest": "/home/rasmus/src/myqt/testtoolui/autotest.json",
+    "about": "The quick brown fox jumps over the lazy dog",
+    "listwidget": "font-size: 22px; color: black; background-color: lightgray; selection-color: black; selection-background-color: steelblue;",
+    "textedit": "color: dimgray; background-color: black; background-image: url(bg.png);"
+}

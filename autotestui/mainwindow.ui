@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Test Tool</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>1051</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <item row="1" column="5">
+      <widget class="QPushButton" name="btnCategory14">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="btnCategory10">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="8">
+      <widget class="QPushButton" name="btnCategory8">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="7">
+      <widget class="QPushButton" name="btnCategory7">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="btnCategory2">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <widget class="QPushButton" name="btnCategory15">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="8">
+      <widget class="QPushButton" name="btnCategory17">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="btnCategory12">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="6">
+      <widget class="QPushButton" name="btnCategory6">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="7">
+      <widget class="QPushButton" name="btnCategory16">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QPushButton" name="btnCategory4">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="btnCategory3">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="btnCategory11">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="btnCategory1">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="btnCategory13">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QPushButton" name="btnCategory5">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="btnCategory0">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="btnCategory9">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>40</y>
+      <width>1161</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
+     <item row="0" column="2">
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>720</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>panel3</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+       </property>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>831</width>
+          <height>651</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Liberation Mono</family>
+         </font>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="lineWrapMode">
+         <enum>QTextEdit::NoWrap</enum>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QGroupBox" name="groupBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>320</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <widget class="QPushButton" name="btnClear">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>560</y>
+          <width>50</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CLR</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnInfo">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>560</y>
+          <width>50</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Info</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnAbout">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>560</y>
+          <width>50</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Ver</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnRun">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>600</y>
+          <width>151</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Run</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnQuit">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>600</y>
+          <width>91</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Quit</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnKill">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>560</y>
+          <width>50</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Kill</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="listWidget">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>1</y>
+          <width>321</width>
+          <height>551</height>
+         </rect>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear TextArea</string>
+   </property>
+  </action>
+  <action name="actionLoadConfig">
+   <property name="text">
+    <string>Load ini config...</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
