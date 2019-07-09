@@ -13,8 +13,16 @@
       "cmd": "/usr/bin/nmcli c"
     },
     {
-      "name": "dropbox status",
-      "cmd": "/usr/bin/dropbox status"
+      "name": "wait 7 sec",
+      "cmd": "/ssd/cis008/source/testtoolui/autotestui/wait7.sh"
+    },
+    {
+      "name": "wait 5 sec",
+      "cmd": "/ssd/cis008/source/testtoolui/autotestui/wait5.sh"
+    },
+    {
+      "name": "wait 11 sec",
+      "cmd": "/ssd/cis008/source/testtoolui/autotestui/wait11.sh"
     },
     {
       "name": "ifconfig eth0",
@@ -35,5 +43,160 @@
       "name"  : "test-wifi-frwk-switch-002",
       "cmd"  : "/usr/local/test/wifi/test-wifi-frwk-switch-002.sh"
     }
+  ],
+
+  "audio":[
+    {
+      "name" : "test-audio-frwk-libaudio-001.sh",
+      "cmd" : "auto-test-all.sh category   audio file test-audio-frwk-libaudio-001.sh"
+    }
+  ],
+  "bt":[
+    {
+      "name" : "test-bt-frwk-a2dp_random-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-frwk-a2dp_random-001.sh"
+    },
+    {
+      "name" : "test-bt-frwk-a2dp_switch-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-frwk-a2dp_switch-001.sh"
+    },
+    {
+      "name" : "test-bt-frwk-reconnect_accoff-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-frwk-reconnect_accoff-001.sh"
+    },
+    {
+      "name" : "test-bt-hmi-btaudio-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-hmi-btaudio-001.sh"
+    },
+    {
+      "name" : "test-bt-hmi-btsetup-toggle-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-hmi-btsetup-toggle-001.sh"
+    },
+    {
+      "name" : "test-bt-hmi-ipod-switching-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-hmi-ipod-switching-001.sh"
+    },
+    {
+      "name" : "test-bt-hmi-outcall-001.sh",
+      "cmd" : "auto-test-all.sh category bt file test-bt-hmi-outcall-001.sh"
+    }
+  ],
+  "display":[
+    {
+      "name" : "test-display-frwk-laymgr-001.sh",
+      "cmd" : "auto-test-all.sh category display file test-display-frwk-laymgr-001.sh"
+    },
+    {
+      "name" : "test-display-frwk-laymgr-002.sh",
+      "cmd" : "auto-test-all.sh category display file test-display-frwk-laymgr-002.sh"
+    },
+    {
+      "name" : "test-display-frwk-laymgr-003.sh",
+      "cmd" : "auto-test-all.sh category display file test-display-frwk-laymgr-003.sh"
+    },
+    {
+      "name" : "test-display-frwk-laymgr-004.sh",
+      "cmd" : "auto-test-all.sh category display file test-display-frwk-laymgr-004.sh"
+    },
+    {
+      "name" : "test-display-frwk-laymgr-005.sh",
+      "cmd" : "auto-test-all.sh category display file test-display-frwk-laymgr-005.sh"
+    }
+  ],
+  "media":[
+    {
+      "name" : "test-media-usb_audio-001.sh",
+      "cmd" : "auto-test-all.sh category media file test-media-usb_audio-001.sh"
+    },
+    {
+      "name" : "test-media-usb_picture_play-001.sh",
+      "cmd" : "auto-test-all.sh category media file test-media-usb_picture_play-001.sh"
+    }
+  ],
+  "misc":[
+    {
+      "name" : "test-navi-hmi-search-001.sh",
+      "cmd" : "auto-test-all.sh category misc file test-navi-hmi-search-001.sh"
+    }
+  ],
+  "myspin":[
+    {
+      "name" : "test-myspin-frwk-ipod_switch-001.sh",
+      "cmd" : "auto-test-all.sh category myspin file test-myspin-frwk-ipod_switch-001.sh"
+    },
+    {
+      "name" : "test-myspin-frwk-open_close_stress-001.sh",
+      "cmd" : "auto-test-all.sh category myspin file test-myspin-frwk-open_close_stress-001.sh"
+    }
+  ],
+  "pwrcycle":[
+    {
+      "name" : "test-pwrcycle-hmi-monkey-001.sh",
+      "cmd" : "auto-test-all.sh category pwrcycle file test-pwrcycle-hmi-monkey-001.sh"
+    },
+    {
+      "name" : "test-pwrcycle-hmi-mp3_disc-001.sh",
+      "cmd" : "auto-test-all.sh category pwrcycle file test-pwrcycle-hmi-mp3_disc-001.sh"
+    },
+    {
+      "name" : "test-pwrcycle-hmi-pray-001.sh",
+      "cmd" : "auto-test-all.sh category pwrcycle file test-pwrcycle-hmi-pray-001.sh"
+    }
+  ],
+  "sonar":[
+    {
+      "name" : "test-sonar-hmi-stress-001.sh",
+      "cmd" : "auto-test-all.sh category sonar file test-sonar-hmi-stress-001.sh"
+    }
+  ],
+  "system":[
+    {
+      "name" : "test-system-frwk-focus-001.sh",
+      "cmd" : "auto-test-all.sh category system file test-system-frwk-focus-001.sh"
+    },
+    {
+      "name" : "test-system-frwk-focus-002.sh",
+      "cmd" : "auto-test-all.sh category system file test-system-frwk-focus-002.sh"
+    },
+    {
+      "name" : "test-system-frwk-mem-001.sh",
+      "cmd" : "auto-test-all.sh category system file test-system-frwk-mem-001.sh"
+    },
+    {
+      "name" : "test-system-frwk-svc_tool_latency-001.sh",
+      "cmd" : "auto-test-all.sh category system file test-system-frwk-svc_tool_latency-001.sh"
+    },
+    {
+      "name" : "test-system-frwk-svc_tool_mem-001.sh",
+      "cmd" : "auto-test-all.sh category system file test-system-frwk-svc_tool_mem-001.sh"
+    },
+    {
+      "name" : "test-system-hmi-monkey-001.sh",
+      "cmd" : "auto-test-all.sh category system file test-system-hmi-monkey-001.sh"
+    }
+  ],
+  "video":[
+    {
+      "name" : "test-usb-hmi-video-001.sh",
+      "cmd" : "auto-test-all.sh category video file test-usb-hmi-video-001.sh"
+    },
+    {
+      "name" : "test-video-frwk-cma_available-001.sh",
+      "cmd" : "auto-test-all.sh category video file test-video-frwk-cma_available-001.sh"
+    },
+    {
+      "name" : "test-video-frwk-decoder-001.sh",
+      "cmd" : "auto-test-all.sh category video file test-video-frwk-decoder-001.sh"
+    },
+    {
+      "name" : "test-video-frwk-decoder-002.sh",
+      "cmd" : "auto-test-all.sh category video file test-video-frwk-decoder-002.sh"
+    },
+    {
+      "name" : "test-video-frwk-stress-001.sh",
+      "cmd" : "auto-test-all.sh category video file test-video-frwk-stress-001.sh"
+    }
   ]
+
+
 }

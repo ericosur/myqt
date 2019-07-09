@@ -4,19 +4,7 @@ QT += widgets
 TARGET = autotestui
 TEMPLATE = app
 
-##### NOTE HERE #####
-# turn on if build for target device
-# turn off if build on ubuntu host
-#CONFIG += USE_YOSETARGET
-# if you open amis project from codebase no matter host/target build,
-# the following part will handle automatically
-
-message("product.sh found ==> HOST build")
-CONFIG -= use_target
 CONFIG += readjson
-
-#message("product.sh not found ==> TARGET build")
-#CONFIG += use_target
 
 
 SOURCES += \

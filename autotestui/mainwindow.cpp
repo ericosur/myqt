@@ -19,10 +19,11 @@
 #define UI_CONFIG_PATH "ui.json"
 #endif
 
-#define AUTOTEST_CONFIG_PATH "autotest.json"
 #define DEFAULT_BUFFER_SIZE 2048
-#define VERSION "autotestui 2019-07-02"
+#define VERSION "autotestui 2019-07-09 run process one-by-one"
 #define TEST_STRING "1234567890123456789012345678901234567890123456789012345678901234567890"
+
+#define AUTOTEST_CONFIG_PATH "autotest.json"
 #define DEFAULT_LISTWIDGET_STYLESHEET \
             "color: black;" \
             "background-color: lightgray;" \
@@ -49,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textEdit->setCurrentFont(m_fixedfont);
     ui->textEdit->setReadOnly(true);
 
+    ui->btnTest->setEnabled(true);
+
     loadConfig();
     loadAutotestConfig();
 
@@ -61,18 +64,26 @@ MainWindow::MainWindow(QWidget *parent) :
     initButtonGroups();
 
     // show some info
-    addline(m_fixedfont.toString());
+    addmsg(m_fixedfont.toString());
     showCurrentTime();
 
     //testLocal();
     //testSplit();
     //testTime();
-    addline(QDir::currentPath() + QString("/autotestui"));
+    addmsg(QDir::currentPath() + QString("/autotestui"));
+
+    runTimer = new QTimer(this);
+    connect(runTimer, &QTimer::timeout, [=]{ sltTimeout(); });
+    runTimer->setSingleShot(true);
+    runTimer->setInterval(COLDDOWN_INTERVAL);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    if (runTimer != nullptr) {
+        delete runTimer;
+    }
 }
 
 void MainWindow::setStyleSheet()
@@ -89,9 +100,9 @@ void MainWindow::showCurrentTime()
 {
     QString msg;
     msg = QString("localtime: %1").arg(QDateTime::currentDateTime().toString());
-    addline(msg);
+    addmsg(msg);
     msg = QString("UTC: %1").arg(QDateTime::currentDateTimeUtc().toString());
-    addline(msg);
+    addmsg(msg);
 }
 
 void MainWindow::initEmptyButtons()
@@ -133,7 +144,6 @@ void MainWindow::initButtonGroups()
     QStringList jd_keys = jd.keys();
     for (int i = 0; i < MAX_CATEGORY; i++) {
         QPushButton* button = btnCategoryGroup[i];
-        //connect(button, SIGNAL(clicked()), signalMapperCategory, SLOT(map()));
         QString assignText = composeString("nullptr", i);
         if (i < jd_keys.size()) {
             assignText = jd_keys.at(i);
@@ -141,16 +151,14 @@ void MainWindow::initButtonGroups()
             button->setVisible(true);
         }
         button->setText(assignText);
-        //signalMapperCategory->setMapping(button, assignText);
-
         connect(button, &QPushButton::clicked, [=] { categoryClicked(assignText); });
-        //connect(button, &QPushButton::clicked, ui->listWidget, &QListWidget::clear);
     }
 
-    // connect(signalMapperCategory, SIGNAL(mapped(QString)),
-    //         this, SIGNAL(categoryClicked(QString)));
-
+#ifndef USE_YOSETARGET
+    categoryClicked("basic");
+#else
     categoryClicked(jd_keys.at(0));
+#endif
 }
 
 void MainWindow::initActionsConnections()
@@ -160,14 +168,14 @@ void MainWindow::initActionsConnections()
     // other actions
     //connect(ui->actionClear, SIGNAL(triggered()), this, SLOT(clearTextArea()));
     //connect(ui->actionQuit, SIGNAL(triggered()), this, SLOT(close()));
-    //connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(runLineCommand()));
 
-    connect(ui->btnKill, SIGNAL(clicked(bool)), this, SLOT(slotKill()));
-    connect(ui->btnRun, SIGNAL(clicked(bool)), this, SLOT(slotRunCommands()));
-    connect(ui->btnInfo, SIGNAL(clicked(bool)), this, SLOT(slotInfo()));
-    connect(ui->btnAbout, SIGNAL(clicked(bool)), this, SLOT(slotAbout()));
-    connect(ui->btnClear, SIGNAL(clicked(bool)), this, SLOT(clearTextArea()));
-    connect(ui->btnQuit, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btnKill, &QPushButton::clicked, [=]{ slotKill(); });
+    connect(ui->btnRun, &QPushButton::clicked, [=]{ slotRun(); });
+    connect(ui->btnInfo, &QPushButton::clicked, [=]{ slotInfo(); });
+    connect(ui->btnAbout, &QPushButton::clicked, [=]{ slotAbout(); });
+    connect(ui->btnQuit, &QPushButton::clicked, [=]{ close(); });
+    connect(ui->btnClear, &QPushButton::clicked, [=]{ ui->textEdit->clear(); });
+    connect(ui->btnTest, &QPushButton::clicked, [=]{ test(); });
 }
 
 void MainWindow::initListViewConnections()
@@ -190,7 +198,6 @@ void MainWindow::slotSelectionChanged()
         cmds_to_run << queryCommand(v.toString());
     }
 
-
     ui->btnRun->setEnabled(!cmds_to_run.empty());
 }
 
@@ -202,9 +209,11 @@ void MainWindow::categoryClicked(const QString& s)
         return;
     }
 
+    // clear previously selected items
+    cmds_to_run.clear();
+
     ui->listWidget->clear();
-    m_category = s;
-    qDebug() << "execCategory() " << m_category;
+    qDebug() << "execCategory() " << s;
 
     QJsonArray arr = jd[s].toArray();
     if (arr.empty()) {
@@ -212,26 +221,13 @@ void MainWindow::categoryClicked(const QString& s)
         return;
     }
 
-    //QStringList sl;
     for (int i = 0; i < arr.size(); i++) {
         QString name = arr[i].toObject()["name"].toString();
         QString cmd = arr[i].toObject()["cmd"].toString();
         name_cmd.insert(name, cmd);
         ui->listWidget->addItem(name);
-        //sl << name;
-
-        // addline(name);
-        // addline(cmd);
     }
-
-    //listModel.setStringList(sl);
-    //selectModel.setModel(&listModel);
 }
-
-// void MainWindow::setAllFuncButtons(bool onOff)
-// {
-//     qDebug() << __func__ << onOff;
-// }
 
 QString MainWindow::composeString(const QString s, int i)
 {
@@ -239,36 +235,30 @@ QString MainWindow::composeString(const QString s, int i)
     return res;
 }
 
-void MainWindow::initCategory()
-{
-}
-
-void MainWindow::addline(const QString &s)
+void MainWindow::addline(const QString& s)
 {
     ui->textEdit->append(s);
 }
 
-void MainWindow::clearTextArea()
+void MainWindow::addlineColor(const QString& s, const QColor& c)
 {
-    ui->textEdit->clear();
+    QColor oldcolor = ui->textEdit->textColor();
+    ui->textEdit->setTextColor(c);
+    ui->textEdit->append(s);
+    ui->textEdit->setTextColor(oldcolor);
 }
 
-void MainWindow::runLineCommand()
-{
-//    QString cmd = ui->lineEdit->text();
-//    if (cmd != "") {
-//        addline(cmd);
-//        runCommand(cmd);
-//    }
-}
-
-void MainWindow::slotRunCommands()
+void MainWindow::slotRun()
 {
     ui->btnRun->setEnabled(false);
 
-    qDebug() << __func__ << "list all selected cmds ==========>>>";
-    qDebug() << cmds_to_run;
-    runAllCommands();
+    qDebug() << __func__ << "=====>>>>>";
+    //qDebug() << cmds_to_run;
+
+    cmds = cmds_to_run;
+    //qDebug() << "shoot timer!!!";
+    runTimer->setInterval(COLDDOWN_INTERVAL);
+    runTimer->start();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* e)
@@ -278,17 +268,6 @@ void MainWindow::keyPressEvent(QKeyEvent* e)
     addline("text(): "+ e->text());
 }
 
-void MainWindow::runAllCommands()
-{
-    if (cmds_to_run.empty()) {
-        //qDebug() << "command waiting list is empty";
-        ui->btnRun->setEnabled(true);
-        return;
-    }
-    QString cc = cmds_to_run.takeFirst();
-    runCommand(cc);
-}
-
 void MainWindow::runCommand(const QString& cmd)
 {
     if (cmd.isEmpty()) {
@@ -296,9 +275,12 @@ void MainWindow::runCommand(const QString& cmd)
         return;
     }
 
+    //qDebug() << "lock!!!!!!!!";
+    mutex.lock();
     m_process = new QProcess(this);
 
-    connect(m_process, SIGNAL(started()), this, SLOT(slotStarted()));
+    //connect(m_process, SIGNAL(started()), this, SLOT(slotStarted()));
+    connect(m_process, &QProcess::started, [=]{ slotStarted(); });
     connect(m_process, SIGNAL(finished(int)), this, SLOT(slotFinished(int)));
     connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(slotReadStdout()));
     connect(m_process, SIGNAL(readyReadStandardError()), this, SLOT(slotReadStderr()));
@@ -306,17 +288,16 @@ void MainWindow::runCommand(const QString& cmd)
     connect(m_process, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(slotState(QProcess::ProcessState)));
 
     connect(this, SIGNAL(sigRequestTerminated()), m_process, SLOT(terminate()));
-    connect(this, SIGNAL(sigCleanUp()), this, SLOT(slotCleanUp()));
 
 #ifndef Q_OS_WIN
     QString append_cmd = QString("/bin/bash -c \"") + cmd + QString("\"");
 #else
     QString append_cmd = QString("\"") + cmd + QString("\"");
 #endif
-    addline(QString("cmd: ") + cmd);
+    qDebug() << "====> runCommand:" << cmd;
+    addmsg(QString("cmd: ") + cmd);
     m_process->start(append_cmd);
     ui->btnKill->setEnabled(true);
-    ui->btnInfo->setEnabled(true);
     //m_process->waitForFinished(-1); // will wait forever until finished
 }
 
@@ -337,28 +318,39 @@ void MainWindow::slotFinished(int i)
     disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(slotReadStdout()));
     disconnect(m_process, SIGNAL(readyReadStandardError()), this, SLOT(slotReadStderr()));
 
-    //addline(m_stdout);
-    if (m_exitcode) {
-        addline("Finished(): exit code != 0, exitcode = " + QString::number(m_exitcode));
-        //addline(m_stderr);
-    }
-
+    addmsg("finished, exitcode: " + QString::number(m_exitcode));
     //m_stdout = "";
     //m_stderr = "";
 //    if (m_process) {
 //        delete m_process;
 //        m_process = nullptr;
 //    }
+    mutex.unlock();
+    //qDebug() << "unlock!!!";
 
-    emit sigCleanUp();
+    ui->btnKill->setEnabled(false);
+
+    //qDebug() << "shoot timer..........";
+    runTimer->start();
 }
 
-void MainWindow::slotCleanUp()
+void MainWindow::sltTimeout()
 {
-    ui->btnKill->setEnabled(false);
-    ui->btnInfo->setEnabled(false);
+    //qDebug() << "=====" << __func__ << "=====";
+    hitAndRun();
+}
 
-    runAllCommands();
+void MainWindow::hitAndRun()
+{
+    if (cmds.isEmpty()) {
+        addlineColor("no more cmds to run...", "cyan");
+        ui->btnRun->setEnabled(true);
+    } else {
+        QString this_cmd = cmds.takeFirst();
+        //qDebug() << __func__ << "===== run:" << this_cmd;
+        runCommand(this_cmd);
+        return;
+    }
 }
 
 void MainWindow::slotReadStdout()
@@ -367,7 +359,7 @@ void MainWindow::slotReadStdout()
     QString output = m_process->readAllStandardOutput();
     addline(output);
     //rasmus test
-    testParse(output);
+    //testParse(output);
 }
 
 void MainWindow::slotReadStderr()
@@ -424,40 +416,54 @@ void MainWindow::slotInfo()
     //addline("info clicked");
     QString str;
     if (m_process) {
-        str = QString("pid: ") + QString::number(m_process->processId());
-        addline(str);
+        quint64 pid = m_process->processId();
+        if (pid) {
+            str = QString("pid: ") + QString::number(pid);
+            addmsg(str);
+        }
     }
     str = QString("autotestui pid: %1").arg(qApp->applicationPid());
-    addline(str);
+    addmsg(str);
+    showCurrentTime();
 }
 
 void MainWindow::slotAbout()
 {
-    addline(VERSION);
+    addmsg(VERSION);
     QString build_datetime = QString("built at: ") + QString(__DATE__) + " " + QString(__TIME__);
-    addline(build_datetime);
+    addmsg(build_datetime);
 //    addline(QString("config: " + m_configpath));
-    addline(TEST_STRING);
+    addmsg(TEST_STRING);
+}
+
+void MainWindow::test()
+{
+    addlineColor("test functions", "pink");
+    testLocale();
+    testParse("my ip is 192.168.100.199, what's yours?");
+    testSplit();
 }
 
 void MainWindow::testLocale()
 {
-    //qDebug() << "test()";
+    addmsg("testLocale:");
     QLocale en = QLocale(QLocale::English, QLocale::UnitedKingdom);
+    addlineY("QLocale::English, QLocale::UnitedKingdom");
     addline( en.dateTimeFormat(QLocale::ShortFormat) );
     addline( QDateTime::currentDateTime().toString(en.dateTimeFormat(QLocale::ShortFormat)) );
 
     QLocale us = QLocale(QLocale::English, QLocale::UnitedStates);
+    addlineY("QLocale::English, QLocale::UnitedStates");
     addline( QDateTime::currentDateTime().toString(us.dateTimeFormat(QLocale::ShortFormat)) );
 
     QLocale pt = QLocale(QLocale::Portuguese, QLocale::Brazil);
-    //addline( pt.dateTimeFormat() );
+    addlineY("QLocale::Portuguese, QLocale::Brazil");
     addline( QDateTime::currentDateTime().toString(pt.dateTimeFormat(QLocale::ShortFormat)) );
 }
 
 void MainWindow::testParse(const QString& str)
 {
-#if 1
+    addmsg("testParse: " + str);
     QRegularExpression re("(\\d+\\.\\d+\\.\\d+\\.\\d+)");
     QRegularExpressionMatchIterator i = re.globalMatch(str);
     //qDebug() << "str:" << str;
@@ -467,13 +473,13 @@ void MainWindow::testParse(const QString& str)
         QString word1 = match.captured(1);
         //words << word;
         //qDebug() << "word1:" << word1;
+        addline(word1);
     }
-#endif
 }
 
 QList<QString> MainWindow::testSplit()
 {
-    //QRegularExpression re("|");
+    addmsg("testSplit:");
     QString input = "mp3|mp4|mpg|wav|avi";
     QStringList filterlist = input.split("|");
     QList<QString> result;

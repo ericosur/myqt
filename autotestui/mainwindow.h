@@ -1,14 +1,15 @@
 #ifndef __AUTOTEST_MAINWINDOW_H__
 #define __AUTOTEST_MAINWINDOW_H__
 
-#include <QItemDelegate>
+#include <QItemSelectionModel>
 #include <QJsonObject>
 #include <QListView>
 #include <QMainWindow>
+#include <QMutex>
 #include <QProcess>
 #include <QPushButton>
 #include <QStringListModel>
-#include <QItemSelectionModel>
+#include <QTimer>
 
 class ReadJson;
 
@@ -28,15 +29,13 @@ public:
     void runCommand(const QString& cmd);
 
     QString queryCommand(const QString& name);
-    void runAllCommands();
 
     static const int MAX_CATEGORY = 18;
     static const int MAX_FUNCTION = 8;
+    static const int COLDDOWN_INTERVAL = 250;
 
 private slots:
     void categoryClicked(const QString& s);
-    void clearTextArea();
-    void runLineCommand();
 
     void slotStarted();
     void slotFinished(int i);
@@ -45,13 +44,13 @@ private slots:
     void slotError(QProcess::ProcessError e);
     void slotState(QProcess::ProcessState s);
 
-    void slotRunCommands();
+    void slotRun();
     void slotKill();
     void slotInfo();
-    void slotCleanUp();
     void slotAbout();
 
     void slotSelectionChanged();
+    void sltTimeout();
 
 signals:
     void sigRequestTerminated();
@@ -65,41 +64,54 @@ private:
     void setStyleSheet();
 
     QString composeString(const QString s, int i);
-    void initCategory();
     void addline(const QString& s);
-    //void setAllFuncButtons(bool onOff);
+    void addlineColor(const QString& s, const QColor& c);
+    void addlineY(const QString& s) {
+        addlineColor(s, "yellow");
+    }
+    void addmsg(const QString& s) {
+        addlineColor(s, "darkgray");
+    }
+
     void showCurrentTime();
+    // load autotestui config
+    void loadConfig();
+    void loadAutotestConfig();
+
+    void hitAndRun();
+
+private:
+    // test functions
+    void test();
     void testLocale();
     void testParse(const QString& s);
     //void testSplit();
     QList<QString> testSplit();
     void testTime();
 
-    // load autotestui config
-    void loadConfig();
-    void loadAutotestConfig();
 
 private:
     Ui::MainWindow *ui = nullptr;
     QFont m_fixedfont;
 
-    QJsonObject jd;
-
     QPushButton *btnCategoryGroup[MAX_CATEGORY];
-    QString m_category;
 
     QProcess *m_process = nullptr;
     QString m_stdout;
     QString m_stderr;
     int m_exitcode;
 
-    //QItemDelegate itemDelegate;
     QMap<QString, QString> name_cmd;
     QStringList cmds_to_run;
+    QStringList cmds;
 
+    QJsonObject jd;
     QString mAutotestConfig;
     QString mListWidgetStyleSheet;
     QString mTextEditStyleSheet;
+
+    QMutex mutex;
+    QTimer* runTimer = nullptr;
 };
 
 #endif // __AUTOTEST_MAINWINDOW_H__
