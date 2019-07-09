@@ -27,6 +27,7 @@ vector<string> get_vector_from_json(json& j, vector<string> keys)
 
 int json_parse_test()
 {
+    cout << "test " << __func__ << "===>" << endl;
     char text[] = R"(
     {
         "Image": {

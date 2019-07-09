@@ -16,9 +16,12 @@ QMAKE_CXXFLAGS += -Wextra
 SOURCES += main.cpp
 SOURCES += json_parse_test.cpp
 
-SOURCES += foo.cpp
-HEADERS += foo.h
-
+SOURCES += \
+    foo.cpp \
+    bar.cpp
+HEADERS += \
+    foo.h \
+    bar.h
 
 # qtlib
 INCLUDEPATH += $${PWD}/../qtlib

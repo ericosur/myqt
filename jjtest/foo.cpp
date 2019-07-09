@@ -1,13 +1,14 @@
 #include "foo.h"
 #include "readjson.h"
 
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include <QFile>
 #include <QDebug>
 
 #define DATAJSON    "../../json/all.json"
 
-//using namespace std;
+    using namespace std;
 using namespace nlohmann;
 
 void to_json(json& j, const Person& p)
@@ -21,6 +22,7 @@ void to_json(json& j, const Person& p)
 
 void from_json(const json& j, Person& p)
 {
+    cout << "test " << __func__ << "===>" << endl;
     p.setName( j.at("name").get<std::string>() );
     p.setAddress( j.at("address").get<std::string>() );
     p.setAge( j.at("age").get<int>() );
@@ -28,6 +30,7 @@ void from_json(const json& j, Person& p)
 
 void test_foo()
 {
+    cout << "test " << __func__ << "===>" << endl;
     //Person p = {"Alice Smith", "Taipei City", 30};
     Person p;
     p.setName("Alice Smith");
@@ -45,6 +48,7 @@ void test_foo()
 
 void test_bar()
 {
+    cout << "test " << __func__ << "===>" << endl;
     // create an object from an object_t value
     json::object_t object_value = { {"one", 1}, {"two", 2} };
     json j_object_t(object_value);
@@ -63,7 +67,8 @@ void test_bar()
 
 void test_weather()
 {
-    ifstream inf("../query.txt");
+    cout << "test " << __func__ << "===>" << endl;
+    ifstream inf("../query.json");
     json jj;
     inf >> jj;
     //cout << jj.dump(4) << endl;
@@ -75,16 +80,22 @@ void test_weather()
 
     condition["hello"] = "world";
 
-    for (map<string,string>::iterator it=condition.begin(); it!=condition.end(); ++it)
+    for (map<string,string>::iterator it=condition.begin(); it!=condition.end(); ++it) {
         cout << it->first << " => " << it->second << '\n';
+    }
 
     //cout << "temp:" << condition["temp"] << endl;
+
+    cout << "===== part2 =====\n";
+    for (auto it=condition.begin(); it!=condition.end(); ++it) {
+        cout << it->first << " => " << it->second << endl;
+    }
 
 }
 
 void test_qjson()
 {
-    qDebug() << Q_FUNC_INFO;
+    cout << "test " << __func__ << "===>" << endl;
     QString fn = DATAJSON;
     ReadJson j(fn);
     if (!j.loadFile()) {
@@ -98,7 +109,7 @@ void test_qjson()
 
 void test_atxt_by_hpp()
 {
-    qDebug() << Q_FUNC_INFO;
+    cout << "test " << __func__ << "===>" << endl;
     string json_file = DATAJSON;
     if (!QFile::exists(json_file.c_str())) {
         qDebug() << "file not found:" << json_file.c_str();
@@ -128,6 +139,7 @@ void test_atxt_by_hpp()
 
 void test_atxt()
 {
+    cout << "test " << __func__ << "===>" << endl;
     qDebug() << "using Qt json...";
     test_qjson();
     qDebug() << "using json.hpp...";
@@ -136,7 +148,7 @@ void test_atxt()
 
 void test_obj()
 {
-    qDebug() << Q_FUNC_INFO;
+    cout << "test " << __func__ << "===>" << endl;
     string json_file = "notexist.json";
 
     cout << "read " << json_file << endl;
@@ -158,6 +170,7 @@ void test_obj()
 
 string get_from_id(const string& msgid)
 {
+    cout << "test " << __func__ << "===>" << endl;
     string json_file = "../strdef.json";
     cout << "read " << json_file << endl;
     try {
@@ -178,6 +191,7 @@ string get_from_id(const string& msgid)
 
 void test_addon()
 {
+    cout << "test " << __func__ << "===>" << endl;
     string json_file = "../apps-add-ons.json";
     cout << "read " << json_file << endl;
     try {
@@ -197,11 +211,13 @@ void test_addon()
 
 void test()
 {
+    cout << "test " << __func__ << "===>" << endl;
     // test_foo();
     // cout << endl;
-     test_bar();
-     cout << endl;
-    //test_weather();
+    test_bar();
+    cout << endl;
+
+    test_weather();
 
     test_atxt();
     cout << "ok" << endl;
