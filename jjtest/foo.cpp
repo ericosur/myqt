@@ -148,15 +148,17 @@ void test_atxt()
 
 void test_obj()
 {
+    using namespace std;
+
     cout << "test " << __func__ << "===>" << endl;
-    string json_file = "notexist.json";
+    //string json_file = "notexist.json";
+    string json_file = "../query.json";
 
     cout << "read " << json_file << endl;
     try {
         ifstream inf(json_file);
         json j;
         inf >> j;
-
         for (json::iterator it = j.begin(); it != j.end(); ++it) {
             for (auto& e: j[it.key()]) {
                 string key = it.key();
@@ -221,6 +223,8 @@ void test()
 
     test_atxt();
     cout << "ok" << endl;
+
+    test_obj();
 
     //test_addon();
 }
