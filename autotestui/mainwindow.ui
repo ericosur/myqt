@@ -32,7 +32,7 @@
       <x>10</x>
       <y>0</y>
       <width>1051</width>
-      <height>81</height>
+      <height>108</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -44,6 +44,12 @@
      </property>
      <item row="1" column="5">
       <widget class="QPushButton" name="btnCategory14">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -51,6 +57,12 @@
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="btnCategory10">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -58,6 +70,12 @@
      </item>
      <item row="0" column="8">
       <widget class="QPushButton" name="btnCategory8">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -65,6 +83,12 @@
      </item>
      <item row="0" column="7">
       <widget class="QPushButton" name="btnCategory7">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -72,6 +96,12 @@
      </item>
      <item row="0" column="2">
       <widget class="QPushButton" name="btnCategory2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -79,6 +109,12 @@
      </item>
      <item row="1" column="6">
       <widget class="QPushButton" name="btnCategory15">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -86,6 +122,12 @@
      </item>
      <item row="1" column="8">
       <widget class="QPushButton" name="btnCategory17">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -93,6 +135,12 @@
      </item>
      <item row="1" column="3">
       <widget class="QPushButton" name="btnCategory12">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -100,6 +148,12 @@
      </item>
      <item row="0" column="6">
       <widget class="QPushButton" name="btnCategory6">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -107,6 +161,12 @@
      </item>
      <item row="1" column="7">
       <widget class="QPushButton" name="btnCategory16">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -114,6 +174,12 @@
      </item>
      <item row="0" column="4">
       <widget class="QPushButton" name="btnCategory4">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -121,6 +187,12 @@
      </item>
      <item row="0" column="3">
       <widget class="QPushButton" name="btnCategory3">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -128,6 +200,12 @@
      </item>
      <item row="1" column="2">
       <widget class="QPushButton" name="btnCategory11">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -135,6 +213,12 @@
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="btnCategory1">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -142,6 +226,12 @@
      </item>
      <item row="1" column="4">
       <widget class="QPushButton" name="btnCategory13">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -149,6 +239,12 @@
      </item>
      <item row="0" column="5">
       <widget class="QPushButton" name="btnCategory5">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -156,6 +252,12 @@
      </item>
      <item row="0" column="0">
       <widget class="QPushButton" name="btnCategory0">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -163,6 +265,12 @@
      </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="btnCategory9">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>PushButton</string>
        </property>
@@ -174,8 +282,8 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>80</y>
-      <width>1191</width>
+      <y>90</y>
+      <width>1201</width>
       <height>611</height>
      </rect>
     </property>
@@ -208,7 +316,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>861</width>
+          <width>871</width>
           <height>601</height>
          </rect>
         </property>
@@ -259,7 +367,7 @@
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>515</y>
+          <y>530</y>
           <width>50</width>
           <height>30</height>
          </rect>
@@ -275,7 +383,7 @@
         <property name="geometry">
          <rect>
           <x>260</x>
-          <y>515</y>
+          <y>530</y>
           <width>50</width>
           <height>30</height>
          </rect>
@@ -288,7 +396,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>515</y>
+          <y>530</y>
           <width>50</width>
           <height>30</height>
          </rect>
@@ -304,7 +412,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>550</y>
+          <y>565</y>
           <width>151</width>
           <height>51</height>
          </rect>
@@ -317,7 +425,7 @@
         <property name="geometry">
          <rect>
           <x>220</x>
-          <y>550</y>
+          <y>565</y>
           <width>91</width>
           <height>51</height>
          </rect>
@@ -333,7 +441,7 @@
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>515</y>
+          <y>530</y>
           <width>50</width>
           <height>30</height>
          </rect>
@@ -348,7 +456,7 @@
           <x>5</x>
           <y>1</y>
           <width>321</width>
-          <height>511</height>
+          <height>521</height>
          </rect>
         </property>
         <property name="selectionMode">
@@ -362,7 +470,7 @@
         <property name="geometry">
          <rect>
           <x>130</x>
-          <y>515</y>
+          <y>530</y>
           <width>50</width>
           <height>30</height>
          </rect>
