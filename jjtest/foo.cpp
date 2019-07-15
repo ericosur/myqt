@@ -2,14 +2,48 @@
 #include "readjson.h"
 
 #include <iostream>
+#include <string>
+#include <fstream>
 #include <nlohmann/json.hpp>
+
 #include <QFile>
 #include <QDebug>
 
 #define DATAJSON    "../../json/all.json"
 
-    using namespace std;
+using namespace std;
 using namespace nlohmann;
+
+class Person
+{
+public:
+    void setName(const string& s) {
+        name = s;
+    }
+    string getName() const {
+        return name;
+    }
+    void setAddress(const string& s) {
+        address = s;
+    }
+    string getAddress() const {
+        return address;
+    }
+    void setAge(int i) {
+        age = i;
+    }
+    int getAge() const {
+        return age;
+    }
+    bool operator==(const Person& rhs) {
+        return (name == rhs.name) && (address == rhs.address) && (age == rhs.age);
+    }
+private:
+    string name;
+    string address;
+    int age;
+};
+
 
 void to_json(json& j, const Person& p)
 {
@@ -28,7 +62,7 @@ void from_json(const json& j, Person& p)
     p.setAge( j.at("age").get<int>() );
 }
 
-void test_foo()
+void test_person()
 {
     cout << "test " << __func__ << "===>" << endl;
     //Person p = {"Alice Smith", "Taipei City", 30};
@@ -46,7 +80,7 @@ void test_foo()
     assert(p == p2);
 }
 
-void test_bar()
+void test_jsonmap()
 {
     cout << "test " << __func__ << "===>" << endl;
     // create an object from an object_t value
@@ -211,12 +245,13 @@ void test_addon()
     }
 }
 
-void test()
+void test_foo()
 {
     cout << "test " << __func__ << "===>" << endl;
     // test_foo();
     // cout << endl;
-    test_bar();
+    test_person();
+    test_jsonmap();
     cout << endl;
 
     test_weather();
