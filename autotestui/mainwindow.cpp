@@ -1,13 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "readjson.h"
+#include "fileutil.h"
 
 #include <QApplication>
 #include <QDateTime>
 #include <QDir>
-#include <QFileInfo>
+#include <QFile>
 #include <QFontDatabase>
 #include <QKeyEvent>
+
 #include <QProcess>
 #include <QRegularExpression>
 #include <QThread>
@@ -20,8 +22,9 @@
 #endif
 
 #define DEFAULT_BUFFER_SIZE 2048
-#define VERSION "autotestui 2019-07-09 run process one-by-one"
+#define VERSION "autotestui 2019-07-12 keep selected"
 #define TEST_STRING "1234567890123456789012345678901234567890123456789012345678901234567890"
+#define EASY_HELP_TEXT "**Info** will show a list of selected commands"
 
 #define AUTOTEST_CONFIG_PATH "autotest.json"
 #define DEFAULT_LISTWIDGET_STYLESHEET \
@@ -30,6 +33,7 @@
             "selection-color: black;" \
             "selection-background-color: steelblue;" \
             "font-size: 22px;"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -101,8 +105,8 @@ void MainWindow::showCurrentTime()
     QString msg;
     msg = QString("localtime: %1").arg(QDateTime::currentDateTime().toString());
     addmsg(msg);
-    msg = QString("UTC: %1").arg(QDateTime::currentDateTimeUtc().toString());
-    addmsg(msg);
+    // msg = QString("UTC: %1").arg(QDateTime::currentDateTimeUtc().toString());
+    // addmsg(msg);
 }
 
 void MainWindow::initEmptyButtons()
@@ -176,6 +180,7 @@ void MainWindow::initActionsConnections()
     connect(ui->btnQuit, &QPushButton::clicked, [=]{ close(); });
     connect(ui->btnClear, &QPushButton::clicked, [=]{ ui->textEdit->clear(); });
     connect(ui->btnTest, &QPushButton::clicked, [=]{ test(); });
+    connect(this, SIGNAL(sigShowFile()), this, SLOT(slotShowFile()));
 }
 
 void MainWindow::initListViewConnections()
@@ -183,22 +188,95 @@ void MainWindow::initListViewConnections()
     qDebug() << __func__;
     connect(ui->listWidget, &QListWidget::itemSelectionChanged, this,
             &MainWindow::slotSelectionChanged);
+    connect(ui->listWidget, &QListWidget::itemClicked, this,
+            &MainWindow::slotItemClicked);
+    connect(ui->listWidget, &QListWidget::itemPressed, this,
+            &MainWindow::slotItemPressed);
+}
+
+void MainWindow::merge_run_list()
+{
+    for (QString ii: curr_cmds_to_run) {
+        if (!total_cmds_to_run.contains(ii)) {
+            total_cmds_to_run.append(ii);
+        }
+    }
 }
 
 void MainWindow::slotSelectionChanged()
 {
+#if 1
+    bool doDebug = false;
+    if (categoryState == csJustChanged) {
+        if (doDebug)
+            qDebug() << "===== skip this slotSelectionChanged =====";
+        categoryState = csCurrentPage;
+        return;
+    }
+    curr_cmds_to_run.clear();
+    int cnt = ui->listWidget->count();
+    for (int i = 0; i < cnt; ++i) {
+        QListWidgetItem* p = ui->listWidget->item(i);
+        QString name = p->data(Qt::DisplayRole).toString();
+        QString cmd = queryCommand(name);
+        //qDebug() << "check:" << name;
+        if (p->isSelected()) {
+            if (doDebug)
+                qDebug() << "add" << cmd << " into curr list...";
+            curr_cmds_to_run << cmd;
+        } else {
+            if (total_cmds_to_run.contains(cmd)) {
+                if (doDebug)
+                    qDebug() << "remove" << cmd << " from list...";
+                total_cmds_to_run.removeOne(cmd);
+            }
+        }
+    }
+#else
     //qDebug() << __func__;
-
     QList<QListWidgetItem*> sel = ui->listWidget->selectedItems();
     //qDebug() << sel.size();
-    cmds_to_run.clear();
+    curr_cmds_to_run.clear();
     for (int i = 0; i < sel.size(); ++i) {
         QListWidgetItem* p = sel.at(i);
         QVariant v = p->data(Qt::DisplayRole);
-        cmds_to_run << queryCommand(v.toString());
+        curr_cmds_to_run << queryCommand(v.toString());
     }
+#endif
+    merge_run_list();
+    ui->btnRun->setEnabled(!total_cmds_to_run.empty());
+}
 
-    ui->btnRun->setEnabled(!cmds_to_run.empty());
+void MainWindow::slotItemClicked(QListWidgetItem* item)
+{
+    QVariant v = item->data(Qt::DisplayRole);
+    QString name = v.toString();
+    QString msg;
+    if (item->isSelected()) {
+        //msg = QString("item clicked: %1").arg(name);
+        //addmsg(msg);
+        if (name_readme.contains(name)) {
+            QString fn = name_readme[name];
+            addmsg(fn);
+            if (!FileUtil::isFileExist(fn)) {
+                addlineColor(QString("specified readme not found: %1").arg(fn), "deeppink");
+                return;
+            }
+            byte_array.clear();
+            if (readFileToByteArray(byte_array, fn)) {
+                emit sigShowFile();
+            }
+        }
+    }
+}
+
+void MainWindow::slotItemPressed(QListWidgetItem* item)
+{
+    Q_UNUSED(item);
+    // QVariant v = item->data(Qt::DisplayRole);
+    // if (item->isSelected()) {
+    //     qDebug() << "item pressed:" << v.toString();
+    // }
 }
 
 // this SLOT will know which btnCategory## is clicked
@@ -208,16 +286,34 @@ void MainWindow::categoryClicked(const QString& s)
         qDebug() << "[ERROR] empty category button is pressed!";
         return;
     }
+    if (m_category == s) {
+        qDebug() << "category NOT changed:" << m_category;
+        categoryState = csCurrentPage;
+        return;
+    }
 
-    // clear previously selected items
-    cmds_to_run.clear();
+    qDebug() << "category changed" << m_category << "to" << s;
+    if (m_category.isEmpty()) {
+        categoryState = csFirstTime;
+    } else {
+        categoryState = csJustChanged;
+    }
+    m_category = s;
+    name_cmd.clear();
+    name_readme.clear();
+
+    qDebug() << "total_cmds_to_run:" << total_cmds_to_run;
+
+    // TODO: save current selected into inactive list
+    merge_run_list();
+    curr_cmds_to_run.clear();
 
     ui->listWidget->clear();
-    qDebug() << "execCategory() " << s;
+    //qDebug() << "execCategory() " << s;
 
     QJsonArray arr = jd[s].toArray();
     if (arr.empty()) {
-        qDebug() << "[ERROR] array is empty";
+        qDebug() << "[ERROR] json array is empty";
         return;
     }
 
@@ -225,7 +321,25 @@ void MainWindow::categoryClicked(const QString& s)
         QString name = arr[i].toObject()["name"].toString();
         QString cmd = arr[i].toObject()["cmd"].toString();
         name_cmd.insert(name, cmd);
-        ui->listWidget->addItem(name);
+
+        QString readme = arr[i].toObject()["readme"].toString();
+        if (!readme.isEmpty()) {
+            name_readme.insert(name, readme);
+        }
+
+        QListWidgetItem* p = new QListWidgetItem(name);
+        ui->listWidget->addItem(p);
+        // restore selection state and its color
+        bool isCmdExisted = total_cmds_to_run.contains(cmd);
+        if (isCmdExisted) {
+            if (curr_cmds_to_run.contains(cmd))
+                qDebug() << cmd << "already contained";
+            // restore list of current selected items
+            curr_cmds_to_run << cmd;
+            //p->setSelected(true);
+            //p->setBackground(QColor("steelblue"));
+            ui->listWidget->setCurrentItem(p, QItemSelectionModel::SelectCurrent);
+        }
     }
 }
 
@@ -255,7 +369,7 @@ void MainWindow::slotRun()
     qDebug() << __func__ << "=====>>>>>";
     //qDebug() << cmds_to_run;
 
-    cmds = cmds_to_run;
+    cmds = total_cmds_to_run;
     //qDebug() << "shoot timer!!!";
     runTimer->setInterval(COLDDOWN_INTERVAL);
     runTimer->start();
@@ -425,15 +539,25 @@ void MainWindow::slotInfo()
     str = QString("autotestui pid: %1").arg(qApp->applicationPid());
     addmsg(str);
     showCurrentTime();
+
+    merge_run_list();
+    if (total_cmds_to_run.isEmpty()) {
+        addmsg("total command list is empty");
+        return;
+    }
+    addmsg("==== total command list =====");
+    for (QString s: total_cmds_to_run) {
+        addmsg(s);
+    }
 }
 
 void MainWindow::slotAbout()
 {
-    addmsg(VERSION);
-    QString build_datetime = QString("built at: ") + QString(__DATE__) + " " + QString(__TIME__);
+    QString build_datetime = QString(VERSION) + QString(" at: ") + QString(__DATE__) + " " + QString(__TIME__);
     addmsg(build_datetime);
 //    addline(QString("config: " + m_configpath));
     addmsg(TEST_STRING);
+    addmsg(EASY_HELP_TEXT);
 }
 
 void MainWindow::test()
@@ -448,22 +572,21 @@ void MainWindow::testLocale()
 {
     addmsg("testLocale:");
     QLocale en = QLocale(QLocale::English, QLocale::UnitedKingdom);
-    addlineY("QLocale::English, QLocale::UnitedKingdom");
     addline( en.dateTimeFormat(QLocale::ShortFormat) );
     addline( QDateTime::currentDateTime().toString(en.dateTimeFormat(QLocale::ShortFormat)) );
 
     QLocale us = QLocale(QLocale::English, QLocale::UnitedStates);
-    addlineY("QLocale::English, QLocale::UnitedStates");
     addline( QDateTime::currentDateTime().toString(us.dateTimeFormat(QLocale::ShortFormat)) );
 
     QLocale pt = QLocale(QLocale::Portuguese, QLocale::Brazil);
-    addlineY("QLocale::Portuguese, QLocale::Brazil");
+    //addline( pt.dateTimeFormat() );
     addline( QDateTime::currentDateTime().toString(pt.dateTimeFormat(QLocale::ShortFormat)) );
 }
 
 void MainWindow::testParse(const QString& str)
 {
-    addmsg("testParse: " + str);
+    addmsg("testParse" + str);
+#if 1
     QRegularExpression re("(\\d+\\.\\d+\\.\\d+\\.\\d+)");
     QRegularExpressionMatchIterator i = re.globalMatch(str);
     //qDebug() << "str:" << str;
@@ -473,8 +596,9 @@ void MainWindow::testParse(const QString& str)
         QString word1 = match.captured(1);
         //words << word;
         //qDebug() << "word1:" << word1;
-        addline(word1);
+        addline(word1)
     }
+#endif
 }
 
 QList<QString> MainWindow::testSplit()
@@ -533,4 +657,20 @@ void MainWindow::loadAutotestConfig()
         jd = j.getJobject();
         //qDebug() << jd;
     }
+}
+
+bool MainWindow::readFileToByteArray(QByteArray& arr, const QString& fn)
+{
+    QFile inFile(fn);
+    if (!inFile.open(QIODevice::ReadOnly)) {
+        qWarning() << "fail to read file:" << fn;
+        return false;
+    }
+    arr = inFile.readAll();
+    return true;
+}
+
+void MainWindow::slotShowFile()
+{
+    addline(byte_array.data());
 }

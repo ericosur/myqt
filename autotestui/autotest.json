@@ -2,15 +2,18 @@
   "basic": [
     {
       "name": "ip addr",
-      "cmd": "/sbin/ip addr"
+      "cmd": "/sbin/ip addr",
+      "readme": "/home/rasmus/Dropbox/markdown/marks.md"
     },
     {
       "name": "route table",
-      "cmd": "/sbin/route -n"
+      "cmd": "/sbin/route -n",
+      "readme": "get route table"
     },
     {
       "name": "netmanager connections",
-      "cmd": "/usr/bin/nmcli c"
+      "cmd": "/usr/bin/nmcli c",
+      "readme": "get current connection"
     },
     {
       "name": "wait 7 sec",
@@ -26,11 +29,13 @@
     },
     {
       "name": "ifconfig eth0",
-      "cmd": "/sbin/ifconfig eth0"
+      "cmd": "/sbin/ifconfig eth0",
+      "readme": "show eth0 config"
     },
     {
       "name": "free in MB",
-      "cmd": "/usr/bin/free -m"
+      "cmd": "/usr/bin/free -m",
+      "readme": "get current free memory..."
     }
 
   ],
