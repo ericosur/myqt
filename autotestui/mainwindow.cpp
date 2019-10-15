@@ -596,7 +596,7 @@ void MainWindow::testParse(const QString& str)
         QString word1 = match.captured(1);
         //words << word;
         //qDebug() << "word1:" << word1;
-        addline(word1)
+        addline(word1);
     }
 #endif
 }

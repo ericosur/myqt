@@ -102,6 +102,7 @@ private:
     void hitAndRun();
     void merge_run_list();
 
+    void test();
 
 private:
     Ui::MainWindow *ui = nullptr;
