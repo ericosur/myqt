@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include <QTime>
+#include <QList>
 #include <QDebug>
 #include <iostream>
 
@@ -10,9 +10,15 @@
 
 //using namespace std;
 
-void test_all()
-{
+QList<QString> namelist = {
+    "alpha", "bravo", "charlie", "delta", "echo"
+};
 
+void test_list()
+{
+    foreach (const QString &item, namelist) {
+        qDebug() << item;
+    }
 }
 
 
@@ -20,7 +26,8 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    g_messageVerbose = false;
+    // default to on
+    g_messageVerbose = true;
     qInstallMessageHandler(myMessageOutput);
     qDebug() << "string resid testing...";
 
@@ -29,7 +36,8 @@ int main(int argc, char *argv[])
         g_messageVerbose = true;
     }
 
-    test_cache();
+    //test_cache();
+    test_list();
 
     return 0;
 }
