@@ -199,8 +199,11 @@ public:
     json& getJson() {
         return _jj;
     }
-    bool isOpen() {
-        return isOk;
+    bool isOpen() const {
+        return _isOk;
+    }
+    bool isOk() const {
+        return _isOk;
     }
     bool checkLocale(const QString& loc) {
         return locale_lists.contains(loc);
@@ -269,7 +272,7 @@ private:
     QStringList stringid_lists;
 
     json _jj;
-    bool isOk = false;
+    bool _isOk = false;
 
     QString *sptr = nullptr;
     QCache<QString, QString> cache;
@@ -284,8 +287,8 @@ JsonCache::JsonCache()
         qDebug() << "getmsg(json): found at:" << fn;
     }
     if (fn == "") {
-        qWarning() << "[FATAL] no string id JSON...";
-        isOk = false;
+        qWarning() << "[FATAL] no string id JSON..." << STRMSG_JSONFILE;
+        _isOk = false;
         return;
     }
 
@@ -294,13 +297,13 @@ JsonCache::JsonCache()
 
     try {
         inf >> _jj;
-        isOk = true;
+        _isOk = true;
         load_locale_list();
     } catch (nlohmann::json::exception& e) {
         // output exception information
         std::cout << "[ERROR] message: " << e.what() << '\n'
                   << "exception id: " << e.id << '\n';
-        isOk = false;
+        _isOk = false;
     }
 
     cache.setMaxCost(120);
@@ -327,7 +330,7 @@ void JsonCache::load_locale_list()
         // output exception information
         std::cout << "[ERROR] message: " << e.what() << '\n'
                   << "exception id: " << e.id << '\n';
-        isOk = false;
+        _isOk = false;
     }
 }
 
@@ -380,6 +383,7 @@ QString getStringByStrid(const QString& locale_name, const QString& strid)
     Q_UNUSED(strid);
 
     JsonCache* jc = json_basic_check();
+    Q_ASSERT(jc != nullptr);
     if (jc == nullptr) {
         return STRING_NULL;
     }

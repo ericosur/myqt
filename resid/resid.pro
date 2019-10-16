@@ -11,8 +11,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 
-SOURCES += residutil.cpp
-HEADERS += residutil.h
+SOURCES +=  \
+    residutil.cpp \
+    testcase.cpp \
+    msgout.cpp
+
+HEADERS +=  \
+    residutil.h \
+    testcase.h \
+    msgout.h
 
 HEADERS += strdef.h
 
