@@ -6,15 +6,18 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 
-#define MIN_COREWIDTH       500
-#define MIN_COREHEIGHT      600
-
 class Core: public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(int coreWidth READ coreWidth WRITE setCoreWidth NOTIFY coreWidthChanged)
     Q_PROPERTY(int coreHeight READ coreHeight WRITE setCoreHeight NOTIFY coreHeightChanged)
+
+public:
+    enum MinimumSize {
+        MIN_COREWIDTH = 450,
+        MIN_COREHEIGHT = 450
+    };
 
 public:
     int coreWidth() const {

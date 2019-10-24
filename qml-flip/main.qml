@@ -7,7 +7,7 @@ import "fact.js" as Fact
 
 ApplicationWindow {
     id: root
-    title: qsTr("Hello World")
+    title: qsTr("try to click on color block or image")
     width: core.coreWidth
     height: core.coreHeight
     visible: true
@@ -16,8 +16,8 @@ ApplicationWindow {
     property int header_height: 80
     property int footer_height: 100
     property int padding_height: 10
-    property int img_height: 500
-    property int img_width: 500
+    property int img_height: root.width * 0.75
+    property int img_width: root.width * 0.75
 
     Rectangle {
         id: blackbox
@@ -29,7 +29,7 @@ ApplicationWindow {
         }
         Component.onCompleted: {
             color = Qt.binding(function() {
-                return ma_blackbox.pressed ? "dimgrey" : "darkslategray";
+                return ma_blackbox.pressed ? "goldenrod" : "gold";
             });
         }
     }
@@ -41,7 +41,7 @@ ApplicationWindow {
         height: header_height - padding_height
         //border.width: 1
         //border.color: "steelblue"
-        color: mousearea.pressed ? "slategrey" : "steelblue";
+        color: mousearea.pressed ? "dimgray" : "gray";
 
         MouseArea {
             id: mousearea

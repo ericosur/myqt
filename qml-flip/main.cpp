@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include "core.h"
 
-int gHeight = MIN_COREHEIGHT;
-int gWidth = MIN_COREWIDTH;
+int gHeight = Core::MIN_COREHEIGHT;
+int gWidth = Core::MIN_COREWIDTH;
 
 void handleOpt(int argc, char* argv[])
 {
@@ -15,7 +15,7 @@ void handleOpt(int argc, char* argv[])
         return;
     }
 
-    while (1) {
+    while (true) {
         int c = getopt(argc, argv, "w:h:");
         if (c == -1)
             break;
@@ -32,11 +32,11 @@ void handleOpt(int argc, char* argv[])
     }
 
     // validate
-    if (_w && _w > MIN_COREWIDTH) {
+    if (_w && _w > Core::MIN_COREWIDTH) {
         gWidth = _w;
         qDebug() << "set width to:" << gWidth;
     }
-    if (_h && _h > MIN_COREHEIGHT) {
+    if (_h && _h > Core::MIN_COREHEIGHT) {
         gHeight = _h;
         qDebug() << "set height to:" << gHeight;
     }
