@@ -12,9 +12,6 @@
 #include <QStringList>
 #include <QDebug>
 
-#define DEFAULT_WIDTH       120
-#define DEFAULT_HEIGHT      120
-
 void travel_tag(QDomElement& elem, const QString& tag);
 
 HandleSvg* HandleSvg::_instance = nullptr;

@@ -4,9 +4,9 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-#define MAX_SEND_SIZE           512
-#define MESGQKEY_MESSAGE_TYPE   9
-#define MESGQKEY_MONITOR        0x0880CAFE
+static const int MAX_SEND_SIZE = 512;
+static const int MESGQKEY_MESSAGE_TYPE = 9;
+static const int MESGQKEY_MONITOR = 0x0880CAFE;
 
 struct mymsgbuf {
     long mtype;

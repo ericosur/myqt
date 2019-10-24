@@ -3,10 +3,8 @@
 **/
 
 #include "mymap.h"
-#include <QDebug>
 #include <QFile>
-
-#define MYMAPFILE "/tmp/mymap.dat"
+#include <QDebug>
 
 QDataStream& operator<<(QDataStream& ds, const MyMap& obj)
 {
@@ -23,42 +21,41 @@ QDataStream& operator>>(QDataStream&ds, MyMap& obj)
 MyMap::MyMap()
 {
     qDebug() << "mymap created";
+    init();
 }
 
 void MyMap::init()
 {
     int i = 0;
-    //for (int i=0; i < LENGTH_LIST; ++i) {
-        QVariantMap device;
-        QString name = "iPhone " + QString::number(i);
-        device["name"]      = QVariant(name);
-        device["mac"]       = QVariant(i);
-        device["paired"]    = QVariant(false);
-        device["connected"] = QVariant(false);
-        device["connecting"]= QVariant(false);
-        device["showInfo"]  = QVariant(false);
-        scannedDevices.append(device);
-    //}
+
+    QVariantMap device;
+    QString name = "iPhone " + QString::number(i);
+    device["name"]      = QVariant(name);
+    device["mac"]       = QVariant(i);
+    device["paired"]    = QVariant(false);
+    device["connected"] = QVariant(false);
+    device["connecting"]= QVariant(false);
+    device["showInfo"]  = QVariant(false);
+    scannedDevices.append(device);
 }
 
 void MyMap::dump()
 {
     qDebug() << Q_FUNC_INFO;
     int i = 0;
-    //for (int i = 0; i < LENGTH_LIST; ++i) {
-        QVariantMap map = scannedDevices[i];
-        qDebug() << "size:" << map.size();
-        if (map.size() <= 0) {
-            qWarning() << "map size zero";
-            return;
-        }
-        foreach (QString k, map.keys()) {
-            qDebug() << QString("%1 => %2").arg(k).arg(map[k].toString());
-        }
-        // for (QVariantMap::const_iterator iter = map.begin(); iter != map.end(); ++iter) {
-        //   qDebug() << iter.key() << iter.value();
-        // }
-    //}
+
+    QVariantMap map = scannedDevices[i];
+    qDebug() << "size:" << map.size();
+    if (map.size() <= 0) {
+        qWarning() << "map size zero";
+        return;
+    }
+    foreach (QString k, map.keys()) {
+        qDebug() << QString("%1 => %2").arg(k).arg(map[k].toString());
+    }
+    // for (QVariantMap::const_iterator iter = map.begin(); iter != map.end(); ++iter) {
+    //   qDebug() << iter.key() << iter.value();
+    // }
 }
 
 // save object BarCtrl into file

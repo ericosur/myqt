@@ -8,8 +8,6 @@
 
 #include "parsestatus.h"
 
-#define STATUS_FILE "/Users/ericosur/wheelkey.status"
-
 ParseStatus::ParseStatus()
 {
     loadStatus();
@@ -47,7 +45,7 @@ void ParseStatus::loadStatus()
             }
         }
     } else {
-        qDebug() << "QFile open failed";
+        qDebug() << "QFile open failed:" << STATUS_FILE;
     }
     emit colorChanged();
 }

@@ -6,9 +6,26 @@
 #include <QStringList>
 #include <QJsonArray>
 
+#ifdef USE_YOSETARGET
+const QString DEFAULT_CONFIG_DIR = "/media/usb/storage";
+static const QString DEFAULT_CONFIG_FILE = "/media/usb/storage/radiocfg.json";
+#else
+const QString DEFAULT_CONFIG_DIR = "/tmp";
+static const QString DEFAULT_CONFIG_FILE = "../radiocfg.json";
+#endif
+
+
 class GetRadioConfig : public QObject
 {
     Q_OBJECT
+
+private:
+    const QString JSONFILE = "../radiocfg.json";
+    const QString PREFIX = "Radio_register";
+
+    const int TEST_REPEAT = 5;
+    const int MAX_KNOWN_CFG_INDEX = 27;
+    const QString DEFAULT_INVALID_VALUE = "FF";
 
 public:
     //Q_PROPERTY(QStringList categorylist READ categorylist WRITE setCategorylist NOTIFY categorylistChanged)

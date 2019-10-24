@@ -25,11 +25,10 @@
 #include <taglib/flacfile.h>
 // taglib headers }
 
-#define DEFAULT_BUFFER_SIZE     (512)
+static const int DEFAULT_BUFFER_SIZE = 512;
 char buffer[DEFAULT_BUFFER_SIZE];
 
 GetCover* GetCover::_instance = nullptr;
-
 GetCover* GetCover::getInstance()
 {
     if (_instance == nullptr) {

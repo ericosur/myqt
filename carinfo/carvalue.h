@@ -9,8 +9,6 @@
 
 #include "readjson.h"
 
-#define DEFAULT_JSONFILE    "car-info.json"
-
 class CarValue : public QObject
 {
     Q_OBJECT
@@ -56,6 +54,8 @@ protected:
     bool loadJsonFile(const QString& fn);
 
 private:
+    const QString DEFAULT_JSONFILE = "car-info.json";
+
     int mSpeed = 0;
     double mRpm = 0.0;
     int mEngineTemp = 0;

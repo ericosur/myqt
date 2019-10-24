@@ -5,10 +5,13 @@
 #include <QDomElement>
 #include <QString>
 
-#define SIZE_OF_CMDARRAY        12
-
 class HandleSvg
 {
+private:
+    static const int SIZE_OF_CMDARRAY = 12;
+    static const int DEFAULT_WIDTH = 120;
+    static const int DEFAULT_HEIGHT = 120;
+
 public:
     static HandleSvg* getInstance();
 

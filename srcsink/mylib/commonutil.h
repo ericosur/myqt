@@ -11,10 +11,9 @@
 
 #include <QtGlobal>
 
-
-#define WAIT_MSEC_LENGTH    (75)
-#define MAX_RETRY_TIMES     4
-#define MAX_ITEM            5
+static const int WAIT_MSEC_LENGTH = 75;
+static const int MAX_RETRY_TIMES = 4;
+static const int MAX_ITEM = 5;
 
 typedef enum enum_item_type {
     NO_ITEM = 97,

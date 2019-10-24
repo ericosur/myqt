@@ -19,6 +19,10 @@ class Core: public QObject
     Q_PROPERTY(QString rightsvg READ rightsvg WRITE setRightsvg NOTIFY rightsvgChanged)
     Q_PROPERTY(QString outsvg READ outsvg WRITE setOutsvg NOTIFY outsvgChanged)
 
+private:
+    const int TIMER_INTERVAL = 1000;
+    const QString JSON_CONFIG = "/ssd/src/myqt/dom/config.json";
+
 public:
     QString basesvg() const {
         return mBaseSvgPath;

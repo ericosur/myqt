@@ -36,14 +36,16 @@ void CarValue::dump()
 
 bool CarValue::loadJsonFile(const QString& fn)
 {
-    QStringList plist;
     QString result;
-
-#ifndef USE_YOSETARGET
-    plist << "./" << "../" << "/tmp/";
+    QStringList plist = {
+#ifdef USE_YOSETARGET
+        "/var/run/",
 #else
-    plist << "/var/run/" << "/tmp/";
+        "./", "../",
 #endif
+        "/tmp/"
+    };
+
 
     if (!QFile::exists(fn)) {
         if (searchFileFromList(plist, fn, result)) {

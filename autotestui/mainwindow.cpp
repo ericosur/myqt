@@ -15,25 +15,25 @@
 #include <QThread>
 #include <QDebug>
 
+const QString UI_CONFIG_PATH =
 #ifdef USE_YOSETARGET
-#define UI_CONFIG_PATH "/misc/ui.json"
+    "/misc/ui.json";
 #else
-#define UI_CONFIG_PATH "ui.json"
+    "ui.json";
 #endif
 
-#define DEFAULT_BUFFER_SIZE 2048
-#define VERSION "autotestui 2019-07-12 keep selected"
-#define TEST_STRING "1234567890123456789012345678901234567890123456789012345678901234567890"
-#define EASY_HELP_TEXT "**Info** will show a list of selected commands"
+const int DEFAULT_BUFFER_SIZE = 2048;
+const QString VERSION = "autotestui 2019-07-12 keep selected";
+const QString TEST_STRING = "1234567890123456789012345678901234567890123456789012345678901234567890";
+const QString EASY_HELP_TEXT = "**Info** will show a list of selected commands";
 
-#define AUTOTEST_CONFIG_PATH "autotest.json"
-#define DEFAULT_LISTWIDGET_STYLESHEET \
+const QString AUTOTEST_CONFIG_PATH = "autotest.json";
+const QString DEFAULT_LISTWIDGET_STYLESHEET = \
             "color: black;" \
             "background-color: lightgray;" \
             "selection-color: black;" \
             "selection-background-color: steelblue;" \
-            "font-size: 22px;"
-
+            "font-size: 22px;";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

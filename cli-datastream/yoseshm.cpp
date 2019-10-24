@@ -14,7 +14,7 @@
 #endif
 #include <sys/shm.h>
 
-#define MAX_BUFFER_SIZE 4096
+static const MAX_BUFFER_SIZE = 4096;
 
 struct shm_st {
     uint32_t size;

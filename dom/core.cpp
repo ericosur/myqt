@@ -1,9 +1,6 @@
 #include "core.h"
 #include "domutil.h"
 
-#define TIMER_INTERVAL      1000
-#define JSON_CONFIG         "/ssd/src/myqt/dom/config.json"
-
 Core* Core::_instance = nullptr;
 Core* Core::getInstance()
 {

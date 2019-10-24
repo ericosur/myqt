@@ -4,6 +4,10 @@
 
 #include "inireader.h"
 
+#include <QTextCodec>
+#include <QFile>
+#include <QDebug>
+
 IniReader* IniReader::_instance = nullptr;
 IniReader* IniReader::getInstance()
 {

@@ -53,6 +53,7 @@ signals:
     void colorChanged();
 
 private:
+    const QString STATUS_FILE = "/Users/ericosur/wheelkey.status";
     QMap<QString, QString> m_map;
 };
 

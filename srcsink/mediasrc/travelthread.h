@@ -15,7 +15,6 @@
 #include "idhash.h"
 
 typedef QHash<QString, QStringList*> FolderHashList;
-#define SHMKEY    "travel.dir.sharedmem.key"
 
 
 class TravelThread : public QThread
@@ -23,6 +22,9 @@ class TravelThread : public QThread
     Q_OBJECT
 
     Q_PROPERTY(QStringList filelist READ filelist WRITE setFilelist NOTIFY filelistChanged)
+
+private:
+    const QString SHMKEY = "travel.dir.sharedmem.key";
 
 public:
     QStringList filelist() const {

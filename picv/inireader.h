@@ -5,13 +5,9 @@
 #ifndef __INI_READER_H__
 #define __INI_READER_H__
 
-#include <QObject>
-#include <QSettings>
-#include <QTextCodec>
-#include <QFile>
-#include <QDebug>
 
-#define DEFAULT_INI_PATH "/tmp/picture_out.ini"
+#include <QString>
+#include <QSettings>
 
 class IniReader
 {
@@ -33,6 +29,8 @@ protected:
     bool init_reader();
 
 private:
+    const QString DEFAULT_INI_PATH = "/tmp/picture_out.ini";
+
     QSettings* ini = nullptr;
     bool bActive = false;
     int basefileid = -1;

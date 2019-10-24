@@ -11,8 +11,6 @@
 #include <QList>
 #include <QVariantMap>
 
-#define LENGTH_LIST     10
-
 class MyMap
 {
 public:
@@ -29,6 +27,8 @@ protected:
     friend QDataStream& operator>>(QDataStream& ds, MyMap& obj);
 
 private:
+    const QString MYMAPFILE = "/tmp/mymap.dat";
+
     QList<QVariantMap> scannedDevices;
 };
 

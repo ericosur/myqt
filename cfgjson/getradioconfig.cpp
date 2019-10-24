@@ -16,22 +16,6 @@
 #error Qt is too old to build
 #endif
 
-#define JSONFILE    "../radiocfg.json"
-//#define OUT_JSON    "/tmp/o.json"
-//#define REPEAT      4
-#define PREFIX      "Radio_register"
-
-#ifndef USE_YOSETARGET
-#define DEFAULT_CONFIG_DIR     "/tmp"
-#define DEFAULT_CONFIG_FILE    "../radiocfg.json"
-#else
-#define DEFAULT_CONFIG_DIR     "/media/usb/storage"
-#define DEFAULT_CONFIG_FILE    "/media/usb/storage/radiocfg.json"
-#endif
-
-#define TEST_REPEAT             5
-#define MAX_KNOWN_CFG_INDEX     27
-#define DEFAULT_INVALID_VALUE   "FF"
 
 GetRadioConfig* GetRadioConfig::_instance = nullptr;
 GetRadioConfig* GetRadioConfig::getInstance()

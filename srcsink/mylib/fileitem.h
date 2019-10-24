@@ -5,9 +5,9 @@
 #include <QString>
 #include <QDebug>
 
-#define MAX_FILEITEM_NAME       512
-#define MAX_FILEITEM_ARTIST     128
-#define MAX_FILEITEM_ALBUM      128
+static const int MAX_FILEITEM_NAME = 512;
+static const int MAX_FILEITEM_ARTIST = 128;
+static const int MAX_FILEITEM_ALBUM = 128;
 
 // define one single file item
 typedef struct FileItem
