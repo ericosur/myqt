@@ -48,6 +48,7 @@ private:
     const QString BASE_FN = ":/res/base.svg";
     const QString LEFT_FN = ":/res/left.svg";
     const QString RIGHT_FN = ":/res/right.svg";
+    const QString DISPLAY_COLOR = "#EA971E";
 
     QDomDocument base_doc;
     QDomDocument left_doc;

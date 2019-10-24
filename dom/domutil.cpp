@@ -153,7 +153,7 @@ QString HandleSvg::apply_right(int cmd_arr[SIZE_OF_CMDARRAY])
     load_svg(RIGHT_FN, right_doc);
     for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
         int v = cmd_arr[i];
-        change_right_phase(i, (v ? "white" : "none"));
+        change_right_phase(i, (v ? DISPLAY_COLOR : "none"));
     }
     QString fn = compose_filename("right");
     export_doc_to_png(right_doc, fn);
@@ -167,7 +167,7 @@ QString HandleSvg::apply_left(int cmd_arr[SIZE_OF_CMDARRAY])
     load_svg(LEFT_FN, left_doc);
     for (size_t i = 0; i < SIZE_OF_CMDARRAY; ++ i) {
         int v = cmd_arr[i];
-        change_left_phase(i, (v ? "white" : "none"));
+        change_left_phase(i, (v ? DISPLAY_COLOR : "none"));
     }
     QString fn = compose_filename("left");
     export_doc_to_png(left_doc, fn);
