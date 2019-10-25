@@ -1,6 +1,8 @@
 
 #include "testcases.h"
 
+#include <QRegularExpression>
+
 #include <sys/file.h>
 #include <stdio.h>
 #include <errno.h>

@@ -3,7 +3,6 @@
 
 #include <QDebug>
 #include <QString>
-#include <QRegularExpression>
 #include <QUrl>
 
 void localre(const QString& re, const QString& str);
