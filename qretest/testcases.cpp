@@ -33,18 +33,132 @@ void testSizeOfDataType()
         .arg(QString::number(sizeof(quint16)));
 }
 
-void testRegexp()
+void dump_hash(const QHash<QString, QString>& hh)
 {
-    QString s = "v=0/t=1/title = hello world/Message=How are you?/Foo3=bar4";
+    qDebug() << "    hash {";
+    QHash<QString, QString>::const_iterator it;
+    for (it = hh.cbegin(); it != hh.cend(); ++it) {
+        qDebug() << "        " << it.key() << ":" << it.value();
+    }
+    qDebug() << "    } hash end;";
+
+    // QHash<QObject *, int>::iterator i = objectHash.find(obj);
+    // while (i != objectHash.end() && i.key() == obj) {
+    //     if (i.value() == 0) {
+    //         i = objectHash.erase(i);
+    //     } else {
+    //         ++i;
+    //     }
+    // }
+
+}
+
+enum CommandParsingResultType {
+    kError = 17389,
+    kNoPair = 37813,
+    kWithPair = 59359,
+    kUnknown = 1299709
+};
+
+CommandParsingResultType extractKeyValuePair(const QString& str,
+    QHash<QString, QString>& pairs, QString& left_part)
+{
+    pairs.clear();
+    left_part = "";
+    if (str.isEmpty()) {
+        return kError;
+    }
+
     QRegularExpression re("(?<key>[A-Za-z][A-Za-z0-9_]*)\\s*=\\s*(?<val>[^/]+)");
+    QString s = str;
+    //qDebug() << "test on" << s << "==========<<";
     QRegularExpressionMatchIterator i = re.globalMatch(s);
+    int early = s.size();
+    int last = -1;
     while (i.hasNext()) {
         QRegularExpressionMatch match = i.next();
+        int start = match.capturedStart();
+        int end = match.capturedEnd();
+        early = (start < early) ? start : early;
+        last = (end > last) ? end : last;
+        // qDebug() << "start:" << start << ","
+        //          << "end:" << end
+        //          << "mid:" << s.mid(start, end-start+1);
         QString key = match.captured("key");
         QString val = match.captured("val");
-        qDebug() << "match: " << key << "=" << val;
+        //qDebug() << "match: " << key << "=" << val;
+        pairs.insert(key, val);
+    }
+    if (!pairs.size()) {
+        left_part = str;
+        return kNoPair;
+    }
+    //qDebug() << "last:" << last << "," << "early:" << early;
+    if (last > early) {
+        //qDebug() << "captured group:" << s.mid(early, last - early + 1);
+        //qDebug() << "left part:" << s.left(early);
+        left_part = s.left(early);
+        return kWithPair;
+    }
+
+    return kUnknown;
+}
+
+void testRegexp2()
+{
+    QStringList sl = {
+        "calleventshow/on",
+        //"calleventshow/on/",
+        "calleventshow/on/debug=xxx",
+        //"calleventshow/on/debug=xxx/whatthefuck",
+        "calleventshow/on/debug=xxx/whatthefuck/",
+        "calleventshow/on/caller=svc_hmi_yyy",
+        "calleventshow/on/caller=svc_hmi_yyy/debug=ipodui",
+        "calleventshow/on/debug=xxx/caller=svc_hmi_yyy",
+        //"json/[\"title/Home/debug=cli\",\"showbutton/off/debug=testopt\","
+        //"\"showback/on/debug=foobar\"]"
+    };
+    QHash<QString, QString> pairs;
+    CommandParsingResultType ret;
+    QString left_part;
+    foreach (QString s, sl) {
+        ret = extractKeyValuePair(s, pairs, left_part);
+        qDebug() << "ret:" << ret << "s:" << s;
+        dump_hash(pairs);
+        qDebug() << left_part;
     }
 }
+
+int removeTrailSlash(const QString& str, QString& out)
+{
+    out = str;
+    QRegularExpression re("/$");
+    QRegularExpressionMatch m = re.match(str);
+    //int start = m.capturedStart();
+    //int end = m.capturedEnd();
+    int len = m.capturedLength();
+    //qDebug() << "len:" << len << "start:" << start << "end:" << end;
+    if (len) {
+        out.chop(len);
+    }
+    return 0;
+}
+
+
+void testRegexp()
+{
+    QStringList sl = {
+        "calleventshow/on",
+        "calleventshow/on/",
+    };
+
+    QString out;
+    foreach (QString s, sl) {
+        removeTrailSlash(s, out);
+        qDebug() << "out:" << out;
+    }
+}
+
 
 /*
 RF,Kpa,230,C,30,OK*4F

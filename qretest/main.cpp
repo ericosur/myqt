@@ -16,6 +16,7 @@ void utf_test()
 
 void doTests()
 {
+#if 0
     testSizeOfDataType();
 
     utf_test();
@@ -25,6 +26,10 @@ void doTests()
 
     testblacklist();
     testqurl();
+#endif
+
+    qDebug() << "testRegexp()...";
+    testRegexp();
 }
 
 int main(int argc, char *argv[])
@@ -64,7 +69,6 @@ int main(int argc, char *argv[])
     // QObject::connect(&sn, SIGNAL(sigNotify()), &app, SLOT(quit()));
     // sn.start();
 #endif
-
 
 
 #ifdef USE_SINGLERUN
