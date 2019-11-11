@@ -9,7 +9,6 @@
 #include <QString>
 #include <QImage>
 
-#define TESTIMAGE "/tmp/z.jpg"
 
 /**
  * \class ImgTest
@@ -26,7 +25,7 @@ public:
     /**
      * @param fn [in] specified image file to load
      */
-    void load(const QString& fn=TESTIMAGE);
+    void load(const QString& fn="/tmp/z.jpg");
     /**
      * @brief ImgTest::md5sum take md5sum from a buffer with size
      * @param buffer [in] input buffer
