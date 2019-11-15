@@ -8,7 +8,7 @@ Item {
     property var startpw: 880
     property var startph: 200
     property var controlpx: startpx + startpw / 2
-    property var controlpy: startpy  200
+    property var controlpy: startpy + 200
 
     Rectangle {
         x: startpx; y: startpy
