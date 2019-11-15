@@ -2,10 +2,8 @@
 #define __LOAD_TEXT_H__
 
 #include <QObject>
-#include <QFile>
 #include <QString>
 #include <QMap>
-#include <QDebug>
 
 class LoadText : public QObject
 {
@@ -16,7 +14,7 @@ class LoadText : public QObject
 public:
     enum LangType {
         LangNull = 0,
-        LangEn = 1,
+        LangEn = 1000,
         LangAr,
         LangPt,
         LangFr,
@@ -29,7 +27,7 @@ public:
     Q_ENUMS(LangType)
 
 public:
-    LoadText();
+    explicit LoadText(QObject* parent = nullptr);
     ~LoadText() {}
 
     Q_INVOKABLE QString getTextWithId(LangType id);
@@ -42,8 +40,17 @@ signals:
     void messageChanged();
 
 private:
-    QMap<LangType, QString> m_map;
-    QString m_text = "";
+    QString m_text;
+    QMap<LangType, QString> m_map = {
+        {LangEn, "en_US"},
+        {LangAr, "ar_AE"},
+        {LangPt, "pt_PT"},
+        {LangFr, "fr_FR"},
+        {LangEs, "es_ES"},
+        {LangRu, "ru_RU"},
+        {LangUk, "uk_UK"},
+        {LangJa, "ja_JP"},
+    };
 };
 
 #endif  // __LOAD_TEXT_H__

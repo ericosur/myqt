@@ -1,15 +1,11 @@
 #include "loadtext.h"
 
-LoadText::LoadText()
+#include <QFile>
+#include <QDebug>
+
+LoadText::LoadText(QObject* parent) :
+    QObject(parent)
 {
-    m_map.insert(LangEn, "en_US");
-    m_map.insert(LangAr, "ar_AE");
-    m_map.insert(LangPt, "pt_PT");
-    m_map.insert(LangFr, "fr_FR");
-    m_map.insert(LangEs, "es_ES");
-    m_map.insert(LangRu, "ru_RU");
-    m_map.insert(LangUk, "uk_UK");
-    m_map.insert(LangJa, "ja_JP");
 }
 
 QString LoadText::message()
@@ -57,13 +53,11 @@ QString LoadText::readTextfile(const QString& fn)
         QTextStream textStream(&data);
         while (true) {
             QString line = textStream.readLine();
+            // will skip null line
             if (line.isNull()) {
                 break;
             }
-            else {
-                //qDebug() << line;
-                str = str + line;
-            }
+            str = str + line;
         }
     }
     return str;
