@@ -1,12 +1,26 @@
 #include "foo.h"
+#include "actionhandler.h"
+
+#include <QStringList>
+// #include <QRegularExpression>
+// #include <QRegularExpressionMatchIterator>
+#include <QDebug>
 
 /// refer to
 /// https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 ///
 
+Foo* Foo::_instance = nullptr;
+Foo* Foo::getInstance()
+{
+    if (_instance == nullptr) {
+        _instance = new Foo();
+    }
+    return _instance;
+}
+
 Foo::Foo()
 {
-
 }
 
 void Foo::setRpn(const QStringList& sl)
@@ -38,4 +52,3 @@ void Foo::setRpn(const QStringList& sl)
     r = stack.pop();
     qDebug() << "r:" << r;
 }
-

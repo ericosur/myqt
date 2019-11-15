@@ -1,23 +1,20 @@
 #ifndef __FOO_H__
 #define __FOO_H__
 
-#include <QString>
-#include <QStringList>
 #include <QStack>
-#include <QRegularExpression>
-#include <QRegularExpressionMatchIterator>
-#include <QDebug>
-
-#include "actionhandler.h"
+#include <QStringList>
 
 class Foo
 {
+
 public:
-    Foo();
+    static Foo* getInstance();
 
     void setRpn(const QStringList& sl);
 
 protected:
+    static Foo* _instance;
+    explicit Foo();
 
 private:
     QStack<double> stack;
