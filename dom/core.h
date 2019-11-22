@@ -18,6 +18,7 @@ class Core: public QObject
     Q_PROPERTY(QString leftsvg READ leftsvg WRITE setLeftsvg NOTIFY leftsvgChanged)
     Q_PROPERTY(QString rightsvg READ rightsvg WRITE setRightsvg NOTIFY rightsvgChanged)
     Q_PROPERTY(QString outsvg READ outsvg WRITE setOutsvg NOTIFY outsvgChanged)
+    Q_PROPERTY(QString outpng READ outpng WRITE setOutpng NOTIFY outpngChanged)
 
 private:
     const int TIMER_INTERVAL = 1000;
@@ -52,6 +53,13 @@ public:
         mOutSvgPath = url;
         emit outsvgChanged();
     }
+    QString outpng() const {
+        return mOutPng;
+    }
+    void setOutpng(const QString& ofn) {
+        mOutPng = "file://" + ofn;
+        emit outpngChanged();
+    }
 
 public:
     static Core* getInstance();
@@ -70,12 +78,14 @@ signals:
     void leftsvgChanged();
     void rightsvgChanged();
     void outsvgChanged();
+    void outpngChanged();
 
 private:
     QString mBaseSvgPath;
     QString mLeftSvgPath;
     QString mRightSvgPath;
     QString mOutSvgPath;
+    QString mOutPng;
 
     QTimer* test_timer = nullptr;
     ReadJson rj;
@@ -83,6 +93,8 @@ private:
     int exitNumber = -1;
     QString exitDirection;
     QList<int> exits;
+
+    int idx = 0;
 };
 
 #endif  // __CORE__H__

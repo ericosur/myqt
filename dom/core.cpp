@@ -1,5 +1,6 @@
 #include "core.h"
 #include "domutil.h"
+#include "imagegen.h"
 
 Core* Core::_instance = nullptr;
 Core* Core::getInstance()
@@ -27,6 +28,17 @@ void Core::sltTimeout()
     test_timer->setInterval(TIMER_INTERVAL);
     test_timer->start();
 
+#if 1
+    ImageGen* gen = ImageGen::getInstance();
+    if (rj.loadFile("/tmp/carplaynavi.json")) {
+        gen->setJsonObject(rj.getJobject());
+        QString ofn = QString("/tmp/out%1.png").arg(idx);
+        gen->draw_png(ofn);
+        idx ++;
+        idx = idx % 4;
+        setOutpng(ofn);
+    }
+#else
     int tmpNumber = 0;
     QString tmpDir;
     if (rj.loadFile(JSON_CONFIG)) {
@@ -44,7 +56,7 @@ void Core::sltTimeout()
             << "exitDirection:" << exitDirection;
         make_svg_command(exitDirection, exitNumber);
     }
-
+#endif
 }
 
 // go right side of lane

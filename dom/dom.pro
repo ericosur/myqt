@@ -20,11 +20,13 @@ SOURCES += main.cpp
 
 SOURCES += \
     core.cpp \
-    domutil.cpp
+    domutil.cpp \
+    imagegen.cpp
 
 HEADERS += \
     core.h \
-    domutil.h
+    domutil.h \
+    imagegen.h
 
 INCLUDEPATH += /usr/local/include
 INCLUDEPATH += $${PWD}/../readjson

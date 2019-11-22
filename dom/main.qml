@@ -14,7 +14,7 @@ ApplicationWindow {
 
     property string baseurl: core.basesvg
     property string exiturl: core.outsvg
-    property int icon_size: 120
+    property int icon_size: 190
 
     Item {
         x: 0
@@ -46,9 +46,8 @@ ApplicationWindow {
                 width: icon_size
                 height: icon_size
                 //source: "file:///home/rasmus/src/myqt/progresscircle/roundabout_base.svg"
-                source: core.basesvg
+                source: core.outpng
             }
-
             Image {
                 x: img0.x + img0.width + 10
                 y: img0.y
