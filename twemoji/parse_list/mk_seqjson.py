@@ -2,7 +2,7 @@
 # coding: utf-8
 
 '''
-sanilize list.txt
+sanilize list.txt and generate seq.json
 '''
 
 import re
@@ -48,9 +48,10 @@ def main():
     #print(cp_dict['1f935'])
     #print(cp_dict['1fa92'])
 
-    with open('seq.json', 'wt', encoding='UTF-8') as ofh:
-        ofh.write(json.dumps(cp_dict, indent=2))
-
+    out_json_file = '../seq.json'
+    with open(out_json_file, 'wt', encoding='UTF-8') as ofh:
+        ofh.write(json.dumps(cp_dict, indent=2, sort_keys=True))
+    print('output json file:', out_json_file)
 
 if __name__ == '__main__':
     main()

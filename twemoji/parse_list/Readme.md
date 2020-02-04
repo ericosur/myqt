@@ -2,11 +2,16 @@
 
 ## tables
 
-|file name|regular expression|numbers|
-|----|----|----|
-|cp2.txt| ```^[0-9a-f]{2}\b```|14|
-|cp4.txt| ```^[0-9a-f]{4}\b```|215|
-|cp5.txt| ```^[0-9a-f]{5}\b```|2846|
-|total| all emoji combination|3075|
+update to v12.1.5
 
-unique keys: 1312
+to collect data from **list.txt**, run:
+```
+perl pp.pl
+```
+
+|file name|regular expression|numbers  |
+|---------|------------------|---------|
+|cp2.txt  | ```^[0-9a-f]{2}\b```    |14|
+|cp4.txt  | ```^[0-9a-f]{4}\b```   |216|
+|cp5.txt  | ```^[0-9a-f]{5}\b```  |3015|
+|total    | all emoji combination |3245|

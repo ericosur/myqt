@@ -176,7 +176,7 @@ void SeqCore::add_to_answer(const QStringList& sl)
         qDebug() << __func__ << ":" << sl;
     QString s = sl.join("-");
     QString imgsrc = QString(
-        "<img height=\"28\" width=\"28\"src=\"72x72/%1.png\">").arg(s);
+        "<img height=\"32\" width=\"32\"src=\"72x72/%1.png\">").arg(s);
     if (isDebug)
         qDebug() << "[INFO] imgsrc:" << imgsrc;
     emoji_ans += imgsrc;

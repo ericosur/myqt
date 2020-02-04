@@ -6,9 +6,34 @@ helper script to output emoji codepoint to json
 '''
 
 import json
+import os
 
-def main():
-    ''' main '''
+def read_text_file(fn):
+    ''' read text file and return arr '''
+    VERBOSE = False
+    arr = list()
+    # cnt = 0
+    with open(fn, 'rt') as f:
+        for ln in f.readlines():
+            # cnt += 1
+            # if cnt > 3:
+            #     break
+            ch = ln.strip()
+            if VERBOSE:
+                print('input:', ch)
+            chs = ch.split('-')
+            s = str()
+            for cc in chs:
+                s += chr(int(cc, 16))
+            if VERBOSE:
+                print('output:', s)
+            arr.append(s)
+    # for aa in arr:
+    #     print(aa)
+    return arr
+
+def get_default_arr():
+    ''' return default arr '''
     arr = [
         "\u2764\uFE0F\u1F1E7\u1F1F4\u1F64B\u200D\u2640\uFE0F\u1F3C8\u1F603",
         '\U0001f1e7\U0001f1ff\U0001f365\x39\u20e3\u26f9\ufe0f\u200d\u2642\ufe0f'
@@ -23,9 +48,21 @@ def main():
         'G\u26f9\U0001f3fe\u200d\u2642\ufe0fG\U0001F3F4\U000E0067\U000E0062\U000E0077'
         '\U000E006C\U000E0073\U000E007F'
     ]
+    return arr
 
-    with open('test.json', 'wt', encoding='UTF-8') as ofh:
+def main():
+    ''' main '''
+
+    #arr = get_default_arr()
+    # --------------------
+    ofn = '/tmp/n.txt'
+    os.system("git diff parse_list/list.txt | grep '^+[0-9a-f]' | sed 's/\\+//' > {}".format(ofn))
+    arr = read_text_file(ofn)
+
+    test_json = 'test.json'
+    with open(test_json, 'wt', encoding='UTF-8') as ofh:
         ofh.write(json.dumps(arr))
+    print('output to:', test_json)
 
 if __name__ == '__main__':
     main()

@@ -23,9 +23,9 @@ ApplicationWindow {
 
     Timer {
         id: demo_timer
-        interval: 1500; running: demo_run; repeat: true
+        interval: 750; running: demo_run; repeat: true
         onTriggered: {
-            console.log('demo_timer onTriggered');
+            console.log('demo_timer onTriggered: ' + emoji.count);
             emoji.count += 1;
         }
     }

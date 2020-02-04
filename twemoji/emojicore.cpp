@@ -59,7 +59,7 @@ void EmojiCore::runTest(const QStringList& sl)
 
 void EmojiCore::sltCountChanged()
 {
-    qDebug() << __func__;
+    //qDebug() << __func__;
 
     if (!test_list.isEmpty()) {
         list_idx = (mCount % test_list.size());
