@@ -150,6 +150,21 @@ QMap<QString, QString> Solution::parse_line(const QString& line)
     return collectData;
 }
 
+QMap<QString, QString> Solution::parse_line_bad(const QString& line)
+{
+    //qDebug() << "got:" << line;
+    QMap<QString, QString> collectData;
+    QRegularExpression rep("(?<key>[A-Z]+)=(?<val>([^;]+)?);");
+    QRegularExpressionMatchIterator i = rep.globalMatch(line);
+    while (i.hasNext()) {
+        QRegularExpressionMatch match = i.next();
+        QString key = match.captured("key");
+        QString val = match.captured("val");
+        collectData.insert(key, val);
+        //qDebug() << "match: " << key << "=" << val;
+    }
+    return collectData;
+}
 
 void Solution::load_apn_re()
 {
@@ -168,6 +183,22 @@ void Solution::load_apn_re()
     }
 }
 
+void Solution::load_apn_re_bad()
+{
+    qInfo() << __func__;
+
+    textStream.setDevice(&apn1File);
+    textStream.seek(0);
+
+    QMap<QString, QString> collectData;
+    while (!textStream.atEnd()) {
+        QString line = textStream.readLine();
+        collectData = parse_line_bad(line);
+        if (collectData.size()) {
+            apnList3.append(collectData);
+        }
+    }
+}
 
 void test_load()
 {
@@ -195,5 +226,10 @@ void test_load()
     qDebug() << "len apn2:" << foo.apnList2.length();
     qDebug() << "epoch:" << end - start;
 
+    start = QDateTime::currentMSecsSinceEpoch();
+    foo.load_apn_re_bad();
+    end = QDateTime::currentMSecsSinceEpoch();
+    qDebug() << "len apn3:" << foo.apnList3.length();
+    qDebug() << "epoch:" << end - start;
 
 }

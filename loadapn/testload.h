@@ -28,10 +28,14 @@ public:
     QMap<QString, QString> parse_line(const QString& line);
     void load_apn1_file();
 
+    void load_apn_re_bad();
+    QMap<QString, QString> parse_line_bad(const QString& line);
+
 public:
     APN_List_Type apnList0;
     APN_List_Type apnList1;
     APN_List_Type apnList2;
+    APN_List_Type apnList3;
 
 private:
     QRegularExpression re;
