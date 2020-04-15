@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>apn0.txt</file>
+        <file>apn1.txt</file>
+    </qresource>
+</RCC>
