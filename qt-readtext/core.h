@@ -10,6 +10,7 @@ class Core
 public:
     Core();
 
+    void parse_string(const std::string& s);
     bool read_setting();
     bool read_file(const std::string& fn);
 
@@ -23,6 +24,8 @@ public:
 private:
     std::string setting_file = SETTING_JSON_FILE;
     std::string data_file;
+
+    std::string value_list;
 };
 
 
