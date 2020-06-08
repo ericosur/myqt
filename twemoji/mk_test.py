@@ -3,6 +3,7 @@
 
 '''
 helper script to output emoji codepoint to json
+output: test.json
 '''
 
 import json
@@ -55,11 +56,11 @@ def main():
 
     #arr = get_default_arr()
     # --------------------
-    ofn = '/tmp/n.txt'
-    os.system("git diff parse_list/list.txt | grep '^+[0-9a-f]' | sed 's/\\+//' > {}".format(ofn))
+    ofn = 'parse_list/since-12.1.5-to-13.0.0-new-added.txt'
+    #os.system("git diff parse_list/list.txt | grep '^+[0-9a-f]' | sed 's/\\+//' > {}".format(ofn))
     arr = read_text_file(ofn)
 
-    test_json = 'test.json'
+    test_json = 'testnew.json'
     with open(test_json, 'wt', encoding='UTF-8') as ofh:
         ofh.write(json.dumps(arr))
     print('output to:', test_json)

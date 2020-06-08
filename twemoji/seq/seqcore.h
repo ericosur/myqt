@@ -14,7 +14,6 @@ class SeqCore : public QObject
 
     //Q_PROPERTY(QString sequence READ sequence WRITE setSequence NOTIFY sequenceChanged)
 
-
 public:
     static SeqCore* getInstance();
 

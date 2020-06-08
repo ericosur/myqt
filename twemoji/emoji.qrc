@@ -676,6 +676,7 @@
         <file>72x72/1f405.png</file>
         <file>72x72/1f406.png</file>
         <file>72x72/1f407.png</file>
+        <file>72x72/1f408-200d-2b1b.png</file>
         <file>72x72/1f408.png</file>
         <file>72x72/1f409.png</file>
         <file>72x72/1f40a.png</file>
@@ -728,6 +729,7 @@
         <file>72x72/1f438.png</file>
         <file>72x72/1f439.png</file>
         <file>72x72/1f43a.png</file>
+        <file>72x72/1f43b-200d-2744-fe0f.png</file>
         <file>72x72/1f43b.png</file>
         <file>72x72/1f43c.png</file>
         <file>72x72/1f43d.png</file>
@@ -851,6 +853,8 @@
         <file>72x72/1f467.png</file>
         <file>72x72/1f468-1f3fb-200d-1f33e.png</file>
         <file>72x72/1f468-1f3fb-200d-1f373.png</file>
+        <file>72x72/1f468-1f3fb-200d-1f37c.png</file>
+        <file>72x72/1f468-1f3fb-200d-1f384.png</file>
         <file>72x72/1f468-1f3fb-200d-1f393.png</file>
         <file>72x72/1f468-1f3fb-200d-1f3a4.png</file>
         <file>72x72/1f468-1f3fb-200d-1f3a8.png</file>
@@ -879,6 +883,8 @@
         <file>72x72/1f468-1f3fb.png</file>
         <file>72x72/1f468-1f3fc-200d-1f33e.png</file>
         <file>72x72/1f468-1f3fc-200d-1f373.png</file>
+        <file>72x72/1f468-1f3fc-200d-1f37c.png</file>
+        <file>72x72/1f468-1f3fc-200d-1f384.png</file>
         <file>72x72/1f468-1f3fc-200d-1f393.png</file>
         <file>72x72/1f468-1f3fc-200d-1f3a4.png</file>
         <file>72x72/1f468-1f3fc-200d-1f3a8.png</file>
@@ -907,6 +913,8 @@
         <file>72x72/1f468-1f3fc.png</file>
         <file>72x72/1f468-1f3fd-200d-1f33e.png</file>
         <file>72x72/1f468-1f3fd-200d-1f373.png</file>
+        <file>72x72/1f468-1f3fd-200d-1f37c.png</file>
+        <file>72x72/1f468-1f3fd-200d-1f384.png</file>
         <file>72x72/1f468-1f3fd-200d-1f393.png</file>
         <file>72x72/1f468-1f3fd-200d-1f3a4.png</file>
         <file>72x72/1f468-1f3fd-200d-1f3a8.png</file>
@@ -935,6 +943,8 @@
         <file>72x72/1f468-1f3fd.png</file>
         <file>72x72/1f468-1f3fe-200d-1f33e.png</file>
         <file>72x72/1f468-1f3fe-200d-1f373.png</file>
+        <file>72x72/1f468-1f3fe-200d-1f37c.png</file>
+        <file>72x72/1f468-1f3fe-200d-1f384.png</file>
         <file>72x72/1f468-1f3fe-200d-1f393.png</file>
         <file>72x72/1f468-1f3fe-200d-1f3a4.png</file>
         <file>72x72/1f468-1f3fe-200d-1f3a8.png</file>
@@ -963,6 +973,8 @@
         <file>72x72/1f468-1f3fe.png</file>
         <file>72x72/1f468-1f3ff-200d-1f33e.png</file>
         <file>72x72/1f468-1f3ff-200d-1f373.png</file>
+        <file>72x72/1f468-1f3ff-200d-1f37c.png</file>
+        <file>72x72/1f468-1f3ff-200d-1f384.png</file>
         <file>72x72/1f468-1f3ff-200d-1f393.png</file>
         <file>72x72/1f468-1f3ff-200d-1f3a4.png</file>
         <file>72x72/1f468-1f3ff-200d-1f3a8.png</file>
@@ -991,6 +1003,8 @@
         <file>72x72/1f468-1f3ff.png</file>
         <file>72x72/1f468-200d-1f33e.png</file>
         <file>72x72/1f468-200d-1f373.png</file>
+        <file>72x72/1f468-200d-1f37c.png</file>
+        <file>72x72/1f468-200d-1f384.png</file>
         <file>72x72/1f468-200d-1f393.png</file>
         <file>72x72/1f468-200d-1f3a4.png</file>
         <file>72x72/1f468-200d-1f3a8.png</file>
@@ -1032,6 +1046,8 @@
         <file>72x72/1f468.png</file>
         <file>72x72/1f469-1f3fb-200d-1f33e.png</file>
         <file>72x72/1f469-1f3fb-200d-1f373.png</file>
+        <file>72x72/1f469-1f3fb-200d-1f37c.png</file>
+        <file>72x72/1f469-1f3fb-200d-1f384.png</file>
         <file>72x72/1f469-1f3fb-200d-1f393.png</file>
         <file>72x72/1f469-1f3fb-200d-1f3a4.png</file>
         <file>72x72/1f469-1f3fb-200d-1f3a8.png</file>
@@ -1064,6 +1080,8 @@
         <file>72x72/1f469-1f3fb.png</file>
         <file>72x72/1f469-1f3fc-200d-1f33e.png</file>
         <file>72x72/1f469-1f3fc-200d-1f373.png</file>
+        <file>72x72/1f469-1f3fc-200d-1f37c.png</file>
+        <file>72x72/1f469-1f3fc-200d-1f384.png</file>
         <file>72x72/1f469-1f3fc-200d-1f393.png</file>
         <file>72x72/1f469-1f3fc-200d-1f3a4.png</file>
         <file>72x72/1f469-1f3fc-200d-1f3a8.png</file>
@@ -1096,6 +1114,8 @@
         <file>72x72/1f469-1f3fc.png</file>
         <file>72x72/1f469-1f3fd-200d-1f33e.png</file>
         <file>72x72/1f469-1f3fd-200d-1f373.png</file>
+        <file>72x72/1f469-1f3fd-200d-1f37c.png</file>
+        <file>72x72/1f469-1f3fd-200d-1f384.png</file>
         <file>72x72/1f469-1f3fd-200d-1f393.png</file>
         <file>72x72/1f469-1f3fd-200d-1f3a4.png</file>
         <file>72x72/1f469-1f3fd-200d-1f3a8.png</file>
@@ -1128,6 +1148,8 @@
         <file>72x72/1f469-1f3fd.png</file>
         <file>72x72/1f469-1f3fe-200d-1f33e.png</file>
         <file>72x72/1f469-1f3fe-200d-1f373.png</file>
+        <file>72x72/1f469-1f3fe-200d-1f37c.png</file>
+        <file>72x72/1f469-1f3fe-200d-1f384.png</file>
         <file>72x72/1f469-1f3fe-200d-1f393.png</file>
         <file>72x72/1f469-1f3fe-200d-1f3a4.png</file>
         <file>72x72/1f469-1f3fe-200d-1f3a8.png</file>
@@ -1160,6 +1182,8 @@
         <file>72x72/1f469-1f3fe.png</file>
         <file>72x72/1f469-1f3ff-200d-1f33e.png</file>
         <file>72x72/1f469-1f3ff-200d-1f373.png</file>
+        <file>72x72/1f469-1f3ff-200d-1f37c.png</file>
+        <file>72x72/1f469-1f3ff-200d-1f384.png</file>
         <file>72x72/1f469-1f3ff-200d-1f393.png</file>
         <file>72x72/1f469-1f3ff-200d-1f3a4.png</file>
         <file>72x72/1f469-1f3ff-200d-1f3a8.png</file>
@@ -1192,6 +1216,8 @@
         <file>72x72/1f469-1f3ff.png</file>
         <file>72x72/1f469-200d-1f33e.png</file>
         <file>72x72/1f469-200d-1f373.png</file>
+        <file>72x72/1f469-200d-1f37c.png</file>
+        <file>72x72/1f469-200d-1f384.png</file>
         <file>72x72/1f469-200d-1f393.png</file>
         <file>72x72/1f469-200d-1f3a4.png</file>
         <file>72x72/1f469-200d-1f3a8.png</file>
@@ -1268,11 +1294,23 @@
         <file>72x72/1f46f-200d-2640-fe0f.png</file>
         <file>72x72/1f46f-200d-2642-fe0f.png</file>
         <file>72x72/1f46f.png</file>
+        <file>72x72/1f470-1f3fb-200d-2640-fe0f.png</file>
+        <file>72x72/1f470-1f3fb-200d-2642-fe0f.png</file>
         <file>72x72/1f470-1f3fb.png</file>
+        <file>72x72/1f470-1f3fc-200d-2640-fe0f.png</file>
+        <file>72x72/1f470-1f3fc-200d-2642-fe0f.png</file>
         <file>72x72/1f470-1f3fc.png</file>
+        <file>72x72/1f470-1f3fd-200d-2640-fe0f.png</file>
+        <file>72x72/1f470-1f3fd-200d-2642-fe0f.png</file>
         <file>72x72/1f470-1f3fd.png</file>
+        <file>72x72/1f470-1f3fe-200d-2640-fe0f.png</file>
+        <file>72x72/1f470-1f3fe-200d-2642-fe0f.png</file>
         <file>72x72/1f470-1f3fe.png</file>
+        <file>72x72/1f470-1f3ff-200d-2640-fe0f.png</file>
+        <file>72x72/1f470-1f3ff-200d-2642-fe0f.png</file>
         <file>72x72/1f470-1f3ff.png</file>
+        <file>72x72/1f470-200d-2640-fe0f.png</file>
+        <file>72x72/1f470-200d-2642-fe0f.png</file>
         <file>72x72/1f470.png</file>
         <file>72x72/1f471-1f3fb-200d-2640-fe0f.png</file>
         <file>72x72/1f471-1f3fb-200d-2642-fe0f.png</file>
@@ -2119,6 +2157,8 @@
         <file>72x72/1f6d1.png</file>
         <file>72x72/1f6d2.png</file>
         <file>72x72/1f6d5.png</file>
+        <file>72x72/1f6d6.png</file>
+        <file>72x72/1f6d7.png</file>
         <file>72x72/1f6e0.png</file>
         <file>72x72/1f6e1.png</file>
         <file>72x72/1f6e2.png</file>
@@ -2137,6 +2177,8 @@
         <file>72x72/1f6f8.png</file>
         <file>72x72/1f6f9.png</file>
         <file>72x72/1f6fa.png</file>
+        <file>72x72/1f6fb.png</file>
+        <file>72x72/1f6fc.png</file>
         <file>72x72/1f7e0.png</file>
         <file>72x72/1f7e1.png</file>
         <file>72x72/1f7e2.png</file>
@@ -2149,6 +2191,12 @@
         <file>72x72/1f7e9.png</file>
         <file>72x72/1f7ea.png</file>
         <file>72x72/1f7eb.png</file>
+        <file>72x72/1f90c-1f3fb.png</file>
+        <file>72x72/1f90c-1f3fc.png</file>
+        <file>72x72/1f90c-1f3fd.png</file>
+        <file>72x72/1f90c-1f3fe.png</file>
+        <file>72x72/1f90c-1f3ff.png</file>
+        <file>72x72/1f90c.png</file>
         <file>72x72/1f90d.png</file>
         <file>72x72/1f90e.png</file>
         <file>72x72/1f90f-1f3fb.png</file>
@@ -2439,10 +2487,18 @@
         <file>72x72/1f96f.png</file>
         <file>72x72/1f970.png</file>
         <file>72x72/1f971.png</file>
+        <file>72x72/1f972.png</file>
         <file>72x72/1f973.png</file>
         <file>72x72/1f974.png</file>
         <file>72x72/1f975.png</file>
         <file>72x72/1f976.png</file>
+        <file>72x72/1f977-1f3fb.png</file>
+        <file>72x72/1f977-1f3fc.png</file>
+        <file>72x72/1f977-1f3fd.png</file>
+        <file>72x72/1f977-1f3fe.png</file>
+        <file>72x72/1f977-1f3ff.png</file>
+        <file>72x72/1f977.png</file>
+        <file>72x72/1f978.png</file>
         <file>72x72/1f97a.png</file>
         <file>72x72/1f97b.png</file>
         <file>72x72/1f97c.png</file>
@@ -2484,12 +2540,17 @@
         <file>72x72/1f9a0.png</file>
         <file>72x72/1f9a1.png</file>
         <file>72x72/1f9a2.png</file>
+        <file>72x72/1f9a3.png</file>
+        <file>72x72/1f9a4.png</file>
         <file>72x72/1f9a5.png</file>
         <file>72x72/1f9a6.png</file>
         <file>72x72/1f9a7.png</file>
         <file>72x72/1f9a8.png</file>
         <file>72x72/1f9a9.png</file>
         <file>72x72/1f9aa.png</file>
+        <file>72x72/1f9ab.png</file>
+        <file>72x72/1f9ac.png</file>
+        <file>72x72/1f9ad.png</file>
         <file>72x72/1f9ae.png</file>
         <file>72x72/1f9af.png</file>
         <file>72x72/1f9b0.png</file>
@@ -2568,6 +2629,7 @@
         <file>72x72/1f9c8.png</file>
         <file>72x72/1f9c9.png</file>
         <file>72x72/1f9ca.png</file>
+        <file>72x72/1f9cb.png</file>
         <file>72x72/1f9cd-1f3fb-200d-2640-fe0f.png</file>
         <file>72x72/1f9cd-1f3fb-200d-2642-fe0f.png</file>
         <file>72x72/1f9cd-1f3fb.png</file>
@@ -2625,6 +2687,8 @@
         <file>72x72/1f9d0.png</file>
         <file>72x72/1f9d1-1f3fb-200d-1f33e.png</file>
         <file>72x72/1f9d1-1f3fb-200d-1f373.png</file>
+        <file>72x72/1f9d1-1f3fb-200d-1f37c.png</file>
+        <file>72x72/1f9d1-1f3fb-200d-1f384.png</file>
         <file>72x72/1f9d1-1f3fb-200d-1f393.png</file>
         <file>72x72/1f9d1-1f3fb-200d-1f3a4.png</file>
         <file>72x72/1f9d1-1f3fb-200d-1f3a8.png</file>
@@ -2654,6 +2718,8 @@
         <file>72x72/1f9d1-1f3fb.png</file>
         <file>72x72/1f9d1-1f3fc-200d-1f33e.png</file>
         <file>72x72/1f9d1-1f3fc-200d-1f373.png</file>
+        <file>72x72/1f9d1-1f3fc-200d-1f37c.png</file>
+        <file>72x72/1f9d1-1f3fc-200d-1f384.png</file>
         <file>72x72/1f9d1-1f3fc-200d-1f393.png</file>
         <file>72x72/1f9d1-1f3fc-200d-1f3a4.png</file>
         <file>72x72/1f9d1-1f3fc-200d-1f3a8.png</file>
@@ -2683,6 +2749,8 @@
         <file>72x72/1f9d1-1f3fc.png</file>
         <file>72x72/1f9d1-1f3fd-200d-1f33e.png</file>
         <file>72x72/1f9d1-1f3fd-200d-1f373.png</file>
+        <file>72x72/1f9d1-1f3fd-200d-1f37c.png</file>
+        <file>72x72/1f9d1-1f3fd-200d-1f384.png</file>
         <file>72x72/1f9d1-1f3fd-200d-1f393.png</file>
         <file>72x72/1f9d1-1f3fd-200d-1f3a4.png</file>
         <file>72x72/1f9d1-1f3fd-200d-1f3a8.png</file>
@@ -2712,6 +2780,8 @@
         <file>72x72/1f9d1-1f3fd.png</file>
         <file>72x72/1f9d1-1f3fe-200d-1f33e.png</file>
         <file>72x72/1f9d1-1f3fe-200d-1f373.png</file>
+        <file>72x72/1f9d1-1f3fe-200d-1f37c.png</file>
+        <file>72x72/1f9d1-1f3fe-200d-1f384.png</file>
         <file>72x72/1f9d1-1f3fe-200d-1f393.png</file>
         <file>72x72/1f9d1-1f3fe-200d-1f3a4.png</file>
         <file>72x72/1f9d1-1f3fe-200d-1f3a8.png</file>
@@ -2741,6 +2811,8 @@
         <file>72x72/1f9d1-1f3fe.png</file>
         <file>72x72/1f9d1-1f3ff-200d-1f33e.png</file>
         <file>72x72/1f9d1-1f3ff-200d-1f373.png</file>
+        <file>72x72/1f9d1-1f3ff-200d-1f37c.png</file>
+        <file>72x72/1f9d1-1f3ff-200d-1f384.png</file>
         <file>72x72/1f9d1-1f3ff-200d-1f393.png</file>
         <file>72x72/1f9d1-1f3ff-200d-1f3a4.png</file>
         <file>72x72/1f9d1-1f3ff-200d-1f3a8.png</file>
@@ -2770,6 +2842,8 @@
         <file>72x72/1f9d1-1f3ff.png</file>
         <file>72x72/1f9d1-200d-1f33e.png</file>
         <file>72x72/1f9d1-200d-1f373.png</file>
+        <file>72x72/1f9d1-200d-1f37c.png</file>
+        <file>72x72/1f9d1-200d-1f384.png</file>
         <file>72x72/1f9d1-200d-1f393.png</file>
         <file>72x72/1f9d1-200d-1f3a4.png</file>
         <file>72x72/1f9d1-200d-1f3a8.png</file>
@@ -3003,18 +3077,59 @@
         <file>72x72/1fa71.png</file>
         <file>72x72/1fa72.png</file>
         <file>72x72/1fa73.png</file>
+        <file>72x72/1fa74.png</file>
         <file>72x72/1fa78.png</file>
         <file>72x72/1fa79.png</file>
         <file>72x72/1fa7a.png</file>
         <file>72x72/1fa80.png</file>
         <file>72x72/1fa81.png</file>
         <file>72x72/1fa82.png</file>
+        <file>72x72/1fa83.png</file>
+        <file>72x72/1fa84.png</file>
+        <file>72x72/1fa85.png</file>
+        <file>72x72/1fa86.png</file>
         <file>72x72/1fa90.png</file>
         <file>72x72/1fa91.png</file>
         <file>72x72/1fa92.png</file>
         <file>72x72/1fa93.png</file>
         <file>72x72/1fa94.png</file>
         <file>72x72/1fa95.png</file>
+        <file>72x72/1fa96.png</file>
+        <file>72x72/1fa97.png</file>
+        <file>72x72/1fa98.png</file>
+        <file>72x72/1fa99.png</file>
+        <file>72x72/1fa9a.png</file>
+        <file>72x72/1fa9b.png</file>
+        <file>72x72/1fa9c.png</file>
+        <file>72x72/1fa9d.png</file>
+        <file>72x72/1fa9e.png</file>
+        <file>72x72/1fa9f.png</file>
+        <file>72x72/1faa0.png</file>
+        <file>72x72/1faa1.png</file>
+        <file>72x72/1faa2.png</file>
+        <file>72x72/1faa3.png</file>
+        <file>72x72/1faa4.png</file>
+        <file>72x72/1faa5.png</file>
+        <file>72x72/1faa6.png</file>
+        <file>72x72/1faa7.png</file>
+        <file>72x72/1faa8.png</file>
+        <file>72x72/1fab0.png</file>
+        <file>72x72/1fab1.png</file>
+        <file>72x72/1fab2.png</file>
+        <file>72x72/1fab3.png</file>
+        <file>72x72/1fab4.png</file>
+        <file>72x72/1fab5.png</file>
+        <file>72x72/1fab6.png</file>
+        <file>72x72/1fac0.png</file>
+        <file>72x72/1fac1.png</file>
+        <file>72x72/1fac2.png</file>
+        <file>72x72/1fad0.png</file>
+        <file>72x72/1fad1.png</file>
+        <file>72x72/1fad2.png</file>
+        <file>72x72/1fad3.png</file>
+        <file>72x72/1fad4.png</file>
+        <file>72x72/1fad5.png</file>
+        <file>72x72/1fad6.png</file>
         <file>72x72/203c.png</file>
         <file>72x72/2049.png</file>
         <file>72x72/2122.png</file>

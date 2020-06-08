@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <nlohmann/json.hpp>
 
+#include <QFile>
 #include <QHash>
 #include <QRegularExpression>
 #include <QDebug>
