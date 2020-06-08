@@ -21,3 +21,7 @@ Here we use such regular expression:
 ```regexp
 (?<key>[A-Z]+)=(?<val>([^;]+)?);
 ```
+
+## apns-full-conf.xml
+
+downloads from AOSP, device/sample/etc/apns-full-conf.xml
