@@ -11,7 +11,7 @@
 
 void test_timezone()
 {
-    qDebug() << Q_FUNC_INFO << "from qt:" << QTimeZone::systemTimeZoneId() << Qt::endl
+    qDebug() << Q_FUNC_INFO << "from qt:" << QTimeZone::systemTimeZoneId() << endl
         << "getTimeZoneNameFromLink()" << getTimeZoneNameFromLink();
 
 
@@ -35,7 +35,7 @@ void test_locale()
     // double d = arae.toDouble(s1);
     // int i = arae.toInt(s2);
     qDebug() << "arae:" << arae;
-    qDebug() << n1 << "==>" << s1 << Qt::endl
+    qDebug() << n1 << "==>" << s1 << endl
         << n2 << "==>" << s2;
 
     QDateTime now = QDateTime::currentDateTime();

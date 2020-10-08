@@ -166,7 +166,7 @@ void test_arg_format()
 {
     const double pi = 3.14159265358979323846264338327950;
     printf("printf: pi: %lf\n", pi);
-    qDebug() << "pi:" << pi << Qt::endl
+    qDebug() << "pi:" << pi << endl
         << "arg/f/4:" << QString("<%1>").arg(pi, 0, 'f', 4);
 }
 
@@ -208,9 +208,8 @@ void test_runscript()
         result = script_name;
     }
 
-    QStringList args;
     QProcess process;
-    process.start(result, args);
+    process.start(result);
     process.waitForFinished(-1); // will wait forever until finished
 
     QString stdout = process.readAllStandardOutput();
