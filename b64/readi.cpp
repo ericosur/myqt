@@ -15,8 +15,8 @@ void test_read_json();
 
 void show(const QString& dns, const QString& gw, const QString& ip)
 {
-    qDebug() << "dns:" << dns << endl
-        << "gw:" << gw << endl
+    qDebug() << "dns:" << dns << Qt::endl
+        << "gw:" << gw << Qt::endl
         << "ip:" << ip ;
 }
 
