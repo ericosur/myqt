@@ -1,4 +1,16 @@
-import PySide2.QtCore
+#!/usr/bin/env python3
+# coding: utf-8
+
+'''
+PySide2
+'''
+
+import sys
+try:
+    import PySide2.QtCore
+except ImportError:
+    print('cannot load module: PySide2.QtCore')
+    sys.exit(1)
 
 # Prints PySide2 version
 # e.g. 5.11.1a1
