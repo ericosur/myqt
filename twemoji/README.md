@@ -28,10 +28,11 @@ Emoji images used in this application <img src="https://mirrors.creativecommons.
 git clone https://github.com/twitter/twemoji.git
 ```
 
-* copy latest images from twemoji (current latest is v12.1.5)
+* copy latest images from twemoji
 > NOTE: On 2020-Jun-08 checking, there is v13.0.0 available
+> NOTE: On Oct-12-2020, updated to v13.0.1
 ```
-cp -f v/13.0.0/72x72/*.png $TOP/72x72/
+cp -f v/13.0.1/72x72/*.png $TOP/72x72/
 ```
 
 * to generate **emoji.qrc** and **parse_list/list.txt** from 72x72/

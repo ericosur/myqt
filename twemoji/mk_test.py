@@ -31,6 +31,7 @@ def read_text_file(fn):
             arr.append(s)
     # for aa in arr:
     #     print(aa)
+    print('loading {} lines'.format(len(arr)))
     return arr
 
 def get_default_arr():
@@ -51,19 +52,16 @@ def get_default_arr():
     ]
     return arr
 
-def main():
+def main(fn):
     ''' main '''
-
-    #arr = get_default_arr()
-    # --------------------
-    ofn = 'parse_list/since-12.1.5-to-13.0.0-new-added.txt'
-    #os.system("git diff parse_list/list.txt | grep '^+[0-9a-f]' | sed 's/\\+//' > {}".format(ofn))
-    arr = read_text_file(ofn)
-
-    test_json = 'testnew.json'
+    arr = read_text_file(fn)
+    test_json = 'test_updated.json'
     with open(test_json, 'wt', encoding='UTF-8') as ofh:
         ofh.write(json.dumps(arr))
     print('output to:', test_json)
+    print('[notice] twemoji executable read **test.json**, not {}'.format(test_json))
 
 if __name__ == '__main__':
-    main()
+    #DEFAULT_FN = 'parse_list/since-12.1.5-to-13.0.0-new-added.txt'
+    DEFAULT_FN = 'parse_list/update-13.0.0-to-13.0.1.txt'
+    main(DEFAULT_FN)

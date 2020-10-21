@@ -34,6 +34,7 @@ void EmojiCore::load_tests()
     using namespace std;
     using namespace nlohmann;
     string json_file = "../test.json";
+    cout << "[info] loading: " << json_file << endl;
     try {
         ifstream inf(json_file);
         json j;
@@ -43,6 +44,7 @@ void EmojiCore::load_tests()
             json j_string = (*it);
             test_list << QString::fromStdString(j_string.get<std::string>());
         }
+        cout << "[info] load " << test_list.size() << " items from list" << endl;
     } catch (json::parse_error& e) {
         cout << "parse error:" << e.what() << endl;
     }
