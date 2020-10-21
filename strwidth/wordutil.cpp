@@ -62,7 +62,7 @@ int WordUtil::getStringWidth(const QString& str, QSize& sz)
     QFont fnt(mFontName, mPixelSize);
     QFontMetrics fm(fnt);
 
-    sz.setWidth(fm.width(str));
+    sz.setWidth(fm.horizontalAdvance(str));
     sz.setHeight(fm.height());
 
     qDebug() << "string:" << str << "font vc1, width:" << sz.width() << "height:" << sz.height();
