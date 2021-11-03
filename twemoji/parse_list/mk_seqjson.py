@@ -35,14 +35,11 @@ def main():
 
     tot = 0
     for ii, v in enumerate(cp_dict):
-    #for v in cp_dict:
         if cp_dict[v]:
             tot += len(cp_dict[v])
-            #print('{}: {}: {}'.format(ii, v, len(cp_dict[v])))
         else:
-            #print('{}: {}: {}'.format(ii, v, 1))
             tot += 1
-        print('{}: {}'.format(ii, cp_dict[v]))
+        print(f'{ii}: {cp_dict[v]}')
     print('go through cp_dict, len:', tot)
 
     #print(cp_dict['1f935'])

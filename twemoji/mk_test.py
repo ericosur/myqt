@@ -7,14 +7,13 @@ output: test.json
 '''
 
 import json
-import os
 
 def read_text_file(fn):
     ''' read text file and return arr '''
     VERBOSE = False
-    arr = list()
+    arr = []
     # cnt = 0
-    with open(fn, 'rt') as f:
+    with open(fn, 'rt', encoding='utf8') as f:
         for ln in f.readlines():
             # cnt += 1
             # if cnt > 3:
@@ -31,7 +30,7 @@ def read_text_file(fn):
             arr.append(s)
     # for aa in arr:
     #     print(aa)
-    print('loading {} lines'.format(len(arr)))
+    print(f'loading {len(arr)} lines')
     return arr
 
 def get_default_arr():
@@ -59,9 +58,10 @@ def main(fn):
     with open(test_json, 'wt', encoding='UTF-8') as ofh:
         ofh.write(json.dumps(arr))
     print('output to:', test_json)
-    print('[notice] twemoji executable read **test.json**, not {}'.format(test_json))
+    print(f'[notice] twemoji executable read **test.json**, not {test_json}')
 
 if __name__ == '__main__':
     #DEFAULT_FN = 'parse_list/since-12.1.5-to-13.0.0-new-added.txt'
-    DEFAULT_FN = 'parse_list/update-13.0.0-to-13.0.1.txt'
+    #DEFAULT_FN = 'parse_list/update-13.0.0-to-13.0.1.txt'
+    DEFAULT_FN = 'parse_list/update-13.0.1-to-13.1.0.txt'
     main(DEFAULT_FN)

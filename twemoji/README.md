@@ -29,19 +29,31 @@ git clone https://github.com/twitter/twemoji.git
 ```
 
 * copy latest images from twemoji
-> NOTE: On 2020-Jun-08 checking, there is v13.0.0 available
-> NOTE: On Oct-12-2020, updated to v13.0.1
+
+Note:
+    - 2020-06-08: checking, there is v13.0.0 available
+    - 2020-10-12: updated to v13.0.1
+    - 2021-11-03: updated to v13.1.0
+
+
 ```
-cp -f v/13.0.1/72x72/*.png $TOP/72x72/
+cd $TWEMOJI_DIR
+git checkout v13.1.0
+cp -f $TWEMOJI_DIR/assets/72x72/*.png $TOP/72x72/
 ```
 
 * to generate **emoji.qrc** and **parse_list/list.txt** from 72x72/
+
 ```
 python3 mkqrc.py
 ```
+  It will output __emoji.qrc__ and __parse_list/list.txt__.
+
+* ```cd $TOP/parse_list/``` and run __pp.pl__.
 
 * use git diff to generate test.json (automatically)
     * execute **[mk_test.py](./mk_test.py)**
+
 ```bash
 $ python3 mk_test.py
 ```

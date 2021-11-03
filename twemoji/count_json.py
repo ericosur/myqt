@@ -9,30 +9,16 @@
 '''
 
 import glob
-import json
-import os
 import sys
-
-def read_jsonfile(fn, debug=False):
-    '''
-    specify json filename and return whole json object
-    '''
-    if debug:
-        print('load json from {}'.format(fn))
-    if not os.path.exists(fn):
-        print('file not found')
-        return None
-    # read from json file
-    data = json.load(open(fn))
-    return data
+from typing import List
+from myutil import read_jsonfile
 
 
-
-def main(argv):
+def main(argv: List) -> None:
     ''' main '''
     for f in argv:
         js = read_jsonfile(f)
-        print('len of keys in file {}: {}'.format(f, len(js)))
+        print(f'len of keys in file {f}: {len(js)}')
 
 
 if __name__ == '__main__':

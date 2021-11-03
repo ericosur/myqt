@@ -8,27 +8,13 @@
     does not effect the flow for twemoji
 '''
 
-import os
-import json
+from typing import List
+from myutil import read_jsonfile
 
-def read_jsonfile(fn, debug=False):
-    '''
-    specify json filename and return whole json object
-    '''
-    if debug:
-        print('load json from {}'.format(fn))
-    if not os.path.exists(fn):
-        print('file not found')
-        return None
-    # read from json file
-    data = json.load(open(fn))
-    return data
-
-
-def output_as_list(js):
+def output_as_list(js : List) -> None:
     ''' output as list.txt '''
     ofn = '/tmp/unsort.txt'
-    with open(ofn, 'wt') as fout:
+    with open(ofn, 'wt', encoding='utf8') as fout:
         for j in js:
             for k in js[j]:
                 print('-'.join(k), file=fout)
