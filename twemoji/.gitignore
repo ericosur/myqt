@@ -1,2 +1,3 @@
 cp*.txt
 
+__pycache__/
