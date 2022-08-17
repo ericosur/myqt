@@ -7,6 +7,7 @@
 ## revision
 
 2020-06-08 update image assests from twemoji (v13.0.0)
+2022-08-17 update image assests from twemoji (v14.0.1)
 
 ## note
 
@@ -34,6 +35,7 @@ Note:
     - 2020-06-08: checking, there is v13.0.0 available
     - 2020-10-12: updated to v13.0.1
     - 2021-11-03: updated to v13.1.0
+    - 2022-08-17: updated to v14.0.1
 
 
 ```
@@ -66,5 +68,22 @@ python3 mk_seqjson.py
 
 will update *seq.json*.
 
-## examples
+## tips
+
+```
+python3 -m json.tool some.json
+```
+
+## build and run
+
+```
+cd $TOP
+mkdir -p build/
+cd build/
+qmake ..
+make -j4
+./twemoji
+```
+
+note: twemoji will load test.json and follow its content to show
 
